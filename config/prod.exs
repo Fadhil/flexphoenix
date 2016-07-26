@@ -14,7 +14,8 @@ use Mix.Config
 config :flexphoenix, Flexphoenix.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/manifest.json",
+  server: true
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -60,6 +61,16 @@ config :logger, level: :info
 #
 #     config :flexphoenix, Flexphoenix.Endpoint, root: "."
 
+# Configure your database
+config :flexphoenix, Flexphoenix.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("POSTGRES_USERNAME"),
+  password: System.get_env("POSTGRES_PASSWORD"),
+  database: "flexphoenix_dev",
+  hostname: "localhost",
+  pool_size: 10
+
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
+
 import_config "prod.secret.exs"

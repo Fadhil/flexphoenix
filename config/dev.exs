@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :flexphoenix, Flexphoenix.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "faruq",
+  password: "jessicaalba",
   database: "flexphoenix_dev",
   hostname: "localhost",
   pool_size: 10

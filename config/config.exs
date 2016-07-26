@@ -28,5 +28,10 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
+# Configure Passport
+config :passport,
+resource: Flexphoenix.User,
+repo: Flexphoenix.Repo
+
 # Configure from imported file
 import_config "#{Mix.env}.exs"

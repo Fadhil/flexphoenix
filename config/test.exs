@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :flexphoenix, Flexphoenix.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "faruq",
+  password: "jessicaalba",
   database: "flexphoenix_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

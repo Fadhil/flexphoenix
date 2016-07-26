@@ -2,26 +2,28 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
 
       // To use a separate vendor.js bundle, specify two files path
       // https://github.com/brunch/brunch/blob/stable/docs/config.md#files
-      // joinTo: {
-      //  "js/app.js": /^(web\/static\/js)/,
-      //  "js/vendor.js": /^(web\/static\/vendor)|(deps)/
-      // }
+      joinTo: {
+       "js/app.js": /^(web\/static\/js)|(node_modules\/phoenix\/priv)|(node_modules\/phoenix_html\/priv)/,
+       "js/vendor.js": /^(web\/static\/vendor\/js)|(bower_components)/
+      },
       //
       // To change the order of concatenation of files, explicitly mention here
       // https://github.com/brunch/brunch/tree/master/docs#concatenation
-      // order: {
-      //   before: [
-      //     "web/static/vendor/js/jquery-2.1.1.js",
-      //     "web/static/vendor/js/bootstrap.min.js"
-      //   ]
-      // }
+      order: {
+        before: [
+          "bower_components/jquery/dist/jquery.min.js",
+          "bower_components/bootstrap/dist/js/bootstrap.min.js"
+        ]
+      }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: {
+        "css/app.css": /^(web\/static\/css)/,
+        "css/vendor.css": /^(web\/static\/vendor\/css)|(bower_components)/
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -40,7 +42,8 @@ exports.config = {
     // Dependencies and current project directories to watch
     watched: [
       "web/static",
-      "test/static"
+      "test/static",
+      "bower_components/bootstrap/dist/css"
     ],
 
     // Where to compile files to
@@ -51,7 +54,7 @@ exports.config = {
   plugins: {
     babel: {
       // Do not use ES6 compiler in vendor code
-      ignore: [/web\/static\/vendor/]
+      ignore: [/^(web\/static\/vendor)|(bower_components)/]
     }
   },
 

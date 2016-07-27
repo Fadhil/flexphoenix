@@ -4,7 +4,7 @@ defmodule Flexphoenix.RegistrationController do
   alias Flexphoenix.User
 
   def new(conn, _params) do
-    changeset = User.changeset(%Flexphoenix.User{})
+    changeset = User.changeset(%User{})
     conn
     |> render(:new, user: changeset, changeset: changeset)
   end

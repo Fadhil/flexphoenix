@@ -1,6 +1,6 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+  <h2><%= gettext "Welcome to %{name}", name: "Flexcility!" %></h2>
+  <p class="lead">The facility management system for<br />everyone, everywhere, everytime.</p>
 </div>
 
 <div class="row marketing">
@@ -33,4 +33,18 @@
       </li>
     </ul>
   </div>
+</div>
+
+<div>
+                <ul style="padding: 0; list-style-type: none">
+                  <%= if @current_user do %>
+                    <li><%= @current_user.email %></li>
+                    <li><button type="button" class="btn btn-warning">
+                        <%= link "Logout", to: session_path(@conn, :delete), method: :delete %></button></li>
+                  <% else %>
+                    <div>
+                    <li><%= link "Register", to: registration_path(@conn, :new) %></li>
+                    <li><%= link "Login", to: session_path(@conn, :new) %></li>
+                    </div>
+                <% end %>
 </div>

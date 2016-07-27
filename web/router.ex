@@ -25,7 +25,7 @@ defmodule Flexphoenix.Router do
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
-    get "/logout", SessionController, :delete
+    delete "/logout", SessionController, :delete
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
     get "/forget-password", PasswordController, :forget_password

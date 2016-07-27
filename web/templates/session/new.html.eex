@@ -8,3 +8,10 @@
   </div>
   <%= submit "Log in", class: "btn btn-primary" %>
 <% end %>
+  <div style="margin-top: 10px">
+  <ul style="padding: 0; list-style-type: none">
+    <li><%= link "Forget Password", to: password_path(@conn, :forget_password) %></li>
+    <li> <%= link "Register", to: registration_path(@conn, :new) %></li>
+    <li> <%= link "Home", to: page_path(@conn, :index) %></li>
+  </ul>
+  </div>

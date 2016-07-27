@@ -3,8 +3,8 @@ defmodule Flexphoenix.User do
   alias Passport.Password
 
   schema "users" do
-    field :first_name, :string, virtual: true
-    field :last_name, :string, virtual: true
+    field :first_name, :string
+    field :last_name, :string
     field :email, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -16,13 +16,13 @@ defmodule Flexphoenix.User do
   @required_fields ~w(first_name last_name email password)
   @optional_fields ~w()
 
-  def changeset(model, params \\ :empty) do model
+  def changeset(model, params \\ %{}) do model
     |> cast(params, @required_fields, @optional_fields)
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
   end
 
-  def registration_changeset(model, params) do model
+  def registration_changeset(model, params \\ %{}) do model
     |> changeset(params)
     |> cast(params, ~w(password password_confirmation), [])
     |> validate_length(:password, min: 6, max: 100)

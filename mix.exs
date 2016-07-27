@@ -19,7 +19,7 @@ defmodule Flexphoenix.Mixfile do
   def application do
     [mod: {Flexphoenix, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :conform]]
+                    :phoenix_ecto, :postgrex, :comeonin, :conform]]
   end
 
   # Specifies which paths to compile per environment.
@@ -33,6 +33,8 @@ defmodule Flexphoenix.Mixfile do
     [{:phoenix, "~> 1.1.4"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_ecto, "~> 2.0"},
+     {:passport, "~> 0.0.4"},
+     {:comeonin, "~> 2.0"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},

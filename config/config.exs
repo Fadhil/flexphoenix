@@ -5,6 +5,11 @@
 # is restricted to this project.
 use Mix.Config
 
+# Configure Passport
+config :passport,
+resource: Flexphoenix.User,
+repo: Flexphoenix.Repo
+
 # Configures the endpoint
 config :flexphoenix, Flexphoenix.Endpoint,
   url: [host: "localhost"],
@@ -27,6 +32,3 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
-
-# Configure from imported file
-import_config "#{Mix.env}.exs"

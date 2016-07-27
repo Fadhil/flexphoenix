@@ -387,6 +387,16 @@
             </div>
 
             <div class="wrapper wrapper-content">
+								<%
+								info = get_flash(@conn, :info)
+								error = get_flash(@conn, :error)
+								%>
+								<% if info do %>
+									<div class="alert alert-info" role="alert"><%= info %></div>
+								<% end %>
+								<% if error do %>
+									<div class="alert alert-danger" role="alert"><%= error %></div>
+								<% end %>
 								<%= render @view_module, @view_template, assigns %>
             </div>
             <div class="footer">

@@ -6,7 +6,7 @@ defmodule Flexphoenix.RegistrationController do
   def new(conn, _params) do
     changeset = User.changeset(%Flexphoenix.User{})
     conn
-    |> render(:new, changeset: changeset)
+    |> render(:new, user: changeset, changeset: changeset)
   end
 
   def create(conn, %{"user" => registration_params}) do
@@ -18,7 +18,7 @@ defmodule Flexphoenix.RegistrationController do
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> render(:new, changeset: changeset)
+        |> render(:new, user: changeset, changeset: changeset)
     end
   end
 

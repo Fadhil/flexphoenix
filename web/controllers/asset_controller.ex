@@ -1,12 +1,18 @@
 defmodule Flexphoenix.AssetController do
   use Flexphoenix.Web, :controller
+  import Ecto.Query, only: [from: 2]
   alias Flexphoenix.Asset
 
   plug :scrub_params, "asset" when action in [:create, :update]
   plug :assign_project
 
   def index(conn, _params) do
-    assets = Repo.all(Asset)
+    project_id = conn.assigns.project.id
+    query = from a in Asset,
+            join: p in assoc(a, :project),
+            where: p.id == ^project_id,
+            preload: [project: p]
+    assets = Repo.all(query)
     render(conn, "index.html", assets: assets)
   end
 

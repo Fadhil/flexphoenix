@@ -51,6 +51,14 @@
 
                 <% end %>
                 <li>
+                    <a href="<%= request_path(@conn, :index) %>"><i class="fa fa-sitemap"></i> <span class="nav-label">Work Requests</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li>
+                          <a href="<%= request_path(@conn, :index) %>">All Work Requests<span class="fa arrow"></span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li>

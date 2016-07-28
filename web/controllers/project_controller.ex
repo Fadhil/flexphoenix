@@ -30,7 +30,7 @@ defmodule Flexphoenix.ProjectController do
   end
 
   def show(conn, %{"id" => id}) do
-    project = Repo.get!(Project, id)
+    project = Project |> Project.with_owner |> Repo.get!(id)
     render(conn, "show.html", project: project)
   end
 

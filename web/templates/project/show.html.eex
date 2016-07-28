@@ -17,6 +17,11 @@
     <%= @project.address %>
   </li>
 
+  <li>
+    <strong>Owner:</strong>
+    <%= @project.user.first_name %>
+  </li>
+
 </ul>
 
 <%= link "Edit", to: project_path(@conn, :edit, @project) %>

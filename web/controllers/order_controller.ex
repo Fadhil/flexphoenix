@@ -16,7 +16,8 @@ defmodule Flexphoenix.OrderController do
   end
 
   def create(conn, %{"order" => order_params}) do
-    changeset = Order.changeset(%Order{}, order_params)
+    current_user = conn.assigns.current_user
+    changeset = Order.create_changeset(%Order{}, current_user.id, order_params)
 
     case Repo.insert(changeset) do
       {:ok, _order} ->

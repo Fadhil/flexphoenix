@@ -25,4 +25,23 @@ defmodule Flexphoenix.Request do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def create_changeset(model, user_id, params \\ :empty) do
+    model
+    |> cast(params, @required_fields, @optional_fields)
+    |> put_user_id(user_id)
+  end
+
+  def put_user_id(changeset, user_id) do
+    case changeset do
+      %Ecto.Changeset{valid?: true} ->
+        put_change(changeset, :user_id, user_id)
+      _ ->
+        changeset
+    end
+  end
+
+  def with_owner(query) do
+    from q in query, preload: [:user]
+  end
 end

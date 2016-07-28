@@ -29,12 +29,18 @@
                 <li>
                     <a href=""><i class="fa fa-industry"></i> <span class="nav-label">Projects</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
+                    <%= case @project_menu_items do %>
+                      <%= [] -> %>
                         <li>
-													<a href="<%= project_path(@conn, :index) %>">All Projects</a></li>
+                          <a href="<%= project_path(@conn, :new) %>">New Project</a></li>
                         </li>
-                        <li>
-													<a href="#">Project A</a></li>
-                        </li>
+                      <%=  _ -> %>
+                        <%= for mi <- @project_menu_items do %>
+                          <li>
+                            <%= link mi.name, to: project_path(@conn, :show, mi.id) %>
+                          </li>
+                        <% end %>
+                      <% end %>
                     </ul>
                 </li>
                 <li>

@@ -34,6 +34,7 @@ defmodule Flexphoenix.Router do
     resources "/projects", ProjectController do
       resources "/assets", AssetController
     end
+    resources "/orders", OrderController
   end
 
 	scope "/", Flexphoenix do

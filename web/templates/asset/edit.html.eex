@@ -1,6 +1,6 @@
 <h2>Edit asset</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: asset_path(@conn, :update, @asset) %>
+                        action: project_asset_path(@conn, :update, @project, @asset) %>
 
-<%= link "Back", to: asset_path(@conn, :index) %>
+<%= link "Back", to: project_asset_path(@conn, :index, @project) %>

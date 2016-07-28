@@ -29,5 +29,5 @@
 
 </ul>
 
-<%= link "Edit", to: asset_path(@conn, :edit, @asset) %>
-<%= link "Back", to: asset_path(@conn, :index) %>
+<%= link "Edit", to: project_asset_path(@conn, :edit, @project, @asset) %>
+<%= link "Back", to: project_asset_path(@conn, :index, @project) %>

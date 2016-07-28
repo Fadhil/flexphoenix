@@ -24,4 +24,8 @@ defmodule Flexphoenix.Asset do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def with_project(query) do
+    from q in query, preload: [:project]
+  end
 end

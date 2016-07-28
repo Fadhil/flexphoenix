@@ -1,9 +1,9 @@
 defmodule Flexphoenix.AssetController do
   use Flexphoenix.Web, :controller
-
   alias Flexphoenix.Asset
 
   plug :scrub_params, "asset" when action in [:create, :update]
+  plug :assign_project
 
   def index(conn, _params) do
     assets = Repo.all(Asset)
@@ -19,12 +19,12 @@ defmodule Flexphoenix.AssetController do
     changeset = Asset.changeset(%Asset{}, asset_params)
 
     case Repo.insert(changeset) do
-      {:ok, _asset} ->
+      {:ok, asset} ->
         conn
         |> put_flash(:info, "Asset created successfully.")
-        |> redirect(to: asset_path(conn, :index))
+        |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset,project_id: 7)
     end
   end
 
@@ -47,7 +47,7 @@ defmodule Flexphoenix.AssetController do
       {:ok, asset} ->
         conn
         |> put_flash(:info, "Asset updated successfully.")
-        |> redirect(to: asset_path(conn, :show, asset))
+        |> redirect(to: project_asset_path(conn, :show, conn.assigns.project.id, asset))
       {:error, changeset} ->
         render(conn, "edit.html", asset: asset, changeset: changeset)
     end
@@ -62,6 +62,12 @@ defmodule Flexphoenix.AssetController do
 
     conn
     |> put_flash(:info, "Asset deleted successfully.")
-    |> redirect(to: asset_path(conn, :index))
+    |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
+  end
+
+  def assign_project(conn, opts) do
+    %{params: %{"project_id" => project_id}} = conn
+    project = Repo.get(Flexphoenix.Project, project_id)
+    assign(conn, :project, project)
   end
 end

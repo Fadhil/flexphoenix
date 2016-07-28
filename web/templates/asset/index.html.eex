@@ -1,5 +1,4 @@
 <h2>Listing assets</h2>
-
 <table class="table">
   <thead>
     <tr>
@@ -22,13 +21,13 @@
       <td><%= asset.project_id %></td>
 
       <td class="text-right">
-        <%= link "Show", to: asset_path(@conn, :show, asset), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: asset_path(@conn, :edit, asset), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: asset_path(@conn, :delete, asset), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Show", to: project_asset_path(@conn, :show, @project.id, asset), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: project_asset_path(@conn, :edit, @project.id, asset), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: project_asset_path(@conn, :delete,@project, asset), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New asset", to: asset_path(@conn, :new) %>
+<%= link "New asset", to: project_asset_path(@conn, :new, @project) %>

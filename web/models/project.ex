@@ -6,6 +6,8 @@ defmodule Flexphoenix.Project do
     field :description, :string
     field :address, :string
 
+    belongs_to :user, Flexphoenix.User
+
     timestamps
   end
 

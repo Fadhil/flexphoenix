@@ -10,6 +10,7 @@ defmodule Flexphoenix.User do
     field :password_confirmation, :string, virtual: true
     field :password_hash, :string
 
+    has_many :projects, Flexphoenix.Project
     timestamps
   end
 

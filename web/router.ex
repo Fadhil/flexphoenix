@@ -9,6 +9,7 @@ defmodule Flexphoenix.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :current_user
+    plug Flexphoenix.Plugs.MenuItems
   end
 
   pipeline :api do
@@ -30,6 +31,9 @@ defmodule Flexphoenix.Router do
     post "/register", RegistrationController, :create
     get "/forget-password", PasswordController, :forget_password
     post "/reset-password", PasswordController, :reset_password
+    resources "/projects", ProjectController do
+      resources "/assets", AssetController
+    end
   end
 
 	scope "/", Flexphoenix do

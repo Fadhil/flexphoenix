@@ -1,0 +1,30 @@
+<h2>Show project</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @project.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @project.description %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @project.address %>
+  </li>
+
+  <li>
+    <strong>Owner:</strong>
+    <%= @project.user.first_name %>
+  </li>
+
+</ul>
+
+<%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-primary btn-xs" %>
+
+<%= link "Edit", to: project_path(@conn, :edit, @project) %>
+<%= link "Back", to: project_path(@conn, :index) %>

@@ -7,6 +7,8 @@ defmodule Flexphoenix.Request do
     field :location, :string
     field :description, :string
 
+    belongs_to :user, Flexphoenix.User
+
     timestamps
   end
 

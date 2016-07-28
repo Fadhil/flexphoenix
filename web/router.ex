@@ -9,6 +9,7 @@ defmodule Flexphoenix.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :current_user
+    plug Flexphoenix.Plugs.MenuItems
   end
 
   pipeline :api do

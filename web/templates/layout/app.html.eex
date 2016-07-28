@@ -50,6 +50,17 @@
                     </div>
                 </li>
                 <li>
+                    <a href=""><i class="fa fa-industry"></i> <span class="nav-label">Projects</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li>
+													<a href="<%= project_path(@conn, :index) %>">All</a></li>
+                        </li>
+                        <li>
+													<a href="#">Project A</a></li>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li>

@@ -1,0 +1,32 @@
+<h2>Listing requests</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Worktype</th>
+      <th>Title</th>
+      <th>Location</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for request <- @requests do %>
+    <tr>
+      <td><%= request.worktype %></td>
+      <td><%= request.title %></td>
+      <td><%= request.location %></td>
+      <td><%= request.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: request_path(@conn, :show, request), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: request_path(@conn, :edit, request), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: request_path(@conn, :delete, request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New request", to: request_path(@conn, :new) %>

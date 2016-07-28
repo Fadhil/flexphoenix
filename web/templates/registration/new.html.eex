@@ -37,6 +37,6 @@
   <div style="margin-top: 10px">
   <ul style="padding: 0; list-style-type: none">
     <li><%= link "Login", to: session_path(@conn, :new) %></li>
-    <li><%= link "Home", to: page_path(@conn, :index) %></li>
+    <li><%= link "Main", to: page_path(@conn, :index) %></li>
   </ul>
   </div>

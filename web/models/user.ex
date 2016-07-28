@@ -12,6 +12,7 @@ defmodule Flexphoenix.User do
 
     has_many :projects, Flexphoenix.Project
     has_many :requests, Flexphoenix.Request
+    has_many :orders, Flexphoenix.Order
     timestamps
   end
 

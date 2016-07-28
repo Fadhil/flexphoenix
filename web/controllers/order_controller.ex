@@ -30,7 +30,7 @@ defmodule Flexphoenix.OrderController do
   end
 
   def show(conn, %{"id" => id}) do
-    order = Repo.get!(Order, id)
+    order = Order |> Order.with_owner |> Repo.get!(id)
     render(conn, "show.html", order: order)
   end
 

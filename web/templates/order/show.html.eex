@@ -8,8 +8,8 @@
   </li>
 
   <li>
-    <strong>Body:</strong>
-    <%= @order.body %>
+    <strong>Owner:</strong>
+    <%= @order.user.first_name %>
   </li>
 
 </ul>

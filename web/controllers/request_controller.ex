@@ -30,7 +30,7 @@ defmodule Flexphoenix.RequestController do
   end
 
   def show(conn, %{"id" => id}) do
-    request = Repo.get!(Request, id)
+    request = Request |> Request.with_owner |> Repo.get!(id)
     render(conn, "show.html", request: request)
   end
 

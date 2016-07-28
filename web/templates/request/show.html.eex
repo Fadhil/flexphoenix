@@ -22,6 +22,11 @@
     <%= @request.description %>
   </li>
 
+  <li>
+    <strong>Owner</strong>
+    <%= "#{@request.user.first_name} #{@request.user.last_name}"%>
+  </li>
+
 </ul>
 
 <%= link "Edit", to: request_path(@conn, :edit, @request) %>

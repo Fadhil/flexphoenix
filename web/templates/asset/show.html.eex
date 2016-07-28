@@ -1,0 +1,33 @@
+<h2>Show asset</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @asset.name %>
+  </li>
+
+  <li>
+    <strong>Model:</strong>
+    <%= @asset.model_id %>
+  </li>
+
+  <li>
+    <strong>Manufacturer:</strong>
+    <%= @asset.manufacturer %>
+  </li>
+
+  <li>
+    <strong>Photo:</strong>
+    <%= @asset.photo %>
+  </li>
+
+  <li>
+    <strong>Project:</strong>
+    <%= @asset.project_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: asset_path(@conn, :edit, @asset) %>
+<%= link "Back", to: asset_path(@conn, :index) %>

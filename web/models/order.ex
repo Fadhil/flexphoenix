@@ -5,6 +5,7 @@ defmodule Flexphoenix.Order do
     field :title, :string
     field :body, :string
 
+    belongs_to :user, Flexphoenix.User
     timestamps
   end
 

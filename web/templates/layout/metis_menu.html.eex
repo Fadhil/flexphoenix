@@ -47,6 +47,15 @@
                 <%= else %>
 
                 <% end %>
+
+                <li>
+                    <a href=""><i class="fa fa-wrench"></i> <span class="new-label">Work Orders</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                      <li>
+                        <a href="<%= order_path(@conn, :index) %>">All Work Orders</a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">

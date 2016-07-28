@@ -25,6 +25,21 @@ defmodule Flexphoenix.Asset do
     |> cast(params, @required_fields, @optional_fields)
   end
 
+  def create_changeset(model, project_id, params \\ :empty) do
+    model
+    |> cast(params, @required_fields, @optional_fields)
+    |> put_project_id(project_id)
+  end
+
+  def put_project_id(changeset, project_id) do
+    case changeset do
+      %Ecto.Changeset{valid?: true} ->
+        put_change(changeset, :project_id, project_id)
+      _ ->
+        changeset
+    end
+  end
+
   def with_project(query) do
     from q in query, preload: [:project]
   end

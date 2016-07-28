@@ -16,7 +16,7 @@ defmodule Flexphoenix.AssetController do
   end
 
   def create(conn, %{"asset" => asset_params}) do
-    changeset = Asset.changeset(%Asset{}, asset_params)
+    changeset = Asset.create_changeset(%Asset{}, conn.assigns.project.id, asset_params)
 
     case Repo.insert(changeset) do
       {:ok, asset} ->

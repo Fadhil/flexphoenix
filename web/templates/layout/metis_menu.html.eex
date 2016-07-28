@@ -36,6 +36,9 @@
                             <a href="<%= project_path(@conn, :new) %>">New Project</a></li>
                           </li>
                         <%=  _ -> %>
+                          <li>
+                            <a href="<%= project_path(@conn, :index) %>">All Projects</a></li>
+                          </li>
                           <%= for mi <- @project_menu_items do %>
                             <li>
                               <%= link mi.name, to: project_path(@conn, :show, mi.id) %>

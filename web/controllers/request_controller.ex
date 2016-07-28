@@ -16,7 +16,8 @@ defmodule Flexphoenix.RequestController do
   end
 
   def create(conn, %{"request" => request_params}) do
-    changeset = Request.changeset(%Request{}, request_params)
+    current_user = conn.assigns.current_user
+    changeset = Request.create_changeset(%Request{}, current_user.id, request_params)
 
     case Repo.insert(changeset) do
       {:ok, _request} ->

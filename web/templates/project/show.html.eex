@@ -24,5 +24,7 @@
 
 </ul>
 
+<%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-primary btn-xs" %>
+
 <%= link "Edit", to: project_path(@conn, :edit, @project) %>
 <%= link "Back", to: project_path(@conn, :index) %>

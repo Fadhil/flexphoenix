@@ -11,6 +11,7 @@ defmodule Flexphoenix.User do
     field :password_hash, :string
 
     has_many :projects, Flexphoenix.Project
+    has_many :requests, Flexphoenix.Request
     timestamps
   end
 

@@ -30,6 +30,7 @@ defmodule Flexphoenix.Router do
     post "/register", RegistrationController, :create
     get "/forget-password", PasswordController, :forget_password
     post "/reset-password", PasswordController, :reset_password
+    resources "/projects", ProjectController
   end
 
 	scope "/", Flexphoenix do

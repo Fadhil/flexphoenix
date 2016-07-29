@@ -3,7 +3,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle profile-img-circle" src="img/fadhil-thumb.jpg" />
+                            <img alt="image" class="img-circle profile-img-circle" src="/images/default_profile_picture.png" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                           <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%= display_name(@current_user) %></strong>

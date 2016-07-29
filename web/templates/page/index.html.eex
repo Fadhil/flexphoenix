@@ -1,4 +1,4 @@
-<div class="wrapper wrapper-content animate slideIn">
+<div class="wrapper wrapper-content animated slideInRight">
   <div class="jumbotron">
     <h2><%= gettext "Welcome to %{name}", name: "Flexcility!" %></h2>
     <p class="lead">The facility management system for<br />everyone, everywhere, everytime.</p>

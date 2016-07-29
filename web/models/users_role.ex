@@ -4,6 +4,7 @@ defmodule Flexphoenix.UsersRole do
   schema "users_roles" do
     belongs_to :user, Flexphoenix.User
     belongs_to :role, Flexphoenix.Role
+    belongs_to :project, Flexphoenix.Project
 
     timestamps
   end

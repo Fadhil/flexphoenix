@@ -6,7 +6,7 @@ exports.config = {
       // To use a separate vendor.js bundle, specify two files path
       // https://github.com/brunch/brunch/blob/stable/docs/config.md#files
       joinTo: {
-       "js/app.js": /^(web\/static\/js)|(node_modules\/phoenix\/priv)|(node_modules\/phoenix_html\/priv)/,
+       "js/app.js": /^(web\/static\/js)|(node_modules\/phoenix\/priv)|(node_modules\/phoenix_html\/priv)|(node_modules\/jquery\/dist)/,
        "js/vendor.js": /^(web\/static\/vendor\/js)|(bower_components)/
       },
       //
@@ -14,7 +14,8 @@ exports.config = {
       // https://github.com/brunch/brunch/tree/master/docs#concatenation
       order: {
         before: [
-          "bower_components/jquery/dist/jquery.min.js",
+          "node_modules/jquery/dist/jquery.js",
+          // "bower_components/jquery/dist/jquery.min.js",
           "bower_components/bootstrap/dist/js/bootstrap.min.js"
         ]
       }
@@ -68,6 +69,9 @@ exports.config = {
     enabled: true,
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
-    whitelist: ["phoenix", "phoenix_html"]
+    whitelist: ["phoenix", "phoenix_html", "jquery"],
+    globals: {
+      $: 'jquery'
+    }
   }
 };

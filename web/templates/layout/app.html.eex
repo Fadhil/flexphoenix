@@ -11,6 +11,7 @@
   <!--// <head></head> -->
   <%= render Flexphoenix.LayoutView, "header.html", assigns %>
 <body class="">
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 
     <div id="wrapper">
 
@@ -27,24 +28,8 @@
 					<!--// The white breadcrumbs and action area bar-->
 					<%= render Flexphoenix.LayoutView, "action_bar.html", assigns %>
 
-					<!--// The actual content area -->
-					<div class="wrapper wrapper-content">
-							<!--// Flash notification messages -->
-							<%
-							info = get_flash(@conn, :info)
-							error = get_flash(@conn, :error)
-							%>
-
-							<%= if info do %>
-								<div class="alert alert-info" role="alert"><%= info %></div>
-							<% end %>
-							<%= if error do %>
-								<div class="alert alert-danger" role="alert"><%= error %></div>
-							<% end %>
-
-							<!--// Template content -->
-							<%= render @view_module, @view_template, assigns %>
-					</div>
+          <!--// Template content -->
+          <%= render @view_module, @view_template, assigns %>
 
 					<!--// Footer -->
 					<%= render Flexphoenix.LayoutView, "footer.html", assigns %>
@@ -52,7 +37,6 @@
 			</div>
 
     <!-- Mainly scripts -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
 </body>
 

@@ -7,6 +7,7 @@ defmodule Flexphoenix.Project do
     field :address, :string
 
     belongs_to :user, Flexphoenix.User
+    has_many :assets, Flexphoenix.Asset, on_delete: :nilify_all
 
     timestamps
   end

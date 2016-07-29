@@ -7,6 +7,7 @@ defmodule Flexphoenix.SessionController do
 
   def new(conn, _) do
     conn
+    |> put_layout("none.html")
     |> render(:new)
   end
 

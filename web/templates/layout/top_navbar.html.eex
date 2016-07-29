@@ -9,9 +9,24 @@
             </form>
         </div>
             <ul class="nav navbar-top-links navbar-right">
-                <li>
+                <li id="welcome-message" style="display: none;">
                     <span class="m-r-sm text-muted welcome-message">Welcome to the Flexcility Management App.</span>
                 </li>
+                <!--// Notification messages. Triggered by javascript at bottom of the page -->
+                <%
+                  info = get_flash(@conn, :info)
+                  error = get_flash(@conn, :error)
+                  notification_message = if error do
+                    %{message: error, type: "error"}
+                  else
+                    %{message: info, type: "info"}
+                  end
+                %>
+                <%= if notification_message.message do %>
+                  <li id="notification-message" style="display: none">
+                    <span class="m-r-sm text-<%= "#{notification_message.type}" %> notification-message"><%= notification_message.message %></span>
+                  </li>
+                <% end %>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
@@ -108,7 +123,6 @@
                     </ul>
                 </li>
 
-
                 <%= if @current_user do %>
                   <li>
                     <%= link to: session_path(@conn, :delete), method: :delete do %>
@@ -125,4 +139,23 @@
             </ul>
 
         </nav>
-        </div>
+      </div>
+<script>
+
+
+    $(document).ready(function(){
+      $('#notification-message').ready(function(){
+        if($("#notification-message").text() != ""){
+          $('#notification-message').fadeIn(500);
+          $('#notification-message').delay(1600).slideUp(500);
+          $('#welcome-message').delay(1600).fadeIn(500);
+          return false;
+        }
+        else{
+          $('#welcome-message').fadeIn(500);
+        }
+      });
+      console.log("done this");
+    });
+</script>
+

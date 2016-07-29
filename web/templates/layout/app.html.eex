@@ -30,19 +30,6 @@
 
 					<!--// The actual content area -->
 					<div class="wrapper wrapper-content">
-							<!--// Flash notification messages -->
-							<%
-							info = get_flash(@conn, :info)
-							error = get_flash(@conn, :error)
-							%>
-
-							<%= if info do %>
-								<div class="alert alert-info" role="alert"><%= info %></div>
-							<% end %>
-							<%= if error do %>
-								<div class="alert alert-danger" role="alert"><%= error %></div>
-							<% end %>
-
 							<!--// Template content -->
 							<%= render @view_module, @view_template, assigns %>
 					</div>

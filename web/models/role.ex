@@ -4,6 +4,9 @@ defmodule Flexphoenix.Role do
   schema "roles" do
     field :name, :string
 
+    has_many :users_roles, Flexphoenix.UsersRole
+    has_many :users, through: [:users_roles, :user]
+
     timestamps
   end
 

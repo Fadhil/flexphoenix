@@ -13,6 +13,8 @@ defmodule Flexphoenix.User do
     has_many :projects, Flexphoenix.Project
     has_many :requests, Flexphoenix.Request
     has_many :orders, Flexphoenix.Order
+    has_many :users_roles, Flexphoenix.UsersRole
+    has_many :roles, through: [:users_roles, :role]
     timestamps
   end
 

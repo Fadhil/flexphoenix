@@ -72,6 +72,31 @@ defmodule Flexphoenix.Web do
     end
   end
 
+  def uploader do
+    quote do
+      use Arc.Definition
+      use Arc.Ecto.Definition
+
+      def __storage do
+        Arc.Storage.Local
+      end
+
+      def storage_dir(version, {file, scope}) do
+        "uploads/#{resource_name(scope)}/#{scope.id}"
+      end
+
+      def filename(version, {file, scope}) do
+        "#{version}-#{file.file_name}"
+      end
+
+      defp resource_name(scope) do
+        scope
+        |> Map.get(:__struct__)
+        |> Phoenix.Naming.resource_name
+      end
+    end
+  end
+
   @doc """
   When used, dispatch to the appropriate controller/view/etc.
   """

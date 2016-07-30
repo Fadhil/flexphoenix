@@ -64,8 +64,10 @@ defmodule Flexphoenix.ProjectController do
   end
 
   def show(conn, %{"id" => id}) do
+    roles = Role |> Repo.all
+    roles_select_list = roles |> Enum.map(fn x -> {"#{x.name}", x.id} end)
     project = Project |> Project.with_owner |> Repo.get!(id)
-    render(conn, "show.html", project: project)
+    render(conn, "show.html", project: project, roles_select_list: roles_select_list)
   end
 
   def edit(conn, %{"id" => id}) do

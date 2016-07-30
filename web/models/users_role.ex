@@ -41,7 +41,5 @@ defmodule Flexphoenix.UsersRole do
       # Get a changeset using either the empty map or the user role (
       # which is returned by Repo.all(query))
       |> changeset(users_role_changes)
-
-
   end
 end

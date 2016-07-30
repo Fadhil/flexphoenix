@@ -10,6 +10,14 @@ defmodule Flexphoenix.ProjectController do
     render(conn, "index.html", projects: projects)
   end
 
+  def invite_user(conn, %{
+    "invite_user" => %{
+      "user_email" => email,
+      "user_role" => role_id
+    },
+    "project_id" => project_id
+  }) do
+  end
   def new(conn, _params) do
     changeset = Project.changeset(%Project{})
     render(conn, "new.html", changeset: changeset)

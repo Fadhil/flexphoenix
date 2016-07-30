@@ -147,8 +147,8 @@
       $('#notification-message').ready(function(){
         if($("#notification-message").text() != ""){
           $('#notification-message').fadeIn(500);
-          $('#notification-message').delay(1600).slideUp(500);
-          $('#welcome-message').delay(1600).fadeIn(500);
+          $('#notification-message').delay(3000).slideUp(500);
+          $('#welcome-message').delay(5000).fadeIn(500);
           return false;
         }
         else{

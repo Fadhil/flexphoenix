@@ -2,12 +2,46 @@ defmodule Flexphoenix.ProjectController do
   use Flexphoenix.Web, :controller
 
   alias Flexphoenix.Project
+  alias Flexphoenix.UsersRole
+  alias Flexphoenix.Role
+  alias Flexphoenix.User
+  import Ecto.Query, only: [from: 2]
 
   plug :scrub_params, "project" when action in [:create, :update]
 
   def index(conn, _params) do
     projects = Repo.all(Project)
     render(conn, "index.html", projects: projects)
+  end
+
+  def invite_user(conn, %{
+    "invite_user" => %{
+      "user_email" => email,
+      "user_role" => role_id
+    },
+    "project_id" => project_id
+  }) do
+    user = User |> Repo.get_by(email: email)
+    project = Project |> Repo.get(project_id)
+    role = Role |> Repo.get(role_id)
+
+    users_role_changes= %{
+      role_id: role.id, user_id: user.id, project_id: project.id
+    }
+
+    changeset = UsersRole.create_changeset(
+      UsersRole,Repo, users_role_changes
+    )
+
+    case Repo.insert_or_update(changeset) do
+      {:ok, users_role} ->
+        conn
+        |> put_flash(:info, "Successfully invited #{email} as #{role.name}")
+        |> redirect(to: project_path(conn, :show, project))
+      {:error, changeset} ->
+        text conn, inspect(changeset)
+      _ -> text conn, "yes"
+    end
   end
 
   def new(conn, _params) do
@@ -30,8 +64,10 @@ defmodule Flexphoenix.ProjectController do
   end
 
   def show(conn, %{"id" => id}) do
+    roles = Role |> Repo.all
+    roles_select_list = roles |> Enum.map(fn x -> {"#{x.name}", x.id} end)
     project = Project |> Project.with_owner |> Repo.get!(id)
-    render(conn, "show.html", project: project)
+    render(conn, "show.html", project: project, roles_select_list: roles_select_list)
   end
 
   def edit(conn, %{"id" => id}) do

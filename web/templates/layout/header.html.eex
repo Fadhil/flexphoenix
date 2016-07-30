@@ -1,0 +1,15 @@
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An integrated Facilities Management App">
+    <meta name="author" content="co-authored by Fadhil Luqman and Faruq Luqman">
+
+
+    <title>Flexcility | Facilities Management</title>
+
+		<link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+		<link rel="stylesheet" href="<%= static_path(@conn, "/css/vendor.css") %>">
+		<link rel="icon" type="image/png" href="<%= static_path(@conn, "/images/favicon.png") %>">
+
+	</head>

@@ -1,0 +1,33 @@
+<h2>Show request</h2>
+
+<ul>
+
+  <li>
+    <strong>Worktype:</strong>
+    <%= @request.worktype %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @request.title %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @request.location %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @request.description %>
+  </li>
+
+  <li>
+    <strong>Owner</strong>
+    <%= "#{@request.user.first_name} #{@request.user.last_name}"%>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: request_path(@conn, :edit, @request) %>
+<%= link "Back", to: request_path(@conn, :index) %>

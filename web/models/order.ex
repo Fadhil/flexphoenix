@@ -1,20 +1,15 @@
-defmodule Flexphoenix.Project do
+defmodule Flexphoenix.Order do
   use Flexphoenix.Web, :model
 
-  schema "projects" do
-    field :name, :string
-    field :description, :string
-    field :address, :string
+  schema "orders" do
+    field :title, :string
+    field :body, :string
 
     belongs_to :user, Flexphoenix.User
-    has_many :assets, Flexphoenix.Asset, on_delete: :nilify_all
-    has_many :users_roles, Flexphoenix.UsersRole
-    has_many :members, through: [:users_roles, :user]
-
     timestamps
   end
 
-  @required_fields ~w(name description address)
+  @required_fields ~w(title body)
   @optional_fields ~w()
 
   @doc """
@@ -46,4 +41,5 @@ defmodule Flexphoenix.Project do
   def with_owner(query) do
     from q in query, preload: [:user]
   end
+
 end

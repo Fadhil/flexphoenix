@@ -1,0 +1,8 @@
+<html lang="en">
+  <!--// <head></head> -->
+  <%= render Flexphoenix.LayoutView, "header.html", assigns %>
+<body class="gray-bg">
+  <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  <%= render @view_module, @view_template, assigns %>
+</body>
+

@@ -1,5 +1,4 @@
 <h2>Show project</h2>
-
 <ul>
 
   <li>
@@ -23,8 +22,28 @@
   </li>
 
 </ul>
-
 <%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-primary btn-xs" %>
 
 <%= link "Edit", to: project_path(@conn, :edit, @project) %>
 <%= link "Back", to: project_path(@conn, :index) %>
+<hr/>
+<h3>Members</h3>
+
+<%= for member <- project_members(@project) do %>
+  <p><%= member.email %>, Roles: <strong><%=
+    show_role_names(member.roles)
+    %></strong></p>
+<% end %>
+Add a new member to the project
+<%= form_for @conn, project_project_path(@conn, :invite_user, @project), [name: :invite_user], fn f -> %>$
+  <div class="form-group col-sm-6">
+    <%= text_input f, :user_email, class: "form-control", placeholder: "Enter a valid email" %>
+  </div>
+	<div class="form-group col-sm-2">
+		<%= select f, :user_role, @roles_select_list , class: "form-control m-b" %>
+	</div>
+	<div class="form-group col-sm-2">
+    <%= submit "Submit", class: "btn btn-primary" %>
+	</div>
+<% end %>
+

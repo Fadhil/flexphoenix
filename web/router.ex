@@ -33,7 +33,10 @@ defmodule Flexphoenix.Router do
     post "/reset-password", PasswordController, :reset_password
     resources "/projects", ProjectController do
       resources "/assets", AssetController
+      post "/invite_user", ProjectController, :invite_user
     end
+    resources "/requests", RequestController
+    resources "/orders", OrderController
   end
 
 	scope "/", Flexphoenix do

@@ -28,6 +28,12 @@
 <%= link "Back", to: project_path(@conn, :index) %>
 <hr/>
 <h3>Members</h3>
+
+<%= for member <- project_members(@project) do %>
+  <p><%= member.email %>, Roles: <strong><%=
+    show_role_names(member.roles)
+    %></strong></p>
+<% end %>
 Add a new member to the project
 <%= form_for @conn, project_project_path(@conn, :invite_user, @project), [name: :invite_user], fn f -> %>$
   <div class="form-group col-sm-6">

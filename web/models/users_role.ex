@@ -9,7 +9,7 @@ defmodule Flexphoenix.UsersRole do
     timestamps
   end
 
-  @required_fields ~w()
+  @required_fields ~w(user_id role_id project_id)
   @optional_fields ~w()
 
   @doc """

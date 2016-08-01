@@ -1,7 +1,6 @@
 defmodule Flexphoenix.ProjectView do
   use Flexphoenix.Web, :view
   alias Flexphoenix.Repo
-  require IEx
 
   def project_members(project) do
     %{members: members} = project |> Repo.preload(members: [:roles])

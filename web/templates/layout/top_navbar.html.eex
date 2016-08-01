@@ -17,7 +17,7 @@
                   info = get_flash(@conn, :info)
                   error = get_flash(@conn, :error)
                   notification_message = if error do
-                    %{message: error, type: "error"}
+                    %{message: error, type: "danger"}
                   else
                     %{message: info, type: "info"}
                   end

@@ -70,6 +70,9 @@ config :flexphoenix, Flexphoenix.Repo,
   hostname: "localhost",
   pool_size: 10
 
+config :arc,
+  storage_dir_root: "uploads"
+
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 

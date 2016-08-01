@@ -5,6 +5,7 @@ defmodule Flexphoenix.Project do
     field :name, :string
     field :description, :string
     field :address, :string
+    field :image, Flexphoenix.Image.Type
 
     belongs_to :user, Flexphoenix.User
     has_many :assets, Flexphoenix.Asset, on_delete: :nilify_all
@@ -17,6 +18,9 @@ defmodule Flexphoenix.Project do
   @required_fields ~w(name description address)
   @optional_fields ~w()
 
+  @required_file_fields ~w()
+  @optional_file_fields ~w(image)
+
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -26,11 +30,13 @@ defmodule Flexphoenix.Project do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
 
   def create_changeset(model, user_id, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
     |> put_user_id(user_id)
   end
 

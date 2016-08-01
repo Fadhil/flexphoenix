@@ -83,7 +83,7 @@ defmodule Flexphoenix.Web do
       end
 
       def storage_dir(version, {file, scope}) do
-        "uploads/#{resource_name(scope)}/#{scope.id}"
+        "#{Application.get_env(:arc, :storage_dir_root)}/#{resource_name(scope)}/#{scope.id}"
       end
 
       def filename(version, {file, scope}) do

@@ -9,7 +9,10 @@ defmodule Flexphoenix.Plugs.MenuItems do
   def call(conn, _) do
     user = conn.assigns.current_user
     case user do
-      nil -> assign(conn, :project_menu_items, nil)
+      nil ->
+        assign(conn, :own_projects, nil)
+        |> assign(:attached_projects, nil)
+
       _ -> assign_projects(conn, user)
     end
   end

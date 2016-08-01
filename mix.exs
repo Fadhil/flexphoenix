@@ -3,7 +3,7 @@ defmodule Flexphoenix.Mixfile do
 
   def project do
     [app: :flexphoenix,
-     version: "0.4.2",
+     version: "0.4.3",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -19,7 +19,9 @@ defmodule Flexphoenix.Mixfile do
   def application do
     [mod: {Flexphoenix, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :passport, :phoenix_ecto, :postgrex, :comeonin, :arc]]
+                    :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
+                    :arc_ecto
+                   ]]
   end
 
   # Specifies which paths to compile per environment.

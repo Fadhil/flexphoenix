@@ -21,26 +21,39 @@ defmodule Flexphoenix.ProjectController do
     },
     "project_id" => project_id
   }) do
+
     user = User |> Repo.get_by(email: email)
     project = Project |> Repo.get(project_id)
     role = Role |> Repo.get(role_id)
-
+    user_id = case user do
+      nil -> nil
+      user -> user.id
+      _ -> nil
+    end
     users_role_changes= %{
-      role_id: role.id, user_id: user.id, project_id: project.id
+      role_id: role.id, user_id: user_id, project_id: project.id
     }
 
-    changeset = UsersRole.create_changeset(
-      UsersRole,Repo, users_role_changes
-    )
-
-    case Repo.insert_or_update(changeset) do
-      {:ok, users_role} ->
+    case user_id do
+      nil ->
         conn
-        |> put_flash(:info, "Successfully invited #{email} as #{role.name}")
+        |> put_flash(:error, "That user cannot be added to this project")
         |> redirect(to: project_path(conn, :show, project))
-      {:error, changeset} ->
-        text conn, inspect(changeset)
-      _ -> text conn, "yes"
+      _ ->
+        changeset = UsersRole.create_changeset(
+          UsersRole,Repo, users_role_changes
+        )
+
+        case Repo.insert_or_update(changeset) do
+          {:ok, users_role} ->
+            conn
+            |> put_flash(:info, "Successfully invited #{email} as #{role.name}")
+            |> redirect(to: project_path(conn, :show, project))
+          {:error, changeset} ->
+            conn
+            |> put_flash(:error, "That user cannot be added to this project")
+            |> redirect(to: project_path(conn, :show, project))
+        end
     end
   end
 

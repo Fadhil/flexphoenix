@@ -8,6 +8,10 @@ defmodule Flexphoenix.RequestView do
     |> Enum.map(fn x -> {x.name, x.id} end)
   end
 
+  def asset_list(user, nil) do
+    []
+  end
+
   def asset_list(user, project_id) do
     selected_project = all_projects(user)
       |> Enum.find(fn project -> project.id == project_id end)
@@ -16,6 +20,7 @@ defmodule Flexphoenix.RequestView do
     selected_project.assets
     |> Enum.map(fn x -> {x.name, x.id} end)
   end
+
 
   def all_projects(user) do
     user.attached_projects ++ user.projects

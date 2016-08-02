@@ -12,9 +12,39 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control" %>
-    <%= error_tag f, :body %>
+    <%= label f, :description, class: "control-label" %>
+    <%= textarea f, :description, class: "form-control" %>
+    <%= error_tag f, :description %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :location, class: "control-label" %>
+    <%= textarea f, :location, class: "form-control" %>
+    <%= error_tag f, :location %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :type, class: "control-label" %>
+    <%= textarea f, :type, class: "form-control" %>
+    <%= error_tag f, :type %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :instruction, class: "control-label" %>
+    <%= textarea f, :instruction, class: "form-control" %>
+    <%= error_tag f, :instruction %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :priority, class: "control-label" %>
+    <%= textarea f, :priority, class: "form-control" %>
+    <%= error_tag f, :priority %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :deadline, class: "control-label" %>
+    <%= textarea f, :deadline, class: "form-control" %>
+    <%= error_tag f, :deadline %>
   </div>
 
   <div class="form-group">

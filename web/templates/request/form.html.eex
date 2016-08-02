@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= label f, :worktype, class: "control-label" %>
-    <%= text_input f, :worktype, class: "form-control" %>
+    <%= select f, :worktype, ["Technical", "Maintenance"],class: "form-control" %>
     <%= error_tag f, :worktype %>
   </div>
 

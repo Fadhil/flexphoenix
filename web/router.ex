@@ -23,6 +23,10 @@ defmodule Flexphoenix.Router do
     plug Flexphoenix.Plugs.MenuItems
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
 	scope "/", Flexphoenix do
 		pipe_through [:browser, :no_layout]
 		get "/skin-config", PageController, :skin_config
@@ -45,6 +49,14 @@ defmodule Flexphoenix.Router do
     end
     resources "/requests", RequestController
     resources "/orders", OrderController
+  end
+
+  scope "/api", Flexphoenix do
+    pipe_through :api
+
+    resources "/projects", ProjectController, only: [] do
+      get "/assets", AssetController, :index
+    end
   end
 
 

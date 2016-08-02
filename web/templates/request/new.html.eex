@@ -3,7 +3,8 @@
 <%= render "form.html", changeset: @changeset,
   action: request_path(@conn, :create),
   current_user: @conn.assigns.current_user,
-  conn: @conn
+  conn: @conn,
+  project_id: @project_id
 %>
 
 <%= link "Back", to: request_path(@conn, :index) %>

@@ -27,5 +27,6 @@ defmodule Flexphoenix.Plugs.MenuItems do
     attached_projects = Enum.map(user.attached_projects, &get_name_and_id/1)
     assign(conn, :own_projects, own_projects)
     |> assign(:attached_projects, attached_projects)
+    |> assign(:current_user, user)
   end
 end

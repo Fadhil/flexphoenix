@@ -6,7 +6,7 @@ defmodule Flexphoenix.RequestController do
   plug :scrub_params, "request" when action in [:create, :update]
 
   def index(conn, _params) do
-    requests = Repo.all(Request)
+    requests = Repo.all(Request) |> Repo.preload([:project, :asset])
     render(conn, "index.html", requests: requests)
   end
 

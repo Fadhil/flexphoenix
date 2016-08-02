@@ -68,10 +68,10 @@
                   </li>
                 <% end %>
                 <li>
-                    <a href="<%= request_path(@conn, :new) %>">New Work Request</a>
+                  <a href="<%= request_path(@conn, :new) %>"><i class="fa fa-flash"></i> <span class="new-label">New Work Request</span></a>
                 </li>
                 <li>
-                    <a href="<%= request_path(@conn, :index) %>">View Work Requests</a>
+                  <a href="<%= request_path(@conn, :index) %>"><i class="fa fa-eye"></i> <span class="new-label">View Work Requests</span></a>
                 </li>
 
                 <li>

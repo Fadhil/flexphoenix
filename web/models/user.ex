@@ -11,7 +11,11 @@ defmodule Flexphoenix.User do
     field :password_hash, :string
 
     has_many :projects, Flexphoenix.Project
+    has_many :requests, Flexphoenix.Request
     has_many :orders, Flexphoenix.Order
+    has_many :users_roles, Flexphoenix.UsersRole
+    has_many :roles, through: [:users_roles, :role]
+    has_many :attached_projects, through: [:users_roles, :project]
     timestamps
   end
 
@@ -22,6 +26,10 @@ defmodule Flexphoenix.User do
     |> cast(params, @required_fields, @optional_fields)
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
+  end
+
+  def update_changeset(model, params \\ %{}) do model
+    |> cast(params, ~w(first_name last_name email), [])
   end
 
   def registration_changeset(model, params \\ %{}) do model

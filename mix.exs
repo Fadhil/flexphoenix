@@ -3,7 +3,7 @@ defmodule Flexphoenix.Mixfile do
 
   def project do
     [app: :flexphoenix,
-     version: "0.3.0",
+     version: "0.4.4",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -19,7 +19,9 @@ defmodule Flexphoenix.Mixfile do
   def application do
     [mod: {Flexphoenix, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :passport, :phoenix_ecto, :postgrex, :comeonin]]
+                    :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
+                    :arc_ecto
+                   ]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +41,9 @@ defmodule Flexphoenix.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:exrm, "~> 1.0"}]
+     {:exrm, "~> 1.0"},
+     {:arc, "~> 0.5.2"},
+     {:arc_ecto, "~> 0.3.2"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

@@ -9,7 +9,10 @@ defmodule Flexphoenix.Plugs.MenuItems do
   def call(conn, _) do
     user = conn.assigns.current_user
     case user do
-      nil -> assign(conn, :project_menu_items, nil)
+      nil ->
+        assign(conn, :own_projects, nil)
+        |> assign(:attached_projects, nil)
+
       _ -> assign_projects(conn, user)
     end
   end
@@ -19,8 +22,10 @@ defmodule Flexphoenix.Plugs.MenuItems do
   end
 
   def assign_projects(conn, user) do
-    user = Repo.preload user, :projects
-    project_menu_items = Enum.map(user.projects, &get_name_and_id/1)
-    assign(conn, :project_menu_items, project_menu_items)
+    user = Repo.preload user, [:projects, :attached_projects]
+    own_projects = Enum.map(user.projects, &get_name_and_id/1)
+    attached_projects = Enum.map(user.attached_projects, &get_name_and_id/1)
+    assign(conn, :own_projects, own_projects)
+    |> assign(:attached_projects, attached_projects)
   end
 end

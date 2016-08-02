@@ -19,6 +19,7 @@ defmodule Flexphoenix.Web do
   def model do
     quote do
       use Ecto.Schema
+      use Arc.Ecto.Model
 
       import Ecto
       import Ecto.Changeset
@@ -69,6 +70,31 @@ defmodule Flexphoenix.Web do
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
       import Flexphoenix.Gettext
+    end
+  end
+
+  def uploader do
+    quote do
+      use Arc.Definition
+      use Arc.Ecto.Definition
+
+      def __storage do
+        Arc.Storage.Local
+      end
+
+      def storage_dir(version, {file, scope}) do
+        "#{Application.get_env(:arc, :storage_dir_root)}/#{resource_name(scope)}/#{scope.id}"
+      end
+
+      def filename(version, {file, scope}) do
+        "#{version}-#{file.file_name}"
+      end
+
+      defp resource_name(scope) do
+        scope
+        |> Map.get(:__struct__)
+        |> Phoenix.Naming.resource_name
+      end
     end
   end
 

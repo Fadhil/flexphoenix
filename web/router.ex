@@ -9,7 +9,6 @@ defmodule Flexphoenix.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :current_user
-    plug Flexphoenix.Plugs.MenuItems
   end
 
   pipeline :api do
@@ -20,8 +19,17 @@ defmodule Flexphoenix.Router do
 		plug :put_layout, false
 	end
 
+  pipeline :set_menu do
+    plug Flexphoenix.Plugs.MenuItems
+  end
+
+	scope "/", Flexphoenix do
+		pipe_through [:browser, :no_layout]
+		get "/skin-config", PageController, :skin_config
+	end
+
   scope "/", Flexphoenix do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :set_menu] # Use the default browser stack
 
     get "/", PageController, :index
     get "/login", SessionController, :new
@@ -33,14 +41,12 @@ defmodule Flexphoenix.Router do
     post "/reset-password", PasswordController, :reset_password
     resources "/projects", ProjectController do
       resources "/assets", AssetController
+      post "/invite_user", ProjectController, :invite_user
     end
+    resources "/requests", RequestController
     resources "/orders", OrderController
   end
 
-	scope "/", Flexphoenix do
-		pipe_through [:browser, :no_layout]
-		get "/skin-config", PageController, :skin_config
-	end
 
   # Other scopes may use custom stacks.
   # scope "/api", Flexphoenix do

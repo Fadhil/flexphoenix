@@ -1,25 +1,19 @@
-defmodule Flexphoenix.Project do
+defmodule Flexphoenix.Request do
   use Flexphoenix.Web, :model
 
-  schema "projects" do
-    field :name, :string
+  schema "requests" do
+    field :worktype, :string
+    field :title, :string
+    field :location, :string
     field :description, :string
-    field :address, :string
-    field :image, Flexphoenix.Image.Type
 
     belongs_to :user, Flexphoenix.User
-    has_many :assets, Flexphoenix.Asset, on_delete: :nilify_all
-    has_many :users_roles, Flexphoenix.UsersRole
-    has_many :members, through: [:users_roles, :user]
 
     timestamps
   end
 
-  @required_fields ~w(name description address)
+  @required_fields ~w(worktype title location description)
   @optional_fields ~w()
-
-  @required_file_fields ~w()
-  @optional_file_fields ~w(image)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -30,13 +24,11 @@ defmodule Flexphoenix.Project do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
 
   def create_changeset(model, user_id, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
     |> put_user_id(user_id)
   end
 

@@ -155,7 +155,6 @@
           $('#welcome-message').fadeIn(500);
         }
       });
-      console.log("done this");
     });
 </script>
 

@@ -32,7 +32,7 @@ defmodule Flexphoenix.AssetController do
         |> put_flash(:info, "Asset created successfully.")
         |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset,project_id: 7)
+        render(conn, "new.html", changeset: changeset, project_id: conn.assigns.project.id)
     end
   end
 

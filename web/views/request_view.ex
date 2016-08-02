@@ -1,7 +1,7 @@
 defmodule Flexphoenix.RequestView do
   use Flexphoenix.Web, :view
 
-  def project_select_list(user) do
+  def project_list(user) do
     attached_projects = user.attached_projects
     own_projects = user.projects
 

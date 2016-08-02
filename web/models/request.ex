@@ -8,6 +8,8 @@ defmodule Flexphoenix.Request do
     field :description, :string
 
     belongs_to :user, Flexphoenix.User
+		belongs_to :project, Flexphoenix.Project
+		belongs_to :asset, Flexphoenix.Asset
 
     timestamps
   end

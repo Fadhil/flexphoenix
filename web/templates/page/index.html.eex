@@ -2,6 +2,7 @@
   <div class="jumbotron">
     <h2><%= gettext "Welcome to %{name}", name: "Flexcility!" %></h2>
     <p class="lead">The facility management system for<br />everyone, everywhere, everytime.</p>
+    <div class="page-flowchart"><img src="<%= static_path(@conn, "/images/flex-flowchart-02alpha.png") %>" alt="flex-flowchart" width="315px"></div>
   </div>
 
   <div class="row marketing">

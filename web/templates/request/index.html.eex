@@ -6,6 +6,8 @@
       <th>Worktype</th>
       <th>Title</th>
       <th>Location</th>
+      <th>Project</th>
+      <th>Asset</th>
       <th>Description</th>
 
       <th></th>
@@ -17,6 +19,8 @@
       <td><%= request.worktype %></td>
       <td><%= request.title %></td>
       <td><%= request.location %></td>
+      <td><%= request.project.name%></td>
+      <td><%= "#{request.asset.name} - #{request.asset.model_id}" %></td>
       <td><%= request.description %></td>
 
       <td class="text-right">

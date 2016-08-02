@@ -6,13 +6,17 @@ defmodule Flexphoenix.RequestController do
   plug :scrub_params, "request" when action in [:create, :update]
 
   def index(conn, _params) do
-    requests = Repo.all(Request)
+    requests = Repo.all(Request) |> Repo.preload([:project, :asset])
     render(conn, "index.html", requests: requests)
   end
 
-  def new(conn, _params) do
+  def new(conn, params) do
+    project_id = case params do
+      %{"project_id" => id} -> String.to_integer id
+      _ -> nil
+    end
     changeset = Request.changeset(%Request{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, project_id: project_id)
   end
 
   def create(conn, %{"request" => request_params}) do

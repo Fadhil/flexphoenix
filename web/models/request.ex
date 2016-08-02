@@ -8,12 +8,14 @@ defmodule Flexphoenix.Request do
     field :description, :string
 
     belongs_to :user, Flexphoenix.User
+		belongs_to :project, Flexphoenix.Project
+		belongs_to :asset, Flexphoenix.Asset
 
     timestamps
   end
 
   @required_fields ~w(worktype title location description)
-  @optional_fields ~w()
+  @optional_fields ~w(project_id asset_id)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

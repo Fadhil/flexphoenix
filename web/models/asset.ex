@@ -7,6 +7,7 @@ defmodule Flexphoenix.Asset do
     field :manufacturer, :string
     field :photo, :string
     belongs_to :project, Flexphoenix.Project
+    has_many :requests, Flexphoenix.Request
 
     timestamps
   end

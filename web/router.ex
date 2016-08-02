@@ -13,6 +13,8 @@ defmodule Flexphoenix.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug :current_user
   end
 
 	pipeline :no_layout do
@@ -21,6 +23,10 @@ defmodule Flexphoenix.Router do
 
   pipeline :set_menu do
     plug Flexphoenix.Plugs.MenuItems
+  end
+
+  pipeline :api do
+    plug :accepts, ["json"]
   end
 
 	scope "/", Flexphoenix do
@@ -45,6 +51,14 @@ defmodule Flexphoenix.Router do
     end
     resources "/requests", RequestController
     resources "/orders", OrderController
+  end
+
+  scope "/api", Flexphoenix do
+    pipe_through [:api, :set_menu]
+
+    resources "/projects", ProjectController, only: [] do
+      get "/assets", AssetController, :index
+    end
   end
 
 

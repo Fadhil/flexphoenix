@@ -18,6 +18,11 @@
   </div>
 
   <div class="form-group">
+    <%= label f, "Project", class: "control-label" %>
+    <%= select f, :project_id, project_select_list(@current_user),class: "form-control" %>
+    <%= error_tag f, :project_id %>
+  </div>
+  <div class="form-group">
     <%= label f, :location, class: "control-label" %>
     <%= textarea f, :location, class: "form-control" %>
     <%= error_tag f, :location %>

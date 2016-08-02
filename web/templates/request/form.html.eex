@@ -19,10 +19,17 @@
 
   <div class="form-group">
     <%= label f, "Project", class: "control-label" %>
-    <%= select f, :project_id, project_select_list(@current_user),class: "form-control" %>
-    <%= select f, :project_id, project_list(@current_user),class: "form-control" %>
+    <%= select f, :project_id, project_list(@current_user),
+    prompt: "Choose A Project/Site", selected: @project_id ,
+    class: "form-control" %>
     <%= error_tag f, :project_id %>
   </div>
+  <div class="form-group">
+    <%= label f, "Asset", class: "control-label" %>
+    <%= select f, :asset_id, asset_list(@current_user, @project_id),class: "form-control" %>
+    <%= error_tag f, :asset_id%>
+  </div>
+
   <div class="form-group">
     <%= label f, :location, class: "control-label" %>
     <%= textarea f, :location, class: "form-control" %>

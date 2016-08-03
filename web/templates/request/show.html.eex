@@ -14,12 +14,12 @@
 
   <li>
     <strong>Project:</strong>
-    <%= @request.project.name %>
+    <%= project_name(@request.project)%>
   </li>
 
   <li>
     <strong>Asset:</strong>
-    <%= "#{@request.asset.name} - #{@request.asset.model_id}" %>
+    <%= asset_name(@request.asset)%>
   </li>
 
   <li>
@@ -58,6 +58,18 @@
   </li>
 
 </ul>
+<%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-primary" %>
+<%= link "Back", to: request_path(@conn, :index), class: "btn btn-primary" %>
 
-<%= link "Edit", to: request_path(@conn, :edit, @request) %>
-<%= link "Back", to: request_path(@conn, :index) %>
+<hr/>
+  <%= case @request.technicians do %>
+    <%= [] -> %>
+    <%= technicians -> %>
+      <h3>Assigned Technicians</h3>
+      <%= for technician <- technicians do %>
+        <p><strong><%= technician.email %></strong></p>
+      <% end %>
+  <% end %>
+
+  <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary" %>
+

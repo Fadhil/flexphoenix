@@ -49,7 +49,11 @@ defmodule Flexphoenix.Router do
       resources "/assets", AssetController
       post "/invite_user", ProjectController, :invite_user
     end
-    resources "/requests", RequestController
+    resources "/requests", RequestController do
+      get "/assign_technicians", RequestController, :assign_technicians,
+        as: :assign_technicians
+      post "/assign_technicians", RequestController, :create_technician_assignment, as: :assign_technicians
+    end
     resources "/orders", OrderController
   end
 

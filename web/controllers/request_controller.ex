@@ -2,6 +2,8 @@ defmodule Flexphoenix.RequestController do
   use Flexphoenix.Web, :controller
 
   alias Flexphoenix.Request
+  alias Flexphoenix.UsersRole
+  alias Flexphoenix.AssignedTechnician
 
   plug :scrub_params, "request" when action in [:create, :update]
   plug :assign_project_params when action in [:edit]
@@ -39,7 +41,7 @@ defmodule Flexphoenix.RequestController do
     request = Request
               |> Request.with_owner
               |> Repo.get!(id)
-              |> Repo.preload([:project, :asset])
+              |> Repo.preload([:project, :asset, :technicians])
     render(conn, "show.html", request: request)
   end
 
@@ -75,14 +77,103 @@ defmodule Flexphoenix.RequestController do
     |> redirect(to: request_path(conn, :index))
   end
 
+  def assign_project_params(conn, %{"project_id" => nil} = params) do
+    conn
+    |> assign(:project_id, nil)
+  end
+
+  def assign_project_params(conn, %{"project_id" => project_id} = params) do
+    conn
+    |> assign(:project_id, project_id)
+  end
+
   def assign_project_params(conn, params) do
-    case conn do
-      %{"project_id" => project_id} ->
+    conn
+    |> assign(:project_id, nil)
+  end
+
+  def assign_technicians(conn, %{"request_id" => request_id} = params) do
+    request = Request
+              |> Repo.get(request_id)
+              |> Repo.preload([:project, :asset, :technicians])
+
+    technicians = UsersRole
+                  |> UsersRole.only_technicians
+                  |> Repo.all(project_id: request.project.id)
+
+    conn
+    |> render("assign_technicians.html",
+               request_id: request_id,
+               request: request,
+               available_technicians: technicians)
+  end
+
+  def create_technician_assignment(conn,
+   %{"create_assigned_technicians" => technician_checkboxes,
+      "request_id" => request_id } = params) do
+
+    technicians_added = run_transaction(technician_checkboxes, request_id)
+
+    case technicians_added do
+      {:ok, changes} ->
         conn
-        |> assign(:project_id, project_id)
-      _ ->
+        |> put_flash(:info, "Successfully assigned technicians")
+        |> redirect(to: request_path(conn, :show, request_id))
+      {:error, _} ->
         conn
-        |> assign(:project_id, nil)
+        |> put_flash(:error, "Something went wrong")
+        |> redirect(to: request_path(conn, :assign_technicians, request_id))
+    end
+  end
+
+  @doc """
+  Runs transactions to add or remove assignment of technicians to a request.
+  The technician_checkboxes are from the params for the assign technician
+  form. They come in the shape
+      ```
+      Parameters: %{"create_assigned_technicians" =>
+                      %{"12" => "true", "3" => "false"}, "request_id" => "9"}
+      ```
+  where the integer in the key portion of the key value pairs (i.e. "12" & "3")
+  are the user ids of the technicians that are to be acted upon, and the value
+  portion (true/false) represents if the checkbox was ticked or not.
+
+  For true values, we insert the user_id and request_id into AssignedTechnician.
+  For false, we delete entries with the user_id and request_id
+  """
+  def run_transaction(technician_checkboxes, request_id) do
+    request_id = String.to_integer(request_id)
+
+    Repo.transaction(fn ->
+         technician_checkboxes
+          |> Enum.map(fn {user_id, checked} ->
+                case checked do
+                  "true" ->
+                    insert_technician_assignment(user_id, request_id)
+                  "false" ->
+                    remove_technician_assignment(user_id, request_id)
+                end
+              end)
+          end)
+  end
+
+  def insert_technician_assignment(user_id, request_id) do
+    assignment_params = [user_id: user_id, request_id: request_id]
+
+    case Repo.get_by(AssignedTechnician, assignment_params) do
+      nil -> %AssignedTechnician{}
+      assigned_technician -> assigned_technician
+    end
+    |> AssignedTechnician.changeset(%{user_id: user_id, request_id: request_id})
+    |> Repo.insert_or_update
+  end
+
+  def remove_technician_assignment(user_id, request_id) do
+    assignment_params = [user_id: user_id, request_id: request_id]
+
+    case Repo.get_by(AssignedTechnician, assignment_params) do
+      nil -> nil# If we didn't find one, we don't do anything
+      assigned_technician -> Repo.delete!(assigned_technician)
     end
   end
 end

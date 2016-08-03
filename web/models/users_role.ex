@@ -42,4 +42,12 @@ defmodule Flexphoenix.UsersRole do
       # which is returned by Repo.all(query))
       |> changeset(users_role_changes)
   end
+
+  def only_technicians(query) do
+    from q in query,
+      join: u in assoc(q, :user),
+      join: r in assoc(q, :role),
+      where: r.name == "Technician",
+      preload: [user: u]
+  end
 end

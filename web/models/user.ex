@@ -16,6 +16,9 @@ defmodule Flexphoenix.User do
     has_many :users_roles, Flexphoenix.UsersRole
     has_many :roles, through: [:users_roles, :role]
     has_many :attached_projects, through: [:users_roles, :project]
+    has_many :assigned_technicians, Flexphoenix.AssignedTechnician
+    has_many :assigned_requests, through: [:assigned_technicians, :request]
+    has_many :assigned_orders, through: [:assigned_technicians, :order]
     timestamps
   end
 

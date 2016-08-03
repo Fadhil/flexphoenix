@@ -11,6 +11,9 @@ defmodule Flexphoenix.Order do
     field :deadline, Ecto.DateTime
 
     belongs_to :user, Flexphoenix.User
+
+    has_many :assigned_technicians, Flexphoenix.AssignedTechnician
+    has_many :technicians, through: [:assigned_technicians, :users]
     timestamps
   end
 

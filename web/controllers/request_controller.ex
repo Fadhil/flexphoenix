@@ -95,7 +95,7 @@ defmodule Flexphoenix.RequestController do
   def assign_technicians(conn, %{"request_id" => request_id} = params) do
     request = Request
               |> Repo.get(request_id)
-              |> Repo.preload([:project, :asset])
+              |> Repo.preload([:project, :asset, :technicians])
 
     technicians = UsersRole
                   |> UsersRole.only_technicians

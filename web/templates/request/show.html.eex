@@ -59,5 +59,9 @@
 
 </ul>
 
+<hr/>
+
+  <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id) %>
+
 <%= link "Edit", to: request_path(@conn, :edit, @request) %>
 <%= link "Back", to: request_path(@conn, :index) %>

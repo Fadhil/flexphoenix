@@ -3,13 +3,18 @@ defmodule Flexphoenix.Order do
 
   schema "orders" do
     field :title, :string
-    field :body, :string
+    field :description, :string
+    field :location, :string
+    field :type, :string
+    field :instruction, :string
+    field :priority, :string
+    field :deadline, Ecto.DateTime
 
     belongs_to :user, Flexphoenix.User
     timestamps
   end
 
-  @required_fields ~w(title body)
+  @required_fields ~w(title description location type instruction priority deadline)
   @optional_fields ~w()
 
   @doc """

@@ -6,6 +6,10 @@ defmodule Flexphoenix.Request do
     field :title, :string
     field :location, :string
     field :description, :string
+		field :instruction, :string
+		field :type, :string
+		field :priority, :string
+		field :deadline, Ecto.DateTime
 
     belongs_to :user, Flexphoenix.User
 		belongs_to :project, Flexphoenix.Project

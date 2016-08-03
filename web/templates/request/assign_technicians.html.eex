@@ -5,10 +5,11 @@
   <h4>Assign Technicians</h4>
 
   <div class="form-group">
+    <% assigned_technician_ids = @request.technicians
+                                  |> Enum.map(fn x -> x.id end) %>
     <%= for technician <- @available_technicians do %>
-
-      <div class="i-checks"><label> <%= checkbox f, :"#{technician.user.id}" %><i></i> <%= technician.user.email %></label></div>
-
+      <% checked = assigned_technician_ids |> Enum.member?(technician.user.id) %>
+      <div class="i-checks"><label><%= checkbox f, :"#{technician.user.id}", checked: checked %><i></i> <%= technician.user.email %></label></div>
     <% end %>
   </div>
 

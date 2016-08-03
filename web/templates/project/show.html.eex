@@ -23,16 +23,15 @@
 
 </ul>
 <%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-primary btn-xs" %>
+<%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-primary btn-xs" %>
 
 <%= link "Edit", to: project_path(@conn, :edit, @project) %>
 <%= link "Back", to: project_path(@conn, :index) %>
 <hr/>
 <h3>Members</h3>
 
-<%= for member <- project_members(@project) do %>
-  <p><%= member.email %>, Roles: <strong><%=
-    show_role_names(member.roles)
-    %></strong></p>
+<%= for member <- @project_members do %>
+  <p><%= member.user.email %>, Role: <strong><%= member.role.name%></strong></p>
 <% end %>
 Add a new member to the project
 <%= form_for @conn, project_project_path(@conn, :invite_user, @project), [name: :invite_user], fn f -> %>$

@@ -19,7 +19,7 @@ defmodule Flexphoenix.Request do
   end
 
   @required_fields ~w(worktype title location description)
-  @optional_fields ~w(project_id asset_id)
+  @optional_fields ~w(project_id asset_id instruction type priority deadline)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

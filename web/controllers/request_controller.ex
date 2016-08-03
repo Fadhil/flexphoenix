@@ -102,21 +102,17 @@ defmodule Flexphoenix.RequestController do
                   |> Repo.all(project_id: request.project.id)
 
     conn
-    |> render("assign_technicians.html", request_id: request_id, request: request, available_technicians: technicians)
+    |> render("assign_technicians.html",
+               request_id: request_id,
+               request: request,
+               available_technicians: technicians)
   end
 
-  def create_technician_assignment(conn, params) do
-    %{"create_assigned_technicians" => technician_checkboxes,
-      "request_id" => request_id } = params
-    technicians_added = Repo.transaction(fn ->
-     technician_checkboxes
-      |> Enum.filter(fn {k,v} -> v end)
-      |> Enum.map(fn {k,v} ->
-            insert_technician_assignment(k, String.to_integer(request_id))
-          end
-          )
-      end
-        )
+  def create_technician_assignment(conn,
+   %{"create_assigned_technicians" => technician_checkboxes,
+      "request_id" => request_id } = params) do
+
+    technicians_added = run_transaction(technician_checkboxes, request_id)
 
     case technicians_added do
       {:ok, changes} ->
@@ -130,8 +126,19 @@ defmodule Flexphoenix.RequestController do
     end
   end
 
+  def run_transaction(technician_checkboxes, request_id) do
+    Repo.transaction(fn ->
+         technician_checkboxes
+          |> Enum.map(fn {k,v} ->
+                insert_technician_assignment(k, String.to_integer(request_id))
+              end)
+          end)
+  end
+
   def insert_technician_assignment(user_id, request_id) do
-    case Repo.get_by(AssignedTechnician, user_id: user_id, request_id: request_id) do
+    assignment_params = [user_id: user_id, request_id: request_id]
+
+    case Repo.get_by(AssignedTechnician, assignment_params) do
       nil -> %AssignedTechnician{}
       assigned_technician -> assigned_technician
     end

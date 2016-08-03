@@ -3,6 +3,7 @@ defmodule Flexphoenix.RequestController do
 
   alias Flexphoenix.Request
   alias Flexphoenix.UsersRole
+  alias Flexphoenix.AssignedTechnician
 
   plug :scrub_params, "request" when action in [:create, :update]
   plug :assign_project_params when action in [:edit]
@@ -102,5 +103,39 @@ defmodule Flexphoenix.RequestController do
 
     conn
     |> render("assign_technicians.html", request_id: request_id, request: request, available_technicians: technicians)
+  end
+
+  def create_technician_assignment(conn, params) do
+    %{"create_assigned_technicians" => technician_checkboxes,
+      "request_id" => request_id } = params
+    technicians_added = Repo.transaction(fn ->
+     technician_checkboxes
+      |> Enum.filter(fn {k,v} -> v end)
+      |> Enum.map(fn {k,v} ->
+            insert_technician_assignment(k, String.to_integer(request_id))
+          end
+          )
+      end
+        )
+
+    case technicians_added do
+      {:ok, changes} ->
+        conn
+        |> put_flash(:info, "Successfully assigned technicians")
+        |> redirect(to: request_path(conn, :show, request_id))
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> redirect(to: request_path(conn, :assign_technicians, request_id))
+    end
+  end
+
+  def insert_technician_assignment(user_id, request_id) do
+    case Repo.get_by(AssignedTechnician, user_id: user_id, request_id: request_id) do
+      nil -> %AssignedTechnician{}
+      assigned_technician -> assigned_technician
+    end
+    |> AssignedTechnician.changeset(%{user_id: user_id, request_id: request_id})
+    |> Repo.insert_or_update
   end
 end

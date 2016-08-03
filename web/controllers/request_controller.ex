@@ -4,6 +4,7 @@ defmodule Flexphoenix.RequestController do
   alias Flexphoenix.Request
 
   plug :scrub_params, "request" when action in [:create, :update]
+  plug :assign_project_params when action in [:edit]
 
   def index(conn, _params) do
     requests = Repo.all(Request) |> Repo.preload([:project, :asset])
@@ -71,5 +72,16 @@ defmodule Flexphoenix.RequestController do
     conn
     |> put_flash(:info, "Request deleted successfully.")
     |> redirect(to: request_path(conn, :index))
+  end
+
+  def assign_project_params(conn, params) do
+    case conn do
+      %{"project_id" => project_id} ->
+        conn
+        |> assign(:project_id, project_id)
+      _ ->
+        conn
+        |> assign(:project_id, nil)
+    end
   end
 end

@@ -13,6 +13,16 @@
   </li>
 
   <li>
+    <strong>Project:</strong>
+    <%= @request.project.name %>
+  </li>
+
+  <li>
+    <strong>Asset:</strong>
+    <%= "#{@request.asset.name} - #{@request.asset.model_id}" %>
+  </li>
+
+  <li>
     <strong>Location:</strong>
     <%= @request.location %>
   </li>
@@ -20,6 +30,26 @@
   <li>
     <strong>Description:</strong>
     <%= @request.description %>
+  </li>
+
+  <li>
+    <strong>Instruction:</strong>
+    <%= @request.instruction %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @request.type %>
+  </li>
+
+  <li>
+    <strong>Priority:</strong>
+    <%= @request.priority %>
+  </li>
+
+  <li>
+    <strong>Deadline:</strong>
+    <%= @request.deadline%>
   </li>
 
   <li>

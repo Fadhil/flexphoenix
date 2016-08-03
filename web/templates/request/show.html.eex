@@ -14,12 +14,12 @@
 
   <li>
     <strong>Project:</strong>
-    <%= @request.project.name %>
+    <%= project_name(@request.project)%>
   </li>
 
   <li>
     <strong>Asset:</strong>
-    <%= "#{@request.asset.name} - #{@request.asset.model_id}" %>
+    <%= asset_name(@request.asset)%>
   </li>
 
   <li>

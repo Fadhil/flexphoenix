@@ -16,7 +16,7 @@ defmodule Flexphoenix.Request do
 		belongs_to :asset, Flexphoenix.Asset
 
     has_many :assigned_technicians, Flexphoenix.AssignedTechnician
-		has_many :technicians, through: [:assigned_technicians, :users]
+		has_many :technicians, through: [:assigned_technicians, :user]
 
     timestamps
   end

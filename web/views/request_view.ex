@@ -25,4 +25,20 @@ defmodule Flexphoenix.RequestView do
   def all_projects(user) do
     user.attached_projects ++ user.projects
   end
+
+  def project_name(nil) do
+    "N/A"
+  end
+
+  def project_name(project) do
+    project.name
+  end
+
+  def asset_name(nil) do
+    "N/A"
+  end
+
+  def asset_name(asset) do
+    "#{asset.name} - #{asset.model_id}"
+  end
 end

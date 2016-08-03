@@ -151,4 +151,13 @@ defmodule Flexphoenix.RequestController do
     |> AssignedTechnician.changeset(%{user_id: user_id, request_id: request_id})
     |> Repo.insert_or_update
   end
+
+  def remove_technician_assignment(user_id, request_id) do
+    assignment_params = [user_id: user_id, request_id: request_id]
+
+    case Repo.get_by(AssignedTechnician, assignment_params) do
+      nil -> nil# If we didn't find one, we don't do anything
+      assigned_technician -> Repo.delete!(assigned_technician)
+    end
+  end
 end

@@ -126,8 +126,24 @@ defmodule Flexphoenix.RequestController do
     end
   end
 
+  @doc """
+  Runs transactions to add or remove assignment of technicians to a request.
+  The technician_checkboxes are from the params for the assign technician
+  form. They come in the shape
+      ```
+      Parameters: %{"create_assigned_technicians" =>
+                      %{"12" => "true", "3" => "false"}, "request_id" => "9"}
+      ```
+  where the integer in the key portion of the key value pairs (i.e. "12" & "3")
+  are the user ids of the technicians that are to be acted upon, and the value
+  portion (true/false) represents if the checkbox was ticked or not.
+
+  For true values, we insert the user_id and request_id into AssignedTechnician.
+  For false, we delete entries with the user_id and request_id
+  """
   def run_transaction(technician_checkboxes, request_id) do
     request_id = String.to_integer(request_id)
+
     Repo.transaction(fn ->
          technician_checkboxes
           |> Enum.map(fn {user_id, checked} ->

@@ -2,6 +2,7 @@ defmodule Flexphoenix.RequestController do
   use Flexphoenix.Web, :controller
 
   alias Flexphoenix.Request
+  alias Flexphoenix.UsersRole
 
   plug :scrub_params, "request" when action in [:create, :update]
   plug :assign_project_params when action in [:edit]
@@ -91,7 +92,15 @@ defmodule Flexphoenix.RequestController do
   end
 
   def assign_technicians(conn, %{"request_id" => request_id} = params) do
+    request = Request
+              |> Repo.get(request_id)
+              |> Repo.preload([:project, :asset])
+
+    technicians = UsersRole
+                  |> UsersRole.only_technicians
+                  |> Repo.all(project_id: request.project.id)
+
     conn
-    |> render("assign_technicians.html", request_id: request_id)
+    |> render("assign_technicians.html", request_id: request_id, request: request, available_technicians: technicians)
   end
 end

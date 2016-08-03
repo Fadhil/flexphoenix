@@ -6,6 +6,10 @@ defmodule Flexphoenix.Request do
     field :title, :string
     field :location, :string
     field :description, :string
+		field :instruction, :string
+		field :type, :string
+		field :priority, :string
+		field :deadline, Ecto.DateTime
 
     belongs_to :user, Flexphoenix.User
 		belongs_to :project, Flexphoenix.Project
@@ -15,7 +19,7 @@ defmodule Flexphoenix.Request do
   end
 
   @required_fields ~w(worktype title location description)
-  @optional_fields ~w(project_id asset_id)
+  @optional_fields ~w(project_id asset_id instruction type priority deadline)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

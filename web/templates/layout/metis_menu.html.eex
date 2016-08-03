@@ -75,7 +75,7 @@
                 </li>
 
                 <li>
-                    <a href=""><i class="fa fa-wrench"></i> <span class="new-label">Work Orders</span><span class="fa arrow"></span></a>
+                    <a href=""><i class="fa fa-wrench"></i> <span class="nav-label">Work Orders</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                       <li>
                         <a href="<%= order_path(@conn, :index) %>">All Work Orders</a></li>

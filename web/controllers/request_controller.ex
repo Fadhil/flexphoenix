@@ -41,7 +41,7 @@ defmodule Flexphoenix.RequestController do
     request = Request
               |> Request.with_owner
               |> Repo.get!(id)
-              |> Repo.preload([:project, :asset])
+              |> Repo.preload([:project, :asset, :technicians])
     render(conn, "show.html", request: request)
   end
 

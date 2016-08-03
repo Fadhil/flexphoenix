@@ -63,5 +63,13 @@
 
   <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id) %>
 
+  <%= case @request.technicians do %>
+    <%= [] -> %>
+    <%= technicians -> %>
+      <%= for technician <- technicians do %>
+        <p><strong><%= technician.email %></strong></p>
+      <% end %>
+  <% end %>
+
 <%= link "Edit", to: request_path(@conn, :edit, @request) %>
 <%= link "Back", to: request_path(@conn, :index) %>

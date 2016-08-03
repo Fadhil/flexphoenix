@@ -1,0 +1,20 @@
+<h2>Assigning Technicians for Request Id: <%= @request.id %></h2>
+<h3><%= project_name(@request.project) %> - <%= asset_name(@request.asset) %></h3>
+
+<%= form_for @conn, request_assign_technicians_path(@conn, :assign_technicians, @request.id), [as: :create_assigned_technicians], fn f -> %>
+  <h4>Assign Technicians</h4>
+
+  <div class="form-group">
+    <%= for technician <- @available_technicians do %>
+
+      <div class="i-checks"><label> <%= checkbox f, :"#{technician.user.id}" %><i></i> <%= technician.user.email %></label></div>
+
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+

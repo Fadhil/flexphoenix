@@ -132,9 +132,9 @@ defmodule Flexphoenix.RequestController do
          technician_checkboxes
           |> Enum.map(fn {user_id, checked} ->
                 case checked do
-                  true ->
+                  "true" ->
                     insert_technician_assignment(user_id, request_id)
-                  false ->
+                  "false" ->
                     remove_technician_assignment(user_id, request_id)
                 end
               end)

@@ -23,6 +23,7 @@ defmodule Flexphoenix.RequestController do
   def create(conn, %{"request" => request_params}) do
     current_user = conn.assigns.current_user
     changeset = Request.create_changeset(%Request{}, current_user.id, request_params)
+    %{"project_id" => project_id} = request_params
 
     case Repo.insert(changeset) do
       {:ok, _request} ->
@@ -30,7 +31,7 @@ defmodule Flexphoenix.RequestController do
         |> put_flash(:info, "Request created successfully.")
         |> redirect(to: request_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, project_id: project_id)
     end
   end
 

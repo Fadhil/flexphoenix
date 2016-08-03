@@ -127,10 +127,16 @@ defmodule Flexphoenix.RequestController do
   end
 
   def run_transaction(technician_checkboxes, request_id) do
+    request_id = String.to_integer(request_id)
     Repo.transaction(fn ->
          technician_checkboxes
-          |> Enum.map(fn {k,v} ->
-                insert_technician_assignment(k, String.to_integer(request_id))
+          |> Enum.map(fn {user_id, checked} ->
+                case checked do
+                  true ->
+                    insert_technician_assignment(user_id, request_id)
+                  false ->
+                    remove_technician_assignment(user_id, request_id)
+                end
               end)
           end)
   end

@@ -75,14 +75,23 @@ defmodule Flexphoenix.RequestController do
     |> redirect(to: request_path(conn, :index))
   end
 
+  def assign_project_params(conn, %{"project_id" => nil} = params) do
+    conn
+    |> assign(:project_id, nil)
+  end
+
+  def assign_project_params(conn, %{"project_id" => project_id} = params) do
+    conn
+    |> assign(:project_id, project_id)
+  end
+
   def assign_project_params(conn, params) do
-    case conn do
-      %{"project_id" => project_id} ->
-        conn
-        |> assign(:project_id, project_id)
-      _ ->
-        conn
-        |> assign(:project_id, nil)
-    end
+    conn
+    |> assign(:project_id, nil)
+  end
+
+  def assign_technicians(conn, %{"request_id" => request_id} = params) do
+    conn
+    |> render("assign_technicians.html", request_id: request_id)
   end
 end

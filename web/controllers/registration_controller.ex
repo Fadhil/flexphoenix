@@ -13,7 +13,7 @@ defmodule Flexphoenix.RegistrationController do
   def create(conn, %{"user" => registration_params}) do
     changeset = User.registration_changeset(%User{}, registration_params)
     case Repo.insert(changeset) do
-      {:ok, user} ->
+      {:ok, _user} ->
         conn
         |> put_flash(:info, "Account created!")
         |> redirect(to: page_path(conn, :index))

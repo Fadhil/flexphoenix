@@ -29,6 +29,10 @@ defmodule Flexphoenix.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authorize do
+    plug Flexphoenix.Plugs.Authorize
+  end
+
 	scope "/", Flexphoenix do
 		pipe_through [:browser, :no_layout]
 		get "/skin-config", PageController, :skin_config
@@ -47,7 +51,7 @@ defmodule Flexphoenix.Router do
   end
 
   scope "/", Flexphoenix do
-    pipe_through [:browser, :set_menu] # Use the default browser stack
+    pipe_through [:browser, :set_menu, :authorize] # Use the default browser stack
     resources "/projects", ProjectController do
       resources "/assets", AssetController
       post "/invite_user", ProjectController, :invite_user

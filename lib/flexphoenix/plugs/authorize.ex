@@ -3,9 +3,6 @@ defmodule Flexphoenix.Plugs.Authorize do
   alias Flexphoenix.Repo
   alias Flexphoenix.User
   alias Flexphoenix.Project
-  alias Passport.Session
-  alias Flexphoenix.Registration
-  alias Flexphoenix.Password
 
   def init(defaults), do: defaults
 
@@ -14,7 +11,7 @@ defmodule Flexphoenix.Plugs.Authorize do
     case user do
       nil ->
         conn
-        |> Phoenix.Controller.redirect(to: Flexphoenix.Page.page_path(conn, :index))
+        |> Phoenix.Controller.redirect(to: "/login")
 
       _ -> conn
     end

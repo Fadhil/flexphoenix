@@ -5,6 +5,7 @@ defmodule Flexphoenix.PasswordController do
 
   def forget_password(conn, _) do
     conn
+    |> put_layout("none.html")
     |> render(:forget_password)
   end
 

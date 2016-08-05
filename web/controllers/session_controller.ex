@@ -1,7 +1,6 @@
 defmodule Flexphoenix.SessionController do
   use Flexphoenix.Web, :controller
 
-  alias Flexphoenix.User
   alias Passport.Session
 
 

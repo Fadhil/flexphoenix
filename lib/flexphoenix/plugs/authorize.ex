@@ -1,8 +1,5 @@
 defmodule Flexphoenix.Plugs.Authorize do
   import Plug.Conn
-  alias Flexphoenix.Repo
-  alias Flexphoenix.User
-  alias Flexphoenix.Project
 
   def init(defaults), do: defaults
 

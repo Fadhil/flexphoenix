@@ -1,8 +1,6 @@
 defmodule Flexphoenix.PasswordController do
   use Flexphoenix.Web, :controller
 
-  alias Flexphoenix.User
-
   def forget_password(conn, _) do
     conn
     |> put_layout("none.html")

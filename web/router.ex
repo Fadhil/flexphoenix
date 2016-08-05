@@ -25,10 +25,6 @@ defmodule Flexphoenix.Router do
     plug Flexphoenix.Plugs.MenuItems
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   pipeline :authorize do
     plug Flexphoenix.Plugs.Authorize
   end

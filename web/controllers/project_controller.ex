@@ -5,7 +5,6 @@ defmodule Flexphoenix.ProjectController do
   alias Flexphoenix.UsersRole
   alias Flexphoenix.Role
   alias Flexphoenix.User
-  import Ecto.Query, only: [from: 2]
 
   plug :scrub_params, "project" when action in [:create, :update]
 

@@ -77,22 +77,22 @@ defmodule Flexphoenix.RequestController do
     |> redirect(to: request_path(conn, :index))
   end
 
-  def assign_project_params(conn, %{"project_id" => nil} = params) do
+  def assign_project_params(conn, %{"project_id" => nil}) do
     conn
     |> assign(:project_id, nil)
   end
 
-  def assign_project_params(conn, %{"project_id" => project_id} = params) do
+  def assign_project_params(conn, %{"project_id" => project_id}) do
     conn
     |> assign(:project_id, project_id)
   end
 
-  def assign_project_params(conn, params) do
+  def assign_project_params(conn, _params) do
     conn
     |> assign(:project_id, nil)
   end
 
-  def assign_technicians(conn, %{"request_id" => request_id} = params) do
+  def assign_technicians(conn, %{"request_id" => request_id}) do
     request = Request
               |> Repo.get(request_id)
               |> Repo.preload([:project, :asset, :technicians])
@@ -110,12 +110,12 @@ defmodule Flexphoenix.RequestController do
 
   def create_technician_assignment(conn,
    %{"create_assigned_technicians" => technician_checkboxes,
-      "request_id" => request_id } = params) do
+      "request_id" => request_id }) do
 
     technicians_added = run_transaction(technician_checkboxes, request_id)
 
     case technicians_added do
-      {:ok, changes} ->
+      {:ok, _changes} ->
         conn
         |> put_flash(:info, "Successfully assigned technicians")
         |> redirect(to: request_path(conn, :show, request_id))

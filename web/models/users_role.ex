@@ -31,16 +31,15 @@ defmodule Flexphoenix.UsersRole do
     query = from ur in model,
       where: ur.user_id == ^user_id and ur.role_id == ^role_id and ur.project_id == ^project_id
 
-    result =
-      case repo.all(query) do
-        # If we get no matches we build an empty map
-        [] -> %Flexphoenix.UsersRole{}
-        # If we get only the one matching row, we return that user role
-        [users_role|[]] -> users_role
-      end
-      # Get a changeset using either the empty map or the user role (
-      # which is returned by Repo.all(query))
-      |> changeset(users_role_changes)
+    case repo.all(query) do
+      # If we get no matches we build an empty map
+      [] -> %Flexphoenix.UsersRole{}
+      # If we get only the one matching row, we return that user role
+      [users_role|[]] -> users_role
+    end
+    # Get a changeset using either the empty map or the user role (
+    # which is returned by Repo.all(query))
+    |> changeset(users_role_changes)
   end
 
   def only_technicians(query) do

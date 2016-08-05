@@ -11,7 +11,9 @@ defmodule Flexphoenix.Plugs.Authorize do
     case user do
       nil ->
         conn
+        |> Phoenix.Controller.put_flash(:error, "You must be logged in to do that")
         |> Phoenix.Controller.redirect(to: "/login")
+        |> halt
 
       _ -> conn
     end

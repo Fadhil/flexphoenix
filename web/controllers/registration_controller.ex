@@ -6,6 +6,7 @@ defmodule Flexphoenix.RegistrationController do
   def new(conn, _params) do
     changeset = User.changeset(%User{})
     conn
+    |> put_layout("none.html")
     |> render(:new, user: changeset, changeset: changeset)
   end
 

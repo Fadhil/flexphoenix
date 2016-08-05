@@ -29,14 +29,17 @@ defmodule Flexphoenix.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authorize do
+    plug Flexphoenix.Plugs.Authorize
+  end
+
 	scope "/", Flexphoenix do
 		pipe_through [:browser, :no_layout]
 		get "/skin-config", PageController, :skin_config
 	end
 
   scope "/", Flexphoenix do
-    pipe_through [:browser, :set_menu] # Use the default browser stack
-
+    pipe_through [:browser]
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -45,6 +48,10 @@ defmodule Flexphoenix.Router do
     post "/register", RegistrationController, :create
     get "/forget-password", PasswordController, :forget_password
     post "/reset-password", PasswordController, :reset_password
+  end
+
+  scope "/", Flexphoenix do
+    pipe_through [:browser, :set_menu, :authorize] # Use the default browser stack
     resources "/projects", ProjectController do
       resources "/assets", AssetController
       post "/invite_user", ProjectController, :invite_user

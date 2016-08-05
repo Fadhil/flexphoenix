@@ -45,11 +45,11 @@ defmodule Flexphoenix.ProjectController do
         )
 
         case Repo.insert_or_update(changeset) do
-          {:ok, users_role} ->
+          {:ok, _users_role} ->
             conn
             |> put_flash(:info, "Successfully invited #{email} as #{role.name}")
             |> redirect(to: project_path(conn, :show, project))
-          {:error, changeset} ->
+          {:error, _changeset} ->
             conn
             |> put_flash(:error, "That user cannot be added to this project")
             |> redirect(to: project_path(conn, :show, project))

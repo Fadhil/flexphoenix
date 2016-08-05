@@ -27,7 +27,7 @@ defmodule Flexphoenix.AssetController do
     changeset = Asset.create_changeset(%Asset{}, conn.assigns.project.id, asset_params)
 
     case Repo.insert(changeset) do
-      {:ok, asset} ->
+      {:ok, _asset} ->
         conn
         |> put_flash(:info, "Asset created successfully.")
         |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
@@ -73,7 +73,7 @@ defmodule Flexphoenix.AssetController do
     |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
   end
 
-  def assign_project(conn, opts) do
+  def assign_project(conn, _opts) do
     %{params: %{"project_id" => project_id}} = conn
     project = Repo.get(Flexphoenix.Project, project_id)
     assign(conn, :project, project)

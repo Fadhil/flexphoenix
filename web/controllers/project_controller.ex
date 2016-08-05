@@ -27,7 +27,6 @@ defmodule Flexphoenix.ProjectController do
     user_id = case user do
       nil -> nil
       user -> user.id
-      _ -> nil
     end
     users_role_changes= %{
       role_id: role.id, user_id: user_id, project_id: project.id

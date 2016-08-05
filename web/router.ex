@@ -13,6 +13,8 @@ defmodule Flexphoenix.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug :current_user
   end
 
 	pipeline :no_layout do
@@ -23,14 +25,17 @@ defmodule Flexphoenix.Router do
     plug Flexphoenix.Plugs.MenuItems
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
 	scope "/", Flexphoenix do
 		pipe_through [:browser, :no_layout]
 		get "/skin-config", PageController, :skin_config
 	end
 
   scope "/", Flexphoenix do
-    pipe_through [:browser, :set_menu] # Use the default browser stack
-
+    pipe_through [:browser]
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -39,12 +44,28 @@ defmodule Flexphoenix.Router do
     post "/register", RegistrationController, :create
     get "/forget-password", PasswordController, :forget_password
     post "/reset-password", PasswordController, :reset_password
+  end
+
+  scope "/", Flexphoenix do
+    pipe_through [:browser, :set_menu] # Use the default browser stack
     resources "/projects", ProjectController do
       resources "/assets", AssetController
       post "/invite_user", ProjectController, :invite_user
     end
-    resources "/requests", RequestController
+    resources "/requests", RequestController do
+      get "/assign_technicians", RequestController, :assign_technicians,
+        as: :assign_technicians
+      post "/assign_technicians", RequestController, :create_technician_assignment, as: :assign_technicians
+    end
     resources "/orders", OrderController
+  end
+
+  scope "/api", Flexphoenix do
+    pipe_through [:api, :set_menu]
+
+    resources "/projects", ProjectController, only: [] do
+      get "/assets", AssetController, :index
+    end
   end
 
 

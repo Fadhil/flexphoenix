@@ -1,6 +1,18 @@
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
         <div>
+          <%
+            info = get_flash(@conn, :info)
+            error = get_flash(@conn, :error)
+            notification_message = if error do
+              %{message: error, type: "danger"}
+            else
+              %{message: info, type: "info"}
+            end
+          %>
+          <%= if notification_message.message do %>
+                <span class="m-r-sm text-<%= "#{notification_message.type}" %> notification-message"><%= notification_message.message %></span>
+          <% end %>
 
           <h1 class="logo-name">Fx</h1>
 

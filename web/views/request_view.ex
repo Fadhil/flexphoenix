@@ -8,7 +8,7 @@ defmodule Flexphoenix.RequestView do
     |> Enum.map(fn x -> {x.name, x.id} end)
   end
 
-  def asset_list(user, nil) do
+  def asset_list(_user, nil) do
     []
   end
 

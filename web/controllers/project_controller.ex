@@ -5,7 +5,6 @@ defmodule Flexphoenix.ProjectController do
   alias Flexphoenix.UsersRole
   alias Flexphoenix.Role
   alias Flexphoenix.User
-  import Ecto.Query, only: [from: 2]
 
   plug :scrub_params, "project" when action in [:create, :update]
 
@@ -28,7 +27,6 @@ defmodule Flexphoenix.ProjectController do
     user_id = case user do
       nil -> nil
       user -> user.id
-      _ -> nil
     end
     users_role_changes= %{
       role_id: role.id, user_id: user_id, project_id: project.id
@@ -45,11 +43,11 @@ defmodule Flexphoenix.ProjectController do
         )
 
         case Repo.insert_or_update(changeset) do
-          {:ok, users_role} ->
+          {:ok, _users_role} ->
             conn
             |> put_flash(:info, "Successfully invited #{email} as #{role.name}")
             |> redirect(to: project_path(conn, :show, project))
-          {:error, changeset} ->
+          {:error, _changeset} ->
             conn
             |> put_flash(:error, "That user cannot be added to this project")
             |> redirect(to: project_path(conn, :show, project))

@@ -1,8 +1,8 @@
-					<div class="footer">
-							<div class="pull-right">
-									Built by <strong>Jomcode</strong>.
-							</div>
-							<div>
-									<strong>Copyright</strong> Flexcility &copy; 2016
-							</div>
-					</div>
+<div class="footer">
+    <div class="pull-right">
+        Built by <strong>Jomcode</strong>.
+    </div>
+    <div>
+        <strong>Copyright</strong> Flexcility &copy; 2016
+    </div>
+</div>

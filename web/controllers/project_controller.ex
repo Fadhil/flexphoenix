@@ -8,8 +8,11 @@ defmodule Flexphoenix.ProjectController do
 
   plug :scrub_params, "project" when action in [:create, :update]
 
-  def index(conn, _params) do
-    projects = Repo.all(Project)
+  def index(
+    %{assigns: %{current_user: current_user}}=conn, _params
+  ) do
+    user = current_user |> Repo.preload([:projects])
+    projects = user.projects
     render(conn, "index.html", projects: projects)
   end
 

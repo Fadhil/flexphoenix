@@ -1,6 +1,8 @@
 <body class="gray-bg">
 
-<h1>Register</h1>
+<div class="middle-box text-center loginscreen animated fadeInDown">
+  <div>
+
 <%= form_for @changeset, registration_path(@conn, :create), fn f -> %>
   <%= if @changeset.action && @changeset.errors != [] do %>
     <div class="alert alert-danger">
@@ -12,6 +14,11 @@
       </ul>
     </div>
   <% end %>
+
+  <a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a>
+  </div><small>v0.7.0</small>
+  <h3>Welcome to Flexcility</h3>
+  <p>The go to facilities management app for everyone.<br/>Login to see it in action.</p>
 
   <div class="form-group">
     <%= text_input f, :first_name, id: "first_name", placeholder: "First Name", class: "form-control" %>
@@ -33,13 +40,11 @@
     <%= password_input f, :password_confirmation, id: "password_confirmation", placeholder: "Confirm Password", class: "form-control" %>
   </div>
 
-  <%= submit "Register", class: "btn btn-primary" %>
+  <%= submit "Register", class: "btn btn-primary block full-width m-b" %>
 <% end %>
-
-  <div style="margin-top: 10px">
-  <ul style="padding: 0; list-style-type: none">
-    <li><%= link "Login", to: session_path(@conn, :new) %></li>
-    <li><%= link "Main", to: page_path(@conn, :index) %></li>
-  </ul>
-  </div>
+<div>
+  <span class="text-muted text-center"><small>Already have an account?</small></span>
+  <a class="btn btn-sm btn-white btn-block" href="<%= session_path(@conn, :new) %>">Login</a>
+  <a class="btn btn-sm btn-white btn-block" href="<%= page_path(@conn, :index) %>">Back</a>
+</div>
 </body>

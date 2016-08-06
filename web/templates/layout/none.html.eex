@@ -3,6 +3,7 @@
   <%= render Flexphoenix.LayoutView, "header.html", assigns %>
 <body id="page-top" class="landing-page pace-done body-small">
   <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
 <div class="pace pace-inactive">
 	<div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: traslate3d(100%, 0px, 0px);">
 		<div class="pace-progress-inner"></div>

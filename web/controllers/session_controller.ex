@@ -19,6 +19,7 @@ defmodule Flexphoenix.SessionController do
     {:error, _reason, conn} ->
       conn
       |> put_flash(:error, "Invalid username/password combination")
+      |> put_layout("none.html")
       |> render(:new)
     end
   end

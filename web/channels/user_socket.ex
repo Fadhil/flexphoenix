@@ -3,6 +3,7 @@ defmodule Flexphoenix.UserSocket do
 
   ## Channels
   # channel "rooms:*", Flexphoenix.RoomChannel
+  channel "work_request_rooms:*", Flexphoenix.WorkRequestRoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

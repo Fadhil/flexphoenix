@@ -8,8 +8,14 @@ defmodule Flexphoenix.RequestController do
   plug :scrub_params, "request" when action in [:create, :update]
   plug :assign_project_params when action in [:edit]
 
-  def index(conn, _params) do
-    requests = Repo.all(Request) |> Repo.preload([:project, :asset])
+  def index(
+    %{assigns: %{
+      assigned_requests: assigned_requests,
+      current_user: current_user
+      }
+    }=conn, _params
+  ) do
+    requests = current_user.requests ++ assigned_requests
     render(conn, "index.html", requests: requests)
   end
 

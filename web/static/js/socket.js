@@ -57,8 +57,29 @@ console.log("socket connected")
 
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("work_request_rooms:subtopic", {})
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
+
+$(document).ready(function(){
+  let list    = $("#message-list");
+  let message = $("#message");
+  let name    = $("#user_display_name");
+
+  message.on("keypress", event => {
+    if (event.keyCode == 13) {
+      channel.push("new_message", { name: name.html(), message: message.val() });
+      message.val("");
+    }
+  });
+
+  channel.on("new_message", payload => {
+    list.append(`<b>${payload.name || 'Anonymous'}:</b> ${payload.message}<br>`);
+    list.prop({scrollTop: list.prop("scrollHeight")});
+  });
+});
+
+
 
 export default socket

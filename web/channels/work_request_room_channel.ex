@@ -15,6 +15,11 @@ defmodule Flexphoenix.WorkRequestRoomChannel do
     {:reply, {:ok, payload}, socket}
   end
 
+  def handle_in("new_message", payload, socket) do
+    broadcast! socket, "new_message", payload
+    {:noreply, socket}
+  end
+
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (work_request_rooms:lobby).
   def handle_in("shout", payload, socket) do

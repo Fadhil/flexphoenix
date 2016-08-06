@@ -5,6 +5,7 @@ defmodule Flexphoenix.ProjectController do
   alias Flexphoenix.UsersRole
   alias Flexphoenix.Role
   alias Flexphoenix.User
+  import Ecto.Query, only: [from: 2]
 
   plug :scrub_params, "project" when action in [:create, :update]
 
@@ -81,8 +82,9 @@ defmodule Flexphoenix.ProjectController do
     roles = Role |> Repo.all
     roles_select_list = roles |> Enum.map(fn x -> {"#{x.name}", x.id} end)
     project = Project |> Project.with_owner |> Repo.get!(id)
-    users_roles = UsersRole
-                  |> Repo.all(project_id: project.id)
+    query = from ur in UsersRole,
+            where: ur.project_id == ^project.id
+    users_roles = Repo.all(query)
                   |> Repo.preload([:user, :project, :role])
     render(conn, "show.html", project: project, roles_select_list: roles_select_list, project_members: users_roles)
   end

@@ -3,7 +3,7 @@ defmodule Flexphoenix.Mixfile do
 
   def project do
     [app: :flexphoenix,
-     version: "0.4.4",
+     version: "0.6.1",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,

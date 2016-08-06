@@ -13,6 +13,16 @@
   </li>
 
   <li>
+    <strong>Project:</strong>
+    <%= project_name(@request.project)%>
+  </li>
+
+  <li>
+    <strong>Asset:</strong>
+    <%= asset_name(@request.asset)%>
+  </li>
+
+  <li>
     <strong>Location:</strong>
     <%= @request.location %>
   </li>
@@ -23,11 +33,43 @@
   </li>
 
   <li>
+    <strong>Instruction:</strong>
+    <%= @request.instruction %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @request.type %>
+  </li>
+
+  <li>
+    <strong>Priority:</strong>
+    <%= @request.priority %>
+  </li>
+
+  <li>
+    <strong>Deadline:</strong>
+    <%= @request.deadline%>
+  </li>
+
+  <li>
     <strong>Owner</strong>
     <%= "#{@request.user.first_name} #{@request.user.last_name}"%>
   </li>
 
 </ul>
+<%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-primary" %>
+<%= link "Back", to: request_path(@conn, :index), class: "btn btn-primary" %>
 
-<%= link "Edit", to: request_path(@conn, :edit, @request) %>
-<%= link "Back", to: request_path(@conn, :index) %>
+<hr/>
+  <%= case @request.technicians do %>
+    <%= [] -> %>
+    <%= technicians -> %>
+      <h3>Assigned Technicians</h3>
+      <%= for technician <- technicians do %>
+        <p><strong><%= technician.email %></strong></p>
+      <% end %>
+  <% end %>
+
+  <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary" %>
+

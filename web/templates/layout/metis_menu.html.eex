@@ -67,23 +67,21 @@
                       </ul>
                   </li>
                 <% end %>
+                <li>
+                  <a href="<%= request_path(@conn, :new) %>"><i class="fa fa-flash"></i> <span class="new-label">New Work Request</span></a>
+                </li>
+                <li>
+                  <a href="<%= request_path(@conn, :index) %>"><i class="fa fa-eye"></i> <span class="new-label">View Work Requests</span></a>
+                </li>
 
                 <li>
-                    <a href=""><i class="fa fa-wrench"></i> <span class="new-label">Work Orders</span><span class="fa arrow"></span></a>
+                    <a href=""><i class="fa fa-wrench"></i> <span class="nav-label">Work Orders</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                       <li>
                         <a href="<%= order_path(@conn, :index) %>">All Work Orders</a></li>
                     </ul>
                 </li>
 
-                <li>
-                    <a href="#"><i class="fa fa-bolt"></i> <span class="nav-label">Work Requests</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li>
-                          <a href="<%= request_path(@conn, :index) %>">All Work Requests<span class="fa arrow"></span></a>
-                        </li>
-                    </ul>
-                </li>
                 <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">

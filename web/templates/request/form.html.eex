@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= label f, :worktype, class: "control-label" %>
-    <%= text_input f, :worktype, class: "form-control" %>
+    <%= select f, :worktype, ["Technical", "Maintenance"],class: "form-control" %>
     <%= error_tag f, :worktype %>
   </div>
 
@@ -15,6 +15,40 @@
     <%= label f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control" %>
     <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, "Project", class: "control-label" %>
+    <%= select f, :project_id, project_list(@current_user),
+    prompt: "Choose A Project/Site", selected: @project_id ,
+    class: "form-control" %>
+    <%= error_tag f, :project_id %>
+  </div>
+
+  <script>
+    $('#request_project_id').on("change", function(e) {
+      e.preventDefault();
+      selected_value = $('#request_project_id').val();
+
+      $.ajax({
+        url: "/api/projects/" + selected_value + "/assets",
+        type: "GET",
+        success: function(data) {
+          $('#request_asset_id').empty();
+          $.each(data, function(id, asset){
+            $('#request_asset_id')
+              .append("<option value="+ asset.id + ">"+ asset.name + "</option>");
+            console.log(asset);
+          })
+        }
+      })
+    })
+  </script>
+
+  <div class="form-group">
+    <%= label f, "Asset", class: "control-label" %>
+    <%= select f, :asset_id, asset_list(@current_user, @project_id),class: "form-control" %>
+    <%= error_tag f, :asset_id%>
   </div>
 
   <div class="form-group">

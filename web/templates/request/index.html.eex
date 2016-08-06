@@ -6,6 +6,8 @@
       <th>Worktype</th>
       <th>Title</th>
       <th>Location</th>
+      <th>Project</th>
+      <th>Asset</th>
       <th>Description</th>
 
       <th></th>
@@ -17,6 +19,8 @@
       <td><%= request.worktype %></td>
       <td><%= request.title %></td>
       <td><%= request.location %></td>
+      <td><%= project_name(request.project) %></td>
+      <td><%= asset_name(request.asset) %></td>
       <td><%= request.description %></td>
 
       <td class="text-right">

@@ -7,13 +7,15 @@ defmodule Flexphoenix.AssetController do
   plug :assign_project
 
   def index(conn, _params) do
-    project_id = conn.assigns.project.id
+    %{"project_id" => project_id} = conn.params
+    project_id = String.to_integer(project_id)
     query = from a in Asset,
             join: p in assoc(a, :project),
             where: p.id == ^project_id,
             preload: [project: p]
     assets = Repo.all(query)
-    render(conn, "index.html", assets: assets)
+
+    render(conn, assets: assets)
   end
 
   def new(conn, _params) do
@@ -30,7 +32,7 @@ defmodule Flexphoenix.AssetController do
         |> put_flash(:info, "Asset created successfully.")
         |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset,project_id: 7)
+        render(conn, "new.html", changeset: changeset, project_id: conn.assigns.project.id)
     end
   end
 

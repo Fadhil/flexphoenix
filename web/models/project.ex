@@ -11,6 +11,7 @@ defmodule Flexphoenix.Project do
     has_many :assets, Flexphoenix.Asset, on_delete: :nilify_all
     has_many :users_roles, Flexphoenix.UsersRole
     has_many :members, through: [:users_roles, :user]
+    has_many :requests, Flexphoenix.Request
 
     timestamps
   end

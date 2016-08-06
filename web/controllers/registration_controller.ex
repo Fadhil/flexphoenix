@@ -19,6 +19,7 @@ defmodule Flexphoenix.RegistrationController do
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         conn
+        |> put_layout("none.html")
         |> render(:new, user: changeset, changeset: changeset)
     end
   end

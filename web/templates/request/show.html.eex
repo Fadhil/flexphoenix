@@ -1,75 +1,87 @@
-<h2>Show request</h2>
+<div class="row">
+  <div class="col-md-4 col-xs-12">
+    <h2>Show request</h2>
+    <ul>
 
-<ul>
+      <li>
+        <strong>Worktype:</strong>
+        <%= @request.worktype %>
+      </li>
 
-  <li>
-    <strong>Worktype:</strong>
-    <%= @request.worktype %>
-  </li>
+      <li>
+        <strong>Title:</strong>
+        <%= @request.title %>
+      </li>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @request.title %>
-  </li>
+      <li>
+        <strong>Project:</strong>
+        <%= project_name(@request.project)%>
+      </li>
 
-  <li>
-    <strong>Project:</strong>
-    <%= project_name(@request.project)%>
-  </li>
+      <li>
+        <strong>Asset:</strong>
+        <%= asset_name(@request.asset)%>
+      </li>
 
-  <li>
-    <strong>Asset:</strong>
-    <%= asset_name(@request.asset)%>
-  </li>
+      <li>
+        <strong>Location:</strong>
+        <%= @request.location %>
+      </li>
 
-  <li>
-    <strong>Location:</strong>
-    <%= @request.location %>
-  </li>
+      <li>
+        <strong>Description:</strong>
+        <%= @request.description %>
+      </li>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @request.description %>
-  </li>
+      <li>
+        <strong>Instruction:</strong>
+        <%= @request.instruction %>
+      </li>
 
-  <li>
-    <strong>Instruction:</strong>
-    <%= @request.instruction %>
-  </li>
+      <li>
+        <strong>Type:</strong>
+        <%= @request.type %>
+      </li>
 
-  <li>
-    <strong>Type:</strong>
-    <%= @request.type %>
-  </li>
+      <li>
+        <strong>Priority:</strong>
+        <%= @request.priority %>
+      </li>
 
-  <li>
-    <strong>Priority:</strong>
-    <%= @request.priority %>
-  </li>
+      <li>
+        <strong>Deadline:</strong>
+        <%= @request.deadline%>
+      </li>
 
-  <li>
-    <strong>Deadline:</strong>
-    <%= @request.deadline%>
-  </li>
+      <li>
+        <strong>Owner</strong>
+        <%= "#{@request.user.first_name} #{@request.user.last_name}"%>
+      </li>
 
-  <li>
-    <strong>Owner</strong>
-    <%= "#{@request.user.first_name} #{@request.user.last_name}"%>
-  </li>
+    </ul>
+    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-primary" %>
+    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-primary" %>
 
-</ul>
-<%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-primary" %>
-<%= link "Back", to: request_path(@conn, :index), class: "btn btn-primary" %>
-
-<hr/>
-  <%= case @request.technicians do %>
-    <%= [] -> %>
-    <%= technicians -> %>
-      <h3>Assigned Technicians</h3>
-      <%= for technician <- technicians do %>
-        <p><strong><%= technician.email %></strong></p>
+    <hr/>
+      <%= case @request.technicians do %>
+        <%= [] -> %>
+        <%= technicians -> %>
+          <h3>Assigned Technicians</h3>
+          <%= for technician <- technicians do %>
+            <p><strong><%= technician.email %></strong></p>
+          <% end %>
       <% end %>
-  <% end %>
 
-  <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary" %>
+      <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-8 col-xs-12">
+		<div id='message-list' class='row'>
+		</div>
 
+		<div class='row form-group'>
+			<div class='col-md-12'>
+				<input type='text' id='message' class='form-control' placeholder='Message' />
+			</div>
+		</div>
+  </div>
+</div>

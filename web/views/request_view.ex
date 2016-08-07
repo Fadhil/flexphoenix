@@ -1,6 +1,7 @@
 defmodule Flexphoenix.RequestView do
   use Flexphoenix.Web, :view
   alias Flexphoenix.Repo
+  import Flexphoenix.LayoutView, only: [display_name: 1]
 
   def project_list(user) do
     all_projects(user)

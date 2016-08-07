@@ -4,11 +4,6 @@
     <ul>
 
       <li>
-        <strong>Worktype:</strong>
-        <%= @request.worktype %>
-      </li>
-
-      <li>
         <strong>Title:</strong>
         <%= @request.title %>
       </li>
@@ -33,25 +28,40 @@
         <%= @request.description %>
       </li>
 
-      <li>
-        <strong>Instruction:</strong>
-        <%= @request.instruction %>
-      </li>
+      <%= if @request.worktype do %>
+        <li>
+          <strong>Worktype:</strong>
+          <%= @request.worktype %>
+        </li>
+      <% end %>
 
-      <li>
-        <strong>Type:</strong>
-        <%= @request.type %>
-      </li>
+      <%= if @request.instruction do %>
+        <li>
+          <strong>Instruction:</strong>
+          <%= @request.instruction %>
+        </li>
+      <% end %>
 
-      <li>
-        <strong>Priority:</strong>
-        <%= @request.priority %>
-      </li>
+      <%= if @request.type do %>
+        <li>
+          <strong>Type:</strong>
+          <%= @request.type %>
+        </li>
+      <% end %>
 
-      <li>
-        <strong>Deadline:</strong>
-        <%= @request.deadline%>
-      </li>
+      <%= if @request.type do %>
+        <li>
+          <strong>Priority:</strong>
+          <%= @request.priority %>
+        </li>
+      <% end %>
+
+      <%= if @request.deadline do %>
+        <li>
+          <strong>Deadline:</strong>
+          <%= @request.deadline%>
+        </li>
+      <% end %>
 
       <li>
         <strong>Owner</strong>
@@ -73,6 +83,7 @@
       <% end %>
 
       <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary" %>
+      <%= link "Create Work Order", to: order_path(@conn, :new, request_id: @request), class: "btn btn-primary" %>
   </div>
   <div class="col-md-8 col-xs-12">
 		<div id='message-list' class='row'>

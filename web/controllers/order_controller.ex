@@ -2,6 +2,7 @@ defmodule Flexphoenix.OrderController do
   use Flexphoenix.Web, :controller
 
   alias Flexphoenix.Order
+  alias Flexphoenix.Request
 
   plug :scrub_params, "order" when action in [:create, :update]
 
@@ -13,8 +14,15 @@ defmodule Flexphoenix.OrderController do
     render(conn, "index.html", orders: orders)
   end
 
-  def new(conn, _params) do
-    changeset = Order.changeset(%Order{})
+  def new(conn, %{"request_id" => request_id}) do
+    request_fields = [:asset_id, :description, :location, :project_id,
+                      :title]
+
+    {request_attributes, _} = Repo.get(Request, request_id)
+                              |> Map.from_struct
+                              |> Map.split(request_fields)
+
+    changeset = Order.changeset(%Order{}, request_attributes)
     render(conn, "new.html", changeset: changeset)
   end
 

@@ -21,8 +21,8 @@ defmodule Flexphoenix.Request do
     timestamps
   end
 
-  @required_fields ~w(worktype title location description)
-  @optional_fields ~w(project_id asset_id instruction type priority deadline)
+  @required_fields ~w(title location description)
+  @optional_fields ~w(project_id asset_id instruction worktype type priority deadline)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

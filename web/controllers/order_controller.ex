@@ -22,7 +22,9 @@ defmodule Flexphoenix.OrderController do
                               |> Map.from_struct
                               |> Map.split(request_fields)
 
-    changeset = Order.changeset(%Order{}, request_attributes)
+    request_attributes_with_id = Map.merge(request_attributes, %{request_id: request_id})
+
+    changeset = Order.changeset(%Order{}, request_attributes_with_id)
     render(conn, "new.html", changeset: changeset)
   end
 

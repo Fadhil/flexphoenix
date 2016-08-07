@@ -9,6 +9,7 @@
       <th>Project</th>
       <th>Asset</th>
       <th>Description</th>
+      <th>Requestor</th>
 
       <th></th>
     </tr>
@@ -22,6 +23,7 @@
       <td><%= project_name(request.project) %></td>
       <td><%= asset_name(request.asset) %></td>
       <td><%= request.description %></td>
+      <td><%= display_name(request.user) %></td>
 
       <td class="text-right">
         <%= link "Show", to: request_path(@conn, :show, request), class: "btn btn-default btn-xs" %>

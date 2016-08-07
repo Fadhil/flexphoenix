@@ -46,6 +46,9 @@
     <%= textarea f, :deadline, class: "form-control" %>
     <%= error_tag f, :deadline %>
   </div>
+  <%= hidden_input f, :user_id, value: @current_user.id %>
+  <%= hidden_input f, :asset_id %>
+  <%= hidden_input f, :project_id %>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

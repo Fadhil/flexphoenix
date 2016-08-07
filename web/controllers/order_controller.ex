@@ -16,7 +16,7 @@ defmodule Flexphoenix.OrderController do
 
   def new(conn, %{"request_id" => request_id}) do
     request_fields = [:asset_id, :description, :location, :project_id,
-                      :user_id, :title]
+                      :title]
 
     {request_attributes, _} = Repo.get(Request, request_id)
                               |> Map.from_struct

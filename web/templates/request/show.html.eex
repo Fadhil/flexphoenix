@@ -69,8 +69,10 @@
       </li>
 
     </ul>
-    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-primary" %>
-    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-primary" %>
+    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-warning" %>
+    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-default" %>
+    <p><%= link "Delete", to: request_path(@conn, :delete, @request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+    </p>
 
     <hr/>
       <%= case @request.technicians do %>

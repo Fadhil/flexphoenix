@@ -29,5 +29,8 @@
 
 </ul>
 
-<%= link "Edit", to: project_asset_path(@conn, :edit, @project, @asset) %>
-<%= link "Back", to: project_asset_path(@conn, :index, @project) %>
+
+<%= link "Edit", to: project_asset_path(@conn, :edit, @project, @asset), class: "btn btn-warning btn-xs" %>
+<%= link "Back", to: project_asset_path(@conn, :index, @project), class: "btn btn-default btn-xs" %>
+<p><%= link "Delete", to: project_asset_path(@conn, :delete, @project, @asset), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+</p>

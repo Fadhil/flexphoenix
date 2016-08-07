@@ -37,7 +37,7 @@
 
   <div class="form-group">
     <%= label f, :priority, class: "control-label" %>
-    <%= textarea f, :priority, class: "form-control" %>
+    <%= select f, :priority, ["High", "Normal", "Low"], class: "form-control" %>
     <%= error_tag f, :priority %>
   </div>
 

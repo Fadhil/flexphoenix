@@ -19,7 +19,6 @@
 
       <td class="text-right">
         <%= link "Show", to: project_path(@conn, :show, project), class: "btn btn-primary btn-xs" %>
-        <%= link "Delete", to: project_path(@conn, :delete, project), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>

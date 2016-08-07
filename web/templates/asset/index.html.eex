@@ -23,7 +23,7 @@
 
         <td class="text-right">
           <%= link "Show", to: project_asset_path(@conn, :show, @project.id, asset), class: "btn btn-primary btn-xs" %>
-          <%= link "Delete", to: project_asset_path(@conn, :delete,@project, asset), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+
         </td>
       </tr>
   <% end %>

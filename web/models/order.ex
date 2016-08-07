@@ -8,7 +8,7 @@ defmodule Flexphoenix.Order do
     field :type, :string
     field :instruction, :string
     field :priority, :string
-    field :deadline, Ecto.DateTime
+    field :deadline, Ecto.Date
 
     belongs_to :user, Flexphoenix.User
 

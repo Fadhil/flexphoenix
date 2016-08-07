@@ -59,8 +59,9 @@
 				<div class="container">
 					<div class="carousel-caption blank">
 							<h1>Facilities management<br/>
-								  that allows for an efficient process<br/>
-									in execution and delivery<br/>
+								  that allows for efficient<br/>
+									execution and delivery</h1>
+              <p>The facilities management app designed for results</p>
 						<p>
 								<a class="btn btn-lg btn-primary" href="" role="button">GET STARTED</a>
 						</p>
@@ -158,12 +159,13 @@
         <div>
             <i class="fa fa-mobile features-icon"></i>
             <h1>Fully Responsive</h1>
-            <p>Blah blah blah blah bleh blah</p>
+            <p>Flexible and modern design for access across all devices</p>
         </div>
         <div class="m-t-lg">
             <i class="fa fa-bar-chart features-icon"></i>
-            <h2>Charts and Optimized Data Display</h2>
-            <p>Blah blah blah blah bleh blah</p>
+            <h1>Optimized Data Display</h1>
+            <p>Display of relevant data based on priority levels and deadline for
+            effective management with charts and diagrams </p>
         </div>
       </div>
       <div class="col-md-6 text-center wow zoomIn">
@@ -172,13 +174,13 @@
       <div class="col-md-3 text-center wow fadeInRight">
         <div>
             <i class="fa fa-envelope features-icon"></i>
-            <h1>Mail Pages</h1>
-            <p>Blah blah blah blah bleh blah</p>
+            <h1>Mail and Notifications</h1>
+            <p>Built in mail and mobile notification features</p>
         </div>
         <div class="m-t-lg">
             <i class="fa fa-commenting-o features-icon"></i>
             <h1>Instant Communication Channels</h1>
-            <p>Blah blah blah blah bleh blah</p>
+            <p>Multiple device synchronized instant communication channels</p>
         </div>
       </div>
 </div>

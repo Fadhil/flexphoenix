@@ -15,7 +15,9 @@ defmodule Flexphoenix.RequestController do
       }
     }=conn, _params
   ) do
-    requests = current_user.requests ++ assigned_requests
+    requests = (current_user.requests ++ assigned_requests)
+      |> Repo.preload([:user])
+
     render(conn, "index.html", requests: requests)
   end
 

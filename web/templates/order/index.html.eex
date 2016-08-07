@@ -19,7 +19,7 @@
   <tbody>
 <%= for order <- @orders do %>
     <tr>
-      <td>WO-16-"Insert Work Request No. Here"</td>
+      <td><%=  %></td>
       <td><%= order.title %></td>
       <td><%= order.location %></td>
       <td><%= order.type %></td>

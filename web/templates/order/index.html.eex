@@ -29,8 +29,7 @@
       <th><%= order.inserted_at %></td>
 
       <td class="text-right">
-        <%= link "Show", to: order_path(@conn, :show, order), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: order_path(@conn, :edit, order), class: "btn btn-default btn-xs" %>
+        <%= link "Show", to: order_path(@conn, :show, order), class: "btn btn-primary btn-xs" %>
         <%= link "Delete", to: order_path(@conn, :delete, order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>

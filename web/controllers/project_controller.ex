@@ -69,10 +69,10 @@ defmodule Flexphoenix.ProjectController do
     changeset = Project.create_changeset(%Project{},current_user.id, project_params)
 
     case Repo.insert(changeset) do
-      {:ok, _project} ->
+      {:ok, project} ->
         conn
         |> put_flash(:info, "Project created successfully.")
-        |> redirect(to: project_path(conn, :index))
+        |> redirect(to: project_path(conn, :show, project))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

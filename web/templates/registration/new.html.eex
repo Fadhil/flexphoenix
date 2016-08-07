@@ -47,4 +47,9 @@
   <a class="btn btn-sm btn-white btn-block" href="<%= session_path(@conn, :new) %>">Login</a>
   <a class="btn btn-sm btn-white btn-block" href="<%= page_path(@conn, :index) %>">Back</a>
 </div>
+
+<p class="m-t"><small>
+Built by <strong>Jomcode</strong><br/>Copyright<strong> Flexcility</strong> &copy; 2016
+</small></p>
+
 </body>

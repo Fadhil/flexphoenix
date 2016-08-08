@@ -1,0 +1,46 @@
+<h2>Listing reports</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Type</th>
+      <th>Instruction</th>
+      <th>Priority</th>
+      <th>Deadline</th>
+      <th>Findings</th>
+      <th>Actions</th>
+      <th>Summary</th>
+      <th>Completed</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for report <- @reports do %>
+    <tr>
+      <td><%= report.title %></td>
+      <td><%= report.description %></td>
+      <td><%= report.location %></td>
+      <td><%= report.type %></td>
+      <td><%= report.instruction %></td>
+      <td><%= report.priority %></td>
+      <td><%= report.deadline %></td>
+      <td><%= report.findings %></td>
+      <td><%= report.actions %></td>
+      <td><%= report.summary %></td>
+      <td><%= report.completed %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: report_path(@conn, :show, report), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: report_path(@conn, :edit, report), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: report_path(@conn, :delete, report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New report", to: report_path(@conn, :new) %>

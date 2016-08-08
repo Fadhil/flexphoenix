@@ -58,7 +58,8 @@ defmodule Flexphoenix.Router do
       post "/assign_technicians", RequestController, :create_technician_assignment, as: :assign_technicians
     end
     resources "/orders", OrderController
-  end
+    resources "/reports", ReportController
+    end
 
   scope "/api", Flexphoenix do
     pipe_through [:api, :set_menu]

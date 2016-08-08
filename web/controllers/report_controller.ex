@@ -7,8 +7,11 @@ defmodule Flexphoenix.ReportController do
 
   plug :scrub_params, "report" when action in [:create, :update]
 
-  def index(conn, _params) do
-    reports = Repo.all(Report)
+  def index(
+    %{assigns: %{current_user: current_user}}=conn, _params
+  ) do
+    user = current_user |> Repo.preload([:reports])
+    reports = user.reports
     render(conn, "index.html", reports: reports)
   end
 
@@ -34,6 +37,7 @@ defmodule Flexphoenix.ReportController do
 
   def show(conn, %{"id" => id}) do
     report = Repo.get!(Report, id)
+    report = Report |> Report.with_owner |> Repo.get!(id)
     render(conn, "show.html", report: report)
   end
 

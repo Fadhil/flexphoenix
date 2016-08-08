@@ -57,6 +57,11 @@
     <%= @report.completed %>
   </li>
 
+  <li>
+    <strong>Owner:</strong>
+    <%= @report.user.first_name %>
+  </li>
+
 </ul>
 
 <%= link "Edit", to: report_path(@conn, :edit, @report) %>

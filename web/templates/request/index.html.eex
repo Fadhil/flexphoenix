@@ -3,7 +3,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Worktype</th>
       <th>Title</th>
       <th>Location</th>
       <th>Project</th>
@@ -17,7 +16,6 @@
   <tbody>
 <%= for request <- @requests do %>
     <tr>
-      <td><%= request.worktype %></td>
       <td><%= request.title %></td>
       <td><%= request.location %></td>
       <td><%= project_name(request.project) %></td>

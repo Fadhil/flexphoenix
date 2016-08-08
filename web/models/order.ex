@@ -11,14 +11,15 @@ defmodule Flexphoenix.Order do
     field :deadline, Ecto.DateTime
 
     belongs_to :user, Flexphoenix.User
+    belongs_to :request, Flexphoenix.Request
 
     has_many :assigned_technicians, Flexphoenix.AssignedTechnician
     has_many :technicians, through: [:assigned_technicians, :users]
     timestamps
   end
 
-  @required_fields ~w(title description location type instruction priority deadline)
-  @optional_fields ~w()
+  @required_fields ~w(title description location instruction priority request_id)
+  @optional_fields ~w(type deadline)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

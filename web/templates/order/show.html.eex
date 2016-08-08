@@ -3,8 +3,48 @@
 <ul>
 
   <li>
+    <strong>Request ID:</strong>
+    <%= @order.request_id %>
+  </li>
+
+  <li>
     <strong>Title:</strong>
     <%= @order.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @order.description %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @order.location %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @order.type %>
+  </li>
+
+  <li>
+    <strong>Instruction:</strong>
+    <%= @order.instruction %>
+  </li>
+
+  <li>
+    <strong>Priority:</strong>
+    <%= @order.priority %>
+  </li>
+
+  <li>
+    <strong>Created On:</strong>
+    <%= @order.inserted_at %>
+  </li>
+
+  <li>
+    <strong>Deadline:</strong>
+    <%= @order.deadline %>
   </li>
 
   <li>

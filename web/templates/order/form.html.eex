@@ -6,8 +6,8 @@
   <% end %>
 
   <div class="form-group">
-    <h4>Work Order No.</h4>
-    <a href="/requests"><%= text_input f, :request_id, class: "btn btn-default btn-xs" %></a>
+    <span><strong>Request ID </strong><%= @request_id %><span>
+
     <%= error_tag f, :request_id %>
   </div>
 

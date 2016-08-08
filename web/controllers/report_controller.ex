@@ -2,6 +2,8 @@ defmodule Flexphoenix.ReportController do
   use Flexphoenix.Web, :controller
 
   alias Flexphoenix.Report
+  alias Flexphoenix.Order
+  alias Flexphoenix.Request
 
   plug :scrub_params, "report" when action in [:create, :update]
 
@@ -16,7 +18,9 @@ defmodule Flexphoenix.ReportController do
   end
 
   def create(conn, %{"report" => report_params}) do
-    changeset = Report.changeset(%Report{}, report_params)
+    current_user = conn.assigns.current_user
+    current_order = conn.assigns.current_order
+    changeset = Report.changeset(%Report{}, current_user.id, current_order.id, report_params)
 
     case Repo.insert(changeset) do
       {:ok, _report} ->

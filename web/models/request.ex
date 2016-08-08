@@ -17,6 +17,7 @@ defmodule Flexphoenix.Request do
 
     has_many :assigned_technicians, Flexphoenix.AssignedTechnician
 		has_many :technicians, through: [:assigned_technicians, :user]
+    has_many :orders, Flexphoenix.Order
 
     timestamps
   end

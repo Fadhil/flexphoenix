@@ -44,7 +44,7 @@
 								for everyone</h1>
 						<p>The go to facilities management app for everyday use</p>
 						<p>
-								<a class="btn btn-lg btn-primary" href="" role="button">GET STARTED</a>
+								<a class="btn btn-lg btn-primary" href="/register" role="button">GET STARTED</a>
 						</p>
 					</div>
 					<div class="carousel-image wow zoomIn">
@@ -63,7 +63,7 @@
 									execution and delivery</h1>
               <p>The facilities management app designed for results</p>
 						<p>
-								<a class="btn btn-lg btn-primary" href="" role="button">GET STARTED</a>
+								<a class="btn btn-lg btn-primary" href="/register" role="button">GET STARTED</a>
 						</p>
 					</div>
 				</div>

@@ -6,7 +6,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, "WO-", class: "control-label" %>
+    <h4>Work Order No.</h4>
     <a href="/requests"><%= text_input f, :request_id, class: "btn btn-default btn-xs" %></a>
     <%= error_tag f, :request_id %>
   </div>

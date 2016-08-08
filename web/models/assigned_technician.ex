@@ -7,6 +7,7 @@ defmodule Flexphoenix.AssignedTechnician do
     belongs_to :user, Flexphoenix.User
     belongs_to :request, Flexphoenix.Request
     belongs_to :order, Flexphoenix.Order
+    belongs_to :report, Flexphoenix.Report
   end
 
   @required_fields ~w(user_id)

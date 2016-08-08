@@ -14,6 +14,11 @@ defmodule Flexphoenix.Report do
     field :summary, :string
     field :completed, :string
 
+    belongs_to :user, Flexphoeni.User
+    belongs_to :order, Flexphoenix.Order
+
+    has_many :assigned_technicians, Flexphoenix.Assigned_Technician
+
     timestamps
   end
 

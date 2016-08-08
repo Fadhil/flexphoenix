@@ -43,7 +43,10 @@ defmodule Flexphoenix.OrderController do
   end
 
   def show(conn, %{"id" => id}) do
-    order = Order |> Order.with_owner |> Repo.get!(id)
+    order = Order
+            |> Order.with_owner
+            |> Repo.get!(id)
+            |> Repo.preload([:technicians])
     render(conn, "show.html", order: order)
   end
 

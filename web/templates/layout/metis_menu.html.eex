@@ -123,7 +123,7 @@
                     <a target="_blank" href="<%= page_path(@conn, :index)%>"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right"></span></a>
                 </li>
                 <li class="special_link">
-                    <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">Packages</span></a>
+                    <a href=""><i class="fa fa-database"></i> <span class="nav-label">Packages</span></a>
                 </li>
             </ul>
 

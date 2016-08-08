@@ -58,3 +58,26 @@
 <%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-xs" %>
 <p><%= link "Delete", to: order_path(@conn, :delete, @order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
 </p>
+    <hr/>
+      <%= case @order.technicians do %>
+        <%= [] -> %>
+        <%= technicians -> %>
+          <h3>Assigned Technicians</h3>
+          <%= for technician <- technicians do %>
+            <p><strong><%= technician.email %></strong></p>
+          <% end %>
+      <% end %>
+
+      <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-8 col-xs-12">
+		<div id='message-list' class='row'>
+		</div>
+
+		<div class='row form-group'>
+			<div class='col-md-12'>
+				<input type='text' id='message' class='form-control' placeholder='Message' />
+			</div>
+		</div>
+  </div>
+</div>

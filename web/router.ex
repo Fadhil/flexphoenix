@@ -53,11 +53,12 @@ defmodule Flexphoenix.Router do
       post "/invite_user", ProjectController, :invite_user
     end
     resources "/requests", RequestController do
-      get "/assign_technicians", RequestController, :assign_technicians,
-        as: :assign_technicians
+      get "/assign_technicians", RequestController, :assign_technicians, as: :assign_technicians
       post "/assign_technicians", RequestController, :create_technician_assignment, as: :assign_technicians
     end
-    resources "/orders", OrderController
+    resources "/orders", OrderController do
+      get "/assign_technicians", OrderController, :assign_technicians, as: :assign_technicians
+    end
   end
 
   scope "/api", Flexphoenix do

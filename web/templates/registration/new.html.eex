@@ -16,9 +16,9 @@
   <% end %>
 
   <a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a>
-  </div><small>v0.11.0</small>
+  </div><small>v0.12.0</small>
   <h3>Welcome to Flexcility</h3>
-  <p>The go to facilities management app for everyone.<br/>Login to see it in action.</p>
+  <p>The go to facilities management app for everyone.<br/>Register now to start managing your projects with Flexcility!</p>
 
   <div class="form-group">
     <%= text_input f, :first_name, id: "first_name", placeholder: "First Name", class: "form-control" %>
@@ -47,4 +47,9 @@
   <a class="btn btn-sm btn-white btn-block" href="<%= session_path(@conn, :new) %>">Login</a>
   <a class="btn btn-sm btn-white btn-block" href="<%= page_path(@conn, :index) %>">Back</a>
 </div>
+
+<p class="m-t"><small>
+Built by <strong>Jomcode</strong><br/>Copyright<strong> Flexcility</strong> &copy; 2016
+</small></p>
+
 </body>

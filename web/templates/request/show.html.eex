@@ -4,11 +4,6 @@
     <ul>
 
       <li>
-        <strong>Worktype:</strong>
-        <%= @request.worktype %>
-      </li>
-
-      <li>
         <strong>Title:</strong>
         <%= @request.title %>
       </li>
@@ -33,25 +28,12 @@
         <%= @request.description %>
       </li>
 
-      <li>
-        <strong>Instruction:</strong>
-        <%= @request.instruction %>
-      </li>
-
-      <li>
-        <strong>Type:</strong>
-        <%= @request.type %>
-      </li>
-
-      <li>
-        <strong>Priority:</strong>
-        <%= @request.priority %>
-      </li>
-
-      <li>
-        <strong>Deadline:</strong>
-        <%= @request.deadline%>
-      </li>
+      <%= if @request.instruction do %>
+        <li>
+          <strong>Instruction:</strong>
+          <%= @request.instruction %>
+        </li>
+      <% end %>
 
       <li>
         <strong>Owner</strong>
@@ -59,8 +41,10 @@
       </li>
 
     </ul>
-    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-primary" %>
-    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-primary" %>
+    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-warning" %>
+    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-default" %>
+    <p><%= link "Delete", to: request_path(@conn, :delete, @request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+    </p>
 
     <hr/>
       <%= case @request.technicians do %>
@@ -73,6 +57,7 @@
       <% end %>
 
       <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary" %>
+      <%= link "Create Work Order", to: order_path(@conn, :new, request_id: @request), class: "btn btn-primary" %>
   </div>
   <div class="col-md-8 col-xs-12">
 		<div id='message-list' class='row'>

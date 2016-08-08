@@ -3,12 +3,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Worktype</th>
       <th>Title</th>
       <th>Location</th>
       <th>Project</th>
       <th>Asset</th>
       <th>Description</th>
+      <th>Requestor</th>
 
       <th></th>
     </tr>
@@ -16,17 +16,15 @@
   <tbody>
 <%= for request <- @requests do %>
     <tr>
-      <td><%= request.worktype %></td>
       <td><%= request.title %></td>
       <td><%= request.location %></td>
       <td><%= project_name(request.project) %></td>
       <td><%= asset_name(request.asset) %></td>
       <td><%= request.description %></td>
+      <td><%= display_name(request.user) %> at <%= request.inserted_at %></td>
 
       <td class="text-right">
-        <%= link "Show", to: request_path(@conn, :show, request), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: request_path(@conn, :edit, request), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: request_path(@conn, :delete, request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Show", to: request_path(@conn, :show, request), class: "btn btn-primary btn-xs" %>
       </td>
     </tr>
 <% end %>

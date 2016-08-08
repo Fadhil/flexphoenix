@@ -35,4 +35,33 @@ defmodule Flexphoenix.Report do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def create_changeset(model, user_id, order_id, params \\ :empty) do
+    model
+    |> cast(params, @required_fields, @optional_fields)
+    |> put_user_id(user_id)
+    |> put_order_id(order_id)
+  end
+
+  def put_user_id(changeset, user_id) do
+    case changeset do
+      %Ecto.Changeset{valid?: true} ->
+        put_change(changeset, :user_id, user_id)
+      _ ->
+        changeset
+    end
+  end
+
+  def put_order_id(changeset, order_id) do
+    case changeset do
+      %Ecto.Changeset{valid?: true} ->
+        put_change(changeset, :order_id, order_id)
+      _ ->
+        changeset
+    end
+  end
+
+  def with_owner(query) do
+    from q in query, preload: [:user]
+  end
 end

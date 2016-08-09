@@ -60,4 +60,6 @@
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
+
+<%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-xs" %>
 <% end %>

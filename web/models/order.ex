@@ -14,7 +14,7 @@ defmodule Flexphoenix.Order do
     belongs_to :request, Flexphoenix.Request
 
     has_many :assigned_technicians, Flexphoenix.Assigned_Technician
-    has_many :technicians, through: [:assigned_technicians, :users]
+    has_many :technicians, through: [:assigned_technicians, :user]
     has_many :reports, Flexphoenix.Report
     timestamps
   end

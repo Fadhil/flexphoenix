@@ -17,7 +17,7 @@ defmodule Flexphoenix.Report do
     belongs_to :user, Flexphoenix.User
     belongs_to :order, Flexphoenix.Order
 
-    has_many :assigned_technicians, Flexphoenix.Assigned_Technician
+    has_many :assigned_technicians, Flexphoenix.AssignedTechnician
 
     timestamps
   end

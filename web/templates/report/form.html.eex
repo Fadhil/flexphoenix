@@ -70,6 +70,7 @@
     <%= text_input f, :completed, class: "form-control" %>
     <%= error_tag f, :completed %>
   </div>
+  <%= hidden_input f, :order_id, value: @order_id  %>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

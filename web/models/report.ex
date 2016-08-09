@@ -14,7 +14,7 @@ defmodule Flexphoenix.Report do
     field :summary, :string
     field :completed, :string
 
-    belongs_to :user, Flexphoeni.User
+    belongs_to :user, Flexphoenix.User
     belongs_to :order, Flexphoenix.Order
 
     has_many :assigned_technicians, Flexphoenix.Assigned_Technician
@@ -22,7 +22,7 @@ defmodule Flexphoenix.Report do
     timestamps
   end
 
-  @required_fields ~w(title description location instruction priority actions summary completed)
+  @required_fields ~w(title description location instruction priority actions summary completed order_id)
   @optional_fields ~w(type deadline findings)
 
   @doc """
@@ -36,11 +36,10 @@ defmodule Flexphoenix.Report do
     |> cast(params, @required_fields, @optional_fields)
   end
 
-  def create_changeset(model, user_id, order_id, params \\ :empty) do
+  def create_changeset(model, user_id, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> put_user_id(user_id)
-    |> put_order_id(order_id)
   end
 
   def put_user_id(changeset, user_id) do

@@ -1,0 +1,78 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :description, class: "control-label" %>
+    <%= textarea f, :description, class: "form-control" %>
+    <%= error_tag f, :description %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :location, class: "control-label" %>
+    <%= text_input f, :location, class: "form-control" %>
+    <%= error_tag f, :location %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :type, class: "control-label" %>
+    <%= text_input f, :type, class: "form-control" %>
+    <%= error_tag f, :type %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :instruction, class: "control-label" %>
+    <%= textarea f, :instruction, class: "form-control" %>
+    <%= error_tag f, :instruction %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :priority, class: "control-label" %>
+    <%= text_input f, :priority, class: "form-control" %>
+    <%= error_tag f, :priority %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :deadline, class: "control-label" %>
+    <%= text_input f, :deadline, class: "form-control" %>
+    <%= error_tag f, :deadline %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :findings, class: "control-label" %>
+    <%= textarea f, :findings, class: "form-control" %>
+    <%= error_tag f, :findings %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :actions, class: "control-label" %>
+    <%= textarea f, :actions, class: "form-control" %>
+    <%= error_tag f, :actions %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :summary, class: "control-label" %>
+    <%= textarea f, :summary, class: "form-control" %>
+    <%= error_tag f, :summary %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :completed, class: "control-label" %>
+    <%= text_input f, :completed, class: "form-control" %>
+    <%= error_tag f, :completed %>
+  </div>
+  <%= hidden_input f, :order_id, value: @order_id  %>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -27,7 +27,7 @@ defmodule Flexphoenix.OrderController do
     request_attributes_with_id = Map.merge(request_attributes, %{request_id: request_id})
 
     changeset = Order.changeset(%Order{}, request_attributes_with_id)
-    render(conn, "new.html", changeset: changeset, request_id: request_id, name: "faruq")
+    render(conn, "new.html", changeset: changeset, request_id: request_id)
   end
 
   def create(conn, %{"order" => order_params}) do

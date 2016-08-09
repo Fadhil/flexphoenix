@@ -70,17 +70,21 @@
                 <li>
                   <a href="<%= request_path(@conn, :new) %>"><i class="fa fa-flash"></i> <span class="new-label">New Work Request</span></a>
                 </li>
+
                 <li>
                   <a href="<%= request_path(@conn, :index) %>"><i class="fa fa-eye"></i> <span class="new-label">View Work Requests</span></a>
                 </li>
 
                 <li>
-                  <a href="<%= order_path(@conn, :index)%>"><i class="fa fa-wrench"></i> <span class="nav-label">View Work Orders</li>
-                    </span><span class="fa arrow"></span></a>
+                  <a href="<%= order_path(@conn, :index)%>"><i class="fa fa-wrench"></i> <span class="nav-label">View Work Orders</span></a>
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
+                  <a href="<%= report_path(@conn, :index)%>"><i class="fa fa-file-text-o"></i> <span class="nav-label">View Work Reports</span></a>
+                </li>
+
+                <li>
+<!--                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
@@ -105,13 +109,21 @@
                     </ul>
                 </li>
                 <li>
+
                     <a href="css_animation.html"><i class="fa fa-magic"></i> <span class="nav-label">CSS Animations </span><span class="label label-info pull-right">62</span></a>
                 </li>
+-->
+                <li>
+                    <a href=""><i class="fa fa-magic"></i> <span class="nav-label">Customize</span><span class="label label-info pull-right">Locked</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="fa fa-cog"></i> <span class="nav-label">Settings</span><span class="label label-warning pull-right">Soon</span></a>
+                </li>
                 <li class="landing_link">
-                  <a target="_blank" href="<%= page_path(@conn, :index)%>"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right"></span></a>
+                    <a target="_blank" href="<%= page_path(@conn, :index)%>"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right"></span></a>
                 </li>
                 <li class="special_link">
-                    <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
+                    <a href=""><i class="fa fa-database"></i> <span class="nav-label">Packages</span></a>
                 </li>
             </ul>
 

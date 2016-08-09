@@ -70,7 +70,9 @@
           <% end %>
       <% end %>
 
-      <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-primary" %>
+
+    <hr/>
+      <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-primary" %>
   </div>
   <div class="col-md-8 col-xs-12">
 		<div id='message-list' class='row'>
@@ -82,4 +84,4 @@
 			</div>
 		</div>
   </div>
-</div>
+

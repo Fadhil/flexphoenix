@@ -1,6 +1,8 @@
 <h2>New report</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: report_path(@conn, :create) %>
+  action: report_path(@conn, :create),
+  order_id: @order_id
+%>
 
 <%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-xs" %>

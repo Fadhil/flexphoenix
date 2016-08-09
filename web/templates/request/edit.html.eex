@@ -5,4 +5,4 @@ current_user: @conn.assigns.current_user,
 project_id: @conn.assigns.project_id
 %>
 
-<%= link "Back", to: request_path(@conn, :index), class: "btn btn-default btn-xs" %>
+<%= link "Back", to: request_path(@conn, :index) %>

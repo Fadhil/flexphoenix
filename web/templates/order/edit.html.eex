@@ -3,4 +3,4 @@
 <%= render "form.html", changeset: @changeset, request_id: @request_id,
                         action: order_path(@conn, :update, @order) %>
 
-<%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-xs" %>
+<%= link "Back", to: order_path(@conn, :index) %>

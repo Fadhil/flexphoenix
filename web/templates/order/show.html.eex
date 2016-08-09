@@ -58,3 +58,19 @@
 <%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-xs" %>
 <p><%= link "Delete", to: order_path(@conn, :delete, @order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
 </p>
+
+
+    <hr/>
+      <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-8 col-xs-12">
+		<div id='message-list' class='row'>
+		</div>
+
+		<div class='row form-group'>
+			<div class='col-md-12'>
+				<input type='text' id='message' class='form-control' placeholder='Message' />
+			</div>
+		</div>
+  </div>
+

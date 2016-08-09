@@ -56,7 +56,10 @@ defmodule Flexphoenix.Router do
       get "/assign_technicians", RequestController, :assign_technicians, as: :assign_technicians
       post "/assign_technicians", RequestController, :create_technician_assignment, as: :assign_technicians
     end
-    resources "/orders", OrderController
+    resources "/orders", OrderController do
+      get "/assign_technicians", OrderController, :assign_technicians, as: :assign_technicians
+      post "/assign_technicians", OrderController, :create_technician_assignment, as: :assign_technicians
+    end
     resources "/reports", ReportController
     end
 

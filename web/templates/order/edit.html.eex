@@ -1,6 +1,8 @@
 <h2>Edit order</h2>
 
 <%= render "form.html", changeset: @changeset, request_id: @request_id,
-                        action: order_path(@conn, :update, @order) %>
+action: order_path(@conn, :update, @order),
+current_user: @conn.assigns.current_user
+%>
 
 <%= link "Back", to: order_path(@conn, :index) %>

@@ -39,8 +39,8 @@
                                 </a>
                                 <div class="media-body">
                                     <small class="pull-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                    <strong>Zack</strong> created request <strong>Lights Out at Apartment 143</strong>. <br>
+                                    <small class="text-muted">2 days ago at 7:58 pm - 10.08.2016</small>
                                 </div>
                             </div>
                         </li>
@@ -51,9 +51,9 @@
                                     <img alt="image" class="img-circle" src="/img/a4.jpg">
                                 </a>
                                 <div class="media-body ">
-                                    <small class="pull-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                    <small class="pull-right text-navy">23h ago</small>
+                                    <strong>Fadhil</strong> approved and created work order for <strong>Lights Out at Apartment 143</strong>. <br>
+                                    <small class="text-muted">Yesterday 1:21 pm - 11.08.2016</small>
                                 </div>
                             </div>
                         </li>
@@ -64,9 +64,9 @@
                                     <img alt="image" class="img-circle" src="/img/profile.jpg">
                                 </a>
                                 <div class="media-body ">
-                                    <small class="pull-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                    <small class="pull-right">1h ago</small>
+                                    <strong>Monica</strong> started work on  <strong>Lights Out at Apartment 143</strong>. <br>
+                                    <small class="text-muted">Today at 2:30 am - 12.08.2016</small>
                                 </div>
                             </div>
                         </li>
@@ -88,8 +88,8 @@
                         <li>
                             <a href="mailbox.html">
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-envelope fa-fw"></i> You have 6 messages
+                                    <span class="pull-right text-muted small">54 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -97,7 +97,7 @@
                         <li>
                             <a href="profile.html">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <i class="fa fa-exclamation-triangle fa-fw"></i> 3 New Actions
                                     <span class="pull-right text-muted small">12 minutes ago</span>
                                 </div>
                             </a>

@@ -55,7 +55,9 @@ defmodule Flexphoenix.OrderController do
   def edit(conn, %{"id" => id}) do
     order = Repo.get!(Order, id)
     changeset = Order.changeset(order)
-    render(conn, "edit.html", order: order, changeset: changeset)
+    render(conn, "edit.html",
+           order: order, changeset: changeset,
+           request_id: changeset.model.request_id)
   end
 
   def update(conn, %{"id" => id, "order" => order_params}) do

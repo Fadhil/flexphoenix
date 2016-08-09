@@ -11,7 +11,7 @@ defmodule Flexphoenix.AssignedTechnician do
   end
 
   @required_fields ~w(user_id)
-  @optional_fields ~w(request_id order_id)
+  @optional_fields ~w(request_id order_id report_id)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

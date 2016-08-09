@@ -64,5 +64,7 @@
 
 </ul>
 
-<%= link "Edit", to: report_path(@conn, :edit, @report) %>
-<%= link "Back", to: report_path(@conn, :index) %>
+<%= link "Edit", to: report_path(@conn, :edit, @report), class: "btn btn-warning btn-xs" %>
+<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-xs" %>
+<p><%= link "Delete", to: report_path(@conn, :delete, @report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+</p>

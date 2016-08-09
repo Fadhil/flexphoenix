@@ -49,7 +49,7 @@ defmodule Flexphoenix.ReportController do
   def edit(conn, %{"id" => id}) do
     report = Repo.get!(Report, id)
     changeset = Report.changeset(report)
-    render(conn, "edit.html", report: report, changeset: changeset)
+    render(conn, "edit.html", report: report, changeset: changeset, order_id: changeset.model.order_id)
   end
 
   def update(conn, %{"id" => id, "report" => report_params}) do

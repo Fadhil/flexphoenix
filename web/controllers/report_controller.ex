@@ -28,8 +28,7 @@ defmodule Flexphoenix.ReportController do
 
   def create(conn, %{"report" => report_params}) do
     current_user = conn.assigns.current_user
-    current_order = conn.assigns.current_order
-    changeset = Report.changeset(%Report{}, current_user.id, current_order.id, report_params)
+    changeset = Report.changeset(%Report{}, current_user.id, report_params)
 
     case Repo.insert(changeset) do
       {:ok, _report} ->

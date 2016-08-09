@@ -15,9 +15,15 @@ defmodule Flexphoenix.ReportController do
     render(conn, "index.html", reports: reports)
   end
 
-  def new(conn, _params) do
-    changeset = Report.changeset(%Report{})
-    render(conn, "new.html", changeset: changeset)
+  def new(conn, %{"order_id" => order_id}) do
+    order_fields = [:request_id, :order_id, :title, :description, :location, :type, :instruction, :priority, :inserted_at, :deadline]
+
+    {order_attributes, _} = Repo.get(Order, order_id)
+                          |> Map.from_struct
+                          |> Map.split(order_fields)
+
+    changeset = Report.changeset(%Report{}, order_attributes)
+    render(conn, "new.html", changeset: changeset, order_id: order_id)
   end
 
   def create(conn, %{"report" => report_params}) do

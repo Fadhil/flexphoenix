@@ -3,4 +3,4 @@
 <%= render "form.html", changeset: @changeset,
                         action: project_path(@conn, :create) %>
 
-<%= link "Back", to: project_path(@conn, :index) %>
+<%= link "Back", to: project_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>

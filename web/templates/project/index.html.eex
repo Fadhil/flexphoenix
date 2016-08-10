@@ -6,7 +6,7 @@
                 <div class="ibox-title">
                     <h5>All projects assigned to <%= display_name(@current_user) %></h5>
                     <div class="ibox-tools">
-                        <%= link "Create new project", to: project_path(@conn, :new), class: "btn btn-primary btn-xs" %>
+                        <%= link "Create new project", to: project_path(@conn, :new), class: "btn btn-primary btn-rounded btn-xs" %>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -35,11 +35,11 @@
                                             <a href=""><img alt="image" class="img-circle" src="img/a5.jpg"></a>
                                         </td>
                                         <td class="project-actions">
-                                            <%= link to: project_path(@conn, :show, project), class: "btn btn-white btn-sm" do %>
+                                            <%= link to: project_path(@conn, :show, project), class: "btn btn-white btn-rounded btn-sm" do %>
                                               <i class="fa fa-folder"></i> View </a>
                                             <% end %>
                                             <hr/ class="hidden-lg">
-                                            <%= link to: project_path(@conn, :edit, project), class: "btn btn-white btn-sm" do %>
+                                            <%= link to: project_path(@conn, :edit, project), class: "btn btn-white btn-rounded btn-sm" do %>
                                               <i class="fa fa-pencil"></i> Edit </a>
                                             <% end %>
                                         </td>

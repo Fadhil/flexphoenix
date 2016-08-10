@@ -22,12 +22,12 @@
   </li>
 
 </ul>
-<%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-primary btn-xs" %>
-<%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-primary btn-xs" %>
+<%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-primary btn-rounded btn-xs" %>
+<%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-primary btn-rounded btn-xs" %>
 
-<%= link "Edit", to: project_path(@conn, :edit, @project), class: "btn btn-warning btn-xs" %>
-<%= link "Back", to: project_path(@conn, :index), class: "btn btn-default btn-xs" %>
-<p><%= link "Delete", to: project_path(@conn, :delete, @project), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+<%= link "Edit", to: project_path(@conn, :edit, @project), class: "btn btn-warning btn-rounded btn-xs" %>
+<%= link "Back", to: project_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+<p><%= link "Delete", to: project_path(@conn, :delete, @project), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
 </p>
 <hr/>
 <h3>Members</h3>
@@ -44,7 +44,6 @@ Add a new member to the project
 		<%= select f, :user_role, @roles_select_list , class: "form-control m-b" %>
 	</div>
 	<div class="form-group col-sm-2">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
 	</div>
 <% end %>
-

@@ -58,6 +58,6 @@
   <%= hidden_input f, :request_id %>
 
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
   </div>
 <% end %>

@@ -41,9 +41,9 @@
       </li>
 
     </ul>
-    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-warning" %>
-    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-default" %>
-    <p><%= link "Delete", to: request_path(@conn, :delete, @request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-warning btn-rounded btn-xs" %>
+    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+    <p><%= link "Delete", to: request_path(@conn, :delete, @request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
     </p>
 
     <hr/>
@@ -56,9 +56,12 @@
           <% end %>
       <% end %>
 
-      <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary" %>
-      <%= link "Create Work Order", to: order_path(@conn, :new, request_id: @request), class: "btn btn-primary" %>
-  </div>
+      <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary btn-rounded" %>
+
+      <%= link "Create Work Order", to: order_path(@conn, :new, request_id: @request), class: "btn btn-primary btn-outline btn-rounded" %>
+
+<hr/>
+</div>
   <div class="col-md-8 col-xs-12">
 		<div id='message-list' class='row'>
 		</div>

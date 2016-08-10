@@ -1,4 +1,4 @@
-<div class="row">
+class: "btn btn-default btn-outline btn-xs"<div class="row">
   <div class="col-md-4 col-xs-12">
 <h2>Show report</h2>
 
@@ -66,9 +66,9 @@
 
 </ul>
 
-<%= link "Edit", to: report_path(@conn, :edit, @report), class: "btn btn-warning btn-xs" %>
-<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-xs" %>
-<p><%= link "Delete", to: report_path(@conn, :delete, @report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+<%= link "Edit", to: report_path(@conn, :edit, @report), class: "btn btn-warning btn-rounded btn-xs" %>
+<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+<p><%= link "Delete", to: report_path(@conn, :delete, @report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
 </p>
 
   <hr/>

@@ -27,6 +27,8 @@ defmodule Flexphoenix.LayoutView do
   end
 
   def image(thing) do
-    Image.url({thing.image, thing}) |> String.replace("priv/static", "")
+    Image.url({thing.image, thing})
+    |> String.replace("priv/static", "")
+    |> String.replace("/apps/flexphoenix", "")
   end
 end

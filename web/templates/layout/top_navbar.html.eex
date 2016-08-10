@@ -155,6 +155,16 @@
           $('#welcome-message').fadeIn(500);
         }
       });
-    });
-</script>
 
+      // Show toastr alert
+      toastr.options = {
+        closeButton: $('#closeButton').prop('checked'),
+        msg: "<%= notification_message.message %>"
+      };
+      <%= if notification_message.message do %>
+        toastr.<%= notification_message.toastr_type %>("<%= notification_message.message %>");
+      <% end %>
+    });
+
+
+</script>

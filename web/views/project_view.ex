@@ -17,4 +17,23 @@ defmodule Flexphoenix.ProjectView do
     |> Enum.map(fn r -> r.name end)
     |> Enum.join(",")
   end
+
+  def technician?(%{role: %{name: name}}) do
+    name == "Technician"
+  end
+
+  def admin?(%{role: %{name: name}}) do
+    name == "Admin"
+  end
+
+  def technicians(members) do
+    members
+    |> Enum.filter(&technician?/1)
+  end
+
+  def admins(members) do
+    members
+    |> Enum.filter(&admin?/1)
+  end
+
 end

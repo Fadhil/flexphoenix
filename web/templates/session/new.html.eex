@@ -17,7 +17,7 @@
 
           <a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a>
 
-        </div><small>v0.13.0</small>
+        </div><small>v0.14.0</small>
         <h3>Welcome to Flexcility</h3>
         <p>The go to facilities management app for everyone.<br/>Login to see it in action.</p>
         <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>

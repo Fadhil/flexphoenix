@@ -22,6 +22,10 @@ defmodule Flexphoenix.LayoutView do
     end
   end
 
+  def image(%{image: nil} ) do
+    "/images/default-image.jpg"
+  end
+
   def image(thing) do
     Image.url({thing.image, thing}) |> String.replace("priv/static", "")
   end

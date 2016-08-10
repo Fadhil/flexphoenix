@@ -1,5 +1,6 @@
 defmodule Flexphoenix.LayoutView do
   use Flexphoenix.Web, :view
+  use Timex
 
   def display_name(user) do
     case user do
@@ -9,6 +10,14 @@ defmodule Flexphoenix.LayoutView do
       %{email: email} ->
         email
       _ -> "Flex User"
+    end
+  end
+
+  def display_created_at(object) do
+    case object do
+      %{inserted_at: inserted_at} ->
+        Timex.format!(object.inserted_at, "%d/%m/%Y", :strftime)
+
     end
   end
 end

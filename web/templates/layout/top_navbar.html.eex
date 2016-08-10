@@ -16,10 +16,19 @@
                 <%
                   info = get_flash(@conn, :info)
                   error = get_flash(@conn, :error)
+                  success = get_flash(@conn, :success)
+                  warning = get_flash(@conn, :warning)
                   notification_message = if error do
-                    %{message: error, type: "danger"}
+                    %{message: error, type: "danger", toastr_type: "error"}
                   else
-                    %{message: info, type: "info"}
+                    if warning do
+                      %{message: warning, type: "warning", toastr_type: "warning"}
+                    end
+                    if success do
+                      %{message: success, type: "success", toastr_type: "success"}
+                    else
+                        %{message: info, type: "info", toastr_type: "info"}
+                    end
                   end
                 %>
                 <%= if notification_message.message do %>

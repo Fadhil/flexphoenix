@@ -1,6 +1,7 @@
 defmodule Flexphoenix.ProjectView do
   use Flexphoenix.Web, :view
   alias Flexphoenix.Repo
+  import Flexphoenix.LayoutView, only: [display_name: 1, display_created_at: 1]
 
   def project_members(project) do
     %{members: members} = project |> Repo.preload(members: [:roles])

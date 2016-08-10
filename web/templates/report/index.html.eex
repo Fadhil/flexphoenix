@@ -34,7 +34,7 @@
       <td><%= report.completed %></td>
 
       <td class="text-right">
-        <%= link "Show", to: report_path(@conn, :show, report), class: "btn btn-primary btn-xs" %>
+        <%= link "View", to: report_path(@conn, :show, report), class: "btn btn-white btn-rounded btn-sm" %>
       </td>
 
     </tr>

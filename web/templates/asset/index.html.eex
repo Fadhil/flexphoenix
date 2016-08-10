@@ -22,7 +22,7 @@
         <td><%= asset.project_id %></td>
 
         <td class="text-right">
-          <%= link "Show", to: project_asset_path(@conn, :show, @project.id, asset), class: "btn btn-primary btn-xs" %>
+          <%= link "View", to: project_asset_path(@conn, :show, @project.id, asset), class: "btn btn-white btn-rounded btn-sm" %>
 
         </td>
       </tr>
@@ -31,4 +31,4 @@
   </tbody>
 </table>
 
-<%= link "New asset", to: project_asset_path(@conn, :new, @project) %>
+<%= link "New asset", to: project_asset_path(@conn, :new, @project), class: "btn btn-primary btn-outline btn-rounded btn-sm" %>

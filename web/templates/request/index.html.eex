@@ -24,11 +24,11 @@
       <td><%= display_name(request.user) %> at <%= request.inserted_at %></td>
 
       <td class="text-right">
-        <%= link "Show", to: request_path(@conn, :show, request), class: "btn btn-primary btn-xs" %>
+        <%= link "View", to: request_path(@conn, :show, request), class: "btn btn-white btn-rounded btn-sm" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New request", to: request_path(@conn, :new) %>
+<%= link "New request", to: request_path(@conn, :new), class: "btn btn-primary btn-outline btn-rounded btn-sm" %>

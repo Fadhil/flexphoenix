@@ -29,7 +29,7 @@
       <th><%= order.deadline %></td>
 
       <td class="text-right">
-        <%= link "Show", to: order_path(@conn, :show, order), class: "btn btn-primary btn-xs" %>
+        <%= link "View", to: order_path(@conn, :show, order), class: "btn btn-white btn-rounded btn-sm" %>
       </td>
     </tr>
 <% end %>

@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-md-4 col-xs-12">
+<h2>Show report</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @report.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @report.description %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @report.location %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @report.type %>
+  </li>
+
+  <li>
+    <strong>Instruction:</strong>
+    <%= @report.instruction %>
+  </li>
+
+  <li>
+    <strong>Priority:</strong>
+    <%= @report.priority %>
+  </li>
+
+  <li>
+    <strong>Deadline:</strong>
+    <%= @report.deadline %>
+  </li>
+
+  <li>
+    <strong>Findings:</strong>
+    <%= @report.findings %>
+  </li>
+
+  <li>
+    <strong>Actions:</strong>
+    <%= @report.actions %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @report.summary %>
+  </li>
+
+  <li>
+    <strong>Completed:</strong>
+    <%= @report.completed %>
+  </li>
+
+  <li>
+    <strong>Owner:</strong>
+    <%= @report.user.first_name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: report_path(@conn, :edit, @report), class: "btn btn-warning btn-xs" %>
+<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-xs" %>
+<p><%= link "Delete", to: report_path(@conn, :delete, @report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+</p>
+
+  <hr/>
+
+  </div>
+  <div class="col-md-8 col-xs-12">
+		<div id='message-list' class='row'>
+		</div>
+
+		<div class='row form-group'>
+			<div class='col-md-12'>
+				<input type='text' id='message' class='form-control' placeholder='Message' />
+			</div>
+		</div>
+  </div>

@@ -6,12 +6,6 @@
   <% end %>
 
   <div class="form-group">
-    <span><strong>Request ID </strong><%= @request_id %><span>
-
-    <%= error_tag f, :request_id %>
-  </div>
-
-  <div class="form-group">
     <%= label f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control" %>
     <%= error_tag f, :title %>
@@ -25,13 +19,13 @@
 
   <div class="form-group">
     <%= label f, :location, class: "control-label" %>
-    <%= textarea f, :location, class: "form-control" %>
+    <%= text_input f, :location, class: "form-control" %>
     <%= error_tag f, :location %>
   </div>
 
   <div class="form-group">
     <%= label f, :type, class: "control-label" %>
-    <%= textarea f, :type, class: "form-control" %>
+    <%= text_input f, :type, class: "form-control" %>
     <%= error_tag f, :type %>
   </div>
 
@@ -43,19 +37,40 @@
 
   <div class="form-group">
     <%= label f, :priority, class: "control-label" %>
-    <%= select f, :priority, ["High", "Normal", "Low"], class: "form-control" %>
+    <%= text_input f, :priority, class: "form-control" %>
     <%= error_tag f, :priority %>
   </div>
 
   <div class="form-group">
     <%= label f, :deadline, class: "control-label" %>
-    <%= textarea f, :deadline, class: "form-control" %>
+    <%= text_input f, :deadline, class: "form-control" %>
     <%= error_tag f, :deadline %>
   </div>
-  <%= hidden_input f, :user_id, value: @current_user.id %>
-  <%= hidden_input f, :asset_id %>
-  <%= hidden_input f, :project_id %>
-  <%= hidden_input f, :request_id %>
+
+  <div class="form-group">
+    <%= label f, :findings, class: "control-label" %>
+    <%= textarea f, :findings, class: "form-control" %>
+    <%= error_tag f, :findings %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :actions, class: "control-label" %>
+    <%= textarea f, :actions, class: "form-control" %>
+    <%= error_tag f, :actions %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :summary, class: "control-label" %>
+    <%= textarea f, :summary, class: "form-control" %>
+    <%= error_tag f, :summary %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :completed, class: "control-label" %>
+    <%= text_input f, :completed, class: "form-control" %>
+    <%= error_tag f, :completed %>
+  </div>
+  <%= hidden_input f, :order_id, value: @order_id  %>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

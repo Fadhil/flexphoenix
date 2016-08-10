@@ -13,6 +13,7 @@ defmodule Flexphoenix.User do
     has_many :projects, Flexphoenix.Project
     has_many :requests, Flexphoenix.Request
     has_many :orders, Flexphoenix.Order
+    has_many :reports, Flexphoenix.Report
     has_many :users_roles, Flexphoenix.UsersRole
     has_many :roles, through: [:users_roles, :role]
     has_many :attached_projects, through: [:users_roles, :project]

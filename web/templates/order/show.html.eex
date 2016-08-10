@@ -1,20 +1,89 @@
-<h2>Show order</h2>
+<div class="row">
+  <div class="col-md-4 col-xs-12">
+    <h2>Show order</h2>
 
-<ul>
+    <ul>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @order.title %>
-  </li>
+      <li>
+        <strong>Request ID:</strong>
+        <%= @order.request_id %>
+      </li>
 
-  <li>
-    <strong>Owner:</strong>
-    <%= @order.user.first_name %>
-  </li>
+      <li>
+        <strong>Title:</strong>
+        <%= @order.title %>
+      </li>
 
-</ul>
+      <li>
+        <strong>Description:</strong>
+        <%= @order.description %>
+      </li>
 
-<%= link "Edit", to: order_path(@conn, :edit, @order), class: "btn btn-warning btn-xs" %>
-<%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-xs" %>
-<p><%= link "Delete", to: order_path(@conn, :delete, @order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-</p>
+      <li>
+        <strong>Location:</strong>
+        <%= @order.location %>
+      </li>
+
+      <li>
+        <strong>Type:</strong>
+        <%= @order.type %>
+      </li>
+
+      <li>
+        <strong>Instruction:</strong>
+        <%= @order.instruction %>
+      </li>
+
+      <li>
+        <strong>Priority:</strong>
+        <%= @order.priority %>
+      </li>
+
+      <li>
+        <strong>Created On:</strong>
+        <%= @order.inserted_at %>
+      </li>
+
+      <li>
+        <strong>Deadline:</strong>
+        <%= @order.deadline %>
+      </li>
+
+      <li>
+        <strong>Owner:</strong>
+        <%= @order.user.first_name %>
+      </li>
+
+    </ul>
+
+    <%= link "Edit", to: order_path(@conn, :edit, @order), class: "btn btn-warning btn-xs" %>
+    <%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-xs" %>
+    <p><%= link "Delete", to: order_path(@conn, :delete, @order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+    </p>
+    <hr/>
+      <%= case @order.technicians do %>
+        <%= [] -> %>
+        <%= technicians -> %>
+          <h3>Assigned Technicians</h3>
+          <%= for technician <- technicians do %>
+            <p><strong><%= technician.email %></strong></p>
+          <% end %>
+      <% end %>
+
+    <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-primary" %>
+
+    <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-primary" %>
+    <hr/>
+
+  </div>
+  <div class="col-md-8 col-xs-12">
+		<div id='message-list' class='row'>
+		</div>
+
+		<div class='row form-group'>
+			<div class='col-md-12'>
+				<input type='text' id='message' class='form-control' placeholder='Message' />
+			</div>
+		</div>
+  </div>
+

@@ -102,7 +102,7 @@ defmodule Flexphoenix.ProjectController do
     case Repo.update(changeset) do
       {:ok, project} ->
         conn
-        |> put_flash(:info, "Project updated successfully.")
+        |> put_flash(:success, "Project updated successfully.")
         |> redirect(to: project_path(conn, :show, project))
       {:error, changeset} ->
         render(conn, "edit.html", project: project, changeset: changeset)

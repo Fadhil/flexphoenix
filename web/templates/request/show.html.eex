@@ -28,38 +28,10 @@
         <%= @request.description %>
       </li>
 
-      <%= if @request.worktype do %>
-        <li>
-          <strong>Worktype:</strong>
-          <%= @request.worktype %>
-        </li>
-      <% end %>
-
       <%= if @request.instruction do %>
         <li>
           <strong>Instruction:</strong>
           <%= @request.instruction %>
-        </li>
-      <% end %>
-
-      <%= if @request.type do %>
-        <li>
-          <strong>Type:</strong>
-          <%= @request.type %>
-        </li>
-      <% end %>
-
-      <%= if @request.type do %>
-        <li>
-          <strong>Priority:</strong>
-          <%= @request.priority %>
-        </li>
-      <% end %>
-
-      <%= if @request.deadline do %>
-        <li>
-          <strong>Deadline:</strong>
-          <%= @request.deadline%>
         </li>
       <% end %>
 

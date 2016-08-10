@@ -42,4 +42,4 @@ config :flexphoenix, Flexphoenix.Repo,
   pool_size: 10
 
 config :arc,
-  storage_dir_root: "priv/static/uploads"
+  storage_dir_root: "priv/static/images"

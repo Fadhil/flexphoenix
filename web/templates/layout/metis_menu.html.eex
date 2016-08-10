@@ -114,10 +114,13 @@
                 </li>
 -->
                 <li>
-                    <a href=""><i class="fa fa-magic"></i> <span class="nav-label">Customize</span><span class="label label-info pull-right">Locked</span></a>
+                    <a href=""><i class="fa fa-calendar"></i> <span class="nav-label">Event Calendar</span><span class="label label-warning pull-right">Locked</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="fa fa-cog"></i> <span class="nav-label">Settings</span><span class="label label-warning pull-right">Soon</span></a>
+                    <a href=""><i class="fa fa-magic"></i> <span class="nav-label">Customize</span><span class="label label-warning pull-right">Locked</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="fa fa-cog"></i> <span class="nav-label">Settings</span><span class="label label-warning pull-right">Locked</span></a>
                 </li>
                 <li class="landing_link">
                     <a target="_blank" href="<%= page_path(@conn, :index)%>"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right"></span></a>

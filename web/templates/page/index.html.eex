@@ -139,7 +139,7 @@
 <a href="" class="btn btn-default">Learn More</a>
 </div>
 
-<section class="container geatures">
+<section class="container features">
   <div class="row">
     <div class="col-lg-3">
     </div>
@@ -181,6 +181,179 @@
         </div>
       </div>
 </div>
+
+<div class="row">
+  <div class="col-lg-3">
+  </div>
+  <div class="col-lg-6 text-center">
+      <div class="navy-line"></div>
+      <h1>Event Calendar</h1>
+      <p>Flexcility allows for its users to efficiently schedule maintenance activities and other events using a fully interactive calendar
+      which is synchronized amongst users based on assignment set by owner</p>
+  </div>
+  <div class="col-lg-3">
+  </div>
+</div>
+<!-- Draggable Events and Calendar Starts Here -->
+<div id="wrapper">
+<div class="white-bg">
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInDown">
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Maintenance Events</h5>
+                    <div class="ibox-tools">
+                    <!-- ibox tools removed -->
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id='external-events'>
+                        <p>Drag a maintenance event and drop into calendar.</p>
+                        <div class='external-event navy-bg'>Weekly Block D, E, F Pool Maintenance</div>
+                        <div class='external-event navy-bg'>Aircond - H-001-SuperAC Service</div>
+                        <div class='external-event navy-bg'>Refridgerator - CoolaBox-ClB41 Repairs</div>
+                        <div class='external-event navy-bg'>Painting - Main Hall</div>
+                        <div class='external-event navy-bg'>Other Routine Maintenance</div>
+                        <p class="m-t">
+                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>Remove after drop</label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h2>Event Calendar</h2> A Flexcility feature that provides a full-sized, drag & drop calendar for scheduled maintenance or
+                    any other activities and events.
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Event Calendar </h5>
+                    <div class="ibox-tools">
+                    <!-- ibox tools removed -->
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div> <!-- <div id="wrapper"> Ends Here-->
+
+<script>
+
+    $(document).ready(function() {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green'
+            });
+
+        /* initialize the external events
+         -----------------------------------------------------------------*/
+
+
+        $('#external-events div.external-event').each(function() {
+
+            // store data so the calendar knows to render an event upon drop
+            $(this).data('event', {
+                title: $.trim($(this).text()), // use the element's text as the event title
+                stick: true // maintain when user navigates (see docs on the renderEvent method)
+            });
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 1111999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
+        });
+
+
+        /* initialize the calendar
+         -----------------------------------------------------------------*/
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            droppable: true, // this allows things to be dropped onto the calendar
+            drop: function() {
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+            },
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: new Date(y, m, 1)
+                },
+                {
+                    title: 'Long Event',
+                    start: new Date(y, m, d-5),
+                    end: new Date(y, m, d-2)
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d-3, 16, 0),
+                    allDay: false
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d+4, 16, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Admin Meeting',
+                    start: new Date(y, m, d, 10, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Technician Meeting',
+                    start: new Date(y, m, d, 12, 0),
+                    end: new Date(y, m, d, 14, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Weekly Block A, B & C Pool Maintenance',
+                    start: new Date(y, m, d+1, 19, 0),
+                    end: new Date(y, m, d+1, 22, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Click to Register',
+                    start: new Date(y, m, 28),
+                    end: new Date(y, m, 29),
+                    url: '<%= registration_path(@conn, :new) %>'
+                }
+            ]
+        });
+
+
+    });
+
+</script>
+
+<!-- Draggable Events and Calendar Ends Here-->
 
 <div class="row">
     <div class="pull-right">

@@ -5,4 +5,4 @@ action: report_path(@conn, :update, @report),
 order_id: @order_id
 %>
 
-<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-xs" %>
+<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-rounded btn-outline btn-xs" %>

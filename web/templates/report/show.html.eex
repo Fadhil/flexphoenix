@@ -1,3 +1,5 @@
+<div class="row">
+  <div class="col-md-4 col-xs-12">
 <h2>Show report</h2>
 
 <ul>
@@ -64,7 +66,21 @@
 
 </ul>
 
-<%= link "Edit", to: report_path(@conn, :edit, @report), class: "btn btn-warning btn-xs" %>
-<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-xs" %>
-<p><%= link "Delete", to: report_path(@conn, :delete, @report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+<%= link "Edit", to: report_path(@conn, :edit, @report), class: "btn btn-warning btn-rounded btn-xs" %>
+<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+<p><%= link "Delete", to: report_path(@conn, :delete, @report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
 </p>
+
+  <hr/>
+
+  </div>
+  <div class="col-md-8 col-xs-12">
+		<div id='message-list' class='row'>
+		</div>
+
+		<div class='row form-group'>
+			<div class='col-md-12'>
+				<input type='text' id='message' class='form-control' placeholder='Message' />
+			</div>
+		</div>
+  </div>

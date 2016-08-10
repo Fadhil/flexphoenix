@@ -1,28 +1,56 @@
-<h2>Listing projects</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content animated fadeInUp">
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Address</th>
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>All projects assigned to <%= display_name(@current_user) %></h5>
+                    <div class="ibox-tools">
+                        <%= link "Create new project", to: project_path(@conn, :new), class: "btn btn-primary btn-rounded btn-xs" %>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="project-list">
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for project <- @projects do %>
-    <tr>
-      <td><%= project.name %></td>
-      <td><%= project.description %></td>
-      <td><%= project.address %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: project_path(@conn, :show, project), class: "btn btn-primary btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New project", to: project_path(@conn, :new) %>
+                        <table class="table table-hover">
+                            <tbody>
+                              <%= for project <- @projects do %>
+                                  <%= link to: project_path(@conn, :show, project) do %>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">Active</span>
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html"><%= project.name %></a>
+                                            <br/>
+                                            <small>Created on <%= display_created_at(project) %></small>
+                                        </td>
+                                        <td class="hidden-xs"><%= project.description %></td>
+                                        <td class="hidden-xs"><%= project.address %></td>
+                                        <td class="project-people">
+                                            <a href=""><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                                            <a href=""><img alt="image" class="img-circle" src="img/a1.jpg"></a>
+                                            <a href=""><img alt="image" class="img-circle" src="img/a2.jpg"></a>
+                                            <a href=""><img alt="image" class="img-circle" src="img/a4.jpg"></a>
+                                            <a href=""><img alt="image" class="img-circle" src="img/a5.jpg"></a>
+                                        </td>
+                                        <td class="project-actions">
+                                            <%= link to: project_path(@conn, :show, project), class: "btn btn-white btn-rounded btn-sm" do %>
+                                              <i class="fa fa-folder"></i> View </a>
+                                            <% end %>
+                                            <hr/ class="hidden-lg">
+                                            <%= link to: project_path(@conn, :edit, project), class: "btn btn-white btn-rounded btn-sm" do %>
+                                              <i class="fa fa-pencil"></i> Edit </a>
+                                            <% end %>
+                                        </td>
+                                    </tr>
+                                  <% end %>
+                              <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- End ibox-content -->
+            </div>
+        </div> <!-- End wrapper -->
+    </div> <!-- End col -->
+</div> <!-- End row -->

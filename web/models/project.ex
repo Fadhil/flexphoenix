@@ -53,4 +53,8 @@ defmodule Flexphoenix.Project do
   def with_owner(query) do
     from q in query, preload: [:user]
   end
+
+  def owner(project) do
+    project.user
+  end
 end

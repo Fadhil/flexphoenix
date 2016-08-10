@@ -5,4 +5,4 @@ action: order_path(@conn, :update, @order),
 current_user: @conn.assigns.current_user
 %>
 
-<%= link "Back", to: order_path(@conn, :index) %>
+<%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>

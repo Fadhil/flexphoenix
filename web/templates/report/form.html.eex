@@ -73,6 +73,6 @@
   <%= hidden_input f, :order_id, value: @order_id  %>
 
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
   </div>
 <% end %>

@@ -6,7 +6,9 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="m-b-md">
-                                <%= link "Edit Project", to: project_path(@conn, :edit, @project), class: "btn btn-white btn-xs pull-right" %>
+                                <%= link "Back", to: project_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
+                                <%= link "Edit Project", to: project_path(@conn, :edit, @project), class: "btn btn-warning btn-rounded btn-sm pull-right" %>
+
                                 <h2><%= @project.name %></h2>
                             </div>
                             <dl class="dl-horizontal">
@@ -68,8 +70,8 @@
                         <div class="col-lg-12">
                             <dl class="dl-horizontal">
                                 <dd>
-                                  <%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-primary btn-sm" %>
-                                  <%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-primary btn-sm" %>
+                                  <%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-success btn-rounded btn-sm" %>
+                                  <%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-success btn-rounded btn-sm" %>
                                 </dd>
                             </dl>
                         </div>
@@ -389,5 +391,6 @@
             <h5>Address</h5>
             <p class="small"><%= @project.address %></p>
         </div>
+        <%= link "Delete Project", to: project_path(@conn, :delete, @project), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-sm pull-right" %>
     </div>
 </div>

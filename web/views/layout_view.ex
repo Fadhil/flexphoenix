@@ -1,5 +1,6 @@
 defmodule Flexphoenix.LayoutView do
   use Flexphoenix.Web, :view
+  alias Flexphoenix.Image
   use Timex
 
   def display_name(user) do
@@ -19,5 +20,9 @@ defmodule Flexphoenix.LayoutView do
         Timex.format!(object.inserted_at, "%d/%m/%Y", :strftime)
 
     end
+  end
+
+  def image(thing) do
+    Image.url({thing.image, thing}) |> String.replace("priv/static", "")
   end
 end

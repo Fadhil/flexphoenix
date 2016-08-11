@@ -40,3 +40,7 @@ body{
 .created-on {
   font-weight: 200;
 }
+
+.chat-message {
+  padding: 5px !important;
+}

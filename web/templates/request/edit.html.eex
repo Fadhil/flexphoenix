@@ -1,8 +1,16 @@
-<h2>Edit request</h2>
-<%= render "form.html", changeset: @changeset,
-action: request_path(@conn, :update, @request),
-current_user: @conn.assigns.current_user,
-project_id: @conn.assigns.project_id
-%>
-
-<%= link "Back", to: request_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Edit Request <small></small></h5>
+        </div>
+          <%= render "form.html", changeset: @changeset,
+            action: request_path(@conn, :update, @request),
+            current_user: @conn.assigns.current_user,
+            conn: @conn,
+            project_id: @conn.assigns.project_id %>
+      </div>
+    </div>
+  </div>
+</div>

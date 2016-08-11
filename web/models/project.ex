@@ -9,9 +9,9 @@ defmodule Flexphoenix.Project do
 
     belongs_to :user, Flexphoenix.User
     has_many :assets, Flexphoenix.Asset, on_delete: :nilify_all
-    has_many :users_roles, Flexphoenix.UsersRole
+    has_many :users_roles, Flexphoenix.UsersRole, on_delete: :delete_all
     has_many :members, through: [:users_roles, :user]
-    has_many :requests, Flexphoenix.Request
+    has_many :requests, Flexphoenix.Request, on_delete: :fetch_and_delete
 
     timestamps
   end

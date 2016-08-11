@@ -7,7 +7,7 @@ defmodule Flexphoenix.Asset do
     field :manufacturer, :string
     field :photo, :string
     belongs_to :project, Flexphoenix.Project
-    has_many :requests, Flexphoenix.Request
+    has_many :requests, Flexphoenix.Request, on_delete: :delete_all
 
     timestamps
   end

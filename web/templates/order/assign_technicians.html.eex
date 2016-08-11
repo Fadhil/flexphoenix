@@ -1,20 +1,31 @@
-<h2>Assigning Technicians for Order Id: <%= @order.id %></h2>
-<h3><%= project_name(@order.request.project) %> - <%= asset_name(@order.request.asset) %></h3>
-
-<%= form_for @conn, order_assign_technicians_path(@conn, :assign_technicians, @order.id), [as: :create_assigned_technicians], fn f -> %>
-  <h4>Assign Technicians</h4>
-
-  <div class="form-group">
-    <% assigned_technician_ids = @order.technicians
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <div class="ibox-title">
+          <h5>Assign Technicians for Request ID: <%= @order.request_id %>
+          <p><small><%= @order.instruction %><br/>
+          <%= project_name(@order.request.project) %> - <%= asset_name(@order.request.asset) %></small></p></h5>
+        </div>
+        <br/><hr>
+        <div class="form-group">
+          <%= form_for @conn, order_assign_technicians_path(@conn, :assign_technicians, @order),
+           [as: :create_assigned_technicians], fn f -> %>
+          <% assigned_technician_ids = @order.technicians
                                   |> Enum.map(fn x -> x.id end) %>
-    <%= for technician <- @available_technicians do %>
-      <% checked = assigned_technician_ids |> Enum.member?(technician.user.id) %>
-      <div class="i-checks"><label><%= checkbox f, :"#{technician.user.id}", checked: checked %><i></i> <%= technician.user.email %></label></div>
-    <% end %>
-  </div>
+                                  <%= for technician <- @available_technicians do %>
+                                  <% checked = assigned_technician_ids |> Enum.member?(technician.user.id) %>
+          <div class="i-checks"><label><%= checkbox f, :"#{technician.user.id}", checked: checked %><i></i> <%= technician.user.email %></label>
+          </div>
+          <% end %>
+        </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
+        <div class="form-group">
+          <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
+          <%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded" %>
+        </div>
+          <% end %>
+      </div><!-- End ibox content -->
+    </div>
   </div>
-
-<% end %>
+</div>

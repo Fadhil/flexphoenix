@@ -65,317 +65,11 @@
           <div class="row">
             <div class="col-lg-12">
               <dl class="dl-horizontal">
-                <!--// ASsign Technician -->
-                <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-primary btn-rounded" %>
-              </dl>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <dl class="dl-horizontal">
                 <dd>
-
-                  <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-success btn-outline btn-rounded btn-sm" %>
+                  <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-success btn-rounded" %>
+                  <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-success btn-outline btn-rounded" %>
                 </dd>
               </dl>
-            </div>
-          </div>
-
-          <div class="row m-t-sm">
-            <div class="col-lg-12">
-            <div class="panel blank-panel">
-            <div class="panel-heading">
-              <div class="panel-options">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a href="#tab-1" data-toggle="tab">Users messages</a></li>
-                  <li class=""><a href="#tab-2" data-toggle="tab">Last activity</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="panel-body">
-
-            <div class="tab-content">
-            <div class="tab-pane active" id="tab-1">
-              <div class="feed-activity-list">
-                <div class="feed-element">
-                  <a href="#" class="pull-left">
-                    <img alt="image" class="img-circle" src="img/a2.jpg">
-                  </a>
-                  <div class="media-body ">
-                    <small class="pull-right">2h ago</small>
-                    <strong>Mark Johnson</strong> posted message on <strong>Monica Smith</strong> site. <br>
-                    <small class="text-muted">Today 2:10 pm - 12.06.2014</small>
-                    <div class="well">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                      Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                    </div>
-                  </div>
-                </div>
-                <div class="feed-element">
-                  <a href="#" class="pull-left">
-                    <img alt="image" class="img-circle" src="img/a3.jpg">
-                  </a>
-                  <div class="media-body ">
-                    <small class="pull-right">2h ago</small>
-                    <strong>Janet Rosowski</strong> add 1 photo on <strong>Monica Smith</strong>. <br>
-                    <small class="text-muted">2 days ago at 8:30am</small>
-                  </div>
-                </div>
-                <div class="feed-element">
-                  <a href="#" class="pull-left">
-                    <img alt="image" class="img-circle" src="img/a4.jpg">
-                  </a>
-                  <div class="media-body ">
-                    <small class="pull-right text-navy">5h ago</small>
-                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                    <div class="actions">
-                      <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                      <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Love</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="feed-element">
-                  <a href="#" class="pull-left">
-                    <img alt="image" class="img-circle" src="img/a5.jpg">
-                  </a>
-                  <div class="media-body ">
-                    <small class="pull-right">2h ago</small>
-                    <strong>Kim Smith</strong> posted message on <strong>Monica Smith</strong> site. <br>
-                    <small class="text-muted">Yesterday 5:20 pm - 12.06.2014</small>
-                    <div class="well">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                      Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                    </div>
-                  </div>
-                </div>
-                <div class="feed-element">
-                  <a href="#" class="pull-left">
-                    <img alt="image" class="img-circle" src="img/profile.jpg">
-                  </a>
-                  <div class="media-body ">
-                    <small class="pull-right">23h ago</small>
-                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                  </div>
-                </div>
-                <div class="feed-element">
-                  <a href="#" class="pull-left">
-                    <img alt="image" class="img-circle" src="img/a7.jpg">
-                  </a>
-                  <div class="media-body ">
-                    <small class="pull-right">46h ago</small>
-                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="tab-pane" id="tab-2">
-
-              <table class="table table-striped">
-                <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>Title</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Comments</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
-                  </td>
-                  <td>
-                     Create project in webapp
-                  </td>
-                  <td>
-                     12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                  <p class="small">
-                    Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
-                  </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
-                  </td>
-                  <td>
-                    Various versions
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                    </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
-                  </td>
-                  <td>
-                    There are many variations
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which
-                    </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
-                  </td>
-                  <td>
-                    Latin words
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      Latin words, combined with a handful of model sentence structures
-                    </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
-                  </td>
-                  <td>
-                    The generated Lorem
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-                    </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
-                  </td>
-                  <td>
-                    The first line
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-                    </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
-                  </td>
-                  <td>
-                    The standard chunk
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                    </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
-                  </td>
-                  <td>
-                    Lorem Ipsum is that
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
-                    </p>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
-                  </td>
-                  <td>
-                    Contrary to popular
-                  </td>
-                  <td>
-                    12.07.2014 10:10:1
-                  </td>
-                  <td>
-                    14.07.2014 10:16:36
-                  </td>
-                  <td>
-                    <p class="small">
-                      Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                    </p>
-                  </td>
-
-                </tr>
-
-                </tbody>
-              </table>
-
-            </div>
-            </div>
-
-            </div>
-
-            </div>
             </div>
           </div>
         </div>
@@ -384,106 +78,394 @@
   </div>
   <div class="col-lg-3">
     <div class="wrapper wrapper-content project-manager">
+      <h4>Asset</h4>
+      <img src="<%=# image(@project) %>" class="img-responsive">
+      <p class="small">
+        <%= @order.request.asset.name %>
+      </p>
+      <h5>Model</h5>
+      <p class="small"><%= @order.request.asset.model_id %></p>
+      <h5>Location</h5>
+      <p class="small"><%= @order.location%></p>
       <h4>Project description</h4>
       <img src="<%=# image(@project) %>" class="img-responsive">
       <p class="small">
-        <%= @order.description %>
+        <%= @order.request.project.name %>
       </p>
       <p class="small font-bold">
         <span><i class="fa fa-circle text-warning"></i> High priority</span>
       </p>
       <h5>Location</h5>
-      <p class="small"><%= @order.location%></p>
+      <p class="small"><%= @order.request.project.address %></p>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-4 col-xs-12">
-  <h2>Show order</h2>
 
-  <ul>
+<div class="row ibox-content">
+  <div class="col-lg-12">
+    <div class="panel blank-panel">
+      <div class="panel-heading">
+        <div class="panel-options">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-1" data-toggle="tab">Users messages</a></li>
+            <li class=""><a href="#tab-2" data-toggle="tab">Last activity</a></li>
+          </ul>
+        </div>
+      </div> <!--// End Panel Heading -->
 
-    <li>
-    <strong>Request ID:</strong>
-    <%= @order.request_id %>
-    </li>
+      <div class="panel-body">
 
-    <li>
-    <strong>Title:</strong>
-    <%= @order.title %>
-    </li>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab-1">
+            <div class="row">
+            <div class="col-lg-12">
 
-    <li>
-    <strong>Description:</strong>
-    <%= @order.description %>
-    </li>
+                <div class="ibox chat-view">
 
-    <li>
-    <strong>Location:</strong>
-    <%= @order.location %>
-    </li>
+                  <div class="ibox-title">
+                    <small class="pull-right text-muted">Last message:  Mon Jan 26 2015 - 18:39:23</small>
+                     Chat room panel
+                  </div>
+                  <div class="ibox-content">
 
-    <li>
-    <strong>Type:</strong>
-    <%= @order.type %>
-    </li>
+                    <div class="row">
 
-    <li>
-    <strong>Instruction:</strong>
-    <%= @order.instruction %>
-    </li>
+                      <div class="col-md-9 ">
+                        <div class="chat-discussion">
 
-    <li>
-    <strong>Priority:</strong>
-    <%= @order.priority %>
-    </li>
+                          <div class="chat-message left">
+                            <img class="message-avatar" src="img/a1.jpg" alt="" >
+                            <div class="message">
+                              <a class="message-author" href="#"> Michael Smith </a>
+                              <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+                              <span class="message-content">
+                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                              </span>
+                            </div>
+                          </div>
+                          <div class="chat-message right">
+                            <img class="message-avatar" src="img/a4.jpg" alt="" >
+                            <div class="message">
+                              <a class="message-author" href="#"> Karl Jordan </a>
+                              <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
+                              <span class="message-content">
+                              Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover.
+                              </span>
+                            </div>
+                          </div>
+                          <div class="chat-message right">
+                            <img class="message-avatar" src="img/a2.jpg" alt="" >
+                            <div class="message">
+                              <a class="message-author" href="#"> Michael Smith </a>
+                              <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
+                              <span class="message-content">
+                              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.
+                              </span>
+                            </div>
+                          </div>
+                          <div class="chat-message left">
+                            <img class="message-avatar" src="img/a5.jpg" alt="" >
+                            <div class="message">
+                              <a class="message-author" href="#"> Alice Jordan </a>
+                              <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
+                              <span class="message-content">
+                              All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                It uses a dictionary of over 200 Latin words.
+                              </span>
+                            </div>
+                          </div>
+                          <div class="chat-message right">
+                            <img class="message-avatar" src="img/a6.jpg" alt="" >
+                            <div class="message">
+                              <a class="message-author" href="#"> Mark Smith </a>
+                              <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
+                              <span class="message-content">
+                              All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                It uses a dictionary of over 200 Latin words.
+                              </span>
+                            </div>
+                          </div>
 
-    <li>
-    <strong>Created On:</strong>
-    <%= @order.inserted_at %>
-    </li>
+                        </div>
 
-    <li>
-    <strong>Deadline:</strong>
-    <%= @order.deadline %>
-    </li>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="chat-users">
 
-    <li>
-    <strong>Owner:</strong>
-    <%= @order.user.first_name %>
-    </li>
 
-  </ul>
+                          <div class="users-list">
+                            <div class="chat-user">
+                              <img class="chat-avatar" src="img/a4.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Karl Jordan</a>
+                              </div>
+                            </div>
+                            <div class="chat-user">
+                              <img class="chat-avatar" src="img/a1.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Monica Smith</a>
+                              </div>
+                            </div>
+                            <div class="chat-user">
+                              <span class="pull-right label label-primary">Online</span>
+                              <img class="chat-avatar" src="img/a2.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Michael Smith</a>
+                              </div>
+                            </div>
+                            <div class="chat-user">
+                              <span class="pull-right label label-primary">Online</span>
+                              <img class="chat-avatar" src="img/a3.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Janet Smith</a>
+                              </div>
+                            </div>
+                            <div class="chat-user">
+                              <img class="chat-avatar" src="img/a5.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Alice Smith</a>
+                              </div>
+                            </div>
+                            <div class="chat-user">
+                              <img class="chat-avatar" src="img/a6.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Monica Cale</a>
+                              </div>
+                            </div>
+                            <div class="chat-user">
+                              <img class="chat-avatar" src="img/a2.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Mark Jordan</a>
+                              </div>
+                            </div>
+                            <div class="chat-user">
+                              <span class="pull-right label label-primary">Online</span>
+                              <img class="chat-avatar" src="img/a3.jpg" alt="" >
+                              <div class="chat-user-name">
+                                <a href="#">Janet Smith</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="chat-message-form">
+                          <div class="form-group">
+                            <textarea class="form-control message-input" name="message" placeholder="Enter message text"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
 
-  <%= link "Edit", to: order_path(@conn, :edit, @order), class: "btn btn-warning btn-rounded btn-xs" %>
-  <%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
-  <p><%= link "Delete", to: order_path(@conn, :delete, @order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
-  </p>
-  <hr/>
-    <%= case @order.technicians do %>
-    <%= [] -> %>
-    <%= technicians -> %>
-      <h3>Assigned Technicians</h3>
-      <%= for technician <- technicians do %>
-      <p><strong><%= technician.email %></strong></p>
-      <% end %>
-    <% end %>
+          </div>
+          <div class="tab-pane" id="tab-2">
 
-  <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-primary btn-rounded" %>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Status</th>
+              <th>Title</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Comments</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
+              </td>
+              <td>
+                 Create project in webapp
+              </td>
+              <td>
+                 12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+              <p class="small">
+                Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
+              </p>
+              </td>
 
-  <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-primary btn-outline btn-rounded" %>
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
+              </td>
+              <td>
+                Various versions
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                </p>
+              </td>
 
-<hr/>
-  </div>
-  <div class="col-md-8 col-xs-12">
-		<div id='message-list' class='row'>
-		</div>
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+              </td>
+              <td>
+                There are many variations
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which
+                </p>
+              </td>
 
-		<div class='row form-group'>
-			<div class='col-md-12'>
-				<input type='text' id='message' class='form-control' placeholder='Message' />
-			</div>
-		</div>
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
+              </td>
+              <td>
+                Latin words
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Latin words, combined with a handful of model sentence structures
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
+              </td>
+              <td>
+                The generated Lorem
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+              </td>
+              <td>
+                The first line
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
+              </td>
+              <td>
+                The standard chunk
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
+              </td>
+              <td>
+                Lorem Ipsum is that
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+              </td>
+              <td>
+                Contrary to popular
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                </p>
+              </td>
+
+            </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+        </div> <!--// End tab-content -->
+
+      </div> <!--// End panel-body-->
+    </div>
   </div>
 </div>

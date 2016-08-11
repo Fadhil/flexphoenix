@@ -1,75 +1,91 @@
 <div class="row">
-  <div class="col-md-4 col-xs-12">
-    <h2>Show request</h2>
-    <ul>
+  <div class="col-lg-9">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <%= link "Back", to: request_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
+                <%= link "Edit Request", to: request_path(@conn, :edit, @request), class: "btn btn-warning btn-rounded btn-sm pull-right" %>
 
-      <li>
-        <strong>Title:</strong>
-        <%= @request.title %>
-      </li>
+                <h2><%= @request.title %></h2>
+              </div>
+              <dl class="dl-horizontal">
+                <dt>Location:</dt> <dd><%= @request.location %></dd>
+              <dl class="dl-horizontal">
+              <dl class="dl-horizontal">
+                <dt>Description:</dt> <dd><%= @request.description %></dd>
+              <dl class="dl-horizontal">
+                <dt>Request ID:</dt> <dd><span class="label label-success"><%= @request.id %></span></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <dl class="dl-horizontal">
+                <dt>Owner:</dt> <dd><%= display_name(@request.user) %></dd>
+                <dt>Admins:</dt>
+                <dd class="project-people">
 
-      <li>
-        <strong>Project:</strong>
-        <%= project_name(@request.project)%>
-      </li>
+                </dd>
+                <dt>Technicians:</dt>
+                    <dd>
+                    <%= case @request.technicians do %>
+                      <%= [] -> %>
+                      <%= technicians -> %>
+                      <%= for technician <- technicians do %>
+                        <strong><%= technician.email %></strong><br/>
+                      <% end %>
+                    <% end %>
+                    </dd>
+                <dd class="project-people">
 
-      <li>
-        <strong>Asset:</strong>
-        <%= asset_name(@request.asset)%>
-      </li>
+                </dd>
+              </dl>
+            </div>
 
-      <li>
-        <strong>Location:</strong>
-        <%= @request.location %>
-      </li>
 
-      <li>
-        <strong>Description:</strong>
-        <%= @request.description %>
-      </li>
+            <div class="col-lg-6" id="cluster_info">
+              <dl class="dl-horizontal" >
 
-      <%= if @request.instruction do %>
-        <li>
-          <strong>Instruction:</strong>
-          <%= @request.instruction %>
-        </li>
-      <% end %>
+                <dt>Last Updated:</dt> <dd><%= @request.updated_at %></dd>
+                <dt>Created:</dt> <dd><%= @request.inserted_at %> </dd>
 
-      <li>
-        <strong>Owner</strong>
-        <%= "#{@request.user.first_name} #{@request.user.last_name}"%>
-      </li>
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <dl class="dl-horizontal">
 
-    </ul>
-    <%= link "Edit", to: request_path(@conn, :edit, @request), class: "btn btn-warning btn-rounded btn-xs" %>
-    <%= link "Back", to: request_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
-    <p><%= link "Delete", to: request_path(@conn, :delete, @request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
-    </p>
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <dl class="dl-horizontal">
+                <dd>
+                  <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-success btn-rounded btn-sm" %>
+                  <%= link "Create Work Order", to: order_path(@conn, :new, request_id: @request), class: "btn btn-success btn-outline btn-rounded btn-sm" %>
+                </dd>
+              </dl>
+            </div>
+          </div>
 
-    <hr/>
-      <%= case @request.technicians do %>
-        <%= [] -> %>
-        <%= technicians -> %>
-          <h3>Assigned Technicians</h3>
-          <%= for technician <- technicians do %>
-            <p><strong><%= technician.email %></strong></p>
-          <% end %>
-      <% end %>
+        </div><!-- End ibox-content -->
+      </div><!-- End div class="ibox" -->
+    </div><!-- div class="wrapper wrapper-content animated fadeInUp" -->
+  </div><!-- End div class="col-lg-9" -->
 
-      <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-primary btn-rounded" %>
+  <div class="col-lg-3"><!-- Start Project Manager Right Side Bar-->
+    <div class="wrapper wrapper-content project-manager">
+      <h5>Asset</h5>
+        <p class="small"><%= asset_name(@request.asset) %></p>
+      <h5>Project</h5>
+        <p class="small"><%= project_name(@request.project) %></p>
+    </div>
+  <%= link "Delete Request", to: request_path(@conn, :delete, @request), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-sm pull-right" %>
+  </div> <!-- End div class="col-lg-3" --><!-- End Project Manager Right Side Bar-->
 
-      <%= link "Create Work Order", to: order_path(@conn, :new, request_id: @request), class: "btn btn-primary btn-outline btn-rounded" %>
-
-<hr/>
-</div>
-  <div class="col-md-8 col-xs-12">
-		<div id='message-list' class='row'>
-		</div>
-
-		<div class='row form-group'>
-			<div class='col-md-12'>
-				<input type='text' id='message' class='form-control' placeholder='Message' />
-			</div>
-		</div>
-  </div>
-</div>
+</div> <!-- End div class="row" -->

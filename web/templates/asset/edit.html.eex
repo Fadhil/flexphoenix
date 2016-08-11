@@ -6,8 +6,8 @@
           <h5>Edit Asset</h5>
         </div>
         <%= render "form.html", changeset: @changeset,
-            action: project_asset_path(@conn, :update,
-            @project, @asset) %>
+            action: project_asset_path(@conn, :update, @project, @asset),
+            conn: @conn %>
       </div>
     </div>
   </div>

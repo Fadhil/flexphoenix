@@ -21,6 +21,31 @@ defmodule Flexphoenix.OrderView do
     []
   end
 
+  # Calls `admins` from above to get a list of admins and roles,
+  # i.e. [%{user: <admin struct>, role: "Admin"}]
+  def admins_with_roles(project_roles) do
+    project_roles
+    |> Enum.map(&admins/1)
+  end
+
+  # All orders/requests have an owner, so we don't ned to match for _
+  # like technicians and admins
+  def owner_with_roles(owner) do
+    %{user: owner, role: "Requestor"}
+  end
+
+  # Projects also MUST have owner, so no need to match for _
+  def project_owner_with_roles(project_owner) do
+    %{user: project_owner, role: "Project Owner"}
+  end
+
+  # Calls `technicians` to get a  list of technicians and roles,
+  # i.e. [%{user: <admin struct>, role: "Technician"}]
+  def technicians_with_roles(assigned_technicians) do
+    assigned_technicians
+    |> Enum.map(&technicians/1)
+  end
+
   @doc ~S"""
   Returns a map of users and roles, grouped by user.
   Looks like this:
@@ -60,21 +85,11 @@ defmodule Flexphoenix.OrderView do
                         }) do # Here we match an order that's been preloaded
                               # with these associations
 
-    # Calls `admins` from above to get a list of admins and roles,
-    # i.e. [%{user: <admin struct>, role: "Admin"}]
-    admins_with_roles = project_roles
-                        |> Enum.map(&admins/1)
-
-    # Calls `technicians` to get a  list of technicians and roles,
-    # i.e. [%{user: <admin struct>, role: "Technician"}]
-    technicians_with_roles = assigned_technicians
-                             |> Enum.map(&technicians/1)
-
     # Now we put them together and flatten them, and then group by user struct
-    members = [admins_with_roles,
-                %{user: owner, role: "Requestor"},
-                %{user: project_owner, role: "Project Owner"},
-                technicians_with_roles
+    members = [admins_with_roles(project_roles),
+               owner_with_roles(owner),
+               project_owner_with_roles(project_owner),
+               technicians_with_roles(assigned_technicians)
               ]
               |> List.flatten
               |> Enum.group_by(fn m -> m.user end)

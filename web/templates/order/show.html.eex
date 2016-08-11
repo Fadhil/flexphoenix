@@ -16,7 +16,7 @@
               <dl class="dl-horizontal">
                 <dt>Request ID:</dt>
                 <dd>
-                  <span class="label label-sucess">
+                  <span class="label label-success">
                     <%= @order.request_id %>
                   </span>
                 </dd>
@@ -78,7 +78,7 @@
   </div>
   <div class="col-lg-3">
     <div class="wrapper wrapper-content project-manager">
-      <h4>Asset</h4>
+      <h3>Asset</h3>
       <img src="<%=# image(@project) %>" class="img-responsive">
       <p class="small">
         <%= @order.request.asset.name %>
@@ -86,16 +86,16 @@
       <h5>Model</h5>
       <p class="small"><%= @order.request.asset.model_id %></p>
       <h5>Location</h5>
-      <p class="small"><%= @order.location%></p>
-      <h4>Project description</h4>
+      <p class="small"><%= @order.location%></p><br/>
+      <p class="small font-bold">
+        <span><i class="fa fa-circle text-warning"></i> High priority</span>
+      </p><br/>
+      <h3>Project</h3>
       <img src="<%=# image(@project) %>" class="img-responsive">
       <p class="small">
         <%= @order.request.project.name %>
       </p>
-      <p class="small font-bold">
-        <span><i class="fa fa-circle text-warning"></i> High priority</span>
-      </p>
-      <h5>Location</h5>
+      <h5>Address</h5>
       <p class="small"><%= @order.request.project.address %></p>
     </div>
   </div>
@@ -125,7 +125,7 @@
 
                   <div class="ibox-title">
                     <small class="pull-right text-muted">Last message:  Mon Jan 26 2015 - 18:39:23</small>
-                     Discussion - WR: <%= @order.request_id %>
+                     <strong>Discussion on Request ID <span> <%= @order.request_id %> </span></strong>
                   </div>
                   <div class="ibox-content">
 

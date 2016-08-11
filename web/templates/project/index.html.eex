@@ -21,9 +21,10 @@
                       <span class="label label-primary">Active</span>
                     </td>
                     <td class="project-title">
-                      <a href="project_detail.html"><%= project.name %></a>
+                      <a href="project_detail.html"><%= project.name %>
                       <br/>
-                      <small>Created on <%= display_created_at(project) %></small>
+                      <small class="created-at">Created on <%= display_created_at(project) %></small>
+                      </a>
                     </td>
                     <td class="hidden-xs"><%= project.description %></td>
                     <td class="hidden-xs"><%= project.address %></td>

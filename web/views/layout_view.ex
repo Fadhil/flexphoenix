@@ -26,9 +26,13 @@ defmodule Flexphoenix.LayoutView do
     "/images/default-image.jpg"
   end
 
-  def image(thing) do
-    Image.url({thing.image, thing})
+  def image(%{image: image} = thing) do
+    Image.url({image, thing})
     |> String.replace("priv/static", "")
     |> String.replace("/apps/flexphoenix", "")
+  end
+
+  def profile_image(_) do
+    "/images/default_profile_picture.png"
   end
 end

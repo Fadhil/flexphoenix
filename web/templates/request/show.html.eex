@@ -67,7 +67,6 @@
               <dl class="dl-horizontal">
                 <dd>
                   <%= link "Assign Technicians", to: request_assign_technicians_path(@conn, :assign_technicians, @request.id), class: "btn btn-success btn-rounded" %>
-                  <%= link "Create Work request", to: request_path(@conn, :new, id: @request), class: "btn btn-success btn-outline btn-rounded" %>
                 </dd>
               </dl>
             </div>

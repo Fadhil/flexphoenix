@@ -1,4 +1,4 @@
-<div class"ibox-content">
+<div class="ibox-content">
   <%= form_for @changeset, @action, [multipart: true, class: "form-horizontal"], fn f -> %>
     <%= if @changeset.action do %>
       <div class="alert alert-danger">
@@ -31,12 +31,32 @@
     <div class="form-group">
       <%= label f, "Asset", class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
-        <%= select f, :asset_id, asset_list(@current_user, @project_id),class: "form-control" %>
+        <%= select f, :asset_id, asset_list(@current_user, @project_id), class: "form-control" %>
         <span, class="error-tag">
           <%= error_tag f, :asset_id%>
         </span>
       </div>
     </div>
+
+    <script>
+      $('#request_project_id').on("change", function(e) {
+        e.preventDefault();
+        selected_value = $('#request_project_id').val();
+
+        $.ajax({
+          url: "/api/projects/" + selected_value + "/assets",
+          type: "GET",
+          success: function(data) {
+            $('#request_asset_id').empty();
+            $.each(data, function(id, asset){
+              $('#request_asset_id')
+                .append("<option value="+ asset.id + ">"+ asset.name + "</option>");
+              console.log(asset);
+            })
+          }
+        })
+      })
+    </script>
 
     <div class="form-group">
       <%= label f, :location, class: "col-sm-2 control-label" %>
@@ -69,23 +89,3 @@
     </div>
         <% end %>
 </div>
-
-    <script>
-      $('#request_project_id').on("change", function(e) {
-        e.preventDefault();
-        selected_value = $('#request_project_id').val();
-
-        $.ajax({
-          url: "/api/projects/" + selected_value + "/assets",
-          type: "GET",
-          success: function(data) {
-            $('#request_asset_id').empty();
-            $.each(data, function(id, asset){
-              $('#request_asset_id')
-                .append("<option value="+ asset.id + ">"+ asset.name + "</option>");
-              console.log(asset);
-            })
-          }
-        })
-      })
-    </script>

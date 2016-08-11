@@ -1,78 +1,129 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="ibox-content">
+  <%= form_for @changeset, @action, [multipart: true, class: "form-horizontal"], fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= label f, :title, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= text_input f, :title, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :title %>
+        </span>
+      </div>
     </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
-    <%= error_tag f, :title %>
-  </div>
+    <div class="form-group">
+      <%= label f, :description, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= textarea f, :description, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :description %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
-    <%= error_tag f, :description %>
-  </div>
+    <div class="form-group">
+      <%= label f, :location, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= text_input f, :location, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :location %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :location, class: "control-label" %>
-    <%= text_input f, :location, class: "form-control" %>
-    <%= error_tag f, :location %>
-  </div>
+    <div class="form-group">
+      <%= label f, :type, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= text_input f, :type, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :type %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :type, class: "control-label" %>
-    <%= text_input f, :type, class: "form-control" %>
-    <%= error_tag f, :type %>
-  </div>
+    <div class="form-group">
+      <%= label f, :instruction, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= textarea f, :instruction, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :instruction %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :instruction, class: "control-label" %>
-    <%= textarea f, :instruction, class: "form-control" %>
-    <%= error_tag f, :instruction %>
-  </div>
+    <div class="form-group">
+      <%= label f, :priority, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= text_input f, :priority, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :priority %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :priority, class: "control-label" %>
-    <%= text_input f, :priority, class: "form-control" %>
-    <%= error_tag f, :priority %>
-  </div>
+    <div class="form-group">
+      <%= label f, :deadline, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= text_input f, :deadline, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :deadline %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :deadline, class: "control-label" %>
-    <%= text_input f, :deadline, class: "form-control" %>
-    <%= error_tag f, :deadline %>
-  </div>
+    <div class="form-group">
+      <%= label f, :findings, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= textarea f, :findings, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :findings %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :findings, class: "control-label" %>
-    <%= textarea f, :findings, class: "form-control" %>
-    <%= error_tag f, :findings %>
-  </div>
+    <div class="form-group">
+      <%= label f, :actions, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= textarea f, :actions, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :actions %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :actions, class: "control-label" %>
-    <%= textarea f, :actions, class: "form-control" %>
-    <%= error_tag f, :actions %>
-  </div>
+    <div class="form-group">
+      <%= label f, :summary, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= textarea f, :summary, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :summary %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :summary, class: "control-label" %>
-    <%= textarea f, :summary, class: "form-control" %>
-    <%= error_tag f, :summary %>
-  </div>
+    <div class="form-group">
+      <%= label f, :completed, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= text_input f, :completed, class: "form-control" %>
+        <span class="error-tag">
+        <%= error_tag f, :completed %>
+        </span>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :completed, class: "control-label" %>
-    <%= text_input f, :completed, class: "form-control" %>
-    <%= error_tag f, :completed %>
-  </div>
   <%= hidden_input f, :order_id, value: @order_id  %>
 
+  <div class="hr-line-dashed"></div>
   <div class="form-group">
+    <div class="col-sm-4 col-sm-offset-2">
     <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
+    <%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded" %>
+    </div>
   </div>
-<% end %>
+  <% end %>
+</div>

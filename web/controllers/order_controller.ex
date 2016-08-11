@@ -9,10 +9,13 @@ defmodule Flexphoenix.OrderController do
   plug :scrub_params, "order" when action in [:create, :update]
 
   def index(
-    %{assigns: %{current_user: current_user}}=conn, _params
+    %{assigns:
+      %{current_user: current_user,
+        assigned_orders: assigned_orders}
+      }=conn, _params
   ) do
-    user = current_user |> Repo.preload([:orders])
-    orders = user.orders
+    user = current_user |> Repo.preload([{:orders,[{:request, [:project, :asset]}, :user]}])
+    orders = user.orders ++ assigned_orders
     render(conn, "index.html", orders: orders)
   end
 
@@ -48,7 +51,13 @@ defmodule Flexphoenix.OrderController do
     order = Order
             |> Order.with_owner
             |> Repo.get!(id)
-            |> Repo.preload([:technicians])
+            |> Repo.preload([:technicians,
+                            {:request,
+                              [:asset,
+                              {:project,
+                                [:user,
+                                {:users_roles, [:user, :role]}]}]},
+                            :user])
     render(conn, "show.html", order: order)
   end
 

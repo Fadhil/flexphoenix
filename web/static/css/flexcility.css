@@ -19,12 +19,14 @@ body{
 }
 
 #message-list {
+  /*
   border: 1px solid #777;
   height: 300px;
   padding: 10px;
   margin-right: 20px;
   overflow: scroll;
   margin-bottom: 50px;
+  */
 }
 
 #message {
@@ -37,4 +39,8 @@ body{
 
 .created-on {
   font-weight: 200;
+}
+
+.chat-message {
+  padding: 5px !important;
 }

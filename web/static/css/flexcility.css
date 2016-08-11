@@ -30,3 +30,11 @@ body{
 #message {
   margin-bottom: 30px;
 }
+
+.error-tag .help-block{
+  color: orange;
+}
+
+.created-on {
+  font-weight: 200;
+}

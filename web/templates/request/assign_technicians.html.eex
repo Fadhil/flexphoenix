@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="ibox-content">
         <div class="ibox-title">
-          <h5>Assign Technicians for Request ID <span class=" label label-success pull-right"><%= @request.id %></span>
+          <h5>Assign Technicians for Request ID: <%= @request.id %>
           <p><small><%= @request.title %><br/>
           <%= project_name(@request.project) %> - <%= asset_name(@request.asset) %></small></p></h5>
         </div>
@@ -22,6 +22,7 @@
 
         <div class="form-group">
           <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
+          <%= link "Back", to: request_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded" %>
         </div>
           <% end %>
       </div>

@@ -18,6 +18,11 @@ body{
   width: 48px;
 }
 
+.photo-thumbnail {
+  height: 125px;
+  width: 125px;
+}
+
 #message-list {
   /*
   border: 1px solid #777;

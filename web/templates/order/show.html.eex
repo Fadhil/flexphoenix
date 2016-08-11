@@ -468,4 +468,14 @@
       </div> <!--// End panel-body-->
     </div>
   </div>
-</div>
+     <!--// End row m-t-sm -->
+</div> <!--// End Chat view wrapper-content -->
+<script>
+  function scrollToTop() {
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  }
+  $(document).ready(function(){
+    $("[href='#tab-1']").on("click", function(){ scrollToTop() });
+    $("[href='#tab-2']").on("click", function(){ scrollToTop() });
+  });
+</script>

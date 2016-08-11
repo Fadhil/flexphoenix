@@ -23,7 +23,7 @@
                     <td class="project-title">
                       <a href="project_detail.html"><%= project.name %>
                       <br/>
-                      <small class="created-at">Created on <%= display_created_at(project) %></small>
+                      <small class="created-on">Created on <%= display_created_at(project) %></small>
                       </a>
                     </td>
                     <td class="hidden-xs"><%= project.description %></td>

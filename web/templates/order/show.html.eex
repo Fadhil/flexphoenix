@@ -1,89 +1,387 @@
 <div class="row">
-  <div class="col-md-4 col-xs-12">
-    <h2>Show order</h2>
+  <div class="col-lg-9">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <%= link "Back", to: order_path(@conn, :index),
+                    class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
+                <%= link "Edit Order", to: order_path(@conn, :edit, @order),
+                    class: "btn btn-warning btn-rounded btn-sm pull-right" %>
 
-    <ul>
+                <h2><%= @order.title %></h2>
+              </div>
+              <dl class="dl-horizontal">
+                <dt>Request ID:</dt>
+                <dd>
+                  <span class="label label-sucess">
+                    <%= @order.request_id %>
+                  </span>
+                </dd>
+                <dt>Location:</dt>
+                <dd>
+                  <span>
+                    <%= @order.location %>
+                  </span>
+                </dd>
+                <dt>Description</dt>
+                <dd>
+                  <span>
+                    <%= @order.description %>
+                  </span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <dl class="dl-horizontal">
 
-      <li>
-        <strong>Request ID:</strong>
-        <%= @order.request_id %>
-      </li>
+                <dt>Owner:</dt> <dd><%= display_name(@order.user) %></dd>
+                <dt>Technicians:</dt>
+                <dd class="project-people">
+                  <%= for member <- @order.technicians do %>
+                  <a href="" ><img alt="image" class="img-circle"
+                          src="/images/default_profile_picture.png"
+                          data-toggle="tooltip" data-placement="top"
+                          title="<%= display_name(member) %>"></a>
+                  <% end %>
+                </dd>
+              </dl>
+            </div>
 
-      <li>
-        <strong>Title:</strong>
-        <%= @order.title %>
-      </li>
 
-      <li>
-        <strong>Description:</strong>
-        <%= @order.description %>
-      </li>
+            <div class="col-lg-6" id="cluster_info">
+              <dl class="dl-horizontal" >
 
-      <li>
-        <strong>Location:</strong>
-        <%= @order.location %>
-      </li>
+                <dt>Last Updated:</dt> <dd><%= @order.updated_at %></dd>
+                <dt>Created:</dt> <dd><%= @order.inserted_at %> </dd>
 
-      <li>
-        <strong>Type:</strong>
-        <%= @order.type %>
-      </li>
-
-      <li>
-        <strong>Instruction:</strong>
-        <%= @order.instruction %>
-      </li>
-
-      <li>
-        <strong>Priority:</strong>
-        <%= @order.priority %>
-      </li>
-
-      <li>
-        <strong>Created On:</strong>
-        <%= @order.inserted_at %>
-      </li>
-
-      <li>
-        <strong>Deadline:</strong>
-        <%= @order.deadline %>
-      </li>
-
-      <li>
-        <strong>Owner:</strong>
-        <%= @order.user.first_name %>
-      </li>
-
-    </ul>
-
-    <%= link "Edit", to: order_path(@conn, :edit, @order), class: "btn btn-warning btn-rounded btn-xs" %>
-    <%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
-    <p><%= link "Delete", to: order_path(@conn, :delete, @order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
-    </p>
-    <hr/>
-      <%= case @order.technicians do %>
-        <%= [] -> %>
-        <%= technicians -> %>
-          <h3>Assigned Technicians</h3>
-          <%= for technician <- technicians do %>
-            <p><strong><%= technician.email %></strong></p>
-          <% end %>
-      <% end %>
-
-    <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-primary btn-rounded" %>
-
-    <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-primary btn-outline btn-rounded" %>
-
-<hr/>
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <dl class="dl-horizontal">
+                <dd>
+                  <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @order.id), class: "btn btn-success btn-rounded" %>
+                  <%= link "Create Work Report", to: report_path(@conn, :new, order_id: @order), class: "btn btn-success btn-outline btn-rounded" %>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-8 col-xs-12">
-		<div id='message-list' class='row'>
-		</div>
-
-		<div class='row form-group'>
-			<div class='col-md-12'>
-				<input type='text' id='message' class='form-control' placeholder='Message' />
-			</div>
-		</div>
+  <div class="col-lg-3">
+    <div class="wrapper wrapper-content project-manager">
+      <h4>Asset</h4>
+      <img src="<%=# image(@project) %>" class="img-responsive">
+      <p class="small">
+        <%= @order.request.asset.name %>
+      </p>
+      <h5>Model</h5>
+      <p class="small"><%= @order.request.asset.model_id %></p>
+      <h5>Location</h5>
+      <p class="small"><%= @order.location%></p>
+      <h4>Project description</h4>
+      <img src="<%=# image(@project) %>" class="img-responsive">
+      <p class="small">
+        <%= @order.request.project.name %>
+      </p>
+      <p class="small font-bold">
+        <span><i class="fa fa-circle text-warning"></i> High priority</span>
+      </p>
+      <h5>Location</h5>
+      <p class="small"><%= @order.request.project.address %></p>
+    </div>
   </div>
 </div>
+
+
+<div class="row ibox-content">
+  <div class="col-lg-12">
+    <div class="panel blank-panel">
+      <div class="panel-heading">
+        <div class="panel-options">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-1" data-toggle="tab">Users messages</a></li>
+            <li class=""><a href="#tab-2" data-toggle="tab">Last activity</a></li>
+          </ul>
+        </div>
+      </div> <!--// End Panel Heading -->
+
+      <div class="panel-body">
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab-1">
+            <div class="row">
+            <div class="col-lg-12">
+
+                <div class="ibox chat-view">
+
+                  <div class="ibox-title">
+                    <small class="pull-right text-muted">Last message:  Mon Jan 26 2015 - 18:39:23</small>
+                     Discussion - WR: <%= @order.request_id %>
+                  </div>
+                  <div class="ibox-content">
+
+                    <div class="row">
+
+                      <div class="col-md-9 ">
+                        <div class="chat-discussion" id="message-list">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="chat-users">
+
+
+                          <div class="users-list">
+                            <%= for {user, member_roles} <- members_and_roles(@order) do %>
+                              <div class="chat-user">
+                                <span class="pull-right label label-primary">Online</span>
+                                <img class="chat-avatar" src="<%= profile_image(user) %>" alt="" >
+                                <div class="chat-user-name">
+                                  <a href="#"><%= display_name(user) %></a>
+                                  <div>
+                                    <small><%= display_roles(member_roles) %></small>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="chat-message-form">
+                          <div class="form-group">
+                            <textarea class="form-control message-input" id="message" name="message" placeholder="Enter message text"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          </div>
+          <div class="tab-pane" id="tab-2">
+
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Status</th>
+              <th>Title</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Comments</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
+              </td>
+              <td>
+                 Create project in webapp
+              </td>
+              <td>
+                 12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+              <p class="small">
+                Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
+              </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
+              </td>
+              <td>
+                Various versions
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+              </td>
+              <td>
+                There are many variations
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
+              </td>
+              <td>
+                Latin words
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Latin words, combined with a handful of model sentence structures
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
+              </td>
+              <td>
+                The generated Lorem
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+              </td>
+              <td>
+                The first line
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
+              </td>
+              <td>
+                The standard chunk
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
+              </td>
+              <td>
+                Lorem Ipsum is that
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
+                </p>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+              </td>
+              <td>
+                Contrary to popular
+              </td>
+              <td>
+                12.07.2014 10:10:1
+              </td>
+              <td>
+                14.07.2014 10:16:36
+              </td>
+              <td>
+                <p class="small">
+                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                </p>
+              </td>
+
+            </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+        </div> <!--// End tab-content -->
+
+      </div> <!--// End panel-body-->
+    </div>
+  </div>
+     <!--// End row m-t-sm -->
+</div> <!--// End Chat view wrapper-content -->
+<script>
+  function scrollToTop() {
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  }
+  $(document).ready(function(){
+    $("[href='#tab-1']").on("click", function(){ scrollToTop() });
+    $("[href='#tab-2']").on("click", function(){ scrollToTop() });
+  });
+</script>

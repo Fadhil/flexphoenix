@@ -4,6 +4,9 @@
       <div class="ibox">
         <div class="ibox-title">
           <h2>Work Orders</h2><h5>Assigned to <%= display_name(@current_user) %></h5>
+          <div style="height: 20px">
+          </div>
+
         </div>
       <div class="ibox-content">
         <div class="project-list">

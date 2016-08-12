@@ -5,7 +5,7 @@ defmodule Flexphoenix.Asset do
     field :name, :string
     field :model_id, :string
     field :manufacturer, :string
-    field :photo, :string
+    field :photo, Flexphoenix.Image.Type
     belongs_to :project, Flexphoenix.Project
     has_many :requests, Flexphoenix.Request, on_delete: :delete_all
 

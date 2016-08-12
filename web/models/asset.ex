@@ -15,6 +15,8 @@ defmodule Flexphoenix.Asset do
   @required_fields ~w(name model_id manufacturer )
   @optional_fields ~w()
 
+  @required_file_fields ~w()
+  @optional_file_fields ~w(photo)
   @doc """
   Creates a changeset based on the `model` and `params`.
 

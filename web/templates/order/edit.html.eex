@@ -1,8 +1,15 @@
-<h2>Edit order</h2>
-
-<%= render "form.html", changeset: @changeset, request_id: @request_id,
-action: order_path(@conn, :update, @order),
-current_user: @conn.assigns.current_user
-%>
-
-<%= link "Back", to: order_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Edit Work Order <small></small></h5>
+        </div>
+          <%= render "form.html", changeset: @changeset, request_id: @request_id,
+          action: order_path(@conn, :update, @order),
+          current_user: @conn.assigns.current_user,
+          conn: @conn %>
+      </div>
+    </div>
+  </div>
+</div>

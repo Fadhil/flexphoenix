@@ -71,7 +71,7 @@
                             <dl class="dl-horizontal">
                                 <dd>
                                   <%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-success btn-rounded btn-sm" %>
-                                  <%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-success btn-rounded btn-sm" %>
+                                  <%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
                                 </dd>
                             </dl>
                         </div>
@@ -380,16 +380,16 @@
     </div>
     <div class="col-lg-3">
         <div class="wrapper wrapper-content project-manager">
-            <h4>Project description</h4>
-            <img src="<%= image(@project) %>" class="img-responsive">
-            <p class="small">
-              <%= @project.description %>
-            </p>
-            <p class="small font-bold">
-                <span><i class="fa fa-circle text-warning"></i> High priority</span>
-            </p>
-            <h5>Address</h5>
-            <p class="small"><%= @project.address %></p>
+          <h3><%= @project.name %></h3>
+          <img src="<%= image(@project) %>" class="img-responsive">
+          <h4>Project Description</h4>
+          <p class="small">
+            <%= @project.description %>
+          </p>
+          <h4>Address</h4>
+          <p class="small">
+            <%= @project.address %>
+          </p>
         </div>
         <%= link "Delete Project", to: project_path(@conn, :delete, @project), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-sm pull-right" %>
     </div>

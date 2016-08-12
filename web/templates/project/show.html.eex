@@ -71,7 +71,7 @@
                             <dl class="dl-horizontal">
                                 <dd>
                                   <%= link "Show Assets", to: project_asset_path(@conn, :index, @project), class: "btn btn-success btn-rounded btn-sm" %>
-                                  <%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-success btn-rounded btn-sm" %>
+                                  <%= link "Create Work Request", to: request_path(@conn, :new, project_id: @project.id), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
                                 </dd>
                             </dl>
                         </div>

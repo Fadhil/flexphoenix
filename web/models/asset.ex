@@ -26,11 +26,13 @@ defmodule Flexphoenix.Asset do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
 
   def create_changeset(model, project_id, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
     |> put_project_id(project_id)
   end
 

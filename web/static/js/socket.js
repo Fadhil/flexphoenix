@@ -58,6 +58,57 @@ console.log("socket connected")
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("work_request_rooms:subtopic", {})
 
+// This function gets called on channel.on("new_message") to get the
+// payload (the data that was sent by message.on("keypress") ) and use it
+// to build a chat message row as described in the comments inside which
+// is then appended to the message-list
+function build_message_row(payload){
+  // Set default direction = right
+  let direction = "right";
+
+  // If the payload_user id is the same as the current user's id, change to left
+  if( payload.user_id ==  $("#user-hidden-id").html()){
+    direction = "left";
+  }
+  /* Here we build the message row using jquery. The resultant structure
+      should look like this:
+
+     <div class="chat-message left">
+        <img class="message-avatar" src="img/a1.jpg" alt="" >
+         <div class="message">
+           <a class="message-author" href="#"> Michael Smith </a>
+           <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+           <span class="message-content">
+           Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+           </span>
+         </div>
+       </div>  */
+  let message_row = $("<div>").addClass("chat-message " + direction)
+                      .append(
+                        $("<img>").attr("src", payload.image)
+                        .addClass("message-avatar")
+                      ).append(
+                        $("<div>").addClass("message")
+                          .append(
+                            $("<a href='#'>").addClass("message-author")
+                              .append(
+                                payload.name
+                              )
+                          ).append(
+                            $("<span>").addClass("message-date")
+                              .append(
+                                new Date($.now())
+                              )
+                          ).append(
+                            $("<span>").addClass("message-content")
+                              .append(
+                                payload.message
+                              )
+                          )
+                      )
+  return message_row;
+}
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
@@ -65,17 +116,21 @@ channel.join()
 $(document).ready(function(){
   let list    = $("#message-list");
   let message = $("#message");
-  let name    = $("#user_display_name");
+  let name    = $("#user-display-name").html();
+  let image  = $("#user-display-image").attr("src");
+  let user_id = $("#user-hidden-id").html();
 
   message.on("keypress", event => {
     if (event.keyCode == 13) {
-      channel.push("new_message", { name: name.html(), message: message.val() });
+      channel.push("new_message", { name: name, message: message.val(),
+                                    user_id: user_id, image: image
+                                  });
       message.val("");
     }
   });
 
   channel.on("new_message", payload => {
-    list.append(`<b>${payload.name || 'Anonymous'}:</b> ${payload.message}<br>`);
+    list.append(build_message_row(payload));
     list.prop({scrollTop: list.prop("scrollHeight")});
   });
 });

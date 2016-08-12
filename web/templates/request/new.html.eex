@@ -1,10 +1,16 @@
-<h2>New request</h2>
-
-<%= render "form.html", changeset: @changeset,
-  action: request_path(@conn, :create),
-  current_user: @conn.assigns.current_user,
-  conn: @conn,
-  project_id: @project_id
-%>
-
-<%= link "Back", to: request_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Create A New Request <small></small></h5>
+        </div>
+        <%= render "form.html", changeset: @changeset,
+            action: request_path(@conn, :create),
+            current_user: @conn.assigns.current_user,
+            project_id: @project_id,
+            conn: @conn %>
+      </div>
+    </div>
+  </div>
+</div>

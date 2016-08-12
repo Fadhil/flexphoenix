@@ -18,15 +18,38 @@ body{
   width: 48px;
 }
 
+.photo-thumbnail {
+  height: 125px;
+  width: 125px;
+}
+
+.photo-fullsize {
+  width: 450px;
+}
+
 #message-list {
+  /*
   border: 1px solid #777;
   height: 300px;
   padding: 10px;
   margin-right: 20px;
   overflow: scroll;
   margin-bottom: 50px;
+  */
 }
 
 #message {
   margin-bottom: 30px;
+}
+
+.error-tag .help-block{
+  color: orange;
+}
+
+.created-on {
+  font-weight: 200;
+}
+
+.chat-message {
+  padding: 5px !important;
 }

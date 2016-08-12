@@ -3,10 +3,11 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle profile-img-circle" src="/images/default_profile_picture.png" />
+                            <span style="display: none" id="user-hidden-id"><%= @current_user.id %></span>
+                            <img id="user-display-image" alt="image" class="img-circle profile-img-circle" src="/images/default_profile_picture.png" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                          <span class="clear"> <span class="block m-t-xs"> <strong id="user_display_name" class="font-bold"><%= display_name(@current_user) %></strong>
+                          <span class="clear"> <span class="block m-t-xs"> <strong id="user-display-name" class="font-bold"><%= display_name(@current_user) %></strong>
                              </span> <span class="text-muted text-xs block">Developer<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>

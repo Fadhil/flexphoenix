@@ -1,34 +1,55 @@
-<h2>Listing requests</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Location</th>
-      <th>Project</th>
-      <th>Asset</th>
-      <th>Description</th>
-      <th>Requestor</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for request <- @requests do %>
-    <tr>
-      <td><%= request.title %></td>
-      <td><%= request.location %></td>
-      <td><%= project_name(request.project) %></td>
-      <td><%= asset_name(request.asset) %></td>
-      <td><%= request.description %></td>
-      <td><%= display_name(request.user) %> at <%= request.inserted_at %></td>
-
-      <td class="text-right">
-        <%= link "View", to: request_path(@conn, :show, request), class: "btn btn-white btn-rounded btn-sm" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New request", to: request_path(@conn, :new), class: "btn btn-primary btn-outline btn-rounded btn-sm" %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h2>Work Requests</h2><h5>Assigned to <%= display_name(@current_user) %></h5>
+          <div class="ibox-tools">
+            <%= link "Create New Request", to: request_path(@conn, :new), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
+          </div>
+        </div>
+      <div class="ibox-content">
+        <div class="project-list">
+          <table class="table table-hover">
+            <tbody>
+              <%= for request <- @requests do %>
+                <%= link to: request_path(@conn, :show, request) do %>
+                  <tr>
+                    <td class="project-title">
+                      <span><%= project_name(request.project) %></span><!-- Reserve for request_id -->
+                    </td>
+                    <td class="project-status">
+                      <span class="label label-success label-outline"><%= request.id %></span><!-- Reserve for request_id -->
+                    </td>
+                    <td class="project-title">
+                      <a href="<%= request_path(@conn, :show, request) %>"><%= request.title %>
+                      <br/>
+                      <small class="created-on">By <%= display_name(request.user) %> on <%= request.inserted_at %></small>
+                      </a>
+                    </td>
+                    <td class="hidden-xs"><%= asset_name(request.asset) %></td>
+                    <td class="hidden-xs"><%= request.location %></td>
+                    <td class="hidden-xs"><%= request.description %></td>
+                    <td class="project-people">
+                      <a href=""><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a1.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a2.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a4.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a5.jpg"></a>
+                    </td>
+                    <td class="project-actions">
+                      <%= link to: request_path(@conn, :show, request), class: "btn btn-white btn-rounded btn-sm" do %>
+                        <i class="fa fa-folder"></i> View </a>
+                      <% end %>
+                    </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- End ibox-content -->
+      </div>
+    </div> <!-- End wrapper -->
+  </div> <!-- End col -->
+</div> <!-- End row -->

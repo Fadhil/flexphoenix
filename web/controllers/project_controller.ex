@@ -49,7 +49,7 @@ defmodule Flexphoenix.ProjectController do
         case Repo.insert_or_update(changeset) do
           {:ok, _users_role} ->
             conn
-            |> put_flash(:info, "Successfully invited #{email} as #{role.name}")
+            |> put_flash(:success, "Successfully invited #{email} as #{role.name}")
             |> redirect(to: project_path(conn, :show, project))
           {:error, _changeset} ->
             conn
@@ -71,7 +71,7 @@ defmodule Flexphoenix.ProjectController do
     case Repo.insert(changeset) do
       {:ok, project} ->
         conn
-        |> put_flash(:info, "Project created successfully.")
+        |> put_flash(:success, "Project created successfully.")
         |> redirect(to: project_path(conn, :show, project))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -117,7 +117,7 @@ defmodule Flexphoenix.ProjectController do
     Repo.delete!(project)
 
     conn
-    |> put_flash(:info, "Project deleted successfully.")
+    |> put_flash(:success, "Project deleted successfully.")
     |> redirect(to: project_path(conn, :index))
   end
 end

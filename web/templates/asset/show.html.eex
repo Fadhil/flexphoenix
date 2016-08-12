@@ -1,36 +1,58 @@
-<h2>Show asset</h2>
+<div class="row">
+  <div class="col-lg-9">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <%= link "Back", to: project_asset_path(@conn, :index, @project.id),
+                class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
+                <%= link "Edit Asset", to: project_asset_path(@conn, :edit, @project, @asset),
+                class: "btn btn-warning btn-rounded btn-sm pull-right" %>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @asset.name %>
-  </li>
-
-  <li>
-    <strong>Model:</strong>
-    <%= @asset.model_id %>
-  </li>
-
-  <li>
-    <strong>Manufacturer:</strong>
-    <%= @asset.manufacturer %>
-  </li>
-
-  <li>
-    <strong>Photo:</strong>
-    <%= @asset.photo %>
-  </li>
-
-  <li>
-    <strong>Project:</strong>
-    <%= @asset.project_id %>
-  </li>
-
-</ul>
-
-
-<%= link "Edit", to: project_asset_path(@conn, :edit, @project, @asset), class: "btn btn-warning btn-rounded btn-xs" %>
-<%= link "Back", to: project_asset_path(@conn, :index, @project), class: "btn btn-default btn-rounded btn-xs" %>
-<p><%= link "Delete", to: project_asset_path(@conn, :delete, @project, @asset), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
-</p>
+                <h2><%= @asset.name %></h2>
+              </div>
+              <dl class="dl-horizontal">
+                <dt>Model:</dt>
+                <dd>
+                  <span>
+                    <%= @asset.model_id %>
+                  </span>
+                </dd>
+                <dt>Manufacturer:</dt>
+                <dd>
+                  <span>
+                    <%= @asset.manufacturer %>
+                  </span>
+                </dd>
+                <dt>Photo:</dt>
+                <dd>
+                  <div>
+                    <img class="photo-fullsize" align="left"
+                    src="<%= image(@asset) %>"
+                    alt="<%= @project.name %>-<%= @asset.name %>-photo">
+                  </div>
+                </dd>
+                <dt>Last Updated:</dt> <dd><%= @asset.updated_at %></dd>
+                <dt>Created:</dt> <dd><%= @asset.inserted_at %> </dd>
+              </dl>
+            </div>
+          </div><!-- End div class="row" -->
+        </div><!-- End ibox-content -->
+      </div><!-- End div class="ibox" -->
+    </div><!-- div class="wrapper wrapper-content animated fadeInUp" -->
+  </div><!-- End div class="col-lg-9" -->
+  <div class="col-lg-3"><!-- Start Project Manager Right Side Bar-->
+    <div class="wrapper wrapper-content project-manager">
+        <h3><%= @project.name %></h3>
+        <h4>Project Description</h4>
+        <img src="" class="img-responsive">
+        <p class="small">
+          <%= @project.description %>
+        </p>
+        <h4>Address</h4>
+        <p class="small"><%= @project.address %></p>
+    </div>
+  </div><!-- End div class="col-lg-3" --><!-- End Project Manager Right Side Bar-->
+</div> <!-- End div class="row" for entire ibox-->

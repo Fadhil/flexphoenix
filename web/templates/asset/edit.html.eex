@@ -1,6 +1,15 @@
-<h2>Edit asset</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: project_asset_path(@conn, :update, @project, @asset) %>
-
-<%= link "Back", to: project_asset_path(@conn, :index, @project), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Edit Asset</h5>
+        </div>
+        <%= render "form.html", changeset: @changeset,
+            action: project_asset_path(@conn, :update, @project, @asset),
+            conn: @conn,
+            project: @project %>
+      </div>
+    </div>
+  </div>
+</div>

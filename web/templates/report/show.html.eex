@@ -1,86 +1,85 @@
 <div class="row">
-  <div class="col-md-4 col-xs-12">
-<h2>Show report</h2>
+  <div class="col-lg-9">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <%= link "Back", to: report_path(@conn, :index),
+                class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
+                <%= link "Edit Report", to: report_path(@conn, :edit, @report),
+                class: "btn btn-warning btn-rounded btn-sm pull-right" %>
 
-<ul>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @report.title %>
-  </li>
+            <h2><%= @report.title %></h2>
+          </div>
+              <dl class="dl-horizontal">
+                <dt>Location:</dt>
+                <dd>
+                  <span>
+                    <%= @report.location %>
+                  </span>
+                </dd>
+                <dt>Description</dt>
+                <dd>
+                  <span>
+                    <%= @report.description %>
+                  </span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <dl class="dl-horizontal">
 
-  <li>
-    <strong>Description:</strong>
-    <%= @report.description %>
-  </li>
+                <dt>Owner:</dt> <dd><%= display_name(@report.user) %></dd>
+                </dd>
+              </dl>
+            </div>
 
-  <li>
-    <strong>Location:</strong>
-    <%= @report.location %>
-  </li>
 
-  <li>
-    <strong>Type:</strong>
-    <%= @report.type %>
-  </li>
+            <div class="col-lg-6" id="cluster_info">
+              <dl class="dl-horizontal" >
 
-  <li>
-    <strong>Instruction:</strong>
-    <%= @report.instruction %>
-  </li>
+                <dt>Last Updated:</dt> <dd><%= @report.updated_at %></dd>
+                <dt>Created:</dt> <dd><%= @report.inserted_at %> </dd>
 
-  <li>
-    <strong>Priority:</strong>
-    <%= @report.priority %>
-  </li>
-
-  <li>
-    <strong>Deadline:</strong>
-    <%= @report.deadline %>
-  </li>
-
-  <li>
-    <strong>Findings:</strong>
-    <%= @report.findings %>
-  </li>
-
-  <li>
-    <strong>Actions:</strong>
-    <%= @report.actions %>
-  </li>
-
-  <li>
-    <strong>Summary:</strong>
-    <%= @report.summary %>
-  </li>
-
-  <li>
-    <strong>Completed:</strong>
-    <%= @report.completed %>
-  </li>
-
-  <li>
-    <strong>Owner:</strong>
-    <%= @report.user.first_name %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: report_path(@conn, :edit, @report), class: "btn btn-warning btn-rounded btn-xs" %>
-<%= link "Back", to: report_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-xs" %>
-<p><%= link "Delete", to: report_path(@conn, :delete, @report), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-xs" %>
-</p>
-
-  <hr/>
-
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <dl class="dl-horizontal">
+                <dd>
+                  <%= link "Assign Technicians", to: order_assign_technicians_path(@conn, :assign_technicians, @report.id), class: "btn btn-success btn-rounded" %>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-8 col-xs-12">
-		<div id='message-list' class='row'>
-		</div>
+  <div class="col-lg-3">
+    <div class="wrapper wrapper-content project-manager">
+      <h3>Asset</h3>
+      <img src="<%=# image(@project) %>" class="img-responsive">
+      <p class="small">
 
-		<div class='row form-group'>
-			<div class='col-md-12'>
-				<input type='text' id='message' class='form-control' placeholder='Message' />
-			</div>
-		</div>
+      </p>
+      <h5>Model</h5>
+      <p class="small"></p>
+      <h5>Location</h5>
+      <p class="small"><%= @report.location%></p><br/>
+      <br/>
+      <h3>Project</h3>
+      <img src="<%=# image(@project) %>" class="img-responsive">
+      <p class="small">
+
+      </p>
+      <h5>Address</h5>
+      <p class="small"></p>
+    </div>
   </div>
+</div>

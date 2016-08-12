@@ -30,7 +30,7 @@
                 <dd>
                   <div>
                     <img class="photo-fullsize" align="left"
-                    src="<%= @asset.photo %>"
+                    src="<%= image(@asset) %>"
                     alt="<%= @project.name %>-<%= @asset.name %>-photo">
                   </div>
                 </dd>

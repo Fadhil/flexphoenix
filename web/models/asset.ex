@@ -5,16 +5,18 @@ defmodule Flexphoenix.Asset do
     field :name, :string
     field :model_id, :string
     field :manufacturer, :string
-    field :photo, :string
+    field :photo, Flexphoenix.Image.Type
     belongs_to :project, Flexphoenix.Project
     has_many :requests, Flexphoenix.Request, on_delete: :delete_all
 
     timestamps
   end
 
-  @required_fields ~w(name model_id manufacturer photo)
+  @required_fields ~w(name model_id manufacturer )
   @optional_fields ~w()
 
+  @required_file_fields ~w()
+  @optional_file_fields ~w(photo)
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -24,11 +26,13 @@ defmodule Flexphoenix.Asset do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
 
   def create_changeset(model, project_id, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
     |> put_project_id(project_id)
   end
 

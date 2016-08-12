@@ -6,7 +6,7 @@
         <div class="ibox-title">
           <h2>All Projects</h2><h5>assigned to <%= display_name(@current_user) %></h5>
           <div class="ibox-tools">
-            <%= link "Create new project", to: project_path(@conn, :new), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
+            <%= link "Create New Project", to: project_path(@conn, :new), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
           </div>
         </div>
         <div class="ibox-content">

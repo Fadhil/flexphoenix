@@ -1,34 +1,44 @@
-<h2>Listing assets</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Model</th>
-      <th>Manufacturer</th>
-      <th>Photo</th>
-      <th>Project</th>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInUp">
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= if @assets do %>
-  <%= for asset <- @assets do %>
-      <tr>
-        <td><%= asset.name %></td>
-        <td><%= asset.model_id %></td>
-        <td><%= asset.manufacturer %></td>
-        <td><%= asset.photo %></td>
-        <td><%= asset.project_id %></td>
+      <div class="ibox">
+        <div class="ibox-title">
+          <h2>Assets</h2><h5>for <%= @project.name %></h5>
+          <div class="ibox-tools">
+            <%= link "Create New Asset", to: project_asset_path(@conn, :new, @project), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="project-list">
 
-        <td class="text-right">
-          <%= link "View", to: project_asset_path(@conn, :show, @project.id, asset), class: "btn btn-white btn-rounded btn-sm" %>
-
-        </td>
-      </tr>
-  <% end %>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New asset", to: project_asset_path(@conn, :new, @project), class: "btn btn-primary btn-outline btn-rounded btn-sm" %>
+            <table class="table table-hover">
+              <tbody>
+                <%= for asset <- @assets do %>
+                  <%= link to: project_asset_path(@conn, :show, @project.id, asset) do %>
+                  <tr>
+                    <td class="project-title">
+                      <a href=""><%= asset.name %>
+                      <br/>
+                      <small class="created-on">Created on <%= asset.inserted_at %></small>
+                      </a>
+                    </td>
+                    <td class="hidden-xs"><%= asset.model_id %></td>
+                    <td class="hidden-xs"><%= asset.manufacturer %></td>
+                    <td><img class="photo-thumbnail" align="right" src="<%= asset.photo %>" alt="<%= @project.name %>-<%= asset.name %>-photo"></td>
+                    <td class="project-actions">
+                      <%= link to: project_asset_path(@conn, :show, @project.id, asset), class: "btn btn-white btn-rounded btn-sm" do %>
+                        <i class="fa fa-folder"></i> View </a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- End ibox-content -->
+      </div>
+    </div> <!-- End wrapper -->
+  </div> <!-- End col -->
+</div> <!-- End row -->

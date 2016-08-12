@@ -12,7 +12,7 @@ defmodule Flexphoenix.Asset do
     timestamps
   end
 
-  @required_fields ~w(name model_id manufacturer photo)
+  @required_fields ~w(name model_id manufacturer )
   @optional_fields ~w()
 
   @doc """

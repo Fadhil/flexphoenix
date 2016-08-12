@@ -25,7 +25,7 @@
                     </td>
                     <td class="hidden-xs"><%= asset.model_id %></td>
                     <td class="hidden-xs"><%= asset.manufacturer %></td>
-                    <td><img class="photo-thumbnail" align="right" src="<%= asset.photo %>" alt="<%= @project.name %>-<%= asset.name %>-photo"></td>
+                    <td><img class="photo-thumbnail" align="right" src="<%= image(asset) %>" alt="<%= @project.name %>-<%= asset.name %>-photo"></td>
                     <td class="project-actions">
                       <%= link to: project_asset_path(@conn, :show, @project.id, asset), class: "btn btn-white btn-rounded btn-sm" do %>
                         <i class="fa fa-folder"></i> View </a>

@@ -19,7 +19,7 @@ defmodule Flexphoenix.Web do
   def model do
     quote do
       use Ecto.Schema
-      use Arc.Ecto.Model
+      use Arc.Ecto.Schema
 
       import Ecto
       import Ecto.Changeset

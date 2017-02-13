@@ -35,7 +35,7 @@ defmodule Flexphoenix.LayoutView do
   end
 
   def image(%{image: image} = thing) do
-    Image.url({image, thing})
+    Flexphoenix.Image.url({thing.image, thing})
   end
 
   def profile_image(_) do

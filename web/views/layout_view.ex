@@ -22,6 +22,10 @@ defmodule Flexphoenix.LayoutView do
     end
   end
 
+  def page_title(conn) do
+    "testing"
+  end
+
   def image(%{image: nil} ) do
     "/images/default-image.jpg"
   end

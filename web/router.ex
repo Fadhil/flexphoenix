@@ -48,6 +48,7 @@ defmodule Flexphoenix.Router do
 
   scope "/", Flexphoenix do
     pipe_through [:browser, :set_menu, :authorize] # Use the default browser stack
+    resources "/organisations", OrganisationController
     resources "/projects", ProjectController do
       resources "/assets", AssetController
       post "/invite_user", ProjectController, :invite_user

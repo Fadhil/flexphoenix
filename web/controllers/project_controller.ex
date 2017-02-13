@@ -61,7 +61,7 @@ defmodule Flexphoenix.ProjectController do
 
   def new(conn, _params) do
     changeset = Project.changeset(%Project{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, conn: conn)
   end
 
   def create(conn, %{"project" => project_params}) do

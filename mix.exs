@@ -20,7 +20,7 @@ defmodule Flexphoenix.Mixfile do
     [mod: {Flexphoenix, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
-                    :arc_ecto, :timex, :ex_aws, :httpoison
+                    :arc_ecto, :timex, :ex_aws, :hackney, :poison
                    ]]
   end
 
@@ -43,12 +43,13 @@ defmodule Flexphoenix.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:exrm, "~> 1.0"},
-     {:arc, "~> 0.5.2"},
-     {:arc_ecto, "~> 0.3.2"},
+     {:arc, "~> 0.6.0"},
+     {:arc_ecto, "~> 0.5.0"},
      {:timex, "~> 3.0"},
-     {:ex_aws, "~> 0.4.10"}, # Required if using Amazon S3
-     {:httpoison, "~> 0.7"},  # Required if using Amazon S3
-     {:poison, "~> 1.2"}     # Required if using Amazon S3
+     {:ex_aws, "~> 1.0.0"}, # Required if using Amazon S3
+     {:hackney, "~> 1.6"},
+     {:poison, "~> 2.2"},     # Required if using Amazon S3
+     {:sweet_xml, "~> 0.6"}
 	  ]
   end
 

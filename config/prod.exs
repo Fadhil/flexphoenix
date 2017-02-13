@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :flexphoenix, Flexphoenix.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "ec2-54-254-197-242.ap-southeast-1.compute.amazonaws.com", {:system, "PORT"} ],
+  url: [host: "ec2-54-254-197-242.ap-southeast-1.compute.amazonaws.com", port: {:system, "PORT"} ],
   cache_static_manifest: "priv/static/manifest.json",
   server: true
 

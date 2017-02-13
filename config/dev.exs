@@ -41,7 +41,10 @@ config :flexphoenix, Flexphoenix.Repo,
   hostname: "localhost",
   pool_size: 10
 
+config :flexphoenix, ecto_repos: [Flexphoenix.Repo]
+
 config :arc,
+	storage: Arc.Storage.S3,
   bucket: System.get_env("FLEX_AWS_S3_BUCKET"),
 	asset_host: System.get_env("FLEX_AWS_S3_ENDPOINT")
 

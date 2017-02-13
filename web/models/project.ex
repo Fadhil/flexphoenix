@@ -16,6 +16,7 @@ defmodule Flexphoenix.Project do
     timestamps
   end
 
+  @all_fields ~w(name description address image)
   @required_fields ~w(name description address)
   @optional_fields ~w()
 
@@ -28,16 +29,17 @@ defmodule Flexphoenix.Project do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
-    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
+    |> cast(params, @required_fields)
+    |> cast_attachments(params, @optional_file_fields)
   end
 
-  def create_changeset(model, user_id, params \\ :empty) do
+  def create_changeset(model, user_id, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
-    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
+    |> cast(params, @required_fields)
+    |> cast_attachments(params, @optional_file_fields)
+    |> validate_required(@required_fields)
     |> put_user_id(user_id)
   end
 

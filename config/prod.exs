@@ -74,7 +74,7 @@ config :flexphoenix, ecto_repos: [Flexphoenix.Repo]
 
 config :arc,
 	storage: Arc.Storage.S3,
-  bucket: {:system, "FLEX_AWS_S3_BUCKET"}
+  bucket: {:system, "FLEX_AWS_S3_BUCKET"},
 	asset_host: System.get_env("FLEX_AWS_S3_ENDPOINT")
 
 config :ex_aws,

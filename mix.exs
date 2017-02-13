@@ -20,7 +20,7 @@ defmodule Flexphoenix.Mixfile do
     [mod: {Flexphoenix, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
-                    :arc_ecto, :timex, :ex_aws, :hackney, :poison
+                    :arc_ecto, :timex, :ex_aws, :hackney, :poison, :sweet_xml
                    ]]
   end
 

@@ -42,4 +42,11 @@ config :flexphoenix, Flexphoenix.Repo,
   pool_size: 10
 
 config :arc,
-  storage_dir_root: "priv/static/images"
+  bucket: System.get_env("FLEX_AWS_S3_BUCKET"),
+	asset_host: System.get_env("FLEX_AWS_S3_ENDPOINT")
+
+config :ex_aws,
+  virtual_host: true,
+  access_key_id: [{:system, "FLEX_AWS_ACCESS_KEY_ID"}, :instance_role],
+  secret_access_key: [{:system, "FLEX_AWS_SECRET_ACCESS_KEY"}, :instance_role],
+  region: "ap-southeast-1"

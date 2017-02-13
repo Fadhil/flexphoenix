@@ -32,14 +32,10 @@ defmodule Flexphoenix.LayoutView do
 
   def image(%{photo: image} = thing) do
     Image.url({image, thing})
-    |> String.replace("priv/static", "")
-    |> String.replace("/apps/flexphoenix", "")
   end
 
   def image(%{image: image} = thing) do
     Image.url({image, thing})
-    |> String.replace("priv/static", "")
-    |> String.replace("/apps/flexphoenix", "")
   end
 
   def profile_image(_) do

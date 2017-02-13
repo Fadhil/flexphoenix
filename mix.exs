@@ -20,7 +20,7 @@ defmodule Flexphoenix.Mixfile do
     [mod: {Flexphoenix, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                     :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
-                    :arc_ecto, :timex
+                    :arc_ecto, :timex, :ex_aws, :httpoison
                    ]]
   end
 
@@ -44,7 +44,11 @@ defmodule Flexphoenix.Mixfile do
      {:exrm, "~> 1.0"},
      {:arc, "~> 0.5.2"},
      {:arc_ecto, "~> 0.3.2"},
-     {:timex, "~> 3.0"}]
+     {:timex, "~> 3.0"},
+     {:ex_aws, "~> 0.4.10"}, # Required if using Amazon S3
+     {:httpoison, "~> 0.7"},  # Required if using Amazon S3
+     {:poison, "~> 1.2"}     # Required if using Amazon S3
+	  ]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

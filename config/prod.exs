@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :flexphoenix, Flexphoenix.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
+  url: [host: "ec2-54-254-197-242.ap-southeast-1.compute.amazonaws.com", {:system, "PORT"} ],
   cache_static_manifest: "priv/static/manifest.json",
   server: true
 
@@ -70,8 +70,12 @@ config :flexphoenix, Flexphoenix.Repo,
   hostname: "localhost",
   pool_size: 10
 
+config :flexphoenix, ecto_repos: [Flexphoenix.Repo]
+
 config :arc,
+	storage: Arc.Storage.S3,
   bucket: {:system, "FLEX_AWS_S3_BUCKET"}
+	asset_host: System.get_env("FLEX_AWS_S3_ENDPOINT")
 
 config :ex_aws,
   virtual_host: true,

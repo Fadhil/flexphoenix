@@ -1,5 +1,5 @@
-defmodule Flexphoenix.Request do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.Request do
+  use Flexcility.Web, :model
 
   schema "requests" do
     field :worktype, :string
@@ -11,13 +11,13 @@ defmodule Flexphoenix.Request do
 		field :priority, :string
 		field :deadline, Ecto.DateTime
 
-    belongs_to :user, Flexphoenix.User
-		belongs_to :project, Flexphoenix.Project
-		belongs_to :asset, Flexphoenix.Asset
+    belongs_to :user, Flexcility.User
+		belongs_to :project, Flexcility.Project
+		belongs_to :asset, Flexcility.Asset
 
-    has_many :assigned_technicians, Flexphoenix.AssignedTechnician, on_delete: :delete_all
+    has_many :assigned_technicians, Flexcility.AssignedTechnician, on_delete: :delete_all
 		has_many :technicians, through: [:assigned_technicians, :user]
-    has_many :orders, Flexphoenix.Order, on_delete: :delete_all
+    has_many :orders, Flexcility.Order, on_delete: :delete_all
 
     timestamps
   end

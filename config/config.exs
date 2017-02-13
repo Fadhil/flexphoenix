@@ -7,16 +7,16 @@ use Mix.Config
 
 # Configure Passport
 config :passport,
-resource: Flexphoenix.User,
-repo: Flexphoenix.Repo
+resource: Flexcility.User,
+repo: Flexcility.Repo
 
 # Configures the endpoint
-config :flexphoenix, Flexphoenix.Endpoint,
+config :Flexcility, Flexcility.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: "gP52S4viUneP4uCKIvuJAYMvX5qesQAOhQw9Xx11PqBMpzPn3R/gjc5BQGOISKKC",
   render_errors: [accepts: ~w(html json)],
-  pubsub: [name: Flexphoenix.PubSub,
+  pubsub: [name: Flexcility.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

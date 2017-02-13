@@ -1,7 +1,7 @@
-defmodule Flexphoenix.ReportView do
-  use Flexphoenix.Web, :view
-  import Flexphoenix.RequestView, only: [asset_name: 1, project_name: 1]
-  import Flexphoenix.LayoutView, only: [display_name: 1, image: 1, profile_image: 1]
+defmodule Flexcility.ReportView do
+  use Flexcility.Web, :view
+  import Flexcility.RequestView, only: [asset_name: 1, project_name: 1]
+  import Flexcility.LayoutView, only: [display_name: 1, image: 1, profile_image: 1]
 
     # Takes a users_roles struct that has role.name = "Admin" and returns
     # %{user: <the matched user>, role: "Admin"}
@@ -58,7 +58,7 @@ defmodule Flexphoenix.ReportView do
 
 
       Note: a fully preloaded user struct with no associations looks like this:
-      %Flexphoenix.User{__meta__: #Ecto.Schema.Metadata<:loaded>,
+      %Flexcility.User{__meta__: #Ecto.Schema.Metadata<:loaded>,
        assigned_orders: [],
        assigned_requests: []>,
        assigned_technicians: [],

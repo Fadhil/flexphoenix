@@ -1,5 +1,5 @@
-alias Flexphoenix.Repo
-alias Flexphoenix.Role
+alias Flexcility.Repo
+alias Flexcility.Role
 
 admin_role = case Repo.get_by(Role, name: "Admin") do
   nil -> Repo.insert! %Role{name: "Admin"}
@@ -22,7 +22,7 @@ end
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     Flexphoenix.Repo.insert!(%Flexphoenix.SomeModel{})
+#     Flexcility.Repo.insert!(%Flexcility.SomeModel{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.

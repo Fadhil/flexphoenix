@@ -1,3 +1,3 @@
-defmodule Flexphoenix.PageView do
-  use Flexphoenix.Web, :view
+defmodule Flexcility.PageView do
+  use Flexcility.Web, :view
 end

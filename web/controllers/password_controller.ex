@@ -1,5 +1,5 @@
-defmodule Flexphoenix.PasswordController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.PasswordController do
+  use Flexcility.Web, :controller
 
   def forget_password(conn, _) do
     conn

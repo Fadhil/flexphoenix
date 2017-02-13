@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.AddFieldsToOrders do
+defmodule Flexcility.Repo.Migrations.AddFieldsToOrders do
   use Ecto.Migration
 
   def change do

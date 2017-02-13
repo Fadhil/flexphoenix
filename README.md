@@ -1,4 +1,4 @@
-# Flexphoenix
+# Flexcility
 
 To start your Phoenix app:
 

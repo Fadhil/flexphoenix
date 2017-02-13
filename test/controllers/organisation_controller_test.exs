@@ -1,7 +1,7 @@
-defmodule Flexphoenix.OrganisationControllerTest do
-  use Flexphoenix.ConnCase
+defmodule Flexcility.OrganisationControllerTest do
+  use Flexcility.ConnCase
 
-  alias Flexphoenix.Organisation
+  alias Flexcility.Organisation
   @valid_attrs %{description: "some content", display_name: "some content", logo: "some content", name: "some content"}
   @invalid_attrs %{}
 

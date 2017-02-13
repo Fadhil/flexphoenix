@@ -1,11 +1,11 @@
-defmodule Flexphoenix.UsersRole do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.UsersRole do
+  use Flexcility.Web, :model
   import Ecto.Query, only: [from: 2]
 
   schema "users_roles" do
-    belongs_to :user, Flexphoenix.User
-    belongs_to :role, Flexphoenix.Role
-    belongs_to :project, Flexphoenix.Project
+    belongs_to :user, Flexcility.User
+    belongs_to :role, Flexcility.Role
+    belongs_to :project, Flexcility.Project
 
     timestamps
   end
@@ -33,7 +33,7 @@ defmodule Flexphoenix.UsersRole do
 
     case repo.all(query) do
       # If we get no matches we build an empty map
-      [] -> %Flexphoenix.UsersRole{}
+      [] -> %Flexcility.UsersRole{}
       # If we get only the one matching row, we return that user role
       [users_role|[]] -> users_role
     end

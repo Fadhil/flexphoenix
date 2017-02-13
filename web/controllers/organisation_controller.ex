@@ -1,7 +1,7 @@
-defmodule Flexphoenix.OrganisationController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.OrganisationController do
+  use Flexcility.Web, :controller
 
-  alias Flexphoenix.Organisation
+  alias Flexcility.Organisation
 
   def index(conn, _params) do
     organisations = Repo.all(Organisation)

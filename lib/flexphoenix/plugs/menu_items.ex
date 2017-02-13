@@ -1,6 +1,6 @@
-defmodule Flexphoenix.Plugs.MenuItems do
+defmodule Flexcility.Plugs.MenuItems do
   import Plug.Conn
-  alias Flexphoenix.Repo
+  alias Flexcility.Repo
 
   def init(defaults), do: defaults
 

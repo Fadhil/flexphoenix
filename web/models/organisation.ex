@@ -1,10 +1,10 @@
-defmodule Flexphoenix.Organisation do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.Organisation do
+  use Flexcility.Web, :model
 
   schema "organisations" do
     field :name, :string
     field :display_name, :string
-    field :logo, Flexphoenix.Image.Type
+    field :logo, Flexcility.Image.Type
     field :description, :string
 
     timestamps()

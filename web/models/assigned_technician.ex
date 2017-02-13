@@ -1,13 +1,13 @@
-defmodule Flexphoenix.AssignedTechnician do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.AssignedTechnician do
+  use Flexcility.Web, :model
 
   schema "assigned_technicians" do
     timestamps
 
-    belongs_to :user, Flexphoenix.User
-    belongs_to :request, Flexphoenix.Request
-    belongs_to :order, Flexphoenix.Order
-    belongs_to :report, Flexphoenix.Report
+    belongs_to :user, Flexcility.User
+    belongs_to :request, Flexcility.Request
+    belongs_to :order, Flexcility.Order
+    belongs_to :report, Flexcility.Report
   end
 
   @required_fields ~w(user_id)

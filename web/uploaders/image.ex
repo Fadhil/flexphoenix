@@ -1,5 +1,5 @@
-defmodule Flexphoenix.Image do
-  use Flexphoenix.Web, :uploader
+defmodule Flexcility.Image do
+  use Flexcility.Web, :uploader
   @versions [:original, :thumb]
 
   def validate({file, _}) do

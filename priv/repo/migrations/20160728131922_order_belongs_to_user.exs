@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.OrderBelongsToUser do
+defmodule Flexcility.Repo.Migrations.OrderBelongsToUser do
   use Ecto.Migration
 
   def change do

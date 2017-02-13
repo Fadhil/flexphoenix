@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.EmptyPhotoColumnInAssets do
+defmodule Flexcility.Repo.Migrations.EmptyPhotoColumnInAssets do
   use Ecto.Migration
 
   def up do

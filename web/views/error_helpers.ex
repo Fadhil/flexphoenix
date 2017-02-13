@@ -1,4 +1,4 @@
-defmodule Flexphoenix.ErrorHelpers do
+defmodule Flexcility.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """

@@ -1,7 +1,7 @@
-defmodule Flexphoenix.RegistrationController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.RegistrationController do
+  use Flexcility.Web, :controller
 
-  alias Flexphoenix.User
+  alias Flexcility.User
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})

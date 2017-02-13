@@ -1,5 +1,5 @@
-defmodule Flexphoenix.Order do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.Order do
+  use Flexcility.Web, :model
 
   schema "orders" do
     field :title, :string
@@ -10,12 +10,12 @@ defmodule Flexphoenix.Order do
     field :priority, :string
     field :deadline, Ecto.DateTime
 
-    belongs_to :user, Flexphoenix.User
-    belongs_to :request, Flexphoenix.Request
+    belongs_to :user, Flexcility.User
+    belongs_to :request, Flexcility.Request
 
-    has_many :assigned_technicians, Flexphoenix.AssignedTechnician
+    has_many :assigned_technicians, Flexcility.AssignedTechnician
     has_many :technicians, through: [:assigned_technicians, :user]
-    has_many :reports, Flexphoenix.Report
+    has_many :reports, Flexcility.Report
     timestamps
   end
 

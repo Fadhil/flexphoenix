@@ -1,3 +1,3 @@
-defmodule Flexphoenix.OrganisationView do
-  use Flexphoenix.Web, :view
+defmodule Flexcility.OrganisationView do
+  use Flexcility.Web, :view
 end

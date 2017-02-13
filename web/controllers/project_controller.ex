@@ -1,10 +1,10 @@
-defmodule Flexphoenix.ProjectController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.ProjectController do
+  use Flexcility.Web, :controller
 
-  alias Flexphoenix.Project
-  alias Flexphoenix.UsersRole
-  alias Flexphoenix.Role
-  alias Flexphoenix.User
+  alias Flexcility.Project
+  alias Flexcility.UsersRole
+  alias Flexcility.Role
+  alias Flexcility.User
   import Ecto.Query, only: [from: 2]
 
   plug :scrub_params, "project" when action in [:create, :update]

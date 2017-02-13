@@ -1,6 +1,6 @@
-defmodule Flexphoenix.LayoutView do
-  use Flexphoenix.Web, :view
-  alias Flexphoenix.Image
+defmodule Flexcility.LayoutView do
+  use Flexcility.Web, :view
+  alias Flexcility.Image
   use Timex
 
   def display_name(user) do
@@ -39,7 +39,7 @@ defmodule Flexphoenix.LayoutView do
   end
 
   def image(%{image: image} = thing) do
-    Flexphoenix.Image.url({thing.image, thing})
+    Flexcility.Image.url({thing.image, thing})
   end
 
   def profile_image(_) do

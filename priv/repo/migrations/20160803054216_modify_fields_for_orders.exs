@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.ModifyFieldsForOrders do
+defmodule Flexcility.Repo.Migrations.ModifyFieldsForOrders do
   use Ecto.Migration
 
   # To save in postgres datetime format

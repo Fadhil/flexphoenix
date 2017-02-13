@@ -1,7 +1,7 @@
-defmodule Flexphoenix.RequestControllerTest do
-  use Flexphoenix.ConnCase
+defmodule Flexcility.RequestControllerTest do
+  use Flexcility.ConnCase
 
-  alias Flexphoenix.Request
+  alias Flexcility.Request
   @valid_attrs %{description: "some content", location: "some content", title: "some content", worktype: "some content"}
   @invalid_attrs %{}
 

@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.AddRequestIdToOrders do
+defmodule Flexcility.Repo.Migrations.AddRequestIdToOrders do
   use Ecto.Migration
 
   def change do

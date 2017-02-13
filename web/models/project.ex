@@ -1,17 +1,17 @@
-defmodule Flexphoenix.Project do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.Project do
+  use Flexcility.Web, :model
 
   schema "projects" do
     field :name, :string
     field :description, :string
     field :address, :string
-    field :image, Flexphoenix.Image.Type
+    field :image, Flexcility.Image.Type
 
-    belongs_to :user, Flexphoenix.User
-    has_many :assets, Flexphoenix.Asset, on_delete: :nilify_all
-    has_many :users_roles, Flexphoenix.UsersRole, on_delete: :delete_all
+    belongs_to :user, Flexcility.User
+    has_many :assets, Flexcility.Asset, on_delete: :nilify_all
+    has_many :users_roles, Flexcility.UsersRole, on_delete: :delete_all
     has_many :members, through: [:users_roles, :user]
-    has_many :requests, Flexphoenix.Request, on_delete: :delete_all
+    has_many :requests, Flexcility.Request, on_delete: :delete_all
 
     timestamps
   end

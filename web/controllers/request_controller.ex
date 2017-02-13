@@ -1,9 +1,9 @@
-defmodule Flexphoenix.RequestController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.RequestController do
+  use Flexcility.Web, :controller
 
-  alias Flexphoenix.Request
-  alias Flexphoenix.UsersRole
-  alias Flexphoenix.AssignedTechnician
+  alias Flexcility.Request
+  alias Flexcility.UsersRole
+  alias Flexcility.AssignedTechnician
 
   plug :scrub_params, "request" when action in [:create, :update]
   plug :assign_project_params when action in [:edit]

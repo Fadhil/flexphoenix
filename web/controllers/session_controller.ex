@@ -1,5 +1,5 @@
-defmodule Flexphoenix.SessionController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.SessionController do
+  use Flexcility.Web, :controller
 
   alias Passport.Session
 

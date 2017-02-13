@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Plugs.Authorize do
+defmodule Flexcility.Plugs.Authorize do
   import Plug.Conn
 
   def init(defaults), do: defaults

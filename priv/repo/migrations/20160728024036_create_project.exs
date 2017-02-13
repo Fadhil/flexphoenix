@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.CreateProject do
+defmodule Flexcility.Repo.Migrations.CreateProject do
   use Ecto.Migration
 
   def change do

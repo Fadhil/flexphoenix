@@ -1,12 +1,12 @@
-defmodule Flexphoenix.Web do
+defmodule Flexcility.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use Flexphoenix.Web, :controller
-      use Flexphoenix.Web, :view
+      use Flexcility.Web, :controller
+      use Flexcility.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -31,12 +31,12 @@ defmodule Flexphoenix.Web do
     quote do
       use Phoenix.Controller
 
-      alias Flexphoenix.Repo
+      alias Flexcility.Repo
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import Flexphoenix.Router.Helpers
-      import Flexphoenix.Gettext
+      import Flexcility.Router.Helpers
+      import Flexcility.Gettext
     end
   end
 
@@ -50,9 +50,9 @@ defmodule Flexphoenix.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Flexphoenix.Router.Helpers
-      import Flexphoenix.ErrorHelpers
-      import Flexphoenix.Gettext
+      import Flexcility.Router.Helpers
+      import Flexcility.ErrorHelpers
+      import Flexcility.Gettext
     end
   end
 
@@ -66,10 +66,10 @@ defmodule Flexphoenix.Web do
     quote do
       use Phoenix.Channel
 
-      alias Flexphoenix.Repo
+      alias Flexcility.Repo
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
-      import Flexphoenix.Gettext
+      import Flexcility.Gettext
     end
   end
 

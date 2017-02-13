@@ -1,10 +1,10 @@
-defmodule Flexphoenix.OrderController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.OrderController do
+  use Flexcility.Web, :controller
 
-  alias Flexphoenix.Order
-  alias Flexphoenix.Request
-  alias Flexphoenix.UsersRole
-  alias Flexphoenix.AssignedTechnician
+  alias Flexcility.Order
+  alias Flexcility.Request
+  alias Flexcility.UsersRole
+  alias Flexcility.AssignedTechnician
 
   plug :scrub_params, "order" when action in [:create, :update]
 

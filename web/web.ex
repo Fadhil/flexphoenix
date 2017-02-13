@@ -78,12 +78,12 @@ defmodule Flexphoenix.Web do
       use Arc.Definition
       use Arc.Ecto.Definition
 
-      def __storage do
-        Arc.Storage.Local
-      end
+      # def __storage do
+      #   Arc.Storage.Local
+      # end
 
       def storage_dir(version, {file, scope}) do
-        "#{Application.get_env(:arc, :storage_dir_root)}/#{resource_name(scope)}/#{scope.id}"
+        "#{resource_name(scope)}/#{scope.id}"
       end
 
       def filename(version, {file, scope}) do

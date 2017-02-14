@@ -43,8 +43,18 @@ defmodule Flexcility.LayoutView do
     Flexcility.Image.url({thing.logo, thing})
   end
 
+  def thumb(%{image: image} = thing) do
+    Flexcility.Image.url({thing.image, thing})
+  end
+
+  def thumb(%{logo: image} = thing) do
+    Flexcility.Image.url({thing.logo, thing})
+  end
+
   def image(params) do
-    Logger.info("Done doing images " <> (inspect params))
+  end
+
+  def thumb(params) do
   end
 
   def profile_image(_) do

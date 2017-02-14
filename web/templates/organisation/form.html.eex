@@ -26,7 +26,7 @@
 
                 <%= form_for @changeset, @action, [multipart: true], fn f -> %>
                   <div class="col-sm-6"><h4>Upload a logo</h4>
-                    <img id="organisation_logo_preview" src="<%= image(@organisation) %>" class="img-responsive">
+                    <img id="organisation_logo_preview" src="<%= thumb(@organisation) %>" class="img-responsive">
                     <label class="btn btn-default btn-file">
                       Upload File
                       <%= file_input f, :logo, style: "display: none;" %>

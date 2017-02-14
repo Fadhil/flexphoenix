@@ -3,7 +3,7 @@ defmodule Flexcility.Mixfile do
 
   def project do
     [app: :Flexcility,
-     version: "0.19.1",
+     version: "0.19.2",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -20,7 +20,8 @@ defmodule Flexcility.Mixfile do
     [mod: {Flexcility, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
-                    :arc_ecto, :timex, :ex_aws, :hackney, :poison, :sweet_xml
+                    :arc_ecto, :timex, :ex_aws, :hackney, :poison, :sweet_xml,
+                    :inflex
                    ]]
   end
 

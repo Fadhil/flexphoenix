@@ -3,7 +3,7 @@ defmodule Flexcility.LayoutView do
   import Flexcility.Utils.PageTitle
   alias Flexcility.Image
   use Timex
-
+  require Logger
   def display_name(user) do
     case user do
       %{first_name: first_name, last_name: last_name}
@@ -41,6 +41,10 @@ defmodule Flexcility.LayoutView do
 
   def image(%{logo: image} = thing) do
     Flexcility.Image.url({thing.logo, thing})
+  end
+
+  def image(params) do
+    Logger.info("Done doing images " <> (inspect params))
   end
 
   def profile_image(_) do

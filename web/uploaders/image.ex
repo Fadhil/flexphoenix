@@ -11,7 +11,7 @@ defmodule Flexcility.Image do
   end
 
   # Provide a default URL if there hasn't been a file uploaded
-  # def default_url(version, scope) do
-  #   "/images/avatars/default_#{version}.png"
-  # end
+  def default_url(version, scope) do
+    "/images/default-image.png"
+  end
 end

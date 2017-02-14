@@ -1,38 +1,81 @@
-<%= form_for @changeset, @action, [multipart: true], fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="row">
+<div class="col-lg-7">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Details <small>Some basic information about your organisation</small></h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#">Config option 1</a>
+                    </li>
+                    <li><a href="#">Config option 2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+
+                <%= form_for @changeset, @action, [multipart: true], fn f -> %>
+                  <div class="col-sm-6"><h4>Upload a logo</h4>
+                    <img id="organisation_logo_preview" src="<%= image(@organisation) %>" class="img-responsive">
+                    <label class="btn btn-default btn-file">
+                      Upload File
+                      <%= file_input f, :logo, style: "display: none;" %>
+                    </label>
+                  </div>
+                  <div class="col-sm-6 b-r">
+                      <div class="form-group">
+                        <%= label f, "Name", class: "control-label" %>
+                        <%= text_input f, :name, class: "form-control", placeholder: "Organisation Name" %>
+                        <%= error_tag f, :name %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= label f, :display_name, class: "control-label" %>
+                        <%= text_input f, :display_name, class: "form-control", placeholder: "This will be used for your subdomain" %>
+                        <%= error_tag f, :display_name %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= label f, :description, class: "control-label" %>
+                        <%= textarea f, :description, class: "form-control" %>
+                        <%= error_tag f, :description %>
+                      </div>
+                      <div class="form-group pull-right">
+                        <%= submit "Submit", class: "btn btn-primary" %>
+                      </div>
+                  </div>
+                <% end %>
+            </div>
+        </div>
     </div>
-  <% end %>
+</div>
 
-  <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
-    <%= error_tag f, :name %>
-  </div>
+</div>
+<script>
+function readURL(input) {
 
-  <div class="form-group">
-    <%= label f, :display_name, class: "control-label" %>
-    <%= text_input f, :display_name, class: "form-control" %>
-    <%= error_tag f, :display_name %>
-  </div>
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-  <div class="form-group">
-    <%= label f, :logo, class: "control-label" %>
-    <%= file_input f, :logo, class: "form-control" %>
-    <div id="span" class="error-tag">
-      <%= error_tag f, :logo %>
-    </div>
-  </div>
+        reader.onload = function (e) {
+            $('#organisation_logo_preview').attr('src', e.target.result);
+        }
 
-  <div class="form-group">
-    <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
-    <%= error_tag f, :description %>
-  </div>
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
+$("#organisation_logo").change(function(){
+    readURL(this);
+});
+</script>

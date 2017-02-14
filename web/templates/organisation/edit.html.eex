@@ -1,6 +1,7 @@
 <h2>Edit organisation</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: organisation_path(@conn, :update, @organisation) %>
+                        action: organisation_path(@conn, :update, @organisation),
+                        organisation: @organisation %>
 
 <%= link "Back", to: organisation_path(@conn, :index) %>

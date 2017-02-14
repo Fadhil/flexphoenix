@@ -8,7 +8,12 @@ defmodule Flexcility.OrganisationController do
     user = conn.assigns.current_user
     user = user |> Repo.preload(:organisations)
     organisations = user.organisations
-    render(conn, "index.html", organisations: organisations)
+    case organisations do
+      [] ->
+        render(conn, "index_empty.html", organisations: organisations)
+      _ ->
+        render(conn, "index.html", organisations: organisations)
+    end
   end
 
   def new(conn, _params) do

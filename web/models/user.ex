@@ -12,7 +12,7 @@ defmodule Flexcility.User do
 
     has_many :memberships, Flexcility.Membership
     has_many :organisations, through: [:memberships, :organisation]
-    has_many :roles, through: [:memberships, :roles]
+    has_many :roles, through: [:memberships, :role]
     has_many :projects, Flexcility.Project
     has_many :requests, Flexcility.Request
     has_many :orders, Flexcility.Order

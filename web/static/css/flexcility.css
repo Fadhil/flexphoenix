@@ -53,3 +53,8 @@ body{
 .chat-message {
   padding: 5px !important;
 }
+
+.no-org-page {
+  padding-top: 0px;
+  margin-top: 40px !important;
+}

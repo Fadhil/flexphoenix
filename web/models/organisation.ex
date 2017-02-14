@@ -22,7 +22,18 @@ defmodule Flexcility.Organisation do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, @all_fields)
-    |> cast_attachments(params, @image_fields)
     |> validate_required(@required_fields)
+    |> cast_attachments(params, @image_fields)
+  end
+
+  def create_changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, @all_fields)
+    |> validate_required(@required_fields)
+  end
+
+  def image_changeset(organisation, params) do
+    organisation
+    |> cast_attachments(params, @image_fields)
   end
 end

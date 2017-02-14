@@ -27,11 +27,15 @@ defmodule Flexcility.OrganisationController do
     membership_changeset = Membership.changeset(%Membership{}, %{})
                             |> Ecto.Changeset.put_assoc(:user, current_user)
                             |> Ecto.Changeset.put_assoc(:role, role)
-    changeset = Organisation.changeset(%Organisation{}, organisation_params)
+    changeset = Organisation.create_changeset(%Organisation{}, organisation_params)
                 |> Ecto.Changeset.put_assoc(:memberships, [membership_changeset])
 
     case Repo.insert(changeset) do
-      {:ok, _organisation} ->
+      {:ok, organisation} ->
+        # Save images AFTER creating, so we get the correct id
+        Organisation.image_changeset(organisation, organisation_params)
+        |> Repo.update
+
         conn
         |> put_flash(:info, "Organisation created successfully.")
         |> redirect(to: organisation_path(conn, :index))

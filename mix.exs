@@ -3,7 +3,7 @@ defmodule Flexcility.Mixfile do
 
   def project do
     [app: :Flexcility,
-     version: "0.18.6",
+     version: "0.19.0",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -50,7 +50,7 @@ defmodule Flexcility.Mixfile do
      {:hackney, "~> 1.6"},
      {:poison, "~> 2.2"},     # Required if using Amazon S3
      {:sweet_xml, "~> 0.6"},
-     {:inflex, "~> 1.7.0"} 
+     {:inflex, "~> 1.7.0"}
 	  ]
   end
 

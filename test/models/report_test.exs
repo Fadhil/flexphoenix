@@ -1,7 +1,7 @@
-defmodule Flexphoenix.ReportTest do
-  use Flexphoenix.ModelCase
+defmodule Flexcility.ReportTest do
+  use Flexcility.ModelCase
 
-  alias Flexphoenix.Report
+  alias Flexcility.Report
 
   @valid_attrs %{actions: "some content", completed: "some content", deadline: "some content", description: "some content", findings: "some content", instruction: "some content", location: "some content", priority: "some content", summary: "some content", title: "some content", type: "some content"}
   @invalid_attrs %{}

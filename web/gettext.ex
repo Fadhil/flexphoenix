@@ -1,11 +1,11 @@
-defmodule Flexphoenix.Gettext do
+defmodule Flexcility.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](http://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import Flexphoenix.Gettext
+      import Flexcility.Gettext
 
       # Simple translation
       gettext "Here is the string to translate"
@@ -20,5 +20,5 @@ defmodule Flexphoenix.Gettext do
 
   See the [Gettext Docs](http://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :flexphoenix
+  use Gettext, otp_app: :Flexcility
 end

@@ -1,5 +1,5 @@
-defmodule Flexphoenix.PageControllerTest do
-  use Flexphoenix.ConnCase
+defmodule Flexcility.PageControllerTest do
+  use Flexcility.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

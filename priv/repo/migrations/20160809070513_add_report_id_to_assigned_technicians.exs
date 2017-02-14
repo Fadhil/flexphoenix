@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.AddReportIdToAssignedTechnicians do
+defmodule Flexcility.Repo.Migrations.AddReportIdToAssignedTechnicians do
   use Ecto.Migration
 
   def change do

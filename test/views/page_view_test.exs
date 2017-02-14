@@ -1,3 +1,3 @@
-defmodule Flexphoenix.PageViewTest do
-  use Flexphoenix.ConnCase, async: true
+defmodule Flexcility.PageViewTest do
+  use Flexcility.ConnCase, async: true
 end

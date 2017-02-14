@@ -9,30 +9,30 @@
 //-->
 <html lang="en">
   <!--// <head></head> -->
-  <%= render Flexphoenix.LayoutView, "header.html", assigns %>
+  <%= render Flexcility.LayoutView, "header.html", assigns %>
 <body class="">
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 
     <div id="wrapper">
 
 				<!--// The menu bar on the left -->
-				<%= render Flexphoenix.LayoutView, "metis_menu.html", assigns %>
+				<%= render Flexcility.LayoutView, "metis_menu.html", assigns %>
 
 				<!--// The Main Page (Exclusing the entire left menu bar -->
         <div id="page-wrapper" class="gray-bg">
 
 					<!--// The top bar with the menu minimize button , search bar and
 					notifications and Logout -->
-					<%= render Flexphoenix.LayoutView, "top_navbar.html", assigns %>
+					<%= render Flexcility.LayoutView, "top_navbar.html", assigns %>
 
 					<!--// The white breadcrumbs and action area bar-->
-					<%= render Flexphoenix.LayoutView, "action_bar.html", assigns %>
+					<%= render Flexcility.LayoutView, "action_bar.html", assigns %>
 
           <!--// Template content -->
           <%= render @view_module, @view_template, assigns %>
 
 					<!--// Footer -->
-					<%= render Flexphoenix.LayoutView, "footer.html", assigns %>
+					<%= render Flexcility.LayoutView, "footer.html", assigns %>
         </div>
 			</div>
 
@@ -41,4 +41,3 @@
 </body>
 
 </html>
-

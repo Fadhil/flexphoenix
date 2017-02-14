@@ -1,4 +1,4 @@
-defmodule Flexphoenix.ChannelCase do
+defmodule Flexcility.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -20,14 +20,14 @@ defmodule Flexphoenix.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias Flexphoenix.Repo
+      alias Flexcility.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
 
       # The default endpoint for testing
-      @endpoint Flexphoenix.Endpoint
+      @endpoint Flexcility.Endpoint
     end
   end
 

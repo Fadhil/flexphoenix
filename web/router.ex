@@ -1,5 +1,5 @@
-defmodule Flexphoenix.Router do
-  use Flexphoenix.Web, :router
+defmodule Flexcility.Router do
+  use Flexcility.Web, :router
   use Passport
 
   pipeline :browser do
@@ -22,32 +22,41 @@ defmodule Flexphoenix.Router do
 	end
 
   pipeline :set_menu do
-    plug Flexphoenix.Plugs.MenuItems
+    plug Flexcility.Plugs.MenuItems
+  end
+
+  pipeline :redirect_logged_in_user do
+    plug Flexcility.Plugs.RedirectLoggedInUser
   end
 
   pipeline :authorize do
-    plug Flexphoenix.Plugs.Authorize
+    plug Flexcility.Plugs.Authorize
   end
 
-	scope "/", Flexphoenix do
+	scope "/", Flexcility do
 		pipe_through [:browser, :no_layout]
 		get "/skin-config", PageController, :skin_config
 	end
 
-  scope "/", Flexphoenix do
+  scope "/", Flexcility do
     pipe_through [:browser]
+    delete "/logout", SessionController, :delete
+  end
+  
+  scope "/", Flexcility do
+    pipe_through [:browser, :redirect_logged_in_user]
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
-    delete "/logout", SessionController, :delete
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
     get "/forget-password", PasswordController, :forget_password
     post "/reset-password", PasswordController, :reset_password
   end
 
-  scope "/", Flexphoenix do
+  scope "/", Flexcility do
     pipe_through [:browser, :set_menu, :authorize] # Use the default browser stack
+    resources "/organisations", OrganisationController
     resources "/projects", ProjectController do
       resources "/assets", AssetController
       post "/invite_user", ProjectController, :invite_user
@@ -63,7 +72,7 @@ defmodule Flexphoenix.Router do
     resources "/reports", ReportController
     end
 
-  scope "/api", Flexphoenix do
+  scope "/api", Flexcility do
     pipe_through [:api, :set_menu]
 
     resources "/projects", ProjectController, only: [] do
@@ -73,7 +82,7 @@ defmodule Flexphoenix.Router do
 
 
   # Other scopes may use custom stacks.
-  # scope "/api", Flexphoenix do
+  # scope "/api", Flexcility do
   #   pipe_through :api
   # end
 end

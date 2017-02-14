@@ -1,6 +1,6 @@
-defmodule Flexphoenix.AssetView do
-  use Flexphoenix.Web, :view
-  import Flexphoenix.LayoutView, only: [image: 1]
+defmodule Flexcility.AssetView do
+  use Flexcility.Web, :view
+  import Flexcility.LayoutView, only: [image: 1]
 
 	def render("index.json", struct) do
     %{assets: assets} = struct

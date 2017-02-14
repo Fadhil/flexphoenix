@@ -1,8 +1,8 @@
-defmodule Flexphoenix.Mixfile do
+defmodule Flexcility.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :flexphoenix,
+    [app: :Flexcility,
      version: "0.18.6",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -17,7 +17,7 @@ defmodule Flexphoenix.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Flexphoenix, []},
+    [mod: {Flexcility, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
                     :arc_ecto, :timex, :ex_aws, :hackney, :poison, :sweet_xml
@@ -49,7 +49,8 @@ defmodule Flexphoenix.Mixfile do
      {:ex_aws, "~> 1.0.0"}, # Required if using Amazon S3
      {:hackney, "~> 1.6"},
      {:poison, "~> 2.2"},     # Required if using Amazon S3
-     {:sweet_xml, "~> 0.6"}
+     {:sweet_xml, "~> 0.6"},
+     {:inflex, "~> 1.7.0"} 
 	  ]
   end
 

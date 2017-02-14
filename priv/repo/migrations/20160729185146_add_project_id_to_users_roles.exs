@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.AddProjectIdToUsersRoles do
+defmodule Flexcility.Repo.Migrations.AddProjectIdToUsersRoles do
   use Ecto.Migration
 
   def change do

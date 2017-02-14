@@ -1,7 +1,7 @@
-defmodule Flexphoenix.RequestView do
-  use Flexphoenix.Web, :view
-  alias Flexphoenix.Repo
-  import Flexphoenix.LayoutView, only: [display_name: 1, image: 1, profile_image: 1]
+defmodule Flexcility.RequestView do
+  use Flexcility.Web, :view
+  alias Flexcility.Repo
+  import Flexcility.LayoutView, only: [display_name: 1, image: 1, profile_image: 1]
 
   def project_list(user) do
     all_projects(user)
@@ -73,7 +73,7 @@ Looks like this:
 
 
   Note: a fully preloaded user struct with no associations looks like this:
-  %Flexphoenix.User{__meta__: #Ecto.Schema.Metadata<:loaded>,
+  %Flexcility.User{__meta__: #Ecto.Schema.Metadata<:loaded>,
    assigned_orders: [],
    assigned_requests: []>,
    assigned_technicians: [],

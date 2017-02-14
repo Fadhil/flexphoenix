@@ -1,5 +1,5 @@
-defmodule Flexphoenix.WorkRequestRoomChannel do
-  use Flexphoenix.Web, :channel
+defmodule Flexcility.WorkRequestRoomChannel do
+  use Flexcility.Web, :channel
 
   def join("work_request_rooms:" <> work_request_id, payload, socket) do
     if authorized?(payload) do

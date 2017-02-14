@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.AddFirstNameAndLastNameToUser do
+defmodule Flexcility.Repo.Migrations.AddFirstNameAndLastNameToUser do
   use Ecto.Migration
 
   def change do

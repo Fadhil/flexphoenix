@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.RedefineFieldsForRequests do
+defmodule Flexcility.Repo.Migrations.RedefineFieldsForRequests do
   use Ecto.Migration
 
   def up do

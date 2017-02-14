@@ -1,5 +1,5 @@
-defmodule Flexphoenix.ErrorView do
-  use Flexphoenix.Web, :view
+defmodule Flexcility.ErrorView do
+  use Flexcility.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

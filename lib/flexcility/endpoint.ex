@@ -1,18 +1,18 @@
-defmodule Flexphoenix.Endpoint do
-  use Phoenix.Endpoint, otp_app: :flexphoenix
+defmodule Flexcility.Endpoint do
+  use Phoenix.Endpoint, otp_app: :Flexcility
 
-  socket "/socket", Flexphoenix.UserSocket
+  socket "/socket", Flexcility.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :flexphoenix, gzip: false,
+    at: "/", from: :Flexcility, gzip: false,
     only: ~w(css fonts images img js favicon.ico robots.txt)
 
   plug Plug.Static,
-    at: "/uploads", from: "/apps/flexphoenix/uploads/", gzip: false
+    at: "/uploads", from: "/apps/Flexcility/uploads/", gzip: false
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -35,8 +35,8 @@ defmodule Flexphoenix.Endpoint do
 
   plug Plug.Session,
     store: :cookie,
-    key: "_flexphoenix_key",
+    key: "_Flexcility_key",
     signing_salt: "ZjRCjSN5"
 
-  plug Flexphoenix.Router
+  plug Flexcility.Router
 end

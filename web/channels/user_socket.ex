@@ -1,9 +1,9 @@
-defmodule Flexphoenix.UserSocket do
+defmodule Flexcility.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Flexphoenix.RoomChannel
-  channel "work_request_rooms:*", Flexphoenix.WorkRequestRoomChannel
+  # channel "rooms:*", Flexcility.RoomChannel
+  channel "work_request_rooms:*", Flexcility.WorkRequestRoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -31,7 +31,7 @@ defmodule Flexphoenix.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     Flexphoenix.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
+  #     Flexcility.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil

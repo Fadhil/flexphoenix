@@ -1,13 +1,13 @@
-defmodule Flexphoenix.Asset do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.Asset do
+  use Flexcility.Web, :model
 
   schema "assets" do
     field :name, :string
     field :model_id, :string
     field :manufacturer, :string
-    field :photo, Flexphoenix.Image.Type
-    belongs_to :project, Flexphoenix.Project
-    has_many :requests, Flexphoenix.Request, on_delete: :delete_all
+    field :photo, Flexcility.Image.Type
+    belongs_to :project, Flexcility.Project
+    has_many :requests, Flexcility.Request, on_delete: :delete_all
 
     timestamps
   end

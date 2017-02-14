@@ -1,3 +1,3 @@
-defmodule Flexphoenix.LayoutViewTest do
-  use Flexphoenix.ConnCase, async: true
+defmodule Flexcility.LayoutViewTest do
+  use Flexcility.ConnCase, async: true
 end

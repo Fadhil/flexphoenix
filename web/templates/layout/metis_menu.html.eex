@@ -9,65 +9,58 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                           <span class="clear"> <span class="block m-t-xs"> <strong id="user-display-name" class="font-bold"><%= display_name(@current_user) %></strong>
                              </span> <span class="text-muted text-xs block">Developer<b class="caret"></b></span> </span> </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <ul class="dropdown-menu animated fadeInDown m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="contacts.html">Contacts</a></li>
                             <li><a href="mailbox.html">Mailbox</a></li>
-                            <li class="divider"></li>
-                            <li>
-                              <%= if @current_user do %>
-                                <%= link "Logout", to: session_path(@conn, :delete), method: :delete %>
-                              <% else %>
-                                <%= link "Login", to: session_path(@conn, :new) %>
-                              <% end %>
-                            </li>
+                            <li><%= link "Create Organisation", to: organisation_path(@conn, :new) %></li>
                         </ul>
                     </div>
                     <div class="logo-element">
                         IN+
                     </div>
                 </li>
-                <%= if(@own_projects || @attached_projects) do %>
+                <!-- <%#= if(@own_projects || @attached_projects) do %>
                   <li>
                       <a href=""><i class="fa fa-industry"></i> <span class="nav-label">Projects</span><span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse">
-                        <%= case @own_projects do %>
-                          <%= [] -> %>
+                        <%#= case @own_projects do %>
+                          <%#= [] -> %>
                             <li>
-                              <a href="<%= project_path(@conn, :new) %>">New Project</a></li>
+                              <a href="<%#= project_path(@conn, :new) %>">New Project</a></li>
                             </li>
-                          <%=  _ -> %>
+                          <%#=  _ -> %>
                             <li>
-                              <a href="<%= project_path(@conn, :index) %>">All Projects</a></li>
+                              <a href="<%#= project_path(@conn, :index) %>">All Projects</a></li>
                             </li>
                             <li>
                               <a href="#">Own Projects<span class="fa arrow"></span></a>
                               <ul class="nav nav-third-level collapse in">
-                            <%= for mi <- @own_projects do %>
+                            <%#= for mi <- @own_projects do %>
                               <li>
-                                <%= link mi.name, to: project_path(@conn, :show, mi.id) %>
+                                <%#= link mi.name, to: project_path(@conn, :show, mi.id) %>
                               </li>
-                            <% end %>
+                            <%# end %>
                               </ul>
                           </li>
-                        <% end %>
-                        <%= case @attached_projects do %>
-                          <%= [] -> %>
-                          <%=  _ -> %>
+                        <%# end %>
+                        <%#= case @attached_projects do %>
+                          <%#= [] -> %>
+                          <%#=  _ -> %>
                             <li>
                               <a href="#">Assigned Projects<span class="fa arrow"></span></a>
                               <ul class="nav nav-third-level collapse in">
-                            <%= for mi <- @attached_projects do %>
+                            <%#= for mi <- @attached_projects do %>
                               <li>
-                                <%= link mi.name, to: project_path(@conn, :show, mi.id) %>
+                                <%#= link mi.name, to: project_path(@conn, :show, mi.id) %>
                               </li>
-                            <% end %>
+                            <%# end %>
                               </ul>
                           </li>
-                        <% end %>
+                        <%# end %>
                       </ul>
                   </li>
-                <% end %>
+                <%# end %> -->
                 <li>
                   <a href="<%= request_path(@conn, :new) %>"><i class="fa fa-flash"></i> <span class="new-label">New Work Request</span></a>
                 </li>

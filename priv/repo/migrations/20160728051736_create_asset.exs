@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.CreateAsset do
+defmodule Flexcility.Repo.Migrations.CreateAsset do
   use Ecto.Migration
 
   def change do

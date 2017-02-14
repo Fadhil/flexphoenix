@@ -1,7 +1,7 @@
-defmodule Flexphoenix.AssetControllerTest do
-  use Flexphoenix.ConnCase
+defmodule Flexcility.AssetControllerTest do
+  use Flexcility.ConnCase
 
-  alias Flexphoenix.Asset
+  alias Flexcility.Asset
   @valid_attrs %{manufacturer: "some content", model_id: "some content", name: "some content", photo: "some content"}
   @invalid_attrs %{}
 

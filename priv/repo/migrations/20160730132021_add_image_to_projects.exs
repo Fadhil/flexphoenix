@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.AddImageToProjects do
+defmodule Flexcility.Repo.Migrations.AddImageToProjects do
   use Ecto.Migration
 
   def change do

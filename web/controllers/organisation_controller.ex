@@ -1,9 +1,9 @@
 defmodule Flexcility.OrganisationController do
   use Flexcility.Web, :controller
-
   alias Flexcility.Organisation
 
   def index(conn, _params) do
+    user = conn.assigns.current_user
     organisations = Repo.all(Organisation)
     render(conn, "index.html", organisations: organisations)
   end
@@ -14,8 +14,9 @@ defmodule Flexcility.OrganisationController do
   end
 
   def create(conn, %{"organisation" => organisation_params}) do
+    current_user = conn.assigns.current_user
     changeset = Organisation.changeset(%Organisation{}, organisation_params)
-
+                |> Ecto.Changeset.put_assoc(:user, current_user)
     case Repo.insert(changeset) do
       {:ok, _organisation} ->
         conn

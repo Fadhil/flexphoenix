@@ -1,4 +1,3 @@
-<h2>Show organisation</h2>
 
 <ul>
 
@@ -14,7 +13,7 @@
 
   <li>
     <strong>Logo:</strong>
-    <%= @organisation.logo %>
+    <img src="<%= image(@organisation) %>" class="img-responsive">
   </li>
 
   <li>

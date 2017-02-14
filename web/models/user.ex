@@ -10,6 +10,7 @@ defmodule Flexcility.User do
     field :password_confirmation, :string, virtual: true
     field :password_hash, :string
 
+    has_many :organisations, Flexcility.Organisation
     has_many :projects, Flexcility.Project
     has_many :requests, Flexcility.Request
     has_many :orders, Flexcility.Order

@@ -11,10 +11,23 @@ technician_role = case Repo.get_by(Role, name: "Technician") do
   role -> role
 end
 
-client_role = case Repo.get_by(Role, name: "Client") do
-  nil -> Repo.insert! %Role{name: "Client"}
+tenant_role = case Repo.get_by(Role, name: "Tenant") do
+  nil -> Repo.insert! %Role{name: "Tenant"}
   role -> role
 end
+
+engineer_role = case Repo.get_by(Role, name: "Engineer") do
+  nil -> Repo.insert! %Role{name: "Engineer"}
+  role -> role
+end
+
+helpdesk_role = case Repo.get_by(Role, name: "Helpdesk") do
+  nil -> Repo.insert! %Role{name: "Helpdesk"}
+  role -> role
+end
+
+
+
 # Script for populating the database. You can run it as:
 #
 #     mix run priv/repo/seeds.exs

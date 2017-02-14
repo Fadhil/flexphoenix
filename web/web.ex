@@ -24,6 +24,15 @@ defmodule Flexcility.Web do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
+
+      def put_user_id(changeset, user_id) do
+        case changeset do
+          %Ecto.Changeset{valid?: true} ->
+            put_change(changeset, :user_id, user_id)
+          _ ->
+            changeset
+        end
+      end
     end
   end
 

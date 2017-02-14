@@ -8,7 +8,7 @@ defmodule Flexcility.Project do
     field :image, Flexcility.Image.Type
 
     belongs_to :user, Flexcility.User
-    has_many :assets, Flexcility.Asset, on_delete: :nilify_all
+    has_many :assets, Flexcility.Asset, on_delete: :delete_all
     has_many :users_roles, Flexcility.UsersRole, on_delete: :delete_all
     has_many :members, through: [:users_roles, :user]
     has_many :requests, Flexcility.Request, on_delete: :delete_all

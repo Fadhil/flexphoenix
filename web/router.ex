@@ -25,6 +25,10 @@ defmodule Flexcility.Router do
     plug Flexcility.Plugs.MenuItems
   end
 
+  pipeline :redirect_logged_in_user do
+    plug Flexcility.Plugs.RedirectLoggedInUser
+  end
+
   pipeline :authorize do
     plug Flexcility.Plugs.Authorize
   end
@@ -36,10 +40,14 @@ defmodule Flexcility.Router do
 
   scope "/", Flexcility do
     pipe_through [:browser]
+    delete "/logout", SessionController, :delete
+  end
+  
+  scope "/", Flexcility do
+    pipe_through [:browser, :redirect_logged_in_user]
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
-    delete "/logout", SessionController, :delete
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
     get "/forget-password", PasswordController, :forget_password

@@ -15,7 +15,7 @@ defmodule Flexcility.SessionController do
     {:ok, conn} ->
       conn
       |> put_flash(:info, "Welcome back!")
-      |> redirect(to: project_path(conn, :index))
+      |> redirect(to: organisation_path(conn, :index))
     {:error, _reason, conn} ->
       conn
       |> put_flash(:error, "Invalid username/password combination")

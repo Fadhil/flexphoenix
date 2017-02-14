@@ -1,6 +1,6 @@
 					<div class="row wrapper border-bottom white-bg page-heading">
 							<div class="col-sm-4">
-                <h2><%= link "Flexcility", to: page_path(@conn, :index) %><%#= " - #{assigns.page_title}" %></h2>
+                <h2><%= link "Flexcility", to: page_path(@conn, :index) %><%= page_title(@conn.path_info, action_name(@conn)) %></h2>
 
 									<ol class="breadcrumb">
 											<li>
@@ -17,4 +17,3 @@
 									</div>
 							</div>
 					</div>
-

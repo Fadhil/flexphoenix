@@ -1,5 +1,6 @@
 defmodule Flexcility.LayoutView do
   use Flexcility.Web, :view
+  import Flexcility.Utils.PageTitle
   alias Flexcility.Image
   use Timex
 
@@ -22,10 +23,6 @@ defmodule Flexcility.LayoutView do
     end
   end
 
-  def page_title(conn) do
-    "testing"
-  end
-
   def image(%{image: nil} ) do
     "/images/default-image.jpg"
   end
@@ -42,7 +39,13 @@ defmodule Flexcility.LayoutView do
     Flexcility.Image.url({thing.image, thing})
   end
 
+  def image(%{logo: image} = thing) do
+    Flexcility.Image.url({thing.logo, thing})
+  end
+
   def profile_image(_) do
     "/images/default_profile_picture.png"
   end
+
+
 end

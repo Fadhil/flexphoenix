@@ -6,7 +6,8 @@ defmodule Flexcility.OrganisationController do
 
   def index(conn, _params) do
     user = conn.assigns.current_user
-    organisations = Repo.all(Organisation)
+    user = user |> Repo.preload(:organisations)
+    organisations = user.organisations
     render(conn, "index.html", organisations: organisations)
   end
 

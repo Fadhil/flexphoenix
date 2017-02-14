@@ -49,7 +49,8 @@ defmodule Flexcility.Mixfile do
      {:ex_aws, "~> 1.0.0"}, # Required if using Amazon S3
      {:hackney, "~> 1.6"},
      {:poison, "~> 2.2"},     # Required if using Amazon S3
-     {:sweet_xml, "~> 0.6"}
+     {:sweet_xml, "~> 0.6"},
+     {:inflex, "~> 1.7.0"} 
 	  ]
   end
 

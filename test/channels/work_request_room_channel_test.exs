@@ -1,7 +1,7 @@
-defmodule Flexphoenix.WorkRequestRoomChannelTest do
-  use Flexphoenix.ChannelCase
+defmodule Flexcility.WorkRequestRoomChannelTest do
+  use Flexcility.ChannelCase
 
-  alias Flexphoenix.WorkRequestRoomChannel
+  alias Flexcility.WorkRequestRoomChannel
 
   setup do
     {:ok, _, socket} =

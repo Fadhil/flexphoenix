@@ -1,8 +1,9 @@
-defmodule Flexphoenix.LayoutView do
-  use Flexphoenix.Web, :view
-  alias Flexphoenix.Image
+defmodule Flexcility.LayoutView do
+  use Flexcility.Web, :view
+  import Flexcility.Utils.PageTitle
+  alias Flexcility.Image
   use Timex
-
+  require Logger
   def display_name(user) do
     case user do
       %{first_name: first_name, last_name: last_name}
@@ -35,10 +36,30 @@ defmodule Flexphoenix.LayoutView do
   end
 
   def image(%{image: image} = thing) do
-    Flexphoenix.Image.url({thing.image, thing})
+    Flexcility.Image.url({thing.image, thing})
+  end
+
+  def image(%{logo: image} = thing) do
+    Flexcility.Image.url({thing.logo, thing})
+  end
+
+  def thumb(%{image: image} = thing) do
+    Flexcility.Image.url({thing.image, thing})
+  end
+
+  def thumb(%{logo: image} = thing) do
+    Flexcility.Image.url({thing.logo, thing})
+  end
+
+  def image(params) do
+  end
+
+  def thumb(params) do
   end
 
   def profile_image(_) do
     "/images/default_profile_picture.png"
   end
+
+
 end

@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.CreateRole do
+defmodule Flexcility.Repo.Migrations.CreateRole do
   use Ecto.Migration
 
   def change do

@@ -1,3 +1,3 @@
-defmodule Flexphoenix.RegistrationView do
-  use Flexphoenix.Web, :view
+defmodule Flexcility.RegistrationView do
+  use Flexcility.Web, :view
 end

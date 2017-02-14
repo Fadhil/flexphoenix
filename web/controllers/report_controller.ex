@@ -1,9 +1,9 @@
-defmodule Flexphoenix.ReportController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.ReportController do
+  use Flexcility.Web, :controller
 
-  alias Flexphoenix.Report
-  alias Flexphoenix.Order
-  alias Flexphoenix.Request
+  alias Flexcility.Report
+  alias Flexcility.Order
+  alias Flexcility.Request
 
   plug :scrub_params, "report" when action in [:create, :update]
 

@@ -1,6 +1,6 @@
-defmodule Flexphoenix.Plugs.MenuItems do
+defmodule Flexcility.Plugs.MenuItems do
   import Plug.Conn
-  alias Flexphoenix.Repo
+  alias Flexcility.Repo
 
   def init(defaults), do: defaults
 
@@ -11,7 +11,9 @@ defmodule Flexphoenix.Plugs.MenuItems do
         assign(conn, :own_projects, nil)
         |> assign(:attached_projects, nil)
 
-      _ -> assign_projects(conn, user)
+      _ ->
+        assign_organisations(conn, user)
+
     end
   end
 
@@ -29,11 +31,16 @@ defmodule Flexphoenix.Plugs.MenuItems do
     attached_projects = Enum.map(user.attached_projects, &get_name_and_id/1)
     assigned_requests = user.attached_projects |> Enum.map(fn proj -> proj.requests end) |> List.flatten
     assigned_orders = user.assigned_orders
-    assign(conn, :own_projects, own_projects)
-    |> assign(:attached_projects, attached_projects)
-    |> assign(:assigned_requests, assigned_requests)
-    |> assign(:assigned_orders, assigned_orders)
+    assign(conn, :own_projects, [])
+    |> assign(:attached_projects, [])
+    |> assign(:assigned_requests, [])
+    |> assign(:assigned_orders, [])
     |> assign(:current_user, user)
 
+  end
+
+  def assign_organisations(conn, user) do
+    user = user |> Repo.preload([:organisations])
+    conn
   end
 end

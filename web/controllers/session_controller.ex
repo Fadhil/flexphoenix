@@ -1,5 +1,5 @@
-defmodule Flexphoenix.SessionController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.SessionController do
+  use Flexcility.Web, :controller
 
   alias Passport.Session
 
@@ -15,7 +15,7 @@ defmodule Flexphoenix.SessionController do
     {:ok, conn} ->
       conn
       |> put_flash(:info, "Welcome back!")
-      |> redirect(to: project_path(conn, :index))
+      |> redirect(to: organisation_path(conn, :index))
     {:error, _reason, conn} ->
       conn
       |> put_flash(:error, "Invalid username/password combination")

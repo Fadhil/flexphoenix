@@ -1,7 +1,7 @@
-defmodule Flexphoenix.OrderControllerTest do
-  use Flexphoenix.ConnCase
+defmodule Flexcility.OrderControllerTest do
+  use Flexcility.ConnCase
 
-  alias Flexphoenix.Order
+  alias Flexcility.Order
   @valid_attrs %{body: "some content", title: "some content"}
   @invalid_attrs %{}
 

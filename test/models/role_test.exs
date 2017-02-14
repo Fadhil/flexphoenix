@@ -1,7 +1,7 @@
-defmodule Flexphoenix.RoleTest do
-  use Flexphoenix.ModelCase
+defmodule Flexcility.RoleTest do
+  use Flexcility.ModelCase
 
-  alias Flexphoenix.Role
+  alias Flexcility.Role
 
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}

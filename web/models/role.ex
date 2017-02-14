@@ -1,13 +1,17 @@
-defmodule Flexphoenix.Role do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.Role do
+  use Flexcility.Web, :model
 
   schema "roles" do
     field :name, :string
 
-    has_many :users_roles, Flexphoenix.UsersRole
-    has_many :users, through: [:users_roles, :user]
+    # has_many :users_roles, Flexcility.UsersRole
+    # has_many :users, through: [:users_roles, :user]
 
     timestamps
+
+    has_many :memberships, Flexcility.Membership
+    has_many :users, through: [:memberships, :user]
+    has_many :organisations, through: [:memberships, :organisation]
   end
 
   @required_fields ~w(name)

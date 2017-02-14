@@ -1,5 +1,5 @@
 <html lang="en">
   <!--// <head></head> -->
-  <%= render Flexphoenix.LayoutView, "header.html", assigns %>
+  <%= render Flexcility.LayoutView, "header.html", assigns %>
 <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 <%= render @view_module, @view_template, assigns %>

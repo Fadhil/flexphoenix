@@ -1,7 +1,7 @@
-defmodule Flexphoenix.ProjectControllerTest do
-  use Flexphoenix.ConnCase
+defmodule Flexcility.ProjectControllerTest do
+  use Flexcility.ConnCase
 
-  alias Flexphoenix.Project
+  alias Flexcility.Project
   @valid_attrs %{address: "some content", description: "some content", name: "some content"}
   @invalid_attrs %{}
 

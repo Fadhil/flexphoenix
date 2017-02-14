@@ -1,3 +1,3 @@
-defmodule Flexphoenix.PasswordView do
-  use Flexphoenix.Web, :view
+defmodule Flexcility.PasswordView do
+  use Flexcility.Web, :view
 end

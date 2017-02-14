@@ -1,7 +1,7 @@
-defmodule Flexphoenix.ProjectTest do
-  use Flexphoenix.ModelCase
+defmodule Flexcility.ProjectTest do
+  use Flexcility.ModelCase
 
-  alias Flexphoenix.Project
+  alias Flexcility.Project
 
   @valid_attrs %{address: "some content", description: "some content", name: "some content"}
   @invalid_attrs %{}

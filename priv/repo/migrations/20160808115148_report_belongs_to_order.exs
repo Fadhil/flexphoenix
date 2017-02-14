@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.ReportBelongsToOrder do
+defmodule Flexcility.Repo.Migrations.ReportBelongsToOrder do
   use Ecto.Migration
 
   def change do

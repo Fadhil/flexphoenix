@@ -1,7 +1,7 @@
-defmodule Flexphoenix.AssetController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.AssetController do
+  use Flexcility.Web, :controller
   import Ecto.Query, only: [from: 2]
-  alias Flexphoenix.Asset
+  alias Flexcility.Asset
 
   plug :scrub_params, "asset" when action in [:create, :update]
   plug :assign_project
@@ -75,7 +75,7 @@ defmodule Flexphoenix.AssetController do
 
   def assign_project(conn, _opts) do
     %{params: %{"project_id" => project_id}} = conn
-    project = Repo.get(Flexphoenix.Project, project_id)
+    project = Repo.get(Flexcility.Project, project_id)
     assign(conn, :project, project)
   end
 end

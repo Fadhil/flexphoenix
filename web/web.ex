@@ -1,12 +1,12 @@
-defmodule Flexphoenix.Web do
+defmodule Flexcility.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use Flexphoenix.Web, :controller
-      use Flexphoenix.Web, :view
+      use Flexcility.Web, :controller
+      use Flexcility.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -24,6 +24,15 @@ defmodule Flexphoenix.Web do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
+
+      def put_user_id(changeset, user_id) do
+        case changeset do
+          %Ecto.Changeset{valid?: true} ->
+            put_change(changeset, :user_id, user_id)
+          _ ->
+            changeset
+        end
+      end
     end
   end
 
@@ -31,12 +40,12 @@ defmodule Flexphoenix.Web do
     quote do
       use Phoenix.Controller
 
-      alias Flexphoenix.Repo
+      alias Flexcility.Repo
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import Flexphoenix.Router.Helpers
-      import Flexphoenix.Gettext
+      import Flexcility.Router.Helpers
+      import Flexcility.Gettext
     end
   end
 
@@ -45,14 +54,14 @@ defmodule Flexphoenix.Web do
       use Phoenix.View, root: "web/templates"
 
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
+      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1, action_name: 1, controller_module: 1]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Flexphoenix.Router.Helpers
-      import Flexphoenix.ErrorHelpers
-      import Flexphoenix.Gettext
+      import Flexcility.Router.Helpers
+      import Flexcility.ErrorHelpers
+      import Flexcility.Gettext
     end
   end
 
@@ -66,10 +75,10 @@ defmodule Flexphoenix.Web do
     quote do
       use Phoenix.Channel
 
-      alias Flexphoenix.Repo
+      alias Flexcility.Repo
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
-      import Flexphoenix.Gettext
+      import Flexcility.Gettext
     end
   end
 

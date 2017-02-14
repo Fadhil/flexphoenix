@@ -1,0 +1,27 @@
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @organisation.name %>
+  </li>
+
+  <li>
+    <strong>Display name:</strong>
+    <%= @organisation.display_name %>
+  </li>
+
+  <li>
+    <strong>Logo:</strong>
+    <img src="<%= image(@organisation) %>" class="img-responsive">
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @organisation.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: organisation_path(@conn, :edit, @organisation) %>
+<%= link "Back", to: organisation_path(@conn, :index) %>

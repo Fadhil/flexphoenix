@@ -1,5 +1,5 @@
-defmodule Flexphoenix.Report do
-  use Flexphoenix.Web, :model
+defmodule Flexcility.Report do
+  use Flexcility.Web, :model
 
   schema "reports" do
     field :title, :string
@@ -14,10 +14,10 @@ defmodule Flexphoenix.Report do
     field :summary, :string
     field :completed, :string
 
-    belongs_to :user, Flexphoenix.User
-    belongs_to :order, Flexphoenix.Order
+    belongs_to :user, Flexcility.User
+    belongs_to :order, Flexcility.Order
 
-    has_many :assigned_technicians, Flexphoenix.AssignedTechnician
+    has_many :assigned_technicians, Flexcility.AssignedTechnician
 
     timestamps
   end

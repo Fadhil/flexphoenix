@@ -1,4 +1,4 @@
-defmodule Flexphoenix.Repo.Migrations.RemoveNameFromUsers do
+defmodule Flexcility.Repo.Migrations.RemoveNameFromUsers do
   use Ecto.Migration
 
   def up do

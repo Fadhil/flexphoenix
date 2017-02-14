@@ -1,5 +1,5 @@
-defmodule Flexphoenix.PageController do
-  use Flexphoenix.Web, :controller
+defmodule Flexcility.PageController do
+  use Flexcility.Web, :controller
 
   def index(conn, _params) do
     conn

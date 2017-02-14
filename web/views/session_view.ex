@@ -1,3 +1,3 @@
-defmodule Flexphoenix.SessionView do
-  use Flexphoenix.Web, :view
+defmodule Flexcility.SessionView do
+  use Flexcility.Web, :view
 end

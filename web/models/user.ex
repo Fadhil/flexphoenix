@@ -10,13 +10,15 @@ defmodule Flexcility.User do
     field :password_confirmation, :string, virtual: true
     field :password_hash, :string
 
-    has_many :organisations, Flexcility.Organisation
+    has_many :memberships, Flexcility.Membership
+    has_many :organisations, through: [:memberships, :organisation]
+    has_many :roles, through: [:memberships, :roles]
     has_many :projects, Flexcility.Project
     has_many :requests, Flexcility.Request
     has_many :orders, Flexcility.Order
     has_many :reports, Flexcility.Report
     has_many :users_roles, Flexcility.UsersRole
-    has_many :roles, through: [:users_roles, :role]
+    # has_many :roles, through: [:users_roles, :role]
     has_many :attached_projects, through: [:users_roles, :project]
     has_many :assigned_technicians, Flexcility.AssignedTechnician
     has_many :assigned_requests, through: [:assigned_technicians, :request]

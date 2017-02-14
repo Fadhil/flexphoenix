@@ -9,7 +9,8 @@ defmodule Flexcility.Organisation do
 
     timestamps()
 
-    belongs_to :user, Flexcility.Organisation
+    has_many :memberships, Flexcility.Membership, on_delete: :delete_all
+    has_many :users, through: [:memberships, :user]
   end
 
   @all_fields [:name, :display_name, :description]
@@ -23,13 +24,5 @@ defmodule Flexcility.Organisation do
     |> cast(params, @all_fields)
     |> cast_attachments(params, @image_fields)
     |> validate_required(@required_fields)
-  end
-
-  def create_changeset(struct, user_id, params \\ %{}) do
-    struct
-    |> cast(params, @required_fields)
-    |> cast_attachments(params, @image_fields)
-    |> validate_required(@required_fields)
-    |> put_user_id(user_id)
   end
 end

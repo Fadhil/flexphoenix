@@ -16,7 +16,7 @@
                     <li><a href="#">Config option 2</a>
                     </li>
                 </ul>
-                <a class="close-link">
+                <a href="javascript:history.back()" class="close-link">
                     <i class="fa fa-times"></i>
                 </a>
             </div>

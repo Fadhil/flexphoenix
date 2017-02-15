@@ -66,3 +66,11 @@ body{
   color: #676a6c;
   overflow-x: hidden;
 }
+
+.top-middle-box {
+  max-width: 400px;
+  z-index: 100;
+  margin-left: 40px;
+  margin-top: 0;
+  padding-top: 40px;
+}

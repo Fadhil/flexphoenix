@@ -16,7 +16,7 @@
   <% end %>
 
   <a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a>
-</div><small>v0.19.3</small>
+</div><small>v0.19.5</small>
   <h3>Welcome to Flexcility</h3>
   <p>The go to facilities management app for everyone.<br/>Register now to start managing your projects with Flexcility!</p>
 

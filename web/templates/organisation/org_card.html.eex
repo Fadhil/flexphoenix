@@ -1,0 +1,76 @@
+<div class="ibox">
+    <a href="<%= organisation_path(@conn, :show, @organisation) %>">
+      <div class="ibox-title">
+          <span class="pull-right"><h6><%= @organisation.display_name %></h6></span>
+          <h5><%= @organisation.name %></h5>
+      </div>
+    </a>
+      <div class="ibox-content">
+        <a href="<%= organisation_path(@conn, :show, @organisation) %>">
+          <div class="row">
+            <div class="col-xs-6">
+              <img src="<%= thumb(@organisation)%>" class="img-responsive">
+            </div>
+            <div class="col-xs-6">
+              <p class="small-text">
+                  <%= @organisation.description %>
+              </p>
+            </div>
+          </div>
+        </a>
+        <div class="row  m-t-sm">
+            <div class="col-xs-6">
+                <div class="font-bold text-center">FACILITIES</div>
+                <h2 class="text-center">4</h2>
+            </div>
+            <div class="col-xs-6">
+                <div class="font-bold text-center">SITES</div>
+                <h2 class="text-center">35</h2>
+            </div>
+            <!-- <div class="col-sm-6 text-right">
+                <div class="font-bold text-center">BUDGET</div>
+                <h2>$200,913 <i class="fa fa-level-up text-navy"></i></h2>
+            </div> -->
+        </div>
+        <%= case @members do %>
+          <% "full" -> %>
+            <div class="font-bold text-center">MEMBERS</div>
+            <div class="team-members">
+                <a href="#"><img alt="member" class="img-circle" src="/img/a1.jpg"></a>
+                <a href="#"><img alt="member" class="img-circle" src="/img/a2.jpg"></a>
+                <a href="#"><img alt="member" class="img-circle" src="/img/a3.jpg"></a>
+                <a href="#"><img alt="member" class="img-circle" src="/img/a5.jpg"></a>
+                <a href="#"><img alt="member" class="img-circle" src="/img/a6.jpg"></a>
+            </div>
+
+          <!-- <div>
+              <span>Status of current project:</span>
+              <div class="stat-percent">48%</div>
+              <div class="progress progress-mini">
+                  <div style="width: 48%;" class="progress-bar"></div>
+              </div>
+          </div> -->
+        <% "count" -> %>
+          <div class="row  m-t-sm">
+            <div class="col-xs-6">
+                <div class="font-bold text-center">Members</div>
+                <h2 class="text-center">4</h2>
+            </div>
+            <!-- <div class="col-xs-6">
+                <div class="font-bold text-center">SITES</div>
+                <h2 class="text-center">35</h2>
+            </div> -->
+          </div>
+        <% end %>
+        <%= if action_name(@conn) == :show do %>
+          <div class="row m-t-sm">
+            <div class="col-xs-6">
+              <%= link "Back", to: organisation_path(@conn, :index), class: "btn btn-default" %>
+            </div>
+            <div class="col-xs-6">
+              <%= link "Edit", to: organisation_path(@conn, :edit, @organisation), class: "btn btn-primary pull-right" %>
+            </div>
+          </div>
+        <% end %>
+    </div>
+</div>

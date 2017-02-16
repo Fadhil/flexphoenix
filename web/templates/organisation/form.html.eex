@@ -59,7 +59,9 @@
         </div>
     </div>
 </div>
-
+<%= if :edit == @action_name do %>
+  <%= link "Delete", to: organisation_path(@conn, :delete, @organisation), method: :delete %>
+<% end %>
 </div>
 <script>
 function readURL(input) {

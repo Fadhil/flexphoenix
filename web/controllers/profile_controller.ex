@@ -27,8 +27,8 @@ defmodule Flexcility.ProfileController do
         user.profile |> Profile.image_changeset(profile_params["profile"]) |> Repo.update
 
         conn
-        |> put_flash(:info, "Profile created successfully.")
-        |> redirect(to: profile_path(conn, :show, user.profile.id))
+        |> put_flash(:info, "Profile updated successfully.")
+        |> redirect(to: "/")
       {:error, changeset} ->
         render(put_flash(conn, :info, changeset), "new.html", changeset: changeset, user: user)
     end
@@ -36,7 +36,9 @@ defmodule Flexcility.ProfileController do
 
   def show(conn, %{"id" => id}) do
     profile = Repo.get!(Profile, id)
-    render(conn, "show.html", profile: profile)
+    user = Repo.get!(User, profile.user_id)
+           |> Repo.preload([:profile, :organisations])
+    render(conn, "show.html", profile: profile, user: user)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -46,15 +48,24 @@ defmodule Flexcility.ProfileController do
     render(conn, "edit.html", profile: profile, changeset: changeset, user: user)
   end
 
-  def update(conn, %{"id" => id, "profile" => profile_params}) do
+  def edit(conn, %{}) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get(User, user_id)|> Repo.preload([:profile])
+    changeset = user |> User.changeset(%{})
+    render(conn, "new.html", changeset: changeset, user: user)
+  end
+
+
+  def update(conn, %{"id" => id, "user" => user_params}) do
     profile = Repo.get!(Profile, id)
-    changeset = Profile.changeset(profile, profile_params)
+    user = Repo.get!(User, profile.user_id) |> Repo.preload([:profile])
+    changeset = User.update_changeset(user, user_params)
 
     case Repo.update(changeset) do
-      {:ok, profile} ->
+      {:ok, user} ->
         conn
         |> put_flash(:info, "Profile updated successfully.")
-        |> redirect(to: profile_path(conn, :show, profile))
+        |> redirect(to: profile_path(conn, :show, user.profile))
       {:error, changeset} ->
         render(conn, "edit.html", profile: profile, changeset: changeset)
     end

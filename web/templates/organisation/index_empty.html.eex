@@ -1,7 +1,7 @@
-<%= inspect(@conn.assigns.current_user) %>
 <div class="wrapper wrapper-content">
     <div class="middle-box text-center animated fadeInRightBig no-org-page">
-        <h3 class="font-bold">It looks like you don't belong to any Organisations yet.</h3>
+        <h3 class="font-bold">The next step is to create an Organisation identity (e.g. your company) with which you
+                  can manage your Team Members, Facilities and Assets.</h3>
         <div class="error-desc">
             Create an Organisation to get started with Flexcility here.
             <br/><%= link "Create Organisation", to: organisation_path(@conn, :new), class: "btn btn-primary m-t" %>

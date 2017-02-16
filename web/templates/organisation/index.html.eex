@@ -14,5 +14,4 @@
   </div>
 </div>
 
-
-<%= link "New organisation", to: organisation_path(@conn, :new) %>
+<p style="color:#f3f3f4 !important;">............</p>

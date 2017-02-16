@@ -18,7 +18,7 @@ defmodule Flexcility.OrganisationController do
 
   def new(conn, _params) do
     changeset = Organisation.changeset(%Organisation{})
-    render(conn, "new.html", changeset: changeset, page_title: "New Organisation")
+    render(conn, "new.html", changeset: changeset, page_title: "New Organisation", action_name: action_name(conn))
   end
 
   def create(conn, %{"organisation" => organisation_params}) do
@@ -46,7 +46,7 @@ defmodule Flexcility.OrganisationController do
 
   def show(conn, %{"id" => id}) do
     organisation = Repo.get!(Organisation, id)
-                   |> Repo.preload([{:memberships, [:user, :role]}])
+                   |> Repo.preload([{:memberships, [{:user, :profile}, :role]}])
     facilities = []
     members = organisation.memberships
               |> Enum.map(&get_members_roles/1)
@@ -57,7 +57,7 @@ defmodule Flexcility.OrganisationController do
   def edit(conn, %{"id" => id}) do
     organisation = Repo.get!(Organisation, id)
     changeset = Organisation.changeset(organisation)
-    render(conn, "edit.html", organisation: organisation, changeset: changeset)
+    render(conn, "edit.html", organisation: organisation, changeset: changeset, action_name: action_name(conn))
   end
 
   def update(conn, %{"id" => id, "organisation" => organisation_params}) do
@@ -87,8 +87,9 @@ defmodule Flexcility.OrganisationController do
   end
 
   def get_members_roles(membership) do
-    %{role: %{name: role}, user: %{email: email}} = membership
-    %{email: email, role: role}
+
+    %{role: %{name: role}, user: %{email: email, profile: %{image: image} = profile}} = membership
+    %{email: email, role: role, profile: profile}
   end
 
   def send_an_email(conn, _params) do

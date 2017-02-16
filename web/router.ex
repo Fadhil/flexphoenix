@@ -49,9 +49,9 @@ defmodule Flexcility.Router do
 
   scope "/", Flexcility do
     pipe_through [:browser, :set_menu, :authorize]
-    resources "/profiles", ProfileController#, except: [:index]
+    resources "/profiles", ProfileController, only: [:new, :create]
   end
-  
+
   scope "/", Flexcility do
     pipe_through [:browser, :redirect_logged_in_user]
     get "/", PageController, :index
@@ -81,6 +81,8 @@ defmodule Flexcility.Router do
       post "/assign_technicians", OrderController, :create_technician_assignment, as: :assign_technicians
     end
     resources "/reports", ReportController
+    get "/profiles/edit", ProfileController, :edit
+    resources "/profiles", ProfileController, except: [:index, :new, :create]
   end
 
 

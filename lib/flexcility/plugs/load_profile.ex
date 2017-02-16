@@ -11,13 +11,15 @@ defmodule Flexcility.Plug.LoadProfile do
 
     case user.profile do
       nil ->
+        #Redirect to new profile page if no profile found
         redirect_path = Helpers.profile_path(conn, :new)
 
         conn
         |> Phoenix.Controller.redirect(to: redirect_path)
         |> halt
       _ ->
-
+        # preload user with profile
+        user = user |> Repo.preload([:profile])
         conn
         |> assign(:current_user, user)
 

@@ -15,6 +15,24 @@ defmodule Flexcility.LayoutView do
     end
   end
 
+
+  def display_nickname(user) do
+    case user.profile do
+      nil ->
+        nil
+      profile ->
+        full_name = display_name(user)
+        case profile.full_name do
+          nil ->
+            nil
+          ^full_name ->
+            profile.full_name
+          nickname ->
+            nickname
+        end
+    end
+  end
+
   def display_created_at(object) do
     case object do
       %{inserted_at: inserted_at} ->
@@ -44,15 +62,15 @@ defmodule Flexcility.LayoutView do
   end
 
   def thumb(%{image: image} = thing) do
-    Flexcility.Image.url({thing.image, thing})
+    Flexcility.Image.url({thing.image, thing}, :thumb)
   end
 
   def thumb(%{logo: image} = thing) do
-    Flexcility.Image.url({thing.logo, thing})
+    Flexcility.Image.url({thing.logo, thing}, :logo)
   end
 
   def image(params) do
-    "/images/default_profile_picture.png"
+    "/images/default-image.png"
   end
 
   def thumb(params) do

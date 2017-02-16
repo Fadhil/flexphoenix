@@ -33,6 +33,10 @@ defmodule Flexcility.Router do
     plug Flexcility.Plugs.Authorize
   end
 
+  pipeline :load_profile do
+    plug Flexcility.Plug.LoadProfile
+  end
+
 	scope "/", Flexcility do
 		pipe_through [:browser, :no_layout]
 		get "/skin-config", PageController, :skin_config
@@ -44,8 +48,12 @@ defmodule Flexcility.Router do
   end
 
   scope "/", Flexcility do
+    pipe_through [:browser, :set_menu, :authorize]
+    resources "/profiles", ProfileController, only: [:new, :create]
+  end
+
+  scope "/", Flexcility do
     pipe_through [:browser, :redirect_logged_in_user]
-    
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -56,7 +64,7 @@ defmodule Flexcility.Router do
   end
 
   scope "/", Flexcility do
-    pipe_through [:browser, :set_menu, :authorize] # Use the default browser stack
+    pipe_through [:browser, :set_menu, :authorize, :load_profile] # Use the default browser stack
 
     get "/send_email_test", OrganisationController, :send_an_email
     resources "/organisations", OrganisationController
@@ -73,7 +81,10 @@ defmodule Flexcility.Router do
       post "/assign_technicians", OrderController, :create_technician_assignment, as: :assign_technicians
     end
     resources "/reports", ReportController
-    end
+    get "/profiles/edit", ProfileController, :edit
+    resources "/profiles", ProfileController, except: [:index, :new, :create]
+  end
+
 
   scope "/api", Flexcility do
     pipe_through [:api, :set_menu]

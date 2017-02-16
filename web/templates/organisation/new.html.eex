@@ -1,7 +1,9 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <%= render "form.html", changeset: @changeset,
                           action: organisation_path(@conn, :create),
-                          organisation: %Flexcility.Organisation{} %>
+                          organisation: %Flexcility.Organisation{},
+                          conn: @conn,
+                          action_name: @action_name %>
 
   <%= link "Back", to: organisation_path(@conn, :index) %>
 </div>

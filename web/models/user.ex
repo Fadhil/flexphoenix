@@ -10,6 +10,7 @@ defmodule Flexcility.User do
     field :password_confirmation, :string, virtual: true
     field :password_hash, :string
 
+    has_one :profile, Flexcility.Profile
     has_many :memberships, Flexcility.Membership
     has_many :organisations, through: [:memberships, :organisation]
     has_many :roles, through: [:memberships, :role]
@@ -26,22 +27,25 @@ defmodule Flexcility.User do
     timestamps
   end
 
-  @required_fields ~w(first_name last_name email password)
-  @optional_fields ~w()
+  @required_fields [:first_name, :last_name, :email, :password]
+  @all_fields [:first_name, :last_name, :email, :password]
 
-  def changeset(model, params \\ %{}) do model
-    |> cast(params, @required_fields, @optional_fields)
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
     |> validate_format(:email, ~r/@/)
+    |> cast_assoc(:profile)
     |> unique_constraint(:email)
   end
 
   def update_changeset(model, params \\ %{}) do model
-    |> cast(params, ~w(first_name last_name email), [])
+    |> cast(params, @all_fields)
+    |> cast_assoc(:profile, required: true)
   end
 
   def registration_changeset(model, params \\ %{}) do model
     |> changeset(params)
-    |> cast(params, ~w(password password_confirmation), [])
     |> validate_length(:password, min: 6, max: 100)
     |> validate_confirmation(:password)
     |> put_hashed_password()

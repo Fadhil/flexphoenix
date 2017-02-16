@@ -4,7 +4,11 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
                             <span style="display: none" id="user-hidden-id"><%= @current_user.id %></span>
-                            <img id="user-display-image" alt="image" class="img-circle profile-img-circle" src="/images/default_profile_picture.png" />
+                            <a href="<%= profile_path(@conn, :edit) %>">
+                              <img id="user-display-image" alt="image"
+                                class="img-circle profile-img-circle"
+                                src="<%= thumb(@current_user.profile)%>" />
+                            </a>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                           <span class="clear"> <span class="block m-t-xs"> <strong id="user-display-name" class="font-bold"><%= display_name(@current_user) %></strong>
@@ -61,6 +65,9 @@
                       </ul>
                   </li>
                 <%# end %> -->
+                <li>
+                  <a href="<%= organisation_path(@conn, :index) %>"><i class="fa fa-home"></i> <span class="new-label">Your Organisations</span></a>
+                </li>
                 <li>
                   <a href="<%= request_path(@conn, :new) %>"><i class="fa fa-flash"></i> <span class="new-label">New Work Request</span></a>
                 </li>

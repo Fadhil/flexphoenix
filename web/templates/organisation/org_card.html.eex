@@ -1,7 +1,7 @@
 <div class="ibox">
     <a href="<%= organisation_path(@conn, :show, @organisation) %>">
       <div class="ibox-title">
-          <span class="pull-right"><h6><%= @organisation.display_name %></h6></span>
+          <h6><span class="pull-right"><%= @organisation.display_name %></span></h6>
           <h5><%= @organisation.name %></h5>
       </div>
     </a>
@@ -9,7 +9,7 @@
         <a href="<%= organisation_path(@conn, :show, @organisation) %>">
           <div class="row">
             <div class="col-xs-6">
-              <img src="<%= thumb(@organisation)%>" class="img-responsive">
+              <img src="<%= image(@organisation)%>" class="img-responsive" />
             </div>
             <div class="col-xs-6">
               <p class="small-text">
@@ -43,23 +43,12 @@
                 <a href="#"><img alt="member" class="img-circle" src="/img/a6.jpg"></a>
             </div>
 
-          <!-- <div>
-              <span>Status of current project:</span>
-              <div class="stat-percent">48%</div>
-              <div class="progress progress-mini">
-                  <div style="width: 48%;" class="progress-bar"></div>
-              </div>
-          </div> -->
         <% "count" -> %>
           <div class="row  m-t-sm">
             <div class="col-xs-6">
                 <div class="font-bold text-center">Members</div>
                 <h2 class="text-center">4</h2>
             </div>
-            <!-- <div class="col-xs-6">
-                <div class="font-bold text-center">SITES</div>
-                <h2 class="text-center">35</h2>
-            </div> -->
           </div>
         <% end %>
         <%= if action_name(@conn) == :show do %>

@@ -1,5 +1,5 @@
 defmodule Flexcility.Version do
-  @current "0.20.0"
+  @current "0.20.1"
 
   def current do
     @current

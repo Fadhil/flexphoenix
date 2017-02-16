@@ -53,3 +53,6 @@ config :ex_aws,
   access_key_id: [{:system, "FLEX_AWS_ACCESS_KEY_ID"}, :instance_role],
   secret_access_key: [{:system, "FLEX_AWS_SECRET_ACCESS_KEY"}, :instance_role],
   region: "ap-southeast-1"
+
+config :Flexcility, Flexcility.Mailer,
+  adapter: Bamboo.LocalAdapter

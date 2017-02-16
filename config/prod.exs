@@ -83,6 +83,16 @@ config :ex_aws,
   secret_access_key: [{:system, "FLEX_AWS_SECRET_ACCESS_KEY"}, :instance_role],
   region: "ap-southeast-1"#,
 
+config :Flexcility, Flexcility.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "email-smtp.eu-west-1.amazonaws.com",
+  port: 587,
+  username: SYSTEM.get_env("FLEX_AWS_SES_USERNAME"),
+  password: SYSTEM.get_env("FLEX_AWS_SES_PASSWORD"),
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: false, # can be `true`
+  retries: 1
+
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 

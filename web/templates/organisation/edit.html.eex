@@ -1,5 +1,6 @@
 <%= render "form.html", changeset: @changeset,
                         action: organisation_path(@conn, :update, @organisation),
-                        organisation: @organisation %>
+                        organisation: @organisation, conn: @conn, action_name: @action_name %>
 
 <%= link "Back", to: organisation_path(@conn, :index) %>
+<%= link "Delete", to: organisation_path(@conn, :delete, @organisation), method: :delete %>

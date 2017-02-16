@@ -1,3 +1,4 @@
+
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row col-md-12">
     <%= for {organisation, index} <- Enum.with_index(@organisations) do %>
@@ -10,8 +11,57 @@
         <%= render Flexcility.OrganisationView, "org_card.html", %{organisation: organisation, members: "full", conn: @conn} %>
       </div>
     <% end %>
+    <//-- new stuff //-->
+<div class="col-md-4 col-xs-12">
+    <div class="ibox">
+
+          <div class="ibox-title">
+              <h6><span class="pull-right">New Org</span></h6>
+              <h5>Create New Organisation</h5>
+          </div>
+
+          <div class="ibox-content">
+            <a href="<%= organisation_path(@conn, :new) %>">
+              <div class="row">
+                <div class="col-xs-6">
+                  <img src="<%= image(nil)%>" class="img-responsive" />
+                </div>
+                <div class="col-xs-6 text-center">
+                  <img alt="Create Organisation" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Create Organisation">
+
+                </div>
+              </div>
+            </a>
+            <div class="row  m-t-sm">
+              <a href="<%= organisation_path(@conn, :new) %>">
+                <div class="col-xs-6">
+                    <div class="font-bold text-center">FACILITIES</div>
+                    <h2 class="text-center">-</h2>
+                </div>
+                <div class="col-xs-6">
+                    <div class="font-bold text-center">SITES</div>
+                    <h2 class="text-center">-</h2>
+                </div>
+                <!-- <div class="col-sm-6 text-right">
+                    <div class="font-bold text-center">BUDGET</div>
+                    <h2>$200,913 <i class="fa fa-level-up text-navy"></i></h2>
+                </div> -->
+
+            </div>
+
+                <div class="font-bold text-center">MEMBERS</div>
+                <div class="team-members text-center">
+                    <img alt="member" class="img-circle" src="/images/default_profile_picture.png">
+                </div>
+
+
+</a>
+        </div>
+    </div>
+</div>
+    <//--new stuff//->
   </div>
+
 </div>
 
-
-<%= link "New organisation", to: organisation_path(@conn, :new) %>
+<p style="color:#f3f3f4 !important;">............</p>

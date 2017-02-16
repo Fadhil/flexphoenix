@@ -3,7 +3,7 @@
   <div class="row m-b-lg m-t-lg">
     <div class="col-md-6">
       <div class="profile-image">
-        <img src="<%= thumb(@organisation)%>" class="img-circle circle-border m-b-md" alt="Organisation Logo">
+        <img src="<%= thumb(@organisation)%>" class="img-responsive" alt="Organisation Logo">
       </div>
       <div class="profile-info">
         <div class="">
@@ -102,7 +102,7 @@
                     <div class="ibox-content">
                       <div class="text-center team-members">
                         <%= for admin <- @members["Admin"] do %>
-                          <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="/img/a1.jpg" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
+                          <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="<%= thumb(admin.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
                         <% end %>
                         <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Invite Admin"></a>
                       </div>

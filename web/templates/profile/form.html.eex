@@ -1,3 +1,4 @@
+
 <div class="row">
 <div class="col-lg-7">
     <div class="ibox float-e-margins">
@@ -23,33 +24,37 @@
         </div>
         <div class="ibox-content">
             <div class="row">
-
-                <%= form_for @changeset, @action, [multipart: true], fn f -> %>
-                  <div class="col-sm-6"><h4>Upload a logo</h4>
-                    <img id="organisation_logo_preview" src="<%= thumb(@organisation) %>" class="img-responsive">
+                <%= form_for @changeset, @action, [multipart: true, method: :post], fn f -> %>
+                  <div class="col-sm-6"><h4>Upload a profile photo</h4>
+                    <img id="profile_image_preview" src="<%= image(@user.profile) %>" class="img-responsive">
                     <label class="btn btn-default btn-file">
                       Upload File
-                      <%= file_input f, :logo, style: "display: none;" %>
+                      <%= inputs_for f, :profile, fn i -> %>
+                        <%= file_input i, :image, style: "display: none;" %>
+                      <% end %>
                     </label>
                   </div>
                   <div class="col-sm-6 b-r">
                       <div class="form-group">
-                        <%= label f, "Name", class: "control-label" %>
-                        <%= text_input f, :name, class: "form-control", placeholder: "Organisation Name" %>
+                        <%= label f, "First Name", class: "control-label" %>
+                        <%= text_input f, :first_name, class: "form-control", placeholder: "First Name" %>
                         <%= error_tag f, :name %>
                       </div>
 
                       <div class="form-group">
-                        <%= label f, :display_name, class: "control-label" %>
-                        <%= text_input f, :display_name, class: "form-control", placeholder: "This will be used for your subdomain" %>
-                        <%= error_tag f, :display_name %>
+                        <%= label f, "Last Name", class: "control-label" %>
+                        <%= text_input f, :last_name, class: "form-control", placeholder: "Last" %>
+                        <%= error_tag f, :last_name %>
                       </div>
 
-                      <div class="form-group">
-                        <%= label f, :description, class: "control-label" %>
-                        <%= textarea f, :description, class: "form-control" %>
-                        <%= error_tag f, :description %>
-                      </div>
+                      <%= inputs_for f, :profile, fn i -> %>
+                        <div class="form-group">
+                          <%= label i, "Display Name", class: "control-label" %>
+                          <%= textarea i, :full_name, class: "form-control", value: display_name(@user) %>
+                          <%= error_tag i, :full_name %>
+                        </div>
+                      <% end %>
+
                       <div class="form-group pull-right">
                         <%= submit "Submit", class: "btn btn-primary" %>
                       </div>
@@ -59,9 +64,7 @@
         </div>
     </div>
 </div>
-<%= if :edit == @action_name do %>
-  <%= link "Delete", to: organisation_path(@conn, :delete, @organisation), method: :delete %>
-<% end %>
+
 </div>
 <script>
 function readURL(input) {
@@ -70,14 +73,14 @@ function readURL(input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#organisation_logo_preview').attr('src', e.target.result);
+            $('#profile_image_preview').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
     }
 }
 
-$("#organisation_logo").change(function(){
+$("#user_profile_image").change(function(){
     readURL(this);
 });
 </script>

@@ -1,7 +1,7 @@
 defmodule Flexcility.Utils.PageTitle do
   import Inflex
   def page_title(path_info, action_name) do
-    [path_info, action_name] |> get |> add_dash
+    [path_info, action_name] |> get #|> add_dash
   end
 
   def add_dash(nil), do: nil

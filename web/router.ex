@@ -42,9 +42,10 @@ defmodule Flexcility.Router do
     pipe_through [:browser]
     delete "/logout", SessionController, :delete
   end
-  
+
   scope "/", Flexcility do
     pipe_through [:browser, :redirect_logged_in_user]
+    
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -56,6 +57,8 @@ defmodule Flexcility.Router do
 
   scope "/", Flexcility do
     pipe_through [:browser, :set_menu, :authorize] # Use the default browser stack
+
+    get "/send_email_test", OrganisationController, :send_an_email
     resources "/organisations", OrganisationController
     resources "/projects", ProjectController do
       resources "/assets", AssetController
@@ -79,6 +82,12 @@ defmodule Flexcility.Router do
       get "/assets", AssetController, :index
     end
   end
+
+  if Mix.env == :dev do
+  # If using Phoenix
+  forward "/sent_emails", Bamboo.EmailPreviewPlug
+
+end
 
 
   # Other scopes may use custom stacks.

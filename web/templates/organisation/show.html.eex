@@ -1,27 +1,246 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <!--// Organisation details //-->
+  <div class="row m-b-lg m-t-lg">
+    <div class="col-md-6">
+      <div class="profile-image">
+        <img src="<%= thumb(@organisation)%>" class="img-circle circle-border m-b-md" alt="Organisation Logo">
+      </div>
+      <div class="profile-info">
+        <div class="">
+          <div>
+            <h2 class="no-margins">
+              <%= @organisation.name %>
+            </h2>
+            <h4><%= @organisation.display_name %></h4>
+            <small>
+              <%= @organisation.description %>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <table class="table medium m-b-xs">
+        <tbody>
+          <tr>
+            <td>
+              <strong>4</strong> Facilities
+            </td>
+            <td>
+              <strong>35</strong> Sites
+            </td>
 
-<ul>
+          </tr>
+          <tr>
+            <td>
+              <strong>50</strong> Members
+            </td>
+            <td>
+              <strong>54</strong> Articles
+            </td>
+          </tr>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @organisation.name %>
-  </li>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <small>Sales in last 24h</small>
+      <h2 class="no-margins">206 480</h2>
+      <div id="sparkline1"></div>
+    </div>
+    <div class="col-md-3">
+      <%= link "Edit", to: organisation_path(@conn, :edit, @organisation), class: "btn btn-primary pull-right" %>
+    </div>
+  </div>
+  <!--// End Organisation details //-->
 
-  <li>
-    <strong>Display name:</strong>
-    <%= @organisation.display_name %>
-  </li>
+  <!--// Facilities and Team Members tabs //-->
+  <div class="row m-t-sm">
+    <div class="col-lg-12">
+      <div class="panel blank-panel">
+        <!--// Tabs //-->
+        <div class="panel-heading">
+          <div class="panel-options">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab-1" data-toggle="tab">Facilities</a></li>
+              <li class=""><a href="#tab-2" data-toggle="tab">Team Members</a></li>
+            </ul>
+          </div>
+        </div>
+        <!--// Tabs //-->
 
-  <li>
-    <strong>Logo:</strong>
-    <img src="<%= image(@organisation) %>" class="img-responsive">
-  </li>
+        <div class="panel-body">
+          <div class="tab-content tooltips">
+            <!--// Facilities Tab //-->
+            <div class="tab-pane active" id="tab-1">
+              <%= case @facilities do %>
+                <% [] -> %>
+                  <div class="top-middle-box">
+                    <h3 class="font-bold">No Facilities Defined</h3>
+                    <div class="error-desc">
+                      You can create a Facility to hold your Sites.
+                      Or you can add a Helpdesk Team Member to do it for you
+                      <br/><a href="index.html" class="btn btn-primary m-t">Dashboard</a>
+                    </div>
+                  </div>
+                  <%#= render Flexcility.ProjectView, "index_empty.html.eex", assigns %>
+                <% facilities -> %>
+                  Boo
+                <% end %>
+            </div>
+            <!--// End Facilities Tab //-->
 
-  <li>
-    <strong>Description:</strong>
-    <%= @organisation.description %>
-  </li>
+            <!--// Team Members Tab //-->
+            <div class="tab-pane" id="tab-2">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="ibox">
+                    <div class="ibox-title">
+                      <!-- <span class="label label-primary pull-right">NEW</span> -->
+                      <h5>Admin/Executives</h5>
+                    </div>
+                    <div class="ibox-content">
+                      <div class="text-center team-members">
+                        <%= for admin <- @members["Admin"] do %>
+                          <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="/img/a1.jpg" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
+                        <% end %>
+                        <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Invite Admin"></a>
+                      </div>
 
-</ul>
+                      <div class="row  m-t-sm">
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">Total</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">ONLINE</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">OFFLINE</div>
+                          <div class="text-center">4</div>
+                        </div>
+                        <!-- <div class="col-sm-4 text-right">
+                          <div class="font-bold">BUDGET</div>
+                          $200,913 <i class="fa fa-level-up text-navy"></i>
+                        </div> -->
+                      </div>
 
-<%= link "Edit", to: organisation_path(@conn, :edit, @organisation) %>
-<%= link "Back", to: organisation_path(@conn, :index) %>
+                    </div>
+                  </div>
+                  <div class="ibox">
+                    <div class="ibox-title">
+                      <!-- <span class="label label-primary pull-right">NEW</span> -->
+                      <h5>Helpdesk</h5>
+                    </div>
+                    <div class="ibox-content">
+                      <div class="text-center team-members">
+                        <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Invite Helpdesk Staff"></a>
+                      </div>
+
+                      <div class="row  m-t-sm">
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">Total</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">ONLINE</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">OFFLINE</div>
+                          <div class="text-center">4</div>
+                        </div>
+                        <!-- <div class="col-sm-4 text-right">
+                          <div class="font-bold">BUDGET</div>
+                          $200,913 <i class="fa fa-level-up text-navy"></i>
+                        </div> -->
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="ibox">
+                    <div class="ibox-title">
+                      <!-- <span class="label label-primary pull-right">NEW</span> -->
+                      <h5>Engineers</h5>
+                    </div>
+                    <div class="ibox-content">
+                      <div class="text-center team-members">
+                        <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Invite Engineer"></a>
+                      </div>
+
+                      <div class="row  m-t-sm">
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">Total</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">ONLINE</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">OFFLINE</div>
+                          <div class="text-center">4</div>
+                        </div>
+                        <!-- <div class="col-sm-4 text-right">
+                          <div class="font-bold">BUDGET</div>
+                          $200,913 <i class="fa fa-level-up text-navy"></i>
+                        </div> -->
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="ibox">
+                    <div class="ibox-title">
+                      <!-- <span class="label label-primary pull-right">NEW</span> -->
+                      <h5>Technicians</h5>
+                    </div>
+                    <div class="ibox-content">
+                      <div class="text-center team-members">
+                        <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Invite Technician"></a>
+                      </div>
+
+                      <div class="row  m-t-sm">
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">Total</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">ONLINE</div>
+                          <div class="text-center">12</div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="text-center font-bold">OFFLINE</div>
+                          <div class="text-center">4</div>
+                        </div>
+                        <!-- <div class="col-sm-4 text-right">
+                          <div class="font-bold">BUDGET</div>
+                          $200,913 <i class="fa fa-level-up text-navy"></i>
+                        </div> -->
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--// End Team Members Tab //-->
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--// End Facilities and Team Members tabs //-->
+</div>
+<script>
+$(document).ready(function(){
+  $('.tooltips').tooltip({
+      selector: "[data-toggle=tooltip]",
+      container: "body"
+  });
+});
+</script>

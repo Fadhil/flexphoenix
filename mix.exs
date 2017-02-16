@@ -3,7 +3,7 @@ defmodule Flexcility.Mixfile do
 
   def project do
     [app: :Flexcility,
-     version: "0.19.6",
+     version: "0.20.0",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -21,7 +21,7 @@ defmodule Flexcility.Mixfile do
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :passport, :phoenix_ecto, :postgrex, :comeonin, :arc,
                     :arc_ecto, :timex, :ex_aws, :hackney, :poison, :sweet_xml,
-                    :inflex
+                    :inflex, :bamboo
                    ]]
   end
 
@@ -51,7 +51,9 @@ defmodule Flexcility.Mixfile do
      {:hackney, "~> 1.6"},
      {:poison, "~> 2.2"},     # Required if using Amazon S3
      {:sweet_xml, "~> 0.6"},
-     {:inflex, "~> 1.7.0"}
+     {:inflex, "~> 1.7.0"},
+     {:bamboo, "~> 0.7"},
+     {:bamboo_smtp, "~> 1.2.1"}
 	  ]
   end
 

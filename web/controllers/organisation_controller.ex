@@ -46,7 +46,12 @@ defmodule Flexcility.OrganisationController do
 
   def show(conn, %{"id" => id}) do
     organisation = Repo.get!(Organisation, id)
-    render(conn, "show.html", organisation: organisation)
+                   |> Repo.preload([{:memberships, [:user, :role]}])
+    facilities = []
+    members = organisation.memberships
+              |> Enum.map(&get_members_roles/1)
+              |> Enum.group_by(&(&1.role))
+    render(conn, "show.html", organisation: organisation, facilities: facilities, members: members)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -79,5 +84,17 @@ defmodule Flexcility.OrganisationController do
     conn
     |> put_flash(:info, "Organisation deleted successfully.")
     |> redirect(to: organisation_path(conn, :index))
+  end
+
+  def get_members_roles(membership) do
+    %{role: %{name: role}, user: %{email: email}} = membership
+    %{email: email, role: role}
+  end
+
+  def send_an_email(conn, _params) do
+    Flexcility.Email.welcome_text_email("fadhil.luqman@gmail.com") |> Flexcility.Mailer.deliver_later
+    conn
+    |> put_flash(:info, "Sent an email to you!")
+    |> redirect(to: "/")
   end
 end

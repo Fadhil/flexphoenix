@@ -87,8 +87,8 @@ config :Flexcility, Flexcility.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: "email-smtp.eu-west-1.amazonaws.com",
   port: 587,
-  username: SYSTEM.get_env("FLEX_AWS_SES_USERNAME"),
-  password: SYSTEM.get_env("FLEX_AWS_SES_PASSWORD"),
+  username: {:system, "FLEX_AWS_SES_USERNAME"},
+  password: {:system, "FLEX_AWS_SES_PASSWORD"},
   tls: :if_available, # can be `:always` or `:never`
   ssl: false, # can be `true`
   retries: 1

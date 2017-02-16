@@ -9,6 +9,7 @@ defmodule Flexcility.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :current_user
+    plug Flexcility.Plug.LoadProfile
   end
 
   pipeline :api do
@@ -45,7 +46,6 @@ defmodule Flexcility.Router do
 
   scope "/", Flexcility do
     pipe_through [:browser, :redirect_logged_in_user]
-    
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -73,6 +73,7 @@ defmodule Flexcility.Router do
       post "/assign_technicians", OrderController, :create_technician_assignment, as: :assign_technicians
     end
     resources "/reports", ReportController
+    resources "/profiles", ProfileController, except: [:index]
     end
 
   scope "/api", Flexcility do

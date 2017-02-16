@@ -1,0 +1,23 @@
+<h2>Show profile</h2>
+
+<ul>
+
+  <li>
+    <strong>Full name:</strong>
+    <%= @profile.full_name %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @profile.image %>
+  </li>
+
+  <li>
+    <strong>User:</strong>
+    <%= @profile.user_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: profile_path(@conn, :edit, @profile) %>
+<%= link "Back", to: profile_path(@conn, :index) %>

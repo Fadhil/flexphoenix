@@ -2,27 +2,35 @@ defmodule Flexcility.ProfileController do
   use Flexcility.Web, :controller
 
   alias Flexcility.Profile
-
+  alias Flexcility.User
+  require IEx
   def index(conn, _params) do
     profiles = Repo.all(Profile)
     render(conn, "index.html", profiles: profiles)
   end
 
   def new(conn, _params) do
-    changeset = Profile.changeset(%Profile{})
-    render(conn, "new.html", changeset: changeset)
+    user_id = conn.assigns.current_user.id
+    user = Repo.get(User, user_id)|> Repo.preload([:profile])
+    changeset = user |> User.changeset(%{})
+    render(conn, "new.html", changeset: changeset, user: user)
   end
 
-  def create(conn, %{"profile" => profile_params}) do
-    changeset = Profile.changeset(%Profile{}, profile_params)
+  def create(conn, %{"user" => profile_params}) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get(User, user_id)|> Repo.preload([:profile])
 
-    case Repo.insert(changeset) do
-      {:ok, _profile} ->
+    changeset = User.update_changeset(user, profile_params)
+
+    case Repo.insert_or_update(changeset) do
+      {:ok, user} ->
+        user.profile |> Profile.image_changeset(profile_params["profile"]) |> Repo.update
+
         conn
         |> put_flash(:info, "Profile created successfully.")
-        |> redirect(to: profile_path(conn, :index))
+        |> redirect(to: profile_path(conn, :show, user.profile.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(put_flash(conn, :info, changeset), "new.html", changeset: changeset, user: user)
     end
   end
 
@@ -33,8 +41,9 @@ defmodule Flexcility.ProfileController do
 
   def edit(conn, %{"id" => id}) do
     profile = Repo.get!(Profile, id)
-    changeset = Profile.changeset(profile)
-    render(conn, "edit.html", profile: profile, changeset: changeset)
+    user = Repo.get!(User, profile.user_id) |> Repo.preload(:profile)
+    changeset = User.update_changeset(user)
+    render(conn, "edit.html", profile: profile, changeset: changeset, user: user)
   end
 
   def update(conn, %{"id" => id, "profile" => profile_params}) do

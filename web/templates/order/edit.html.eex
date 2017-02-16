@@ -7,7 +7,7 @@
         </div>
           <%= render "form.html", changeset: @changeset, request_id: @request_id,
           action: order_path(@conn, :update, @order),
-          current_user: @conn.assigns.current_user,
+          user: @conn.assigns.current_user,
           conn: @conn %>
       </div>
     </div>

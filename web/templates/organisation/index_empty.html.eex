@@ -1,3 +1,4 @@
+<%= inspect(@conn.assigns.current_user) %>
 <div class="wrapper wrapper-content">
     <div class="middle-box text-center animated fadeInRightBig no-org-page">
         <h3 class="font-bold">It looks like you don't belong to any Organisations yet.</h3>

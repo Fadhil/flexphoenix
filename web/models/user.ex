@@ -28,7 +28,7 @@ defmodule Flexcility.User do
   end
 
   @required_fields [:first_name, :last_name, :email, :password]
-  @all_fields ~w(first_name last_name email password)
+  @all_fields [:first_name, :last_name, :email, :password]
 
   def changeset(struct, params \\ %{}) do
     struct
@@ -40,13 +40,11 @@ defmodule Flexcility.User do
   end
 
   def update_changeset(model, params \\ %{}) do model
-    |> cast(params, ~w(first_name last_name email), [])
+    |> cast(params, @all_fields)
+    |> cast_assoc(:profile, required: true)
   end
 
-  def registration_changeset(model, params \\ %{}) do
-    params = params
-             |> Map.put("profile", %{}) # Build empty profile
-    model
+  def registration_changeset(model, params \\ %{}) do model
     |> changeset(params)
     |> validate_length(:password, min: 6, max: 100)
     |> validate_confirmation(:password)

@@ -1,23 +1,86 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+
+<div class="row">
+<div class="col-lg-7">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Details <small>Some basic information about your organisation</small></h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#">Config option 1</a>
+                    </li>
+                    <li><a href="#">Config option 2</a>
+                    </li>
+                </ul>
+                <a href="javascript:history.back()" class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <%= form_for @changeset, @action, [multipart: true, method: :post], fn f -> %>
+                  <div class="col-sm-6"><h4>Upload a profile photo</h4>
+                    <img id="profile_image_preview" src="<%= image(@user.profile) %>" class="img-responsive">
+                    <label class="btn btn-default btn-file">
+                      Upload File
+                      <%= inputs_for f, :profile, fn i -> %>
+                        <%= file_input i, :image, style: "display: none;" %>
+                      <% end %>
+                    </label>
+                  </div>
+                  <div class="col-sm-6 b-r">
+                      <div class="form-group">
+                        <%= label f, "First Name", class: "control-label" %>
+                        <%= text_input f, :first_name, class: "form-control", placeholder: "First Name" %>
+                        <%= error_tag f, :name %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= label f, "Last Name", class: "control-label" %>
+                        <%= text_input f, :last_name, class: "form-control", placeholder: "Last" %>
+                        <%= error_tag f, :last_name %>
+                      </div>
+
+                      <%= inputs_for f, :profile, fn i -> %>
+                        <div class="form-group">
+                          <%= label i, "Display Name", class: "control-label" %>
+                          <%= textarea i, :full_name, class: "form-control", value: display_name(@user) %>
+                          <%= error_tag i, :full_name %>
+                        </div>
+                      <% end %>
+
+                      <div class="form-group pull-right">
+                        <%= submit "Submit", class: "btn btn-primary" %>
+                      </div>
+                  </div>
+                <% end %>
+            </div>
+        </div>
     </div>
-  <% end %>
+</div>
 
-  <div class="form-group">
-    <%= label f, :full_name, class: "control-label" %>
-    <%= text_input f, :full_name, class: "form-control" %>
-    <%= error_tag f, :full_name %>
-  </div>
+</div>
+<script>
+function readURL(input) {
 
-  <div class="form-group">
-    <%= label f, :image, class: "control-label" %>
-    <%= text_input f, :image, class: "form-control" %>
-    <%= error_tag f, :image %>
-  </div>
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
-<% end %>
+        reader.onload = function (e) {
+            $('#profile_image_preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#user_profile_image").change(function(){
+    readURL(this);
+});
+</script>

@@ -9,7 +9,7 @@
 
   <li>
     <strong>Image:</strong>
-    <%= @profile.image %>
+    <img src="<%= thumb(@profile) %>", class: "img-responsive"/>
   </li>
 
   <li>

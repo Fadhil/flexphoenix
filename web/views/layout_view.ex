@@ -52,9 +52,11 @@ defmodule Flexcility.LayoutView do
   end
 
   def image(params) do
+    "/images/default_profile_picture.png"
   end
 
   def thumb(params) do
+    "/images/default_profile_picture.png"
   end
 
   def profile_image(_) do

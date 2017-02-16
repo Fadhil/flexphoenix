@@ -45,6 +45,7 @@ defmodule Flexcility.Router do
 
   scope "/", Flexcility do
     pipe_through [:browser, :redirect_logged_in_user]
+    
     get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -56,6 +57,8 @@ defmodule Flexcility.Router do
 
   scope "/", Flexcility do
     pipe_through [:browser, :set_menu, :authorize] # Use the default browser stack
+
+    get "/send_email_test", OrganisationController, :send_an_email
     resources "/organisations", OrganisationController
     resources "/projects", ProjectController do
       resources "/assets", AssetController

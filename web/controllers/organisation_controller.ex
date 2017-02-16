@@ -90,4 +90,11 @@ defmodule Flexcility.OrganisationController do
     %{role: %{name: role}, user: %{email: email}} = membership
     %{email: email, role: role}
   end
+
+  def send_an_email(conn, _params) do
+    Flexcility.Email.welcome_text_email("fadhil.luqman@gmail.com") |> Flexcility.Mailer.deliver_later
+    conn
+    |> put_flash(:info, "Sent an email to you!")
+    |> redirect(to: "/")
+  end
 end

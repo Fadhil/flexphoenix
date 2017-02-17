@@ -5,7 +5,7 @@
           <h5><%= @organisation.name %></h5>
       </div>
     </a>
-      <div class="ibox-content">
+      <div class="ibox-content tooltips">
         <a href="<%= organisation_path(@conn, :show, @organisation) %>">
           <div class="row">
             <div class="col-xs-6">
@@ -36,11 +36,9 @@
           <% "full" -> %>
             <div class="font-bold text-center">MEMBERS</div>
             <div class="team-members">
-                <a href="#"><img alt="member" class="img-circle" src="/img/a1.jpg"></a>
-                <a href="#"><img alt="member" class="img-circle" src="/img/a2.jpg"></a>
-                <a href="#"><img alt="member" class="img-circle" src="/img/a3.jpg"></a>
-                <a href="#"><img alt="member" class="img-circle" src="/img/a5.jpg"></a>
-                <a href="#"><img alt="member" class="img-circle" src="/img/a6.jpg"></a>
+              <%= for admin <- (@members_list || []) do %>
+                <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="<%= thumb(admin.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
+              <% end %>
             </div>
 
         <% "count" -> %>

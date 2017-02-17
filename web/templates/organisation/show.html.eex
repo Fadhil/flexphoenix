@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <td>
-              <strong>50</strong> Members
+              <strong><%= Enum.count(@organisation.memberships) %></strong> Members
             </td>
             <td>
               <strong>54</strong> Articles
@@ -108,7 +108,7 @@
                     </div>
                     <div class="ibox-content">
                       <div class="text-center team-members">
-                        <%= for admin <- @members["Admin"] do %>
+                        <%= for admin <- (@members["Admin"] || []) do %>
                           <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="<%= thumb(admin.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
                         <% end %>
                         <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Invite Admin"></a>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="ibox-content">
                       <div class="text-center team-members">
-                        <%= for helpdesk <- @members["Helpdesk"] do %>
+                        <%= for helpdesk <- (@members["Helpdesk"] || []) do %>
                           <a href="#"><img alt="<%= helpdesk.email %>" class="img-circle" src="<%= thumb(helpdesk.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= helpdesk.email %>"></a>
                         <% end %>
                         <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="modal" data-target="#invite_helpdesk"></a>

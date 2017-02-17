@@ -17,6 +17,16 @@ defmodule Flexcility.OrganisationController do
           _ ->
             render(conn, "index.html", organisations: organisations)
         end
+      "" ->
+        user = user |> Repo.preload(:organisations)
+        organisations = user.organisations
+        case organisations do
+          [] ->
+            render(conn, "index_empty.html", organisations: organisations)
+          _ ->
+            render(conn, "index.html", organisations: organisations)
+        end
+
       invitation_id ->
         conn
         |> redirect(to: invitation_view_path(conn, :view_invite, invitation_id))

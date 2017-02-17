@@ -8,7 +8,10 @@
       <% end %>
 
       <div class="col-md-4 col-xs-12">
-        <%= render Flexcility.OrganisationView, "org_card.html", %{organisation: organisation, members: "full", conn: @conn} %>
+        <% organisation =  organisation |> Flexcility.Repo.preload([{:memberships, [{:user, :profile}, :role]}]) %>
+        <%     members = organisation.memberships
+                      |> Enum.map(&Flexcility.OrganisationController.get_members_roles/1) %>
+        <%= render Flexcility.OrganisationView, "org_card.html", %{organisation: organisation, members: "full", members_list: members, conn: @conn} %>
       </div>
     <% end %>
     <//-- new stuff //-->
@@ -63,5 +66,12 @@
   </div>
 
 </div>
-
+<script>
+  $(document).ready(function(){
+    $('.tooltips').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    });
+  });
+</script>
 <p style="color:#f3f3f4 !important;">............</p>

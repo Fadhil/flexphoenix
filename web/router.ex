@@ -83,7 +83,10 @@ defmodule Flexcility.Router do
     resources "/reports", ReportController
     get "/profiles/edit", ProfileController, :edit
     resources "/profiles", ProfileController, except: [:index, :new, :create]
-    resources "/invitations", InvitationController
+    resources "/invitations", InvitationController do
+      get "/accept", InvitationController, :view_invite, as: :view
+      post "/accept", InvitationController, :accept_invite, as: :accept
+    end
   end
 
 

@@ -40,6 +40,8 @@
     <%= password_input f, :password_confirmation, id: "password_confirmation", placeholder: "Confirm Password", class: "form-control" %>
   </div>
 
+  <input type="hidden" name="invitation" value=<%= @invitation %>>
+
   <%= submit "Register", class: "btn btn-primary block full-width m-b" %>
 <% end %>
 <div>

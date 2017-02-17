@@ -152,9 +152,10 @@ var setup_system_listeners = () => {
     let invite_helpdesk_email = invite_helpdesk_email_input.val();
     console.log("sending invite");
     system_channel.push("send_invite", {
-      role: "helpdesk", inviter_id: user_id, organisation_id: window.CurrentState.org_id,
+      role: "Helpdesk", inviter_id: user_id, organisation_id: window.CurrentState.org_id,
       email: invite_helpdesk_email
-    });
+    }).receive("ok", resp => { alert("Successfully sent invite")})
+      .receive("error", resp => { alert("You've sent that invite before")});
   });
 
   system_channel.on("invitation_sent", payload => {

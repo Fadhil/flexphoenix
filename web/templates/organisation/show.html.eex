@@ -44,9 +44,9 @@
       </table>
     </div>
     <div class="col-md-3">
-      <small>Sales in last 24h</small>
+      <!-- <small>Sales in last 24h</small>
       <h2 class="no-margins">206 480</h2>
-      <div id="sparkline1"></div>
+      <div id="sparkline1"></div> -->
     </div>
     <div class="col-md-3">
       <%= link "Edit", to: organisation_path(@conn, :edit, @organisation), class: "btn btn-primary pull-right" %>
@@ -62,7 +62,8 @@
         <div class="panel-heading">
           <div class="panel-options">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab-1" data-toggle="tab">Facilities</a></li>
+              <li class="active"><a href="#tab-1" data-toggle="tab">Facilities Types</a></li>
+              <li><a href="#tab-3" data-toggle="tab">Sites</a></li>
               <li class=""><a href="#tab-2" data-toggle="tab">Team Members</a></li>
             </ul>
           </div>
@@ -90,6 +91,12 @@
             </div>
             <!--// End Facilities Tab //-->
 
+
+            <!--// Site Tab //-->
+            <div class="tab-pane" id="tab-1">
+              Sites here
+            </div>
+            <!--// End Sites Tab //-->
             <!--// Team Members Tab //-->
             <div class="tab-pane" id="tab-2">
               <div class="row">
@@ -110,7 +117,7 @@
                       <div class="row  m-t-sm">
                         <div class="col-xs-4">
                           <div class="text-center font-bold">Total</div>
-                          <div class="text-center">12</div>
+                          <div class="text-center"><%= Enum.count(@members["Admin"] || []) %></div>
                         </div>
                         <div class="col-xs-4">
                           <div class="text-center font-bold">ONLINE</div>
@@ -135,14 +142,17 @@
                     </div>
                     <div class="ibox-content">
                       <div class="text-center team-members">
-                        <input type="image" width="44px" alt="Invite Member" class="img-circle" src="/images/add-circle.png"  data-toggle="modal" data-target="#invite_helpdesk"></a>
+                        <%= for helpdesk <- @members["Helpdesk"] do %>
+                          <a href="#"><img alt="<%= helpdesk.email %>" class="img-circle" src="<%= thumb(helpdesk.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= helpdesk.email %>"></a>
+                        <% end %>
+                        <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="modal" data-target="#invite_helpdesk"></a>
 
                       </div>
 
                       <div class="row  m-t-sm">
                         <div class="col-xs-4">
                           <div class="text-center font-bold">Total</div>
-                          <div class="text-center">12</div>
+                          <div class="text-center"><%= Enum.count(@members["Helpdesk"] || []) %></div>
                         </div>
                         <div class="col-xs-4">
                           <div class="text-center font-bold">ONLINE</div>
@@ -176,7 +186,7 @@
                       <div class="row  m-t-sm">
                         <div class="col-xs-4">
                           <div class="text-center font-bold">Total</div>
-                          <div class="text-center">12</div>
+                          <div class="text-center"><%= Enum.count(@members["Engineer"] || []) %></div>
                         </div>
                         <div class="col-xs-4">
                           <div class="text-center font-bold">ONLINE</div>
@@ -207,7 +217,7 @@
                       <div class="row  m-t-sm">
                         <div class="col-xs-4">
                           <div class="text-center font-bold">Total</div>
-                          <div class="text-center">12</div>
+                          <div class="text-center"><%= Enum.count(@members["Technician"] || []) %></div>
                         </div>
                         <div class="col-xs-4">
                           <div class="text-center font-bold">ONLINE</div>

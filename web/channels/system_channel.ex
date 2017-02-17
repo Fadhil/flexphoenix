@@ -25,18 +25,34 @@ defmodule Flexcility.SystemChannel do
   end
 
   def handle_in("send_invite", payload, socket) do
-    role = Repo.get_by(Role, name: "Helpdesk")
+    Logger.info("creating invitation")
+    role = Repo.get_by(Role, name: payload["role"])
     invitation_changeset = %Invitation{}
-                          |> Invitation.changeset(%{ role_id: role.id, organisation_id: payload["organisation_id"], inviter_id: payload["inviter_id"]})
-    Repo.insert(invitation_changeset)
-    broadcast socket, "invitation_sent", payload
-    {:noreply, socket}
+                          |> Invitation.changeset(%{
+                              role_id: role.id, organisation_id: payload["organisation_id"],
+                              inviter_id: payload["inviter_id"], invitee_email: payload["email"]
+                            })
+    case Repo.insert(invitation_changeset) do
+      {:ok, invitation} ->
+        registration_link = Flexcility.Router.Helpers.registration_url(Flexcility.Endpoint, :new, invitation: invitation.id)
+
+        Flexcility.Email.team_member_invitation(payload["email"], registration_link) |> Flexcility.Mailer.deliver_later
+
+        {:reply, {:ok, %{success: true, message: "Created Invitation"}}, socket}
+        # {:noreply, socket}
+      {:error, %{errors: [invitee_email: {"has already been taken"}]}} ->
+
+        {:reply, {:error, %{message: "You've already sent that invite"}}, socket}
+      _ ->
+        {:reply, {:error, %{message: "Something went wrong"}}, socket}
+    end
+
   end
 
-  def handle_in("invitation_sent", payload, socket) do
-    Logger.info("sent notification")
-    {:noreply, socket}
-  end
+  # def handle_in("invitation_sent", payload, socket) do
+  #   Logger.info("sent notification")
+  #   {:noreply, socket}
+  # end
 
 # This is invoked every time a notification is being broadcast
 # to the client. The default implementation is just to push it

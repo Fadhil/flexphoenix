@@ -22,7 +22,7 @@
       <td><%= invitation.viewed %></td>
 
       <td class="text-right">
-        <%= link "Show", to: invitation_path(@conn, :show, invitation), class: "btn btn-default btn-xs" %>
+        <%= link "Show", to: invitation_view_path(@conn, :view_invite, invitation), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: invitation_path(@conn, :edit, invitation), class: "btn btn-default btn-xs" %>
         <%= link "Delete", to: invitation_path(@conn, :delete, invitation), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>

@@ -6,13 +6,20 @@ defmodule Flexcility.OrganisationController do
 
   def index(conn, _params) do
     user = conn.assigns.current_user
-    user = user |> Repo.preload(:organisations)
-    organisations = user.organisations
-    case organisations do
-      [] ->
-        render(conn, "index_empty.html", organisations: organisations)
-      _ ->
-        render(conn, "index.html", organisations: organisations)
+    pending_invitation = get_session(conn, :invitation_key)
+    case pending_invitation do
+      nil ->
+        user = user |> Repo.preload(:organisations)
+        organisations = user.organisations
+        case organisations do
+          [] ->
+            render(conn, "index_empty.html", organisations: organisations)
+          _ ->
+            render(conn, "index.html", organisations: organisations)
+        end
+      invitation_id ->
+        conn
+        |> redirect(to: invitation_view_path(conn, :view_invite, invitation_id))
     end
   end
 

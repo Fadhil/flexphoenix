@@ -2,15 +2,46 @@ defmodule Flexcility.InvitationController do
   use Flexcility.Web, :controller
 
   alias Flexcility.Invitation
+  alias Flexcility.Membership
 
   def index(conn, _params) do
-    invitations = Repo.all(Invitation)
+    user_email = conn.assigns.current_user.email
+    invitations_query = from i in Invitation,
+                        where: i.invitee_email == ^user_email and i.accepted == false
+    invitations = Repo.all(invitations_query)
     render(conn, "index.html", invitations: invitations)
   end
 
   def new(conn, _params) do
     changeset = Invitation.changeset(%Invitation{})
     render(conn, "new.html", changeset: changeset)
+  end
+
+  def view_invite(conn, %{"invitation_id" => id}) do
+    invitation = Repo.get(Invitation, id)
+                 |> Repo.preload([:role, :organisation, :inviter])
+    render(conn, "view_invite.html", invitation: invitation)
+  end
+
+  def accept_invite(conn, %{"invitation_id" => id}) do
+    invitation = Repo.get(Invitation, id)
+                 |> Repo.preload([:role, :organisation, :inviter])
+    membership_changeset = Membership.changeset(%Membership{}, %{})
+                           |> Ecto.Changeset.put_assoc(:user, conn.assigns.current_user)
+                           |> Ecto.Changeset.put_assoc(:role, invitation.role)
+                           |> Ecto.Changeset.put_assoc(:organisation, invitation.organisation)
+    case Repo.insert(membership_changeset) do
+      {:ok, _membership} ->
+        invitation |> Invitation.changeset(%{accepted: true}) |> Repo.update
+        conn
+        |> put_flash(:info, "Successfully joined " <> invitation.organisation.name)
+        |> redirect(to: organisation_path(conn, :index))
+      {:error, errors} ->
+        conn
+        |> put_flash(:info, "Failed to Join that Organisation")
+        |> redirect(to: invitation_path(conn, :index))
+    end
+    redirect(conn, to: organisation_path(conn, :index))
   end
 
   def create(conn, %{"invitation" => invitation_params}) do

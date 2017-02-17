@@ -4,7 +4,7 @@ defmodule Flexcility.RequestView do
   import Flexcility.LayoutView, only: [display_name: 1, image: 1, profile_image: 1]
 
   def project_list(user) do
-    all_projects(user)
+    all_sites(user)
     |> Enum.uniq
     |> Enum.map(fn x -> {x.name, x.id} end)
   end
@@ -13,9 +13,9 @@ defmodule Flexcility.RequestView do
     []
   end
 
-  def asset_list(user, project_id) do
-    selected_project = all_projects(user)
-      |> Enum.find(fn project -> project.id == project_id end)
+  def asset_list(user, site_id) do
+    selected_project = all_sites(user)
+      |> Enum.find(fn project -> project.id == site_id end)
       |> Repo.preload(:assets)
 
     selected_project.assets
@@ -23,8 +23,8 @@ defmodule Flexcility.RequestView do
   end
 
 
-  def all_projects(user) do
-    user.attached_projects ++ user.projects
+  def all_sites(user) do
+    user.attached_sites ++ user.sites
   end
 
   def project_name(nil) do
@@ -77,13 +77,13 @@ Looks like this:
    assigned_orders: [],
    assigned_requests: []>,
    assigned_technicians: [],
-   attached_projects: [],
+   attached_sites: [],
    email: "fadhil@jomcode.com", first_name: "Fadhil", id: 3,
    inserted_at: #Ecto.DateTime<2016-07-26T15:56:24Z>, last_name: "Luqman",
    orders: []>,
    password: nil, password_confirmation: nil,
    password_hash: "$2b$12$3kX9.T4nOinKtD6buN0G8.N2YCQXmBfDa.gJSlLjNrE8iZDLnUzzq",
-   projects: []>,
+   sites: []>,
    reports: [],
    requests: [],
    roles: [],
@@ -92,7 +92,7 @@ Looks like this:
 """
 def members_and_roles(%{user: owner,
                         technicians: assigned_technicians,
-                        project: %{
+                        site: %{
                             user: project_owner,
                             users_roles: project_roles                            }
                         }) do # Here we match an order that's been preloaded
@@ -111,7 +111,7 @@ def members_and_roles(%{user: owner,
   # Now we put them together and flatten them, and then group by user struct
   members = [admins_with_roles,
               %{user: owner, role: "Requestor"},
-              %{user: project_owner, role: "Project Owner"},
+              %{user: project_owner, role: "Site Owner"},
               technicians_with_roles
             ]
             |> List.flatten

@@ -5,7 +5,7 @@
         <div class="ibox-title">
           <h5>Assign Technicians for Request ID: <%= @request.id %>
           <p><small><%= @request.title %><br/>
-          <%= project_name(@request.project) %> - <%= asset_name(@request.asset) %></small></p></h5>
+          <%= project_name(@request.site) %> - <%= asset_name(@request.asset) %></small></p></h5>
         </div>
         <br/><hr>
         <div class="form-group">

@@ -34,9 +34,9 @@ defmodule Flexcility.ReportView do
       %{user: owner, role: "Requestor"}
     end
 
-    # Projects also MUST have owner, so no need to match for _
+    # Sites also MUST have owner, so no need to match for _
     def project_owner_with_roles(project_owner) do
-      %{user: project_owner, role: "Project Owner"}
+      %{user: project_owner, role: "Site Owner"}
     end
 
     # Calls `technicians` to get a  list of technicians and roles,
@@ -62,13 +62,13 @@ defmodule Flexcility.ReportView do
        assigned_orders: [],
        assigned_requests: []>,
        assigned_technicians: [],
-       attached_projects: [],
+       attached_sites: [],
        email: "fadhil@jomcode.com", first_name: "Fadhil", id: 3,
        inserted_at: #Ecto.DateTime<2016-07-26T15:56:24Z>, last_name: "Luqman",
        orders: []>,
        password: nil, password_confirmation: nil,
        password_hash: "$2b$12$3kX9.T4nOinKtD6buN0G8.N2YCQXmBfDa.gJSlLjNrE8iZDLnUzzq",
-       projects: []>,
+       sites: []>,
        reports: [],
        requests: [],
        roles: [],
@@ -78,7 +78,7 @@ defmodule Flexcility.ReportView do
     def members_and_roles(%{user: owner,
                             technicians: assigned_technicians,
                             request: %{
-                              project: %{
+                              site: %{
                                 user: project_owner,
                                 users_roles: project_roles                            }
                             }

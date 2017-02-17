@@ -23,18 +23,18 @@ defmodule Flexcility.RequestController do
   end
 
   def new(conn, params) do
-    project_id = case params do
-      %{"project_id" => id} -> String.to_integer id
+    site_id = case params do
+      %{"site_id" => id} -> String.to_integer id
       _ -> nil
     end
     changeset = Request.changeset(%Request{})
-    render(conn, "new.html", changeset: changeset, project_id: project_id)
+    render(conn, "new.html", changeset: changeset, site_id: site_id)
   end
 
   def create(conn, %{"request" => request_params}) do
     current_user = conn.assigns.current_user
     changeset = Request.create_changeset(%Request{}, current_user.id, request_params)
-    %{"project_id" => project_id} = request_params
+    %{"site_id" => site_id} = request_params
 
     case Repo.insert(changeset) do
       {:ok, _request} ->
@@ -42,7 +42,7 @@ defmodule Flexcility.RequestController do
         |> put_flash(:info, "Request created successfully.")
         |> redirect(to: request_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset, project_id: project_id)
+        render(conn, "new.html", changeset: changeset, site_id: site_id)
     end
   end
 
@@ -50,8 +50,8 @@ defmodule Flexcility.RequestController do
     request = Request
               |> Request.with_owner
               |> Repo.get!(id)
-              |> Repo.preload([:project, :asset, :technicians,
-                              {:project,
+              |> Repo.preload([:site, :asset, :technicians,
+                              {:site,
                                 [:user,
                                 {:users_roles, [:user, :role]}]}
                               ])
@@ -90,29 +90,29 @@ defmodule Flexcility.RequestController do
     |> redirect(to: request_path(conn, :index))
   end
 
-  def assign_project_params(conn, %{"project_id" => nil}) do
+  def assign_project_params(conn, %{"site_id" => nil}) do
     conn
-    |> assign(:project_id, nil)
+    |> assign(:site_id, nil)
   end
 
-  def assign_project_params(conn, %{"project_id" => project_id}) do
+  def assign_project_params(conn, %{"site_id" => site_id}) do
     conn
-    |> assign(:project_id, project_id)
+    |> assign(:site_id, site_id)
   end
 
   def assign_project_params(conn, _params) do
     conn
-    |> assign(:project_id, nil)
+    |> assign(:site_id, nil)
   end
 
   def assign_technicians(conn, %{"request_id" => request_id}) do
     request = Request
               |> Repo.get(request_id)
-              |> Repo.preload([:project, :asset, :technicians])
+              |> Repo.preload([:site, :asset, :technicians])
 
     technicians = UsersRole
                   |> UsersRole.only_technicians
-                  |> Repo.all(project_id: request.project.id)
+                  |> Repo.all(site_id: request.site.id)
 
     conn
     |> render("assign_technicians.html",

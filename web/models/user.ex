@@ -15,13 +15,13 @@ defmodule Flexcility.User do
     has_many :sent_invitations, Flexcility.Invitation, foreign_key: :inviter_id
     has_many :organisations, through: [:memberships, :organisation]
     has_many :roles, through: [:memberships, :role]
-    has_many :projects, Flexcility.Project
+    has_many :sites, Flexcility.Site
     has_many :requests, Flexcility.Request
     has_many :orders, Flexcility.Order
     has_many :reports, Flexcility.Report
     has_many :users_roles, Flexcility.UsersRole
     # has_many :roles, through: [:users_roles, :role]
-    has_many :attached_projects, through: [:users_roles, :project]
+    has_many :attached_sites, through: [:users_roles, :site]
     has_many :assigned_technicians, Flexcility.AssignedTechnician
     has_many :assigned_requests, through: [:assigned_technicians, :request]
     has_many :assigned_orders, through: [:assigned_technicians, :order]

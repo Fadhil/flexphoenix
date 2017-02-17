@@ -7,11 +7,11 @@ defmodule Flexcility.Repo.Migrations.CreateAsset do
       add :model_id, :string
       add :manufacturer, :string
       add :photo, :string
-      add :project_id, references(:projects, on_delete: :nothing)
+      add :site_id, references(:sites, on_delete: :nothing)
 
       timestamps
     end
-    create index(:assets, [:project_id])
+    create index(:assets, [:site_id])
 
   end
 end

@@ -24,39 +24,39 @@
                         IN+
                     </div>
                 </li>
-                <!-- <%#= if(@own_projects || @attached_projects) do %>
+                <!-- <%#= if(@own_sites || @attached_sites) do %>
                   <li>
-                      <a href=""><i class="fa fa-industry"></i> <span class="nav-label">Projects</span><span class="fa arrow"></span></a>
+                      <a href=""><i class="fa fa-industry"></i> <span class="nav-label">Sites</span><span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse">
-                        <%#= case @own_projects do %>
+                        <%#= case @own_sites do %>
                           <%#= [] -> %>
                             <li>
-                              <a href="<%#= project_path(@conn, :new) %>">New Project</a></li>
+                              <a href="<%#= site_path(@conn, :new) %>">New Site</a></li>
                             </li>
                           <%#=  _ -> %>
                             <li>
-                              <a href="<%#= project_path(@conn, :index) %>">All Projects</a></li>
+                              <a href="<%#= site_path(@conn, :index) %>">All Sites</a></li>
                             </li>
                             <li>
-                              <a href="#">Own Projects<span class="fa arrow"></span></a>
+                              <a href="#">Own Sites<span class="fa arrow"></span></a>
                               <ul class="nav nav-third-level collapse in">
-                            <%#= for mi <- @own_projects do %>
+                            <%#= for mi <- @own_sites do %>
                               <li>
-                                <%#= link mi.name, to: project_path(@conn, :show, mi.id) %>
+                                <%#= link mi.name, to: site_path(@conn, :show, mi.id) %>
                               </li>
                             <%# end %>
                               </ul>
                           </li>
                         <%# end %>
-                        <%#= case @attached_projects do %>
+                        <%#= case @attached_sites do %>
                           <%#= [] -> %>
                           <%#=  _ -> %>
                             <li>
-                              <a href="#">Assigned Projects<span class="fa arrow"></span></a>
+                              <a href="#">Assigned Sites<span class="fa arrow"></span></a>
                               <ul class="nav nav-third-level collapse in">
-                            <%#= for mi <- @attached_projects do %>
+                            <%#= for mi <- @attached_sites do %>
                               <li>
-                                <%#= link mi.name, to: project_path(@conn, :show, mi.id) %>
+                                <%#= link mi.name, to: site_path(@conn, :show, mi.id) %>
                               </li>
                             <%# end %>
                               </ul>

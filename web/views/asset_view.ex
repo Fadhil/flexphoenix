@@ -8,7 +8,7 @@ defmodule Flexcility.AssetView do
       |> Enum.map(
           fn x ->
             Map.drop(x, [
-              :__meta__, :__struct__, :project, :requests
+              :__meta__, :__struct__, :site, :requests
             ])
           end
         )

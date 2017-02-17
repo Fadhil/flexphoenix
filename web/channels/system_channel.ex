@@ -1,5 +1,7 @@
 defmodule Flexcility.SystemChannel do
   use Flexcility.Web, :channel
+  alias Flexcility.Invitation
+  alias Flexcility.Role
   require Logger
   def join("system:main", payload, socket) do
     if authorized?(payload) do
@@ -23,7 +25,10 @@ defmodule Flexcility.SystemChannel do
   end
 
   def handle_in("send_invite", payload, socket) do
-    Logger.info("handling payload")
+    role = Repo.get_by(Role, name: "Helpdesk")
+    invitation_changeset = %Invitation{}
+                          |> Invitation.changeset(%{ role_id: role.id, organisation_id: payload["organisation_id"], inviter_id: payload["inviter_id"]})
+    Repo.insert(invitation_changeset)
     broadcast socket, "invitation_sent", payload
     {:noreply, socket}
   end

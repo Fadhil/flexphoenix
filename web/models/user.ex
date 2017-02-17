@@ -12,6 +12,7 @@ defmodule Flexcility.User do
 
     has_one :profile, Flexcility.Profile
     has_many :memberships, Flexcility.Membership
+    has_many :sent_invitations, Flexcility.Invitation, foreign_key: :inviter_id
     has_many :organisations, through: [:memberships, :organisation]
     has_many :roles, through: [:memberships, :role]
     has_many :projects, Flexcility.Project

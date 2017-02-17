@@ -135,7 +135,8 @@
                     </div>
                     <div class="ibox-content">
                       <div class="text-center team-members">
-                        <a href="#"><img alt="Invite Member" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Invite Helpdesk Staff"></a>
+                        <input type="image" width="44px" alt="Invite Member" class="img-circle" src="/images/add-circle.png"  data-toggle="modal" data-target="#invite_helpdesk"></a>
+
                       </div>
 
                       <div class="row  m-t-sm">
@@ -159,6 +160,7 @@
 
                     </div>
                   </div>
+
                 </div>
                 <div class="col-lg-6">
                   <div class="ibox">
@@ -236,11 +238,39 @@
   </div>
   <!--// End Facilities and Team Members tabs //-->
 </div>
+<div class="modal inmodal fade" id="invite_helpdesk" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Invite Helpdesk Member</h4>
+            </div>
+            <div class="modal-body">
+              <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                  <form method="get" class="form-horizontal">
+                      <div class="form-group"><label class="col-sm-2 control-label">Email</label>
+
+                          <div class="col-sm-10"><input type="email" id="invite_helpdesk_email" class="form-control"></div>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="send_helpdesk_invite_button">Send Invite</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 $(document).ready(function(){
   $('.tooltips').tooltip({
       selector: "[data-toggle=tooltip]",
       container: "body"
   });
+  window.CurrentState.setOrgId(<%= @organisation.id %>);
+  window.CurrentState.setCurrentUserId(<%= @current_user.id %>);
 });
 </script>

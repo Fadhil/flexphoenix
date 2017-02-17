@@ -35,7 +35,7 @@
         <%= case @members do %>
           <% "full" -> %>
             <div class="font-bold text-center">MEMBERS</div>
-            <div class="team-members">
+            <div class="team-members text-center">
               <%= for admin <- (@members_list || []) do %>
                 <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="<%= thumb(admin.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
               <% end %>

@@ -2,7 +2,7 @@ defmodule Flexcility.RegistrationController do
   use Flexcility.Web, :controller
 
   alias Flexcility.User
-  require IEx
+  
   def new(conn, _params) do
     changeset = User.changeset(%User{}, %{profile: %{}})
     conn

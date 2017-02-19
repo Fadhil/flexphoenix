@@ -12,7 +12,7 @@ defmodule Flexcility.Request do
 		field :deadline, Ecto.DateTime
 
     belongs_to :user, Flexcility.User
-		belongs_to :project, Flexcility.Project
+		belongs_to :site, Flexcility.Site
 		belongs_to :asset, Flexcility.Asset
 
     has_many :assigned_technicians, Flexcility.AssignedTechnician, on_delete: :delete_all
@@ -23,7 +23,7 @@ defmodule Flexcility.Request do
   end
 
   @required_fields ~w(title location description)
-  @optional_fields ~w(project_id asset_id instruction worktype type priority deadline)
+  @optional_fields ~w(site_id asset_id instruction worktype type priority deadline)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

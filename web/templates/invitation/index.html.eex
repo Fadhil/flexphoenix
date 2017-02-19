@@ -1,0 +1,34 @@
+<h2>Listing invitations</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Organisation</th>
+      <th>Inviter</th>
+      <th>Role</th>
+      <th>Accepted</th>
+      <th>Viewed</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for invitation <- @invitations do %>
+    <tr>
+      <td><%= invitation.organisation_id %></td>
+      <td><%= invitation.inviter_id %></td>
+      <td><%= invitation.role_id %></td>
+      <td><%= invitation.accepted %></td>
+      <td><%= invitation.viewed %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: invitation_view_path(@conn, :view_invite, invitation), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: invitation_path(@conn, :edit, invitation), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: invitation_path(@conn, :delete, invitation), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New invitation", to: invitation_path(@conn, :new) %>

@@ -1,4 +1,4 @@
-defmodule Flexcility.ProjectView do
+defmodule Flexcility.SiteView do
   use Flexcility.Web, :view
   alias Flexcility.Repo
   import Flexcility.LayoutView, only: [display_name: 1,

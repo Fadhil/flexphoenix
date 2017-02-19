@@ -3,7 +3,7 @@ defmodule Flexcility.ProfileController do
 
   alias Flexcility.Profile
   alias Flexcility.User
-  require IEx
+  
   def index(conn, _params) do
     profiles = Repo.all(Profile)
     render(conn, "index.html", profiles: profiles)

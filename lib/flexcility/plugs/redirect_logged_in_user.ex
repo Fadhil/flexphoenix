@@ -17,5 +17,6 @@ defmodule Flexcility.Plugs.RedirectLoggedInUser do
   def redirect_user(conn, user) do
     conn
     |> Phoenix.Controller.redirect(to: "/organisations")
+    |> halt
   end
 end

@@ -7,12 +7,12 @@ defmodule Flexcility.AssetController do
   plug :assign_project
 
   def index(conn, _params) do
-    %{"project_id" => project_id} = conn.params
-    project_id = String.to_integer(project_id)
+    %{"site_id" => site_id} = conn.params
+    site_id = String.to_integer(site_id)
     query = from a in Asset,
-            join: p in assoc(a, :project),
-            where: p.id == ^project_id,
-            preload: [project: p]
+            join: p in assoc(a, :site),
+            where: p.id == ^site_id,
+            preload: [site: p]
     assets = Repo.all(query)
 
     render(conn, assets: assets)
@@ -24,15 +24,15 @@ defmodule Flexcility.AssetController do
   end
 
   def create(conn, %{"asset" => asset_params}) do
-    changeset = Asset.create_changeset(%Asset{}, conn.assigns.project.id, asset_params)
+    changeset = Asset.create_changeset(%Asset{}, conn.assigns.site.id, asset_params)
 
     case Repo.insert(changeset) do
       {:ok, _asset} ->
         conn
         |> put_flash(:info, "Asset created successfully.")
-        |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
+        |> redirect(to: site_asset_path(conn, :index, conn.assigns.site.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset, project_id: conn.assigns.project.id)
+        render(conn, "new.html", changeset: changeset, site_id: conn.assigns.site.id)
     end
   end
 
@@ -55,7 +55,7 @@ defmodule Flexcility.AssetController do
       {:ok, asset} ->
         conn
         |> put_flash(:info, "Asset updated successfully.")
-        |> redirect(to: project_asset_path(conn, :show, conn.assigns.project.id, asset))
+        |> redirect(to: site_asset_path(conn, :show, conn.assigns.site.id, asset))
       {:error, changeset} ->
         render(conn, "edit.html", asset: asset, changeset: changeset)
     end
@@ -70,12 +70,12 @@ defmodule Flexcility.AssetController do
 
     conn
     |> put_flash(:info, "Asset deleted successfully.")
-    |> redirect(to: project_asset_path(conn, :index, conn.assigns.project.id))
+    |> redirect(to: site_asset_path(conn, :index, conn.assigns.site.id))
   end
 
   def assign_project(conn, _opts) do
-    %{params: %{"project_id" => project_id}} = conn
-    project = Repo.get(Flexcility.Project, project_id)
-    assign(conn, :project, project)
+    %{params: %{"site_id" => site_id}} = conn
+    project = Repo.get(Flexcility.Site, site_id)
+    assign(conn, :site, project)
   end
 end

@@ -14,13 +14,13 @@ defmodule Flexcility.OrderController do
         assigned_orders: assigned_orders}
       }=conn, _params
   ) do
-    user = current_user |> Repo.preload([{:orders,[{:request, [:project, :asset]}, :user]}])
+    user = current_user |> Repo.preload([{:orders,[{:request, [:site, :asset]}, :user]}])
     orders = user.orders ++ assigned_orders
     render(conn, "index.html", orders: orders)
   end
 
   def new(conn, %{"request_id" => request_id}) do
-    request_fields = [:asset_id, :description, :location, :project_id,
+    request_fields = [:asset_id, :description, :location, :site_id,
                       :title]
 
     {request_attributes, _} = Repo.get(Request, request_id)
@@ -54,7 +54,7 @@ defmodule Flexcility.OrderController do
             |> Repo.preload([:technicians,
                             {:request,
                               [:asset,
-                              {:project,
+                              {:site,
                                 [:user,
                                 {:users_roles, [:user, :role]}]}]},
                             :user])
@@ -96,14 +96,14 @@ defmodule Flexcility.OrderController do
   end
 
   def assign_technicians(conn, %{"order_id" => order_id}) do
-    preloads = [{:request,[:project, :asset]}, :technicians]
+    preloads = [{:request,[:site, :asset]}, :technicians]
     order = Order
             |> Repo.get(order_id)
             |> Repo.preload(preloads)
 
     technicians = UsersRole
                   |> UsersRole.only_technicians
-                  |> Repo.all(project_id: order.request.project_id)
+                  |> Repo.all(site_id: order.request.site_id)
 
     conn
     |> render("assign_technicians.html",

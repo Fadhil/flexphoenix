@@ -1,7 +1,7 @@
-defmodule Flexcility.Project do
+defmodule Flexcility.Site do
   use Flexcility.Web, :model
 
-  schema "projects" do
+  schema "sites" do
     field :name, :string
     field :description, :string
     field :address, :string
@@ -17,11 +17,11 @@ defmodule Flexcility.Project do
   end
 
   @all_fields ~w(name description address image)
-  @required_fields ~w(name description address)
+  @required_fields [:name, :description, :address]
   @optional_fields ~w()
 
   @required_file_fields ~w()
-  @optional_file_fields ~w(image)
+  @optional_file_fields [:image]
 
   @doc """
   Creates a changeset based on the `model` and `params`.

@@ -68,9 +68,9 @@ defmodule Flexcility.Router do
 
     get "/send_email_test", OrganisationController, :send_an_email
     resources "/organisations", OrganisationController
-    resources "/projects", ProjectController do
+    resources "/sites", SiteController do
       resources "/assets", AssetController
-      post "/invite_user", ProjectController, :invite_user
+      post "/invite_user", SiteController, :invite_user, as: :invite
     end
     resources "/requests", RequestController do
       get "/assign_technicians", RequestController, :assign_technicians, as: :assign_technicians
@@ -83,13 +83,17 @@ defmodule Flexcility.Router do
     resources "/reports", ReportController
     get "/profiles/edit", ProfileController, :edit
     resources "/profiles", ProfileController, except: [:index, :new, :create]
+    resources "/invitations", InvitationController do
+      get "/accept", InvitationController, :view_invite, as: :view
+      post "/accept", InvitationController, :accept_invite, as: :accept
+    end
   end
 
 
   scope "/api", Flexcility do
     pipe_through [:api, :set_menu]
 
-    resources "/projects", ProjectController, only: [] do
+    resources "/sites", SiteController, only: [] do
       get "/assets", AssetController, :index
     end
   end

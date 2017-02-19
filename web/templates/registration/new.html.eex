@@ -18,7 +18,7 @@
   <a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a>
 </div><small>v<%= Flexcility.Version.current %></small>
   <h3>Welcome to Flexcility</h3>
-  <p>The go to facilities management app for everyone.<br/>Register now to start managing your projects with Flexcility!</p>
+  <p>The go to facilities management app for everyone.<br/>Register now to start managing your sites with Flexcility!</p>
 
   <div class="form-group">
     <%= text_input f, :first_name, id: "first_name", placeholder: "First Name", class: "form-control" %>
@@ -39,6 +39,8 @@
   <div class="form-group">
     <%= password_input f, :password_confirmation, id: "password_confirmation", placeholder: "Confirm Password", class: "form-control" %>
   </div>
+
+  <input type="hidden" name="invitation" value=<%= @invitation %>>
 
   <%= submit "Register", class: "btn btn-primary block full-width m-b" %>
 <% end %>

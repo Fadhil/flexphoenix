@@ -1,0 +1,9 @@
+<div class="wrapper wrapper-content">
+    <div class="middle-box text-center animated fadeInRightBig no-org-page">
+        <h3 class="font-bold">You were invited to join the Organisation: <%= @invitation.organisation.name %> by <%= @invitation.inviter.email %></h3>
+        <div class="error-desc">
+            Click here to Accept.
+            <br/><%= link "Join Organisation", to: invitation_accept_path(@conn, :accept_invite, @invitation.id), method: :post, class: "btn btn-primary m-t" %>
+        </div>
+    </div>
+</div>

@@ -4819,31 +4819,31 @@ a.compose-mail {
   width: 23%;
 }
 /* PROJECTS */
-.project-people,
-.project-actions {
+.site-people,
+.site-actions {
   text-align: right;
   vertical-align: middle;
 }
-dd.project-people {
+dd.site-people {
   text-align: left;
   margin-top: 5px;
 }
-.project-people img {
+.site-people img {
   width: 32px;
   height: 32px;
 }
-.project-title a {
+.site-title a {
   font-size: 14px;
   color: #676a6c;
   font-weight: 600;
 }
-.project-list table tr td {
+.site-list table tr td {
   border-top: none;
   border-bottom: 1px solid #e7eaec;
   padding: 15px 10px;
   vertical-align: middle;
 }
-.project-manager .tag-list li a {
+.site-manager .tag-list li a {
   font-size: 10px;
   background-color: white;
   padding: 5px 12px;
@@ -4854,7 +4854,7 @@ dd.project-people {
   margin-top: 5px;
   display: block;
 }
-.project-files li a {
+.site-files li a {
   font-size: 11px;
   color: #676a6c;
   margin-left: 10px;

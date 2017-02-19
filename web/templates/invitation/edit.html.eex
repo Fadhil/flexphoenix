@@ -1,0 +1,6 @@
+<h2>Edit invitation</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: invitation_path(@conn, :update, @invitation) %>
+
+<%= link "Back", to: invitation_path(@conn, :index) %>

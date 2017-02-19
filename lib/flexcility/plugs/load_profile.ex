@@ -2,7 +2,7 @@ defmodule Flexcility.Plug.LoadProfile do
   import Plug.Conn
   alias Flexcility.Repo
   alias Flexcility.Router.Helpers
-  require IEx
+  
   def init(defaults), do: defaults
 
   def call(conn, _) do

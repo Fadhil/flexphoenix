@@ -6,9 +6,9 @@
           <h5>Create A New Asset <small></small></h5>
         </div>
         <%= render "form.html", changeset: @changeset,
-            action: project_asset_path(@conn, :create, @project),
+            action: site_asset_path(@conn, :create, @site),
             conn: @conn,
-            project: @project %>
+            site: @site %>
       </div>
     </div>
   </div>

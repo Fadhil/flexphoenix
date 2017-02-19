@@ -16,7 +16,7 @@
                 <%= link to: order_path(@conn, :show, order) do %>
                   <tr>
                     <td class="project-title">
-                      <span><%= project_name(order.request.project) %></span><!-- Reserve for order_id -->
+                      <span><%= project_name(order.request.site) %></span><!-- Reserve for order_id -->
                     </td>
                     <td class="project-status">
                       <span class="label label-success label-outline"><%= order.request_id %></span><!-- Reserve for order_id -->

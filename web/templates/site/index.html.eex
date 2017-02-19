@@ -28,7 +28,7 @@
                     </td>
                     <td class="hidden-xs"><%= project.description %></td>
                     <td class="hidden-xs"><%= project.address %></td>
-                    <td class="project-people">
+                    <td class="project-people team-members">
                       <a href=""><img alt="image" class="img-circle" src="img/a3.jpg"></a>
                       <a href=""><img alt="image" class="img-circle" src="img/a1.jpg"></a>
                       <a href=""><img alt="image" class="img-circle" src="img/a2.jpg"></a>

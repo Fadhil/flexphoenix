@@ -1,8 +1,36 @@
-<div class="footer">
-    <div class="pull-right">
-        Built by <strong>Jomcode</strong>.
+<footer class="footer">
+    <div class="container-fluid">
+        <nav class="pull-left">
+            <ul>
+
+                <li>
+                    <a href="http://www.flexcility.com">
+                        Flexcility.com
+                    </a>
+                </li>
+                <li>
+                    <a href="http://jomcod.com/fadhil">
+                       Blog
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="http://www.creative-tim.com/license">
+                        Licenses
+                    </a>
+                </li> -->
+            </ul>
+        </nav>
+        <div class="copyright pull-right">
+            &copy; <script>document.write(new Date().getFullYear())</script>, <a href="http://www.flexcility.com">Flexcility Systems Sdn Bhd</a>
+        </div>
     </div>
-    <div>
-        <strong>Copyright</strong> Flexcility &copy; 2016
-    </div>
-</div>
+</footer>
+<script type="text/javascript">
+  <% flash = get_flash(@conn) %>
+
+  $(document).ready(function(){
+    <%= display_flash_message(flash) %>
+  });
+
+
+</script>

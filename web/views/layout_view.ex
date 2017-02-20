@@ -41,6 +41,26 @@ defmodule Flexcility.LayoutView do
     end
   end
 
+  def display_flash_message(%{"info" => value}) do
+    build_notify_js("info", value)
+    |> raw
+  end
+
+  def build_notify_js(flash_type, value) do
+    """
+      $.notify({
+        message: '#{value}'
+      },{
+          type: '#{flash_type}',
+          delay: 2000
+      });
+    """
+  end
+
+  def display_flash_message(%{}) do
+    nil
+  end
+
   def image(%{image: nil} ) do
     "/images/default-image.jpg"
   end

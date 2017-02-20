@@ -14,14 +14,15 @@ exports.config = {
       // https://github.com/brunch/brunch/tree/master/docs#concatenation
       order: {
         before: [
-          // "node_modules/jquery/dist/jquery.js",
+          "node_modules/jquery/dist/jquery.js",
           // "bower_components/jquery/dist/jquery.min.js",
-          // "bower_components/bootstrap/dist/js/bootstrap.min.js",
-          "web/static/vendor/js/jquery-1.10.2.js",
-          "web/static/vendor/js/bootstrap.min.js",
-          "web/static/vendor/js/chartist.js",
-          "web/static/vendor/js/bootstrap-notify.js",
-          "web/static/vendor/js/paper-dashboard.js"
+          "bower_components/bootstrap/dist/js/bootstrap.min.js",
+          // "bower_components/bootstrap-notify/js/bootstrap-notify.js",
+          // "web/static/vendor/js/jquery-1.10.2.js",
+          // "web/static/vendor/js/bootstrap.min.js",
+          // "web/static/vendor/js/chartist.js",
+          // "web/static/vendor/js/bootstrap-notify.js",
+          // "web/static/vendor/js/paper-dashboard.js"
         ]
       }
     },
@@ -76,8 +77,8 @@ exports.config = {
     // All other deps in package.json will be excluded from the bundle.
     whitelist: ["phoenix", "phoenix_html", "jquery"],
     globals: {
-      $: 'jquery'//,
-      // jQuery: 'jquery'
+      $: 'jquery',
+      jQuery: 'jquery'
     }
   }
 };

@@ -78,3 +78,10 @@ body{
 .navbar-flex-container {
     background-color: #f4f3ef;
 }
+
+.flex-dropdown-menu > li > a:hover {
+  color: #68B3C8 !important;
+}
+.flex-dropdown-menu > li > a:focus {
+  color: #68B3C8 !important;
+}

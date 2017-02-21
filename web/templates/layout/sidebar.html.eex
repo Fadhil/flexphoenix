@@ -11,7 +11,7 @@ Tip 2: you can change the color of the active button using the data-active-color
               JKR
             <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="flex-dropdown-menu dropdown-menu">
               <li><a href="#">Switch Organisation</a></li>
             </ul>
         </div>

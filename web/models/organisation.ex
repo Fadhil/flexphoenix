@@ -1,5 +1,8 @@
 defmodule Flexcility.Organisation do
   use Flexcility.Web, :model
+  alias Flexcility.Repo
+  require IEx
+
 
   schema "organisations" do
     field :name, :string
@@ -36,5 +39,21 @@ defmodule Flexcility.Organisation do
   def image_changeset(organisation, params) do
     organisation
     |> cast_attachments(params, @image_fields)
+  end
+
+  def get_members_roles(membership) do
+    %{role: %{name: role}, user: %{email: email, profile: %{image: image} = profile}} = membership
+    %{email: email, role: role, profile: profile}
+  end
+
+  def get_members(organisation) do
+    case organisation.memberships do
+      [] ->
+        []
+      memberships when is_list(memberships) ->
+        memberships
+        |> Enum.map(&get_members_roles/1)
+        |> Enum.group_by(&(&1.role))
+    end
   end
 end

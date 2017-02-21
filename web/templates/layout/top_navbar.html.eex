@@ -43,13 +43,3 @@
         </div>
     </div>
 </nav>
-
-<script type="text/javascript">
-  <% flash = get_flash(@conn) %>
-
-  $(document).ready(function(){
-    <%= display_flash_message(flash) %>
-  });
-
-
-</script>

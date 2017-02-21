@@ -29,30 +29,4 @@
 <!--  Google Maps Plugin    -->
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
 
-
-	<script type="text/javascript">
-    	// $(document).ready(function(){
-			//
-      //   	demo.initChartist();
-			//
-      //   	// $.notify({
-      //     //   	// icon: 'ti-gift',
-      //     //   	message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
-			// 		//
-      //     //   },{
-      //     //       type: 'success',
-			// 		// 			delay: 2000
-      //     //   });
-			//
-    	// });
-	  <% flash = get_flash(@conn) %>
-
-	  $(document).ready(function(){
-			demo.initChartist();
-	    <%= display_flash_message(flash) %>
-	  });
-
-
-
-	</script>
 </html>

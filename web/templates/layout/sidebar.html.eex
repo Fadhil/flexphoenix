@@ -6,10 +6,14 @@ Tip 2: you can change the color of the active button using the data-active-color
 -->
 
   <div class="sidebar-wrapper">
-        <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
-                Creative Tim
+        <div class="logo dropdown">
+            <a href="#" class="dropdown-toggle simple-text" data-toggle="dropdown">
+              JKR
+            <b class="caret"></b>
             </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Switch Organisation</a></li>
+            </ul>
         </div>
 
         <ul class="nav">

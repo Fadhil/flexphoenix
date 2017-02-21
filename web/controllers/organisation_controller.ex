@@ -35,7 +35,8 @@ defmodule Flexcility.OrganisationController do
 
   def new(conn, _params) do
     changeset = Organisation.changeset(%Organisation{})
-    render(conn, "new.html", changeset: changeset, page_title: "New Organisation", action_name: action_name(conn))
+    conn = conn |> assign(:page_title, "new")
+    render(conn, "new.html", changeset: changeset, action_name: action_name(conn))
   end
 
   def create(conn, %{"organisation" => organisation_params}) do
@@ -74,6 +75,7 @@ defmodule Flexcility.OrganisationController do
   def edit(conn, %{"id" => id}) do
     organisation = Repo.get!(Organisation, id)
     changeset = Organisation.changeset(organisation)
+    conn = conn |> assign(:page_title, organisation.name)
     render(conn, "edit.html", organisation: organisation, changeset: changeset, action_name: action_name(conn))
   end
 

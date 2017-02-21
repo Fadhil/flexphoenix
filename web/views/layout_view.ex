@@ -74,6 +74,7 @@ defmodule Flexcility.LayoutView do
           }
       });
     """
+    |> raw
   end
 
 

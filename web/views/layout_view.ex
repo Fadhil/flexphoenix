@@ -68,7 +68,10 @@ defmodule Flexcility.LayoutView do
         message: '#{value}'
       },{
           type: '#{flash_type}',
-          delay: 2000
+          delay: 2000,
+          placement: {
+            align: 'center'
+          }
       });
     """
   end

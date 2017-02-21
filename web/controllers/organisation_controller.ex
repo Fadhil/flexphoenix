@@ -58,7 +58,9 @@ defmodule Flexcility.OrganisationController do
         |> put_flash(:info, "Organisation created successfully.")
         |> redirect(to: organisation_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> render("new.html", changeset: changeset,action_name: action_name(conn))
     end
   end
 
@@ -87,7 +89,9 @@ defmodule Flexcility.OrganisationController do
         |> put_flash(:info, "Organisation updated successfully.")
         |> redirect(to: organisation_path(conn, :show, organisation))
       {:error, changeset} ->
-        render(conn, "edit.html", organisation: organisation, changeset: changeset)
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> render("edit.html", organisation: organisation, changeset: changeset)
     end
   end
 

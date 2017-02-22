@@ -1,179 +1,45 @@
-        <div class="row border-bottom">
-        <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default">
+    <div class="container-fluid navbar-flex-container">
         <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="search_results.html">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form>
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            <a class="navbar-brand" href="#"><%= page_title @conn %></a>
         </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li id="welcome-message" style="display: none;">
-                    <span class="m-r-sm text-muted welcome-message">Welcome to the Flexcility Management App.</span>
-                </li>
-                <!--// Notification messages. Triggered by javascript at bottom of the page -->
-                <%
-                  info = get_flash(@conn, :info)
-                  error = get_flash(@conn, :error)
-                  success = get_flash(@conn, :success)
-                  warning = get_flash(@conn, :warning)
-                  notification_message = if error do
-                    %{message: error, type: "danger", toastr_type: "error"}
-                  else
-                    if warning do
-                      %{message: warning, type: "warning", toastr_type: "warning"}
-                    end
-                    if success do
-                      %{message: success, type: "success", toastr_type: "success"}
-                    else
-                        %{message: info, type: "info", toastr_type: "info"}
-                    end
-                  end
-                %>
-                <%= if notification_message.message do %>
-                  <li id="notification-message" style="display: none">
-                    <span class="m-r-sm text-<%= "#{notification_message.type}" %> notification-message"><%= notification_message.message %></span>
-                  </li>
-                <% end %>
-                <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="ti-panel"></i>
+        <p>Stats</p>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="/img/a7.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <small class="pull-right">46h ago</small>
-                                    <strong>Zack</strong> created request <strong>Lights Out at Apartment 143</strong>. <br>
-                                    <small class="text-muted">2 days ago at 7:58 pm - 10.08.2016</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="/img/a4.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right text-navy">23h ago</small>
-                                    <strong>Fadhil</strong> approved and created work order for <strong>Lights Out at Apartment 143</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.08.2016</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="/img/profile.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">1h ago</small>
-                                    <strong>Monica</strong> started work on  <strong>Lights Out at Apartment 143</strong>. <br>
-                                    <small class="text-muted">Today at 2:30 am - 12.08.2016</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="mailbox.html">
-                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="mailbox.html">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> You have 6 messages
-                                    <span class="pull-right text-muted small">54 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="profile.html">
-                                <div>
-                                    <i class="fa fa-exclamation-triangle fa-fw"></i> 3 New Actions
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="grid_options.html">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="notifications.html">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="ti-bell"></i>
+                            <p class="notification">5</p>
+          <p>Notifications</p>
+          <b class="caret"></b>
+                      </a>
+                      <ul class="flex-dropdown-menu dropdown-menu">
+                        <li><a href="#">Notification 1</a></li>
+                        <li><a href="#">Notification 2</a></li>
+                        <li><a href="#">Notification 3</a></li>
+                        <li><a href="#">Notification 4</a></li>
+                        <li><a href="#">Another notification</a></li>
+                      </ul>
                 </li>
-
-                <%= if @current_user do %>
-                  <li>
-                    <%= link to: session_path(@conn, :delete), method: :delete do %>
-                      <i class="fa fa-sign-out"></i> Log out
-                    <% end %>
-                  </li>
-                <% else %>
-                  <li>
-                    <%= link to: session_path(@conn, :new) do %>
-                      <i class="fa fa-sign-in"></i> Log in
-                    <% end %>
-                  </li>
-                <% end %>
+    <li>
+                    <a href="#">
+        <i class="ti-settings"></i>
+        <p>Settings</p>
+                    </a>
+                </li>
             </ul>
 
-        </nav>
-      </div>
-<script>
-
-
-    $(document).ready(function(){
-      $('#notification-message').ready(function(){
-        if($("#notification-message").text() != ""){
-          $('#notification-message').fadeIn(500);
-          $('#notification-message').delay(3000).slideUp(500);
-          $('#welcome-message').delay(5000).fadeIn(500);
-          return false;
-        }
-        else{
-          $('#welcome-message').fadeIn(500);
-        }
-      });
-
-      // Show toastr alert
-      toastr.options = {
-        closeButton: $('#closeButton').prop('checked'),
-        msg: "<%= notification_message.message %>"
-      };
-      <%= if notification_message.message do %>
-        toastr.<%= notification_message.toastr_type %>("<%= notification_message.message %>");
-      <% end %>
-    });
-
-
-</script>
+        </div>
+    </div>
+</nav>

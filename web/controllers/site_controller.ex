@@ -86,6 +86,7 @@ defmodule Flexcility.SiteController do
             where: ur.site_id == ^site.id
     users_roles = Repo.all(query)
                   |> Repo.preload([:user, :site, :role])
+    conn = conn |> assign(:page_title, site.name)
     render(conn, "show.html", site: site, roles_select_list: roles_select_list, site_members: users_roles)
   end
 

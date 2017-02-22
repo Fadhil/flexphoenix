@@ -5,6 +5,7 @@ defmodule Flexcility.OrganisationController do
   alias Flexcility.Membership
 
   def index(conn, _params) do
+    conn = conn |> assign(:page_title, "Organisations")
     user = conn.assigns.current_user
     pending_invitation = get_session(conn, :invitation_key)
     case pending_invitation do
@@ -35,7 +36,8 @@ defmodule Flexcility.OrganisationController do
 
   def new(conn, _params) do
     changeset = Organisation.changeset(%Organisation{})
-    render(conn, "new.html", changeset: changeset, page_title: "New Organisation", action_name: action_name(conn))
+    conn = conn |> assign(:page_title, "new")
+    render(conn, "new.html", changeset: changeset, action_name: action_name(conn))
   end
 
   def create(conn, %{"organisation" => organisation_params}) do
@@ -57,7 +59,9 @@ defmodule Flexcility.OrganisationController do
         |> put_flash(:info, "Organisation created successfully.")
         |> redirect(to: organisation_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> render("new.html", changeset: changeset,action_name: action_name(conn))
     end
   end
 
@@ -65,15 +69,14 @@ defmodule Flexcility.OrganisationController do
     organisation = Repo.get!(Organisation, id)
                    |> Repo.preload([{:memberships, [{:user, :profile}, :role]}])
     facilities = []
-    members = organisation.memberships
-              |> Enum.map(&get_members_roles/1)
-              |> Enum.group_by(&(&1.role))
+    members = Organisation.get_members(organisation)
     render(conn, "show.html", organisation: organisation, facilities: facilities, members: members)
   end
 
   def edit(conn, %{"id" => id}) do
     organisation = Repo.get!(Organisation, id)
     changeset = Organisation.changeset(organisation)
+    conn = conn |> assign(:page_title, organisation.name)
     render(conn, "edit.html", organisation: organisation, changeset: changeset, action_name: action_name(conn))
   end
 
@@ -87,7 +90,9 @@ defmodule Flexcility.OrganisationController do
         |> put_flash(:info, "Organisation updated successfully.")
         |> redirect(to: organisation_path(conn, :show, organisation))
       {:error, changeset} ->
-        render(conn, "edit.html", organisation: organisation, changeset: changeset)
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> render("edit.html", organisation: organisation, changeset: changeset)
     end
   end
 
@@ -101,12 +106,6 @@ defmodule Flexcility.OrganisationController do
     conn
     |> put_flash(:info, "Organisation deleted successfully.")
     |> redirect(to: organisation_path(conn, :index))
-  end
-
-  def get_members_roles(membership) do
-
-    %{role: %{name: role}, user: %{email: email, profile: %{image: image} = profile}} = membership
-    %{email: email, role: role, profile: profile}
   end
 
   def send_an_email(conn, _params) do

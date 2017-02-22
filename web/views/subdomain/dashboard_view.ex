@@ -1,4 +1,4 @@
-defmodule Flexcility.OrganisationView do
+defmodule Flexcility.Subdomain.DashboardView do
   use Flexcility.Web, :view
   alias Flexcility.Organisation
   import Flexcility.LayoutView, only: [display_name: 1,

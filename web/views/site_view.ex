@@ -3,7 +3,7 @@ defmodule Flexcility.SiteView do
   alias Flexcility.Repo
   import Flexcility.LayoutView, only: [display_name: 1,
                                         display_created_at: 1,
-                                        image: 1]
+                                        image: 1, display_flash_message: 1]
 
   def project_members(project) do
     %{members: members} = project |> Repo.preload(members: [:roles])

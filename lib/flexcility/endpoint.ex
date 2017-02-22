@@ -38,5 +38,6 @@ defmodule Flexcility.Endpoint do
     key: "_Flexcility_key",
     signing_salt: "ZjRCjSN5"
 
+  plug Flexcility.Plug.Subdomain, Flexcility.SubdomainRouter
   plug Flexcility.Router
 end

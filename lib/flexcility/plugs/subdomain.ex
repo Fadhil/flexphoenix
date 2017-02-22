@@ -9,6 +9,7 @@ defmodule Flexcility.Plug.Subdomain do
     case get_subdomain(conn.host) do
       subdomain when byte_size(subdomain) > 0 ->
         conn
+        |> put_private(:subdomain, subdomain)
         |> router.call(router.init({}))
         |> halt
       _ -> conn

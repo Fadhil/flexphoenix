@@ -3,7 +3,7 @@ defmodule Flexcility.ProfileController do
 
   alias Flexcility.Profile
   alias Flexcility.User
-  
+
   def index(conn, _params) do
     profiles = Repo.all(Profile)
     render(conn, "index.html", profiles: profiles)
@@ -13,6 +13,7 @@ defmodule Flexcility.ProfileController do
     user_id = conn.assigns.current_user.id
     user = Repo.get(User, user_id)|> Repo.preload([:profile])
     changeset = user |> User.changeset(%{})
+    conn = conn |> assign(:current_user, user)
     render(conn, "new.html", changeset: changeset, user: user)
   end
 

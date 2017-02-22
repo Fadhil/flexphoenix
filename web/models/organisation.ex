@@ -1,8 +1,6 @@
 defmodule Flexcility.Organisation do
   use Flexcility.Web, :model
   alias Flexcility.Repo
-  require IEx
-
 
   schema "organisations" do
     field :name, :string

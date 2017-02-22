@@ -5,6 +5,7 @@ defmodule Flexcility.OrganisationController do
   alias Flexcility.Membership
 
   def index(conn, _params) do
+    conn = conn |> assign(:page_title, "Organisations")
     user = conn.assigns.current_user
     pending_invitation = get_session(conn, :invitation_key)
     case pending_invitation do

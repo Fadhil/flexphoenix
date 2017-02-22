@@ -15,7 +15,7 @@
   <!--  Fonts and icons     -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-  <!-- <link href="css/themify-icons.css" rel="stylesheet"> -->
+  <!-- <link href="<%= static_path(@conn, "/css/themify-icons.css") %>" rel="stylesheet"> -->
 
   <meta name="description" content="An integrated Facilities Management App">
   <meta name="author" content="co-authored by Fadhil Luqman and Faruq Luqman">

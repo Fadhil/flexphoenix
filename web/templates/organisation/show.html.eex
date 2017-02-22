@@ -276,10 +276,6 @@
 </div>
 <script>
 $(document).ready(function(){
-  $('.tooltips').tooltip({
-      selector: "[data-toggle=tooltip]",
-      container: "body"
-  });
   window.CurrentState.setOrgId(<%= @organisation.id %>);
   window.CurrentState.setCurrentUserId(<%= @current_user.id %>);
 });

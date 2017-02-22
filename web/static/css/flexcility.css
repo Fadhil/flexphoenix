@@ -1,3 +1,8 @@
+:root {
+  --black: #000000;
+  --antique-white: #faebd7;
+}
+
 body{
     /*background-color: #525252;i*/
 }
@@ -85,3 +90,14 @@ body{
 .flex-dropdown-menu > li > a:focus {
   color: #68B3C8 !important;
 }
+
+.organisation-sidebar {
+  background-color: var(--black);
+}
+
+/*.organisation-sidebar .nav a, .organisation-sidebar .nav i{
+  color: var(--antique-white);
+}*/
+/*.nav li.active > a, .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a {
+    color: #EB5E28
+}*/

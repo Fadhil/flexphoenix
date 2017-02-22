@@ -9,6 +9,7 @@ defmodule Flexcility.SubdomainRouter do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :current_user
+    plug :put_layout, {Flexcility.LayoutView, :organisation_layout}
   end
 
   pipeline :api do
@@ -32,7 +33,7 @@ defmodule Flexcility.SubdomainRouter do
   pipeline :authorize do
     plug Flexcility.Plugs.Authorize
   end
-  
+
   pipeline :load_profile do
     plug Flexcility.Plug.LoadProfile
   end

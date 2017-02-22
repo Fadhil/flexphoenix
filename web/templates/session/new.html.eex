@@ -17,11 +17,6 @@
                             Register
                         </a>
                     </li>
-					<li>
-                       <a href="../dashboard/overview.html">
-                            Dashboard
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -35,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                             <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
-                                <div class="card" data-background="color" data-color="blue">
+                                <div class="login-card card" data-background="color" data-color="blue">
                                     <div class="header">
                                         <h3 class="title">Login</h3>
                                     </div>
@@ -63,10 +58,16 @@
                                             <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
                                         </div>
                                     </div>
+
                                     <div class="footer text-center">
-                                        <button type="submit" class="btn btn-fill btn-wd ">Let's go</button>
+                                        <button type="submit" class="btn btn-fill btn-wd ">Login</button>
                                         <div class="forgot">
-                                            <a href="#pablo">Forgot your password?</a>
+                                            <a href="<%= password_path(@conn, :forget_password) %>">Forgot your password?</a>
+                                        </div>
+                                        <span class="text-muted text-center"><small>Do not have an account?</small></span>
+                                        <div class="col-xs-8 col-xs-offset-2">
+                                          <a class="btn btn-sm btn-white btn-block" href="<%= registration_path(@conn, :new) %>">Create an account</a>
+                                          <br/><br/>
                                         </div>
                                     </div>
                                 </div>
@@ -86,3 +87,13 @@
         </div>
     </div>
 </body>
+<script type="text/javascript">
+      $(document).ready(function(){
+          // demo.checkFullPageBackgroundImage();
+
+          setTimeout(function(){
+              // after 1000 ms we add the class animated to the login/register card
+              $('.card').removeClass('card-hidden');
+          }, 700)
+      });
+</script>

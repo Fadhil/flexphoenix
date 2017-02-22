@@ -95,6 +95,9 @@ body{
   background-color: var(--black);
 }
 
+.login-card {
+  height: 450px;
+}
 /*.organisation-sidebar .nav a, .organisation-sidebar .nav i{
   color: var(--antique-white);
 }*/

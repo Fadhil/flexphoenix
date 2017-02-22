@@ -36,7 +36,7 @@ defmodule Flexcility.OrganisationController do
 
   def new(conn, _params) do
     changeset = Organisation.changeset(%Organisation{})
-    conn = conn |> assign(:page_title, "new")
+    conn = conn |> assign(:page_title, "New Organisation")
     render(conn, "new.html", changeset: changeset, action_name: action_name(conn))
   end
 

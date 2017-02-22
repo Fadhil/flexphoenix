@@ -15,8 +15,14 @@ defmodule Flexcility.Plugs.RedirectLoggedInUser do
   end
 
   def redirect_user(conn, user) do
+    redirect_path = case conn.private[:subdomain] do
+      nil ->
+        "/organisations"
+      priv ->
+        "/dashboard"
+    end
     conn
-    |> Phoenix.Controller.redirect(to: "/organisations")
+    |> Phoenix.Controller.redirect(to: redirect_path)
     |> halt
   end
 end

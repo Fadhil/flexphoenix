@@ -7,13 +7,22 @@ Tip 2: you can change the color of the active button using the data-active-color
 
   <div class="sidebar-wrapper">
         <div class="logo dropdown">
-            <a href="#" class="dropdown-toggle simple-text" data-toggle="dropdown">
-              JKR
-            <b class="caret"></b>
-            </a>
-            <ul class="flex-dropdown-menu dropdown-menu">
-              <li><a href="#">Switch Organisation</a></li>
-            </ul>
+          <div class="row">
+              <div class="col-xs-3">
+                  <div class="avatar">
+                      <img src="<%= static_path(@conn, "/img/faces/face-0.jpg") %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+              </div>
+              <div class="col-xs-8">
+                  DJ Khaled
+                  <br />
+                  <span class="text-success"><small><%= link "Logout", to: session_path(@conn, :delete) %></small></span>
+              </div>
+
+              <!-- <div class="col-xs-3 text-right">
+                  <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+              </div> -->
+          </div>
         </div>
 
         <ul class="nav">

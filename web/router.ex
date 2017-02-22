@@ -44,7 +44,7 @@ defmodule Flexcility.Router do
 
   scope "/", Flexcility do
     pipe_through [:browser]
-    delete "/logout", SessionController, :delete
+    get "/logout", SessionController, :delete
   end
 
   scope "/", Flexcility do

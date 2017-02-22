@@ -10,6 +10,7 @@ defmodule Flexcility.Plug.Subdomain do
       subdomain when byte_size(subdomain) > 0 ->
         conn
         |> router.call(router.init({}))
+        |> halt
       _ -> conn
     end
   end

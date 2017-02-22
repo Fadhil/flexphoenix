@@ -1,6 +1,8 @@
 :root {
   --black: #000000;
+  --dark-blue: #145A32;
   --antique-white: #faebd7;
+  --bright-green: #82E0AA;
 }
 
 body{
@@ -91,9 +93,24 @@ body{
   color: #68B3C8 !important;
 }
 
-.organisation-sidebar {
+.antique-white {
+  color: var(--antique-white) !important;
+}
+
+ul.nav.antique-white > li:active > a {
+  color: var(--bright-green) !important;
+}
+
+ul.nav.antique-white > li:not(.active) > a {
+  color: var(--antique-white) !important;
+}
+
+
+.organisation-sidebar, .organisation-sidebar.sidebar::after {
   background-color: var(--black);
 }
+
+
 
 .login-card {
   min-height: 450px;

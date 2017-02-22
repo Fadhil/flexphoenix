@@ -1,13 +1,13 @@
-<div class="sidebar" data-background-color="white" data-active-color="danger">
+<div class="organisation-sidebar sidebar" data-background-color="black" data-active-color="success">
 
 <!--
 Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
 Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 -->
 
-  <div class="organisation-sidebar sidebar-wrapper">
+  <div class="organisation-sidebar  sidebar-wrapper">
         <div class="logo dropdown">
-            <a href="#" class="dropdown-toggle simple-text" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle simple-text antique-white" data-toggle="dropdown">
               JKR
             <b class="caret"></b>
             </a>
@@ -16,7 +16,7 @@ Tip 2: you can change the color of the active button using the data-active-color
             </ul>
         </div>
 
-        <ul class="nav">
+        <ul class="nav antique-white">
             <li class="active">
                 <a href="dashboard.html">
                     <i class="ti-panel"></i>

@@ -36,7 +36,8 @@ defmodule Flexcility.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_Flexcility_key",
-    signing_salt: "ZjRCjSN5"
+    signing_salt: "ZjRCjSN5",
+    domain:  ".flexcility.dev"
 
   plug Flexcility.Plug.Subdomain, Flexcility.SubdomainRouter
   plug Flexcility.Router

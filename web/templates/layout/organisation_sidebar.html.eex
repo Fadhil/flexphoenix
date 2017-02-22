@@ -15,7 +15,22 @@ Tip 2: you can change the color of the active button using the data-active-color
               <li><a href="#">Switch Organisation</a></li>
             </ul>
         </div>
+        <div class="row">
+            <div class="sidebar-avatar col-xs-3">
+                <div class="avatar">
+                    <img src="<%= thumb(@current_user.profile) %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <%= @current_user.full_name || "Anonymous" %>
+                <br />
+                <span class="text-success"><small><%= link "Logout", to: session_path(@conn, :delete) %></small></span>
+            </div>
 
+            <!-- <div class="col-xs-3 text-right">
+                <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+            </div> -->
+        </div>
         <ul class="nav antique-white">
             <li class="active">
                 <a href="dashboard.html">

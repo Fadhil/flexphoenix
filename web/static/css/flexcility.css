@@ -93,6 +93,7 @@ body{
   color: #68B3C8 !important;
 }
 
+/* Sidebar Stuff */
 .antique-white {
   color: var(--antique-white) !important;
 }
@@ -105,13 +106,17 @@ ul.nav.antique-white > li:not(.active) > a {
   color: var(--antique-white) !important;
 }
 
-
 .organisation-sidebar, .organisation-sidebar.sidebar::after {
   background-color: var(--black);
 }
 
+.sidebar-avatar {
+  padding-left: 30px !important;
+  padding-right: 0px !important;
+}
+/* End Sidebar stuff */
 
-
+/* Login and Registration */
 .login-card {
   min-height: 450px;
 }

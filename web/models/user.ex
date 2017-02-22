@@ -3,8 +3,7 @@ defmodule Flexcility.User do
   alias Passport.Password
 
   schema "users" do
-    field :first_name, :string
-    field :last_name, :string
+    field :full_name, :string
     field :email, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -28,8 +27,8 @@ defmodule Flexcility.User do
     timestamps
   end
 
-  @required_fields [:first_name, :last_name, :email, :password]
-  @all_fields [:first_name, :last_name, :email, :password]
+  @required_fields [:full_name, :email, :password]
+  @all_fields [:full_name, :email, :password]
 
   def changeset(struct, params \\ %{}) do
     struct

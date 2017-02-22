@@ -37,11 +37,6 @@ defmodule Flexcility.Router do
     plug Flexcility.Plug.LoadProfile
   end
 
-	scope "/", Flexcility do
-		pipe_through [:browser, :no_layout]
-		get "/skin-config", PageController, :skin_config
-	end
-
   scope "/", Flexcility do
     pipe_through [:browser]
     get "/logout", SessionController, :delete

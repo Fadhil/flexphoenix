@@ -39,10 +39,29 @@ defmodule Flexcility.SubdomainRouter do
   end
 
   scope "/", Flexcility.Subdomain do
-    pipe_through :browser # Use the default browser stack
-
+    pipe_through [:browser, :authorize] # Use the default browser stack
     get "/", DashboardController, :index
+    get "/dashboard", DashboardController, :index
   end
+
+  scope "/", Flexcility.Subdomain do
+    pipe_through :browser
+    get "/logout", SessionController, :delete
+  end
+
+  scope "/", Flexcility.Subdomain do
+    pipe_through [:browser, :redirect_logged_in_user]
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+  end
+  #
+  # scope "/", Flexcility.Subdomain do
+  #   pipe_through [:browser, :redirect_logged_in_user]
+  #   get "/register", RegistrationController, :new
+  #   post "/register", RegistrationController, :create
+  #   get "/forget-password", PasswordController, :forget_password
+  #   post "/reset-password", PasswordController, :reset_password
+  # end
 
 
 

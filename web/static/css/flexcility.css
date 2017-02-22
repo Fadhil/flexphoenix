@@ -95,6 +95,13 @@ body{
   background-color: var(--black);
 }
 
+.login-card {
+  min-height: 450px;
+}
+
+.registration-card {
+  min-height:350px;
+}
 /*.organisation-sidebar .nav a, .organisation-sidebar .nav i{
   color: var(--antique-white);
 }*/

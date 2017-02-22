@@ -18,7 +18,7 @@ exports.config = {
           // "bower_components/jquery/dist/jquery.min.js",
           "bower_components/bootstrap/dist/js/bootstrap.min.js",
           // "bower_components/bootstrap-notify/js/bootstrap-notify.js",
-          // "web/static/vendor/js/jquery-1.10.2.js",
+          "web/static/vendor/js/moment.min.js",
           // "web/static/vendor/js/bootstrap.min.js",
           // "web/static/vendor/js/chartist.js",
           // "web/static/vendor/js/bootstrap-notify.js",

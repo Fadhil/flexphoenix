@@ -73,7 +73,7 @@ $(document).ready(function(){
     });
 
     //  Activate the tooltips
-    $('[rel="tooltip"]').tooltip();
+    // $('[rel="tooltip"]').tooltip();
 
     // Init Tags Input
     if($(".tagsinput").length != 0){

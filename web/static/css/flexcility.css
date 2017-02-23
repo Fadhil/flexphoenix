@@ -124,6 +124,14 @@ ul.nav.antique-white > li:not(.active) > a {
 .registration-card {
   min-height:350px;
 }
+
+.padding-bottom {
+  padding-bottom: 20px;
+}
+
+#organisation_logo_preview {
+  cursor: pointer; cursor: hand;
+}
 /*.organisation-sidebar .nav a, .organisation-sidebar .nav i{
   color: var(--antique-white);
 }*/

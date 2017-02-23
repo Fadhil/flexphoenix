@@ -13,9 +13,10 @@ defmodule Flexcility.OrganisationController do
         organisations = user.organisations
         case organisations do
           [] ->
+            changeset = Organisation.changeset(%Organisation{})
             conn
             |> assign(:page_title, "Define Your Organisation")
-            |> render("index_empty.html", organisations: organisations)
+            |> render("index_empty.html", organisation: %Organisation{}, changeset: changeset, action: organisation_path(conn, :create))
           _ ->
             conn
             |> assign(:page_title, "Organisations")

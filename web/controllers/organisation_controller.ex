@@ -5,7 +5,6 @@ defmodule Flexcility.OrganisationController do
   alias Flexcility.Membership
 
   def index(conn, _params) do
-    conn = conn |> assign(:page_title, "Organisations")
     user = conn.assigns.current_user
     pending_invitation = get_session(conn, :invitation_key)
     case pending_invitation do
@@ -14,9 +13,13 @@ defmodule Flexcility.OrganisationController do
         organisations = user.organisations
         case organisations do
           [] ->
-            render(conn, "index_empty.html", organisations: organisations)
+            conn
+            |> assign(:page_title, "Define Your Organisation")
+            |> render("index_empty.html", organisations: organisations)
           _ ->
-            render(conn, "index.html", organisations: organisations)
+            conn
+            |> assign(:page_title, "Organisations")
+            |> render("index.html", organisations: organisations)
         end
       "" ->
         user = user |> Repo.preload(:organisations)

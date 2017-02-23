@@ -91,6 +91,7 @@ defmodule Flexcility.Router do
     resources "/sites", SiteController, only: [] do
       get "/assets", AssetController, :index
     end
+    get "/subdomain_unique", OrganisationController, :subdomain_unique
   end
 
   if Mix.env == :dev do

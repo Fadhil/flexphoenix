@@ -118,4 +118,14 @@ defmodule Flexcility.OrganisationController do
     |> put_flash(:info, "Sent an email to you!")
     |> redirect(to: "/")
   end
+
+  def subdomain_unique(conn, %{"organisation" => %{"subdomain" => subdomain}}) do
+    subdomain_unique = case Repo.get_by(Organisation, subdomain: subdomain) do
+      nil ->
+        "true"
+      _ ->
+        "That subdomain has already been taken"
+    end
+    render conn, "subdomain_unique.json", subdomain_unique: subdomain_unique
+  end
 end

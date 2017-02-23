@@ -34,7 +34,7 @@
                                       <label class="control-label">
                                     Subdomain<star>*</star>
                                   </label>
-                                    <%= text_input f, :subdomain, class: "form-control", placeholder: "fmsb", required: true %>
+                                    <%= text_input f, :subdomain, class: "form-control", placeholder: "fmsb", required: true, minlength: 2, remote: "/api/subdomain_unique" %>
                                   </div>
                               </div>
                           </div>
@@ -165,21 +165,17 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
-
+      var $subdomain_input = $("#organisation_subdomain")
       var $validator = $("#wizardForm").validate({
         rules: {
-          email: {
-                  required: true,
-                  email: true,
-                  minlength: 5
-          },
           name: {
-              required: false,
+              required: true,
                   minlength: 5
           },
-          subdomain: {
-              required: false,
-                  minlength: 5
+          organisation_subdomain: {
+              required: true,
+                  minlength: 2,
+                  remote: "/api/subdomain_unique"
           },
           website: {
               required: true,
@@ -196,7 +192,9 @@
           price:{
               number: true
           }
-        }
+        },
+        onkeyup: false,
+        onblur: true
       });
 
     // you can also use the nav-pills-[blue | azure | green | orange | red] for a different color of wizard
@@ -249,9 +247,18 @@
                   }
               }
           });
+          $("#organisation_subdomain").on("change", function() {
+            var $valid = $('#wizardForm').valid();
 
+            if(!$valid) {
+              $validator.focusInvalid();
+              return false;
+            }
+          });
 
       });
+
+
 
       function onFinishWizard(){
           //here you can do something, sent the form to server via ajax and show a success message with swal

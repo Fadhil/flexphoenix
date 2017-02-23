@@ -155,6 +155,8 @@
                               <button type="button" class="btn btn-info btn-fill btn-wd btn-finish pull-right" onclick="onFinishWizard()">Finish</button>
                               <div class="clearfix"></div>
                   </div>
+
+                  <%= submit "Submit", id: "organisation-wizard-submit-btn", class: "btn btn-primary" %>
                 <% end %>
               </div>
           </div>
@@ -253,7 +255,7 @@
 
       function onFinishWizard(){
           //here you can do something, sent the form to server via ajax and show a success message with swal
-
+          $("#organisation-wizard-submit-btn").click();
           swal("Good job!", "You clicked the finish button!", "success");
       }
 

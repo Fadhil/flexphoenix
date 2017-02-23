@@ -11,7 +11,7 @@ defmodule Flexcility.RegistrationController do
 
   def create(conn, %{"user" => registration_params} = params) do
 
-    changeset = User.registration_changeset(%User{}, registration_params)
+    changeset = get_user_changeset_with_profile(registration_params)
 
     case Repo.insert(changeset) do
       {:ok, _user} ->
@@ -44,11 +44,8 @@ defmodule Flexcility.RegistrationController do
     end
   end
 
-  defp get_full_name(%{
-    "first_name" => first_name,
-    "last_name" => last_name} = registration_params) do
-
-    first_name <> " " <> last_name
+  defp get_full_name(%{"full_name" => full_name} = registration_params) do
+    full_name
   end
 
   def get_user_changeset_with_profile(params) do

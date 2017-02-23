@@ -5,6 +5,7 @@ defmodule Flexcility.Organisation do
   schema "organisations" do
     field :name, :string
     field :display_name, :string
+    field :subdomain
     field :logo, Flexcility.Image.Type
     field :description, :string
 
@@ -15,9 +16,9 @@ defmodule Flexcility.Organisation do
     has_many :invitations, Flexcility.Invitation, on_delete: :delete_all
   end
 
-  @all_fields [:name, :display_name, :description]
+  @all_fields [:name, :subdomain, :description]
   @image_fields [:logo]
-  @required_fields [:name, :display_name]
+  @required_fields [:name, :subdomain]
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
@@ -25,6 +26,7 @@ defmodule Flexcility.Organisation do
     struct
     |> cast(params, @all_fields)
     |> validate_required(@required_fields)
+    |> unique_constraint(:subdomain)
     |> cast_attachments(params, @image_fields)
   end
 

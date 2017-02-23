@@ -16,6 +16,7 @@ exports.config = {
         before: [
           "node_modules/jquery/dist/jquery.js",
           // "bower_components/jquery/dist/jquery.min.js",
+          "bower_components/jquery-ui/jquery-ui.min.js",
           "bower_components/bootstrap/dist/js/bootstrap.min.js",
           // "bower_components/bootstrap-notify/js/bootstrap-notify.js",
           "web/static/vendor/js/moment.min.js",

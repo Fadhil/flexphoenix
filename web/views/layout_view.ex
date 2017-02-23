@@ -99,6 +99,10 @@ defmodule Flexcility.LayoutView do
     Flexcility.Image.url({thing.logo, thing})
   end
 
+  def thumb(%{image: nil}) do
+    "/images/default_profile_picture.png"
+  end
+
   def thumb(%{image: image} = thing) do
     Flexcility.Image.url({thing.image, thing}, :thumb)
   end

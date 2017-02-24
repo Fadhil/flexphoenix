@@ -3,7 +3,7 @@ defmodule Flexcility.Repo.Migrations.AddSiteAndAssetToRequests do
 
   def change do
     alter table(:requests) do
-      add :project_id, references(:project)
+      add :project_id, references(:projects)
       add :asset_id, references(:assets)
     end
 

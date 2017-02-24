@@ -1,4 +1,4 @@
-defmodule Flexcility.Repo.Migrations.SiteBelongsToUser do
+defmodule Flexcility.Repo.Migrations.ProjectBelongsToUser do
   use Ecto.Migration
 
   def change do

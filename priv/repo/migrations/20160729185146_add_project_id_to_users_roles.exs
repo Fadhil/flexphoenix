@@ -1,9 +1,9 @@
-defmodule Flexcility.Repo.Migrations.AddSiteIdToUsersRoles do
+defmodule Flexcility.Repo.Migrations.AddProjectIdToUsersRoles do
   use Ecto.Migration
 
   def change do
     alter table(:users_roles) do
-      add :site_id, references(:projects, on_delete: :nothing)
+      add :project_id, references(:projects, on_delete: :nothing)
     end
     create index(:users_roles, [:project_id])
   end

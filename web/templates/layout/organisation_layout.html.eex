@@ -14,7 +14,7 @@
 
 			<!--// The top bar with the menu minimize button , search bar and
 			notifications and Logout -->
-			<%= render Flexcility.LayoutView, "top_navbar.html", assigns %>
+			<%= render Flexcility.LayoutView, "organisation_top_navbar.html", assigns %>
 
       <!--// Template content -->
       <%= render @view_module, @view_template, assigns %>

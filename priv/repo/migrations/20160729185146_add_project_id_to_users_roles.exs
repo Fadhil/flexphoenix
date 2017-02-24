@@ -3,8 +3,8 @@ defmodule Flexcility.Repo.Migrations.AddSiteIdToUsersRoles do
 
   def change do
     alter table(:users_roles) do
-      add :site_id, references(:sites, on_delete: :nothing)
+      add :site_id, references(:projects, on_delete: :nothing)
     end
-    create index(:users_roles, [:site_id])
+    create index(:users_roles, [:project_id])
   end
 end

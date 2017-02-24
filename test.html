@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--//
+      <p class="alert alert-info" role="alert"><%=# get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%=# get_flash(@conn, :error) %></p>
+
+      <main role="main">
+        <%=# render @view_module, @view_template, assigns %>
+      </main>
+//-->
+<html lang="en">
+  <!--// <head></head> -->
+  <%= render Flexcility.LayoutView, "header.html", assigns %>
+<body class="">
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <div id="wrapper">
+
+				<!--// The menu bar on the left -->
+				<%= render Flexcility.LayoutView, "metis_menu.html", assigns %>
+
+				<!--// The Main Page (Exclusing the entire left menu bar -->
+        <div id="page-wrapper" class="gray-bg">
+
+					<!--// The top bar with the menu minimize button , search bar and
+					notifications and Logout -->
+					<%= render Flexcility.LayoutView, "top_navbar.html", assigns %>
+
+					<!--// The white breadcrumbs and action area bar-->
+					<%= render Flexcility.LayoutView, "action_bar.html", assigns %>
+
+          <!--// Template content -->
+          <%= render @view_module, @view_template, assigns %>
+
+					<!--// Footer -->
+					<%= render Flexcility.LayoutView, "footer.html", assigns %>
+        </div>
+			</div>
+
+    <!-- Mainly scripts -->
+    <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<div class="organisation-sidebar sidebar" data-background-color="black" data-active-color="success">
+
+<!--
+Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+-->
+
+  <div class="organisation-sidebar  sidebar-wrapper">
+        <div class="logo dropdown">
+            <a href="#" class="dropdown-toggle simple-text antique-white" data-toggle="dropdown">
+              JKR
+            <b class="caret"></b>
+            </a>
+            <ul class="flex-dropdown-menu dropdown-menu">
+              <li><a href="#">Switch Organisation</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="sidebar-avatar col-xs-3">
+                <div class="avatar">
+                    <img src="<%= thumb(@current_user.profile) %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <%= @current_user.full_name || "Anonymous" %>
+                <br />
+                <span class="text-success"><small><%= link "Logout", to: session_path(@conn, :delete) %></small></span>
+            </div>
+
+            <!-- <div class="col-xs-3 text-right">
+                <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+            </div> -->
+        </div>
+        <ul class="nav antique-white">
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="ti-panel"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href="user.html">
+                    <i class="ti-user"></i>
+                    <p>User Profile</p>
+                </a>
+            </li>
+            <li>
+                <a href="table.html">
+                    <i class="ti-view-list-alt"></i>
+                    <p>Table List</p>
+                </a>
+            </li>
+            <li>
+                <a href="typography.html">
+                    <i class="ti-text"></i>
+                    <p>Typography</p>
+                </a>
+            </li>
+            <li>
+                <a href="icons.html">
+                    <i class="ti-pencil-alt2"></i>
+                    <p>Icons</p>
+                </a>
+            </li>
+            <li>
+                <a href="maps.html">
+                    <i class="ti-map"></i>
+                    <p>Maps</p>
+                </a>
+            </li>
+            <li>
+                <a href="notifications.html">
+                    <i class="ti-bell"></i>
+                    <p>Notifications</p>
+                </a>
+            </li>
+
+        </ul>
+  </div>
+</div>

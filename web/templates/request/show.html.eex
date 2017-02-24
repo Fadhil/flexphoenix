@@ -76,10 +76,10 @@
       </div><!-- End div class="ibox" -->
     </div><!-- div class="wrapper wrapper-content animated fadeInUp" -->
   </div><!-- End div class="col-lg-9" -->
-  <div class="col-lg-3"><!-- Start Project Manager Right Side Bar-->
+  <div class="col-lg-3"><!-- Start Site Manager Right Side Bar-->
     <div class="wrapper wrapper-content project-manager">
       <h3>Asset</h3>
-      <img src="<%=# image(@project) %>" class="img-responsive">
+      <img src="<%=# image(@site) %>" class="img-responsive">
       <p class="small">
         <%= @request.asset.name %>
       </p>
@@ -90,15 +90,15 @@
       <p class="small font-bold">
         <span><i class="fa fa-circle text-warning"></i> High priority</span>
       </p><br/>
-      <h3>Project</h3>
-      <img src="<%=# image(@project) %>" class="img-responsive">
+      <h3>Site</h3>
+      <img src="<%=# image(@site) %>" class="img-responsive">
       <p class="small">
-        <%= @request.project.name %>
+        <%= @request.site.name %>
       </p>
       <h5>Address</h5>
-      <p class="small"><%= @request.project.address %></p>
+      <p class="small"><%= @request.site.address %></p>
     </div>
-  </div><!-- End div class="col-lg-3" --><!-- End Project Manager Right Side Bar-->
+  </div><!-- End div class="col-lg-3" --><!-- End Site Manager Right Side Bar-->
 </div> <!-- End div class="row" for entire ibox-->
 
 

@@ -1,0 +1,33 @@
+<h2>Show invitation</h2>
+
+<ul>
+
+  <li>
+    <strong>Organisation:</strong>
+    <%= @invitation.organisation_id %>
+  </li>
+
+  <li>
+    <strong>Inviter:</strong>
+    <%= @invitation.inviter_id %>
+  </li>
+
+  <li>
+    <strong>Role:</strong>
+    <%= @invitation.role_id %>
+  </li>
+
+  <li>
+    <strong>Accepted:</strong>
+    <%= @invitation.accepted %>
+  </li>
+
+  <li>
+    <strong>Viewed:</strong>
+    <%= @invitation.viewed %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: invitation_path(@conn, :edit, @invitation) %>
+<%= link "Back", to: invitation_path(@conn, :index) %>

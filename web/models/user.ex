@@ -3,8 +3,7 @@ defmodule Flexcility.User do
   alias Passport.Password
 
   schema "users" do
-    field :first_name, :string
-    field :last_name, :string
+    field :full_name, :string
     field :email, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -12,23 +11,24 @@ defmodule Flexcility.User do
 
     has_one :profile, Flexcility.Profile
     has_many :memberships, Flexcility.Membership
+    has_many :sent_invitations, Flexcility.Invitation, foreign_key: :inviter_id
     has_many :organisations, through: [:memberships, :organisation]
     has_many :roles, through: [:memberships, :role]
-    has_many :projects, Flexcility.Project
+    has_many :sites, Flexcility.Site
     has_many :requests, Flexcility.Request
     has_many :orders, Flexcility.Order
     has_many :reports, Flexcility.Report
     has_many :users_roles, Flexcility.UsersRole
     # has_many :roles, through: [:users_roles, :role]
-    has_many :attached_projects, through: [:users_roles, :project]
+    has_many :attached_sites, through: [:users_roles, :site]
     has_many :assigned_technicians, Flexcility.AssignedTechnician
     has_many :assigned_requests, through: [:assigned_technicians, :request]
     has_many :assigned_orders, through: [:assigned_technicians, :order]
     timestamps
   end
 
-  @required_fields [:first_name, :last_name, :email, :password]
-  @all_fields [:first_name, :last_name, :email, :password]
+  @required_fields [:full_name, :email, :password]
+  @all_fields [:full_name, :email, :password]
 
   def changeset(struct, params \\ %{}) do
     struct

@@ -9,7 +9,7 @@
             action: request_path(@conn, :update, @request),
             current_user: @conn.assigns.current_user,
             conn: @conn,
-            project_id: @conn.assigns.project_id %>
+            site_id: @conn.assigns.site_id %>
       </div>
     </div>
   </div>

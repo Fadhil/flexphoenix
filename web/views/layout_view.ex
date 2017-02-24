@@ -41,6 +41,44 @@ defmodule Flexcility.LayoutView do
     end
   end
 
+  def display_flash_message(flash_message) when map_size(flash_message) > 0 do
+    case flash_message do
+      %{"success" => value} ->
+        build_notify_js("success", value)
+      %{"info" => value} ->
+        build_notify_js("info", value)
+        |> raw
+      %{"error" => value} ->
+        build_notify_js("danger", value)
+        |> raw
+      %{"warning" => value} ->
+        build_notify_js("warning", value)
+        |> raw
+    end
+
+  end
+
+  def display_flash_message(%{}) do
+    nil
+  end
+
+  def build_notify_js(flash_type, value) do
+    """
+      $.notify({
+        message: '#{value}'
+      },{
+          type: '#{flash_type}',
+          delay: 2000,
+          placement: {
+            align: 'center'
+          }
+      });
+    """
+    |> raw
+  end
+
+
+
   def image(%{image: nil} ) do
     "/images/default-image.jpg"
   end
@@ -59,6 +97,10 @@ defmodule Flexcility.LayoutView do
 
   def image(%{logo: image} = thing) do
     Flexcility.Image.url({thing.logo, thing})
+  end
+
+  def thumb(%{image: nil}) do
+    "/images/default_profile_picture.png"
   end
 
   def thumb(%{image: image} = thing) do

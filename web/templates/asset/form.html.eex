@@ -52,7 +52,7 @@
   <div class="form-group">
     <div class="col-sm-4 col-sm-offset-2">
       <%= submit "Submit", class: "btn btn-success btn-rounded" %>
-      <%= link "Back", to: project_asset_path(@conn, :index, @project.id),
+      <%= link "Back", to: site_asset_path(@conn, :index, @site.id),
                        class: "btn btn-success btn-outline btn-rounded" %>
     </div>
   </div>

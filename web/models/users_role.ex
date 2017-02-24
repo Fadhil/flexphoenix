@@ -5,12 +5,12 @@ defmodule Flexcility.UsersRole do
   schema "users_roles" do
     belongs_to :user, Flexcility.User
     belongs_to :role, Flexcility.Role
-    belongs_to :project, Flexcility.Project
+    belongs_to :site, Flexcility.Site
 
     timestamps
   end
 
-  @required_fields ~w(user_id role_id project_id)
+  @required_fields ~w(user_id role_id site_id)
   @optional_fields ~w()
 
   @doc """
@@ -25,11 +25,11 @@ defmodule Flexcility.UsersRole do
   end
 
   def create_changeset(model, repo, users_role_changes = %{
-      role_id: role_id, user_id: user_id, project_id: project_id
+      role_id: role_id, user_id: user_id, site_id: site_id
     }) do
 
     query = from ur in model,
-      where: ur.user_id == ^user_id and ur.role_id == ^role_id and ur.project_id == ^project_id
+      where: ur.user_id == ^user_id and ur.role_id == ^role_id and ur.site_id == ^site_id
 
     case repo.all(query) do
       # If we get no matches we build an empty map

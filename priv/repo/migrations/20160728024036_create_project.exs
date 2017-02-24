@@ -1,8 +1,8 @@
-defmodule Flexcility.Repo.Migrations.CreateProject do
+defmodule Flexcility.Repo.Migrations.CreateSite do
   use Ecto.Migration
 
   def change do
-    create table(:projects) do
+    create table(:sites) do
       add :name, :string
       add :description, :text
       add :address, :text

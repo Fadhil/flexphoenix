@@ -3,22 +3,47 @@ defmodule Flexcility.OrganisationController do
   alias Flexcility.Organisation
   alias Flexcility.Role
   alias Flexcility.Membership
+  alias Flexcility.Facility
 
   def index(conn, _params) do
     user = conn.assigns.current_user
-    user = user |> Repo.preload(:organisations)
-    organisations = user.organisations
-    case organisations do
-      [] ->
-        render(conn, "index_empty.html", organisations: organisations)
-      _ ->
-        render(conn, "index.html", organisations: organisations)
+    pending_invitation = get_session(conn, :invitation_key)
+    case pending_invitation do
+      nil ->
+        user = user |> Repo.preload(:organisations)
+        organisations = user.organisations
+        case organisations do
+          [] ->
+            facilities = Repo.all(Facility)
+            changeset = Organisation.changeset(%Organisation{})
+            conn
+            |> assign(:page_title, "Define Your Organisation")
+            |> render("index_empty.html", organisation: %Organisation{}, changeset: changeset, action: organisation_path(conn, :create), facilities: facilities)
+          _ ->
+            conn
+            |> assign(:page_title, "Organisations")
+            |> render("index.html", organisations: organisations)
+        end
+      "" ->
+        user = user |> Repo.preload(:organisations)
+        organisations = user.organisations
+        case organisations do
+          [] ->
+            render(conn, "index_empty.html", organisations: organisations)
+          _ ->
+            render(conn, "index.html", organisations: organisations)
+        end
+
+      invitation_id ->
+        conn
+        |> redirect(to: invitation_view_path(conn, :view_invite, invitation_id))
     end
   end
 
   def new(conn, _params) do
     changeset = Organisation.changeset(%Organisation{})
-    render(conn, "new.html", changeset: changeset, page_title: "New Organisation", action_name: action_name(conn))
+    conn = conn |> assign(:page_title, "New Organisation")
+    render(conn, "new.html", changeset: changeset, action_name: action_name(conn))
   end
 
   def create(conn, %{"organisation" => organisation_params}) do
@@ -40,7 +65,9 @@ defmodule Flexcility.OrganisationController do
         |> put_flash(:info, "Organisation created successfully.")
         |> redirect(to: organisation_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> render("new.html", changeset: changeset,action_name: action_name(conn))
     end
   end
 
@@ -48,15 +75,14 @@ defmodule Flexcility.OrganisationController do
     organisation = Repo.get!(Organisation, id)
                    |> Repo.preload([{:memberships, [{:user, :profile}, :role]}])
     facilities = []
-    members = organisation.memberships
-              |> Enum.map(&get_members_roles/1)
-              |> Enum.group_by(&(&1.role))
+    members = Organisation.get_members(organisation)
     render(conn, "show.html", organisation: organisation, facilities: facilities, members: members)
   end
 
   def edit(conn, %{"id" => id}) do
     organisation = Repo.get!(Organisation, id)
     changeset = Organisation.changeset(organisation)
+    conn = conn |> assign(:page_title, organisation.name)
     render(conn, "edit.html", organisation: organisation, changeset: changeset, action_name: action_name(conn))
   end
 
@@ -70,7 +96,9 @@ defmodule Flexcility.OrganisationController do
         |> put_flash(:info, "Organisation updated successfully.")
         |> redirect(to: organisation_path(conn, :show, organisation))
       {:error, changeset} ->
-        render(conn, "edit.html", organisation: organisation, changeset: changeset)
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> render("edit.html", organisation: organisation, changeset: changeset)
     end
   end
 
@@ -86,16 +114,20 @@ defmodule Flexcility.OrganisationController do
     |> redirect(to: organisation_path(conn, :index))
   end
 
-  def get_members_roles(membership) do
-
-    %{role: %{name: role}, user: %{email: email, profile: %{image: image} = profile}} = membership
-    %{email: email, role: role, profile: profile}
-  end
-
   def send_an_email(conn, _params) do
     Flexcility.Email.welcome_text_email("fadhil.luqman@gmail.com") |> Flexcility.Mailer.deliver_later
     conn
     |> put_flash(:info, "Sent an email to you!")
     |> redirect(to: "/")
+  end
+
+  def subdomain_unique(conn, %{"organisation" => %{"subdomain" => subdomain}}) do
+    subdomain_unique = case Repo.get_by(Organisation, subdomain: subdomain) do
+      nil ->
+        "true"
+      _ ->
+        "That subdomain has already been taken"
+    end
+    render conn, "subdomain_unique.json", subdomain_unique: subdomain_unique
   end
 end

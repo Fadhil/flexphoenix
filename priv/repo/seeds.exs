@@ -1,5 +1,6 @@
 alias Flexcility.Repo
 alias Flexcility.Role
+alias Flexcility.Facility
 
 admin_role = case Repo.get_by(Role, name: "Admin") do
   nil -> Repo.insert! %Role{name: "Admin"}
@@ -26,7 +27,24 @@ helpdesk_role = case Repo.get_by(Role, name: "Helpdesk") do
   role -> role
 end
 
+##
+# Facilities
+##
+facilities_list = [
+  {"Schools", "icon-graduation-cap"}, {"Commercial Buildings", "icon-commercial-building"},
+  {"Industrial Buildings", "icon-industrial-building"}, {"Apartments/ Condos", "icon-building"},
+  {"Hospitals", "icon-h-sign"}
+]
 
+facilities_list |> Enum.each(fn({name, icon}) ->
+ case Repo.get_by(Facility, name: name, icon_name: icon) do
+   nil -> Repo.insert! %Facility{name: name, icon_name: icon}
+   facility -> facility
+ end
+end)
+##
+# End Facilities
+##
 
 # Script for populating the database. You can run it as:
 #

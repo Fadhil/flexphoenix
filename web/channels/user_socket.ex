@@ -4,7 +4,7 @@ defmodule Flexcility.UserSocket do
   ## Channels
   # channel "rooms:*", Flexcility.RoomChannel
   channel "work_request_rooms:*", Flexcility.WorkRequestRoomChannel
-
+  channel "system:*", Flexcility.SystemChannel
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
   # transport :longpoll, Phoenix.Transports.LongPoll

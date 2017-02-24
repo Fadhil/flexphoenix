@@ -57,6 +57,7 @@ console.log("socket connected")
 
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("work_request_rooms:subtopic", {})
+let system_channel = socket.channel("system:main", {})
 
 // This function gets called on channel.on("new_message") to get the
 // payload (the data that was sent by message.on("keypress") ) and use it
@@ -109,9 +110,66 @@ function build_message_row(payload){
   return message_row;
 }
 
+let instance = null;
+
+class CurrentState{
+    constructor() {
+        if(!instance){
+              instance = this;
+        }
+
+        return instance;
+      }
+
+    setOrgId(id) {
+      this.org_id = id;
+      return true;
+    }
+
+    setCurrentUserId(id) {
+      this.current_user_id = id;
+      return true;
+    }
+}
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
+
+system_channel.join()
+  .receive("ok", resp => { console.log("Logged on to Flexcility", resp) })
+  .receive("error", resp => { console.log("Failed to log on to Flexcility")})
+
+var setup_system_listeners = () => {
+  let invite_helpdesk_button    = $("#send_helpdesk_invite_button");
+  let invite_helpdesk_email_input = $("#invite_helpdesk_email");
+  let organisation_subdomain_input = $("#organisation_subdomain");
+
+
+  //let invite_helpdesk_email =
+  console.log("setting up system");
+
+  invite_helpdesk_button.on("click", event => {
+    let user_id = window.CurrentState.current_user_id
+    let invite_helpdesk_email = invite_helpdesk_email_input.val();
+    console.log("sending invite");
+    system_channel.push("send_invite", {
+      role: "Helpdesk", inviter_id: user_id, organisation_subdomain: organisation_subdomain_input.val(),
+      email: invite_helpdesk_email
+    }).receive("ok", resp => {
+        $("#organisation-wizard-submit-btn").click();
+        swal("Invitation Sent!", "Organisation setup successfully", "success");
+    })
+      .receive("error", resp => {
+        swal("You've sent an invitation to that email already", "error");
+      });
+  });
+
+  system_channel.on("invitation_sent", payload => {
+    console.log("got payload", payload);
+  });
+};
+
 
 $(document).ready(function(){
   let list    = $("#message-list");
@@ -119,6 +177,8 @@ $(document).ready(function(){
   let name    = $("#user-display-name").html();
   let image  = $("#user-display-image").attr("src");
   let user_id = $("#user-hidden-id").html();
+
+  window.CurrentState = new CurrentState();
 
   message.on("keypress", event => {
     if (event.keyCode == 13) {
@@ -133,6 +193,9 @@ $(document).ready(function(){
     list.append(build_message_row(payload));
     list.prop({scrollTop: list.prop("scrollHeight")});
   });
+
+  setup_system_listeners();
+
 });
 
 

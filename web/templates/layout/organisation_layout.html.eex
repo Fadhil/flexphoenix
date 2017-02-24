@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <%= render Flexcility.LayoutView, "header.html", assigns %>
+<body>
+	<script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+	<script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
+	<div class="wrapper">
+
+		<!--// The menu bar on the left -->
+		<%= render Flexcility.LayoutView, "organisation_sidebar.html", assigns %>
+
+		<!--// The Main Panel (Exclusing the entire left menu bar -->
+    <div class="main-panel">
+
+			<!--// The top bar with the menu minimize button , search bar and
+			notifications and Logout -->
+			<%= render Flexcility.LayoutView, "organisation_top_navbar.html", assigns %>
+
+      <!--// Template content -->
+      <%= render @view_module, @view_template, assigns %>
+
+			<!--// Footer -->
+			<%= render Flexcility.LayoutView, "footer.html", assigns %>
+    </div>
+	</div>
+</body>

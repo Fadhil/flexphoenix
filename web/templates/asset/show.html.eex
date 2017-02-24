@@ -6,9 +6,9 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="m-b-md">
-                <%= link "Back", to: project_asset_path(@conn, :index, @project.id),
+                <%= link "Back", to: site_asset_path(@conn, :index, @site.id),
                 class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
-                <%= link "Edit Asset", to: project_asset_path(@conn, :edit, @project, @asset),
+                <%= link "Edit Asset", to: site_asset_path(@conn, :edit, @site, @asset),
                 class: "btn btn-warning btn-rounded btn-sm pull-right" %>
 
                 <h2><%= @asset.name %></h2>
@@ -31,7 +31,7 @@
                   <div>
                     <img class="photo-fullsize" align="left"
                     src="<%= image(@asset) %>"
-                    alt="<%= @project.name %>-<%= @asset.name %>-photo">
+                    alt="<%= @site.name %>-<%= @asset.name %>-photo">
                   </div>
                 </dd>
                 <dt>Last Updated:</dt> <dd><%= @asset.updated_at %></dd>
@@ -43,16 +43,16 @@
       </div><!-- End div class="ibox" -->
     </div><!-- div class="wrapper wrapper-content animated fadeInUp" -->
   </div><!-- End div class="col-lg-9" -->
-  <div class="col-lg-3"><!-- Start Project Manager Right Side Bar-->
+  <div class="col-lg-3"><!-- Start Site Manager Right Side Bar-->
     <div class="wrapper wrapper-content project-manager">
-        <h3><%= @project.name %></h3>
-        <h4>Project Description</h4>
+        <h3><%= @site.name %></h3>
+        <h4>Site Description</h4>
         <img src="" class="img-responsive">
         <p class="small">
-          <%= @project.description %>
+          <%= @site.description %>
         </p>
         <h4>Address</h4>
-        <p class="small"><%= @project.address %></p>
+        <p class="small"><%= @site.address %></p>
     </div>
-  </div><!-- End div class="col-lg-3" --><!-- End Project Manager Right Side Bar-->
+  </div><!-- End div class="col-lg-3" --><!-- End Site Manager Right Side Bar-->
 </div> <!-- End div class="row" for entire ibox-->

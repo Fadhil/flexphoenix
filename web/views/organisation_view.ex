@@ -8,4 +8,8 @@ defmodule Flexcility.OrganisationView do
   def get_members(organisation) do
     Organisation.get_members(organisation)
   end
+
+  def render("subdomain_unique.json", %{subdomain_unique: subdomain_unique}) do
+    subdomain_unique
+  end
 end

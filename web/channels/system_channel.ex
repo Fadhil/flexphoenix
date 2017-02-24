@@ -25,13 +25,14 @@ defmodule Flexcility.SystemChannel do
   end
 
   def handle_in("send_invite", payload, socket) do
-    Logger.info("creating invitation")
+    Logger.info("creating invitation" <> inspect(payload))
     role = Repo.get_by(Role, name: payload["role"])
     invitation_changeset = %Invitation{}
                           |> Invitation.changeset(%{
-                              role_id: role.id, organisation_id: payload["organisation_id"],
+                              role_id: role.id, organisation_subdomain: payload["organisation_subdomain"],
                               inviter_id: payload["inviter_id"], invitee_email: payload["email"]
                             })
+    Logger.info("the invitation changeset: " <> inspect(invitation_changeset))
     case Repo.insert(invitation_changeset) do
       {:ok, invitation} ->
         registration_link = Flexcility.Router.Helpers.registration_url(Flexcility.Endpoint, :new, invitation: invitation.id)

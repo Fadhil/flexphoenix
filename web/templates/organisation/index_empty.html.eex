@@ -2,7 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="card card-wizard" id="wizardCard">
+              <!--      Wizard container        -->
+              <div class="wizard-container">
+                <div class="card card-wizard wizard-card" id="wizardCard">
                 <%= form_for @changeset, @action, [multipart: true, id: "wizardForm"], fn f -> %>
                   <div class="header text-center">
                       <h4 class="title">Get Started With Flexcility</h4>
@@ -34,7 +36,7 @@
                                       <label class="control-label">
                                     Subdomain<star>*</star>
                                   </label>
-                                    <%= text_input f, :subdomain, class: "form-control", placeholder: "fmsb", required: true %>
+                                    <%= text_input f, :subdomain, class: "form-control", placeholder: "fmsb", required: true, minlength: 2, remote: "/api/subdomain_unique" %>
                                   </div>
                               </div>
                           </div>
@@ -52,101 +54,32 @@
                         </div>
                         </div>
                         <div class="tab-pane" id="facilities_selection_tab">
-                          <h5 class="text-center">Please give us more details about your platform.</h5>
-                          <div class="row">
-                              <div class="col-md-10 col-md-offset-1">
-                                  <div class="form-group">
-                                      <label class="control-label">Your Website<star>*</star></label>
-                                      <input class="form-control"
-                                             type="text"
-                                             name="website"
-                                             url="true"
-                                             placeholder="ex: http://www.creative-tim.com"
-            />
-                                  </div>
-                              </div>
+                          <h5 class="text-center">Select the facilities that are relevant to your organisation.</h5>
+                          <div class="text-center">
+                            <small >We've preselected some defaults for you.</small>
                           </div>
-                          <div class="row">
-                              <div class="col-md-5 col-md-offset-1">
-                                  <div class="form-group">
-                                      <label class="control-label">Framework Type</label>
-                                      <input class="form-control"
-                                             type="text"
-                                             name="framework"
-                                             placeholder="ex: http://www.creative-tim.com"
-            />
-                                  </div>
-                              </div>
-                              <div class="col-md-5">
-                                  <div class="form-group">
-                                      <label class="control-label">
-              Language<star>*</star>
-            </label>
-                                      <!--     IMPORTANT! - the "bootstrap select picker" is not compatible with jquery.validation.js, that's why we use the "default select" inside this wizard. We will try to contact the guys who are responsibble for the "bootstrap select picker" to find a solution. Thank you for your patience.
-                                       -->
-                                      <select name="cities" class="form-control">
-                                          <option selected="" disabled="">- language -</option>
-                                          <option value="ms">Bahasa Melayu</option>
-                                          <option value="ca">Català</option>
-                                          <option value="da">Dansk</option>
-                                          <option value="de">Deutsch</option>
-                                          <option value="en">English</option>
-                                          <option value="es">Español</option>
-                                          <option value="el">Eλληνικά</option>
-                                          <option value="fr">Français</option>
-                                          <option value="it">Italiano</option>
-                                          <option value="hu">Magyar</option>
-                                          <option value="nl">Nederlands</option>
-                                          <option value="no">Norsk</option>
-                                          <option value="pl">Polski</option>
-                                          <option value="pt">Português</option>
-                                          <option value="fi">Suomi</option>
-                                          <option value="sv">Svenska</option>
-                                          <option value="tr">Türkçe</option>
-                                          <option value="is">Íslenska</option>
-                                          <option value="cs">Čeština</option>
-                                          <option value="ru">Русский</option>
-                                          <option value="th">ภาษาไทย</option>
-                                          <option value="zh">中文 (简体)</option>
-                                          <option value="zh-TW">中文 (繁體)</option>
-                                          <option value="ja">日本語</option>
-                                          <option value="ko">한국어</option>
-                                      </select>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-5 col-md-offset-1">
-                                  <div class="form-group">
-                                      <label class="control-label">
-              Bootstrap Version
-            </label>
-                                      <!--     IMPORTANT! - the "bootstrap select picker" is not compatible with jquery.validation.js, that's why we use the "default select" inside this wizard. We will try to contact the guys who are responsibble for the "bootstrap select picker" to find a solution. Thank you for your patience.
-                                       -->
-                                      <select name="cities" class="form-control">
-                                          <option selected="" disabled="">- version -</option>
-                                          <option value="1.1">Bootstrap 1.1</option>
-                                          <option value="2.0">Bootstrap 2.0</option>
-                                          <option value="3.0">Bootstrap 3.0</option>
-                                          <option value="4.0">Bootstrap 4.0(alpha)</option>
-                                      </select>
-                                  </div>
-                              </div>
-                              <div class="col-md-5">
-                                  <div class="form-group">
-                                      <label class="control-label">Price</label>
-                                      <input class="form-control"
-                                             type="text"
-                                             name="price"
-                                             placeholder="ex: 19.00"
-            />
-                                  </div>
+                          <div class="row wizard-card" data-color="green">
+                              <div class="col-sm-8 col-sm-offset-2">
+                                  <%= for facility <- @facilities do %>
+                                    <div class="col-sm-4">
+                                        <div class="choice" data-toggle="wizard-checkbox">
+                                            <input type="checkbox" name="<%= facility.name %>" value="<%= facility.id %>">
+                                            <div class="card card-checkboxes card-hover-effect">
+                                                <i class="demo-icon <%= facility.icon_name %>"></i>
+                                                <p><%= facility.name %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  <% end %>
                               </div>
                           </div>
                         </div>
                       <div class="tab-pane" id="invite_helpdesk_tab">
-                        <h2 class="text-center text-space">Yuhuuu! <br><small> 													Click on "<b>Finish</b>" to join our community</small></h2>
-                        </div>
+                        <h4 class="text-center text-space">Invite a Helpdesk User <br><small> 													Enter a valid email then click on "<b>Finish</b>" to finish setting up your Organisation.</small></h4>
+                        <div class="col-sm-8 col-xs-offset-2 text-center"><input type="email" id="invite_helpdesk_email" class="form-control"></div>
+                        <button type="button" class="btn btn-primary hidden" id="send_helpdesk_invite_button">Send Invite</button>
+
+                      </div>
                     </div>
                   </div>
                   <div class="card-footer">
@@ -155,29 +88,32 @@
                               <button type="button" class="btn btn-info btn-fill btn-wd btn-finish pull-right" onclick="onFinishWizard()">Finish</button>
                               <div class="clearfix"></div>
                   </div>
+
+                  <%= submit "Submit", id: "organisation-wizard-submit-btn", class: "btn btn-primary hidden" %>
                 <% end %>
               </div>
+            </div>
           </div>
       </div>
   </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
+      var $subdomain_input = $("#organisation_subdomain")
+
+      window.CurrentState.setOrgId(<%= @organisation.id %>);
+      window.CurrentState.setCurrentUserId(<%= @current_user.id %>);
 
       var $validator = $("#wizardForm").validate({
         rules: {
-          email: {
-                  required: true,
-                  email: true,
-                  minlength: 5
-          },
           name: {
-              required: false,
+              required: true,
                   minlength: 5
           },
-          subdomain: {
-              required: false,
-                  minlength: 5
+          organisation_subdomain: {
+              required: true,
+                  minlength: 2,
+                  remote: "/api/subdomain_unique"
           },
           website: {
               required: true,
@@ -194,7 +130,9 @@
           price:{
               number: true
           }
-        }
+        },
+        onkeyup: false,
+        onblur: true
       });
 
     // you can also use the nav-pills-[blue | azure | green | orange | red] for a different color of wizard
@@ -247,14 +185,39 @@
                   }
               }
           });
+          $("#organisation_subdomain").on("change", function() {
+            var $valid = $('#wizardForm').valid();
 
+            if(!$valid) {
+              $validator.focusInvalid();
+              return false;
+            }
+          });
+          $('[data-toggle="wizard-checkbox"]').click(function(){
+              if( $(this).hasClass('active')){
+                  $(this).removeClass('active');
+                  $(this).find('[type="checkbox"]').removeAttr('checked');
+              } else {
+                  $(this).addClass('active');
+                  $(this).find('[type="checkbox"]').attr('checked','true');
+              }
+          });
 
+          $.each($('[data-toggle="wizard-checkbox"]'),function(){
+
+            $(this).addClass('active');
+            $(this).find('[type="checkbox"]').attr('checked','true');
+
+          });
       });
+
+
 
       function onFinishWizard(){
           //here you can do something, sent the form to server via ajax and show a success message with swal
 
-          swal("Good job!", "You clicked the finish button!", "success");
+          $("#send_helpdesk_invite_button").click();
+
       }
 
       function readURL(input) {
@@ -277,4 +240,5 @@
       function clickUpload() {
         $('.upload-file-btn ').click();
       }
+
 </script>

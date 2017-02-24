@@ -3,6 +3,7 @@ defmodule Flexcility.OrganisationController do
   alias Flexcility.Organisation
   alias Flexcility.Role
   alias Flexcility.Membership
+  alias Flexcility.Facility
 
   def index(conn, _params) do
     user = conn.assigns.current_user
@@ -13,10 +14,11 @@ defmodule Flexcility.OrganisationController do
         organisations = user.organisations
         case organisations do
           [] ->
+            facilities = Repo.all(Facility)
             changeset = Organisation.changeset(%Organisation{})
             conn
             |> assign(:page_title, "Define Your Organisation")
-            |> render("index_empty.html", organisation: %Organisation{}, changeset: changeset, action: organisation_path(conn, :create))
+            |> render("index_empty.html", organisation: %Organisation{}, changeset: changeset, action: organisation_path(conn, :create), facilities: facilities)
           _ ->
             conn
             |> assign(:page_title, "Organisations")
@@ -117,5 +119,15 @@ defmodule Flexcility.OrganisationController do
     conn
     |> put_flash(:info, "Sent an email to you!")
     |> redirect(to: "/")
+  end
+
+  def subdomain_unique(conn, %{"organisation" => %{"subdomain" => subdomain}}) do
+    subdomain_unique = case Repo.get_by(Organisation, subdomain: subdomain) do
+      nil ->
+        "true"
+      _ ->
+        "That subdomain has already been taken"
+    end
+    render conn, "subdomain_unique.json", subdomain_unique: subdomain_unique
   end
 end

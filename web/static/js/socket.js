@@ -143,19 +143,26 @@ system_channel.join()
 var setup_system_listeners = () => {
   let invite_helpdesk_button    = $("#send_helpdesk_invite_button");
   let invite_helpdesk_email_input = $("#invite_helpdesk_email");
-  let user_id = $("#user-hidden-id").html();
+  let organisation_subdomain_input = $("#organisation_subdomain");
+
 
   //let invite_helpdesk_email =
   console.log("setting up system");
 
   invite_helpdesk_button.on("click", event => {
+    let user_id = window.CurrentState.current_user_id
     let invite_helpdesk_email = invite_helpdesk_email_input.val();
     console.log("sending invite");
     system_channel.push("send_invite", {
-      role: "Helpdesk", inviter_id: user_id, organisation_id: window.CurrentState.org_id,
+      role: "Helpdesk", inviter_id: user_id, organisation_subdomain: organisation_subdomain_input.val(),
       email: invite_helpdesk_email
-    }).receive("ok", resp => { alert("Successfully sent invite")})
-      .receive("error", resp => { alert("You've sent that invite before")});
+    }).receive("ok", resp => {
+        $("#organisation-wizard-submit-btn").click();
+        swal("Invitation Sent!", "Organisation setup successfully", "success");
+    })
+      .receive("error", resp => {
+        swal("You've sent an invitation to that email already", "error");
+      });
   });
 
   system_channel.on("invitation_sent", payload => {

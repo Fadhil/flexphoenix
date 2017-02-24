@@ -3,6 +3,7 @@ defmodule Flexcility.OrganisationController do
   alias Flexcility.Organisation
   alias Flexcility.Role
   alias Flexcility.Membership
+  alias Flexcility.Facility
 
   def index(conn, _params) do
     user = conn.assigns.current_user
@@ -13,10 +14,11 @@ defmodule Flexcility.OrganisationController do
         organisations = user.organisations
         case organisations do
           [] ->
+            facilities = Repo.all(Facility)
             changeset = Organisation.changeset(%Organisation{})
             conn
             |> assign(:page_title, "Define Your Organisation")
-            |> render("index_empty.html", organisation: %Organisation{}, changeset: changeset, action: organisation_path(conn, :create))
+            |> render("index_empty.html", organisation: %Organisation{}, changeset: changeset, action: organisation_path(conn, :create), facilities: facilities)
           _ ->
             conn
             |> assign(:page_title, "Organisations")

@@ -2,7 +2,7 @@ defmodule Flexcility.Repo.Migrations.AddImageToSites do
   use Ecto.Migration
 
   def change do
-    alter table(:sites) do
+    alter table(:projects) do
       add :image, :string
     end
   end

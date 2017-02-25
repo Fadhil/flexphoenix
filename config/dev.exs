@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :Flexcility, Flexcility.Endpoint,
+config :flexcility, Flexcility.Endpoint,
   http: [port: 4000],
 	url: [host: "flexcility.dev", port: 4000 ],
   debug_errors: true,
@@ -15,7 +15,7 @@ config :Flexcility, Flexcility.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
 
 # Watch static and templates for browser reloading.
-config :Flexcility, Flexcility.Endpoint,
+config :flexcility, Flexcility.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
@@ -34,7 +34,7 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :Flexcility, Flexcility.Repo,
+config :flexcility, Flexcility.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: System.get_env("POSTGRES_DEV_USERNAME"),
   password: System.get_env("POSTGRES_DEV_PASSWORD"),
@@ -42,7 +42,7 @@ config :Flexcility, Flexcility.Repo,
   hostname: "localhost",
   pool_size: 10
 
-config :Flexcility, ecto_repos: [Flexcility.Repo]
+config :flexcility, ecto_repos: [Flexcility.Repo]
 
 config :arc,
 	storage: Arc.Storage.S3,
@@ -55,5 +55,5 @@ config :ex_aws,
   secret_access_key: [{:system, "FLEX_AWS_SECRET_ACCESS_KEY"}, :instance_role],
   region: "ap-southeast-1"
 
-config :Flexcility, Flexcility.Mailer,
+config :flexcility, Flexcility.Mailer,
   adapter: Bamboo.LocalAdapter

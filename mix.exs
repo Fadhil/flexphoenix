@@ -2,7 +2,7 @@ defmodule Flexcility.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :Flexcility,
+    [app: :flexcility,
      version: "0.22.5",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),

@@ -20,5 +20,5 @@ defmodule Flexcility.Gettext do
 
   See the [Gettext Docs](http://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :Flexcility
+  use Gettext, otp_app: :flexcility
 end

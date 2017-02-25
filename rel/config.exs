@@ -38,7 +38,7 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
-release :Flexcility do
-  set version: current_version(:Flexcility)
+release :flexcility do
+  set version: current_version(:flexcility)
 end
 

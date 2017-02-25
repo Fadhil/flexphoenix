@@ -3,7 +3,7 @@ defmodule Flexcility.Mixfile do
 
   def project do
     [app: :flexcility,
-     version: "0.22.7",
+     version: "0.22.8",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,

@@ -37,7 +37,7 @@ defmodule Flexcility.Endpoint do
     store: :cookie,
     key: "_Flexcility_key",
     signing_salt: "ZjRCjSN5",
-    domain:  ".flexcility.dev"
+    domain: System.get_env("COOKIE_DOMAIN")
 
   plug Flexcility.Plug.Subdomain, Flexcility.SubdomainRouter
   plug Flexcility.Router

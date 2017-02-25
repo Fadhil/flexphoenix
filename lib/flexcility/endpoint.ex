@@ -1,5 +1,5 @@
 defmodule Flexcility.Endpoint do
-  use Phoenix.Endpoint, otp_app: :Flexcility
+  use Phoenix.Endpoint, otp_app: :flexcility
 
   socket "/socket", Flexcility.UserSocket
 
@@ -8,7 +8,7 @@ defmodule Flexcility.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :Flexcility, gzip: false,
+    at: "/", from: :flexcility, gzip: false,
     only: ~w(css fonts images img js favicon.ico robots.txt)
 
   plug Plug.Static,
@@ -37,7 +37,7 @@ defmodule Flexcility.Endpoint do
     store: :cookie,
     key: "_Flexcility_key",
     signing_salt: "ZjRCjSN5",
-    domain:  ".flexcility.dev"
+    domain: System.get_env("COOKIE_DOMAIN")
 
   plug Flexcility.Plug.Subdomain, Flexcility.SubdomainRouter
   plug Flexcility.Router

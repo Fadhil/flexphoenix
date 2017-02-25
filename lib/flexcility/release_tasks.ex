@@ -1,8 +1,8 @@
 defmodule :release_tasks do
   def migrate do
-    {:ok, _} = Application.ensure_all_started(:Flexcility)
+    {:ok, _} = Application.ensure_all_started(:flexcility)
 
-    path = Application.app_dir(:Flexcility, "/priv/repo/migrations")
+    path = Application.app_dir(:flexcility, "/priv/repo/migrations")
 
     Ecto.Migrator.run(Flexcility.Repo, path, :up, all: true)
 

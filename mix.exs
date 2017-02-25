@@ -2,8 +2,8 @@ defmodule Flexcility.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :Flexcility,
-     version: "0.22.5",
+    [app: :flexcility,
+     version: "0.22.6",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,

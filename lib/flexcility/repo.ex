@@ -1,3 +1,3 @@
 defmodule Flexcility.Repo do
-  use Ecto.Repo, otp_app: :Flexcility
+  use Ecto.Repo, otp_app: :flexcility
 end

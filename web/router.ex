@@ -62,7 +62,9 @@ defmodule Flexcility.Router do
     pipe_through [:browser, :set_menu, :authorize, :load_profile] # Use the default browser stack
 
     get "/send_email_test", OrganisationController, :send_an_email
-    resources "/organisations", OrganisationController
+    resources "/organisations", OrganisationController do
+      get "/manage", OrganisationController, :manage, as: :manage
+    end
     resources "/sites", SiteController do
       resources "/assets", AssetController
       post "/invite_user", SiteController, :invite_user, as: :invite

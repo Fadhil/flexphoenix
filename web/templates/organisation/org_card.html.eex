@@ -5,7 +5,7 @@
         <div class="wizard-card-title text-center">
           <h6><%= @organisation.name %></h6>
         </div>
-          <a href="<%= organisation_path(@conn, :show, @organisation) %>">
+          <a href="<%= organisation_manage_path(@conn, :manage, @organisation.id) %>">
           <div class="row org-card-logo">
               <div class="col-xs-6 col-xs-offset-3">
                 <img src="<%= image(@organisation)%>" class="img-responsive" />

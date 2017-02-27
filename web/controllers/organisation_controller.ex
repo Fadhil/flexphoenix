@@ -121,6 +121,12 @@ defmodule Flexcility.OrganisationController do
     |> redirect(to: "/")
   end
 
+  def manage(conn, %{"organisation_id" => id}) do
+    conn
+    |> assign(:page_title, "Manage Organisation")
+    |> render("manage.html")
+  end
+
   def subdomain_unique(conn, %{"organisation" => %{"subdomain" => subdomain}}) do
     subdomain_unique = case Repo.get_by(Organisation, subdomain: subdomain) do
       nil ->

@@ -42,7 +42,7 @@
         <div class="row card-footer-row">
           <%= for admin <- (@members_list["Admin"] || []) do %>
             <div class="card-photo">
-              <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="<%= thumb(admin.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
+              <a href="#"><img data-toggle="tooltip" title="<%= admin.profile.full_name %>" alt="<%= admin.email %>" class="img-circle" src="<%= thumb(admin.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
             </div>
           <% end %>
         </div>

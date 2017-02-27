@@ -98,11 +98,7 @@
 </div>
 
 <script>
-  // $(document).ready(function(){
-  //   $('.tooltips').tooltip({
-  //       selector: "[data-toggle=tooltip]",
-  //       container: "body"
-  //   });
-  // });
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
-<p style="color:#f3f3f4 !important;">............</p>

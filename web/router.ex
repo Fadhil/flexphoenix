@@ -63,7 +63,8 @@ defmodule Flexcility.Router do
 
     get "/send_email_test", OrganisationController, :send_an_email
     resources "/organisations", OrganisationController do
-      get "/manage", OrganisationController, :manage, as: :manage
+      get "/manage", Organisation.ManagementController, :index
+      get "/manage/members", Organisation.ManagementController, :members
     end
     resources "/sites", SiteController do
       resources "/assets", AssetController

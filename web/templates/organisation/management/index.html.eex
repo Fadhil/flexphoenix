@@ -1,14 +1,14 @@
 <div class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2 card">
+      <div class="col-md-8 col-sm-offset-2 card">
         <!--      Wizard container        -->
         <div class="wizard-container">
           <div class="row wizard-card" data-color="green">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="col-sm-4">
+              <div class="col-sm-12">
+                <div class="col-sm-3">
                     <div class="choice" data-toggle="wizard-checkbox">
-                      <a href="http://flexcility.dev:4000/">
+                      <a href="<%= organisation_management_path(@conn, :members, @organisation.id) %>">
                         <div class="card card-checkboxes card-hover-effect ">
                             <i class="ti-user"></i>
                             <p>Manage Users</p>
@@ -24,14 +24,12 @@
 </div>
 <script>
   $(document).ready(function(){
-    $('[data-toggle="wizard-checkbox"]').click(function(){
-        if( $(this).hasClass('active')){
-            $(this).removeClass('active');
-            $(this).find('[type="checkbox"]').removeAttr('checked');
-        } else {
-            $(this).addClass('active');
-            $(this).find('[type="checkbox"]').attr('checked','true');
-        }
+    $('[data-toggle="wizard-checkbox"]').hover(function(){
+      $(this).addClass('active');
+      $(this).find('[type="checkbox"]').attr('checked','true');
+    }, function(){
+      $(this).removeClass('active');
+      $(this).find('[type="checkbox"]').removeAttr('checked');
     });
   });
 </script>

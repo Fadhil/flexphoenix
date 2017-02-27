@@ -1,4 +1,57 @@
-<div class="ibox">
+<div class="col-lg-3 col-sm-6">
+  <a href="<%= organisation_path(@conn, :show, @organisation) %>">
+    <div class="card">
+      <div class="content">
+          <div class="row org-card-logo">
+              <div class="col-xs-5">
+                <img src="<%= image(@organisation)%>" class="img-responsive" />
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12">
+                <table class="table medium m-b-xs">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>4</strong> Facilities
+                      </td>
+                      <td>
+                        <strong>35</strong> Sites
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong><%= Enum.count(@organisation.memberships) %></strong> Members
+                      </td>
+                      <td>
+                        <strong>54</strong> Articles
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+      <div class="card-footer">
+        <hr />
+        <div class="stats card-footer-owner">
+          Owner
+        </div>
+        <div class="row card-footer-row">
+          <%= for admin <- (@members_list["Admin"] || []) do %>
+            <div class="card-photo">
+              <a href="#"><img alt="<%= admin.email %>" class="img-circle" src="<%= thumb(admin.profile) %>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<%= admin.email %>"></a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- <div class="ibox">
     <a href="<%= organisation_path(@conn, :show, @organisation) %>">
       <div class="ibox-title">
           <h6><span class="pull-right"><%= @organisation.display_name %></span></h6>
@@ -27,10 +80,10 @@
                 <div class="font-bold text-center">SITES</div>
                 <h2 class="text-center">35</h2>
             </div>
-            <!-- <div class="col-sm-6 text-right">
+            <div class="col-sm-6 text-right">
                 <div class="font-bold text-center">BUDGET</div>
                 <h2>$200,913 <i class="fa fa-level-up text-navy"></i></h2>
-            </div> -->
+            </div>
         </div>
         <%= case @members do %>
           <% "full" -> %>
@@ -60,4 +113,4 @@
           </div>
         <% end %>
     </div>
-</div>
+</div> -->

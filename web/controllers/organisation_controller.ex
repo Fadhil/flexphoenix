@@ -42,8 +42,11 @@ defmodule Flexcility.OrganisationController do
 
   def new(conn, _params) do
     changeset = Organisation.changeset(%Organisation{})
+    facilities = Repo.all(Facility)
     conn = conn |> assign(:page_title, "New Organisation")
-    render(conn, "new.html", changeset: changeset, action_name: action_name(conn))
+    render(conn, "new.html", changeset: changeset,
+          action: organisation_path(conn, :create), organisation: %Organisation{},
+          facilities: facilities)
   end
 
   def create(conn, %{"organisation" => organisation_params}) do

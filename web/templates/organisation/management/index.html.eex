@@ -16,6 +16,17 @@
                       </a>
                     </div>
                 </div>
+                <div class="col-sm-3 wizard-card" data-color="red">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                      <%= link to: organisation_path(@conn, :delete, @organisation), method: :delete, data: [confirm: "Are you sure you want to delete #{@organisation.name}?"] do %>
+
+                        <div class="card card-checkboxes card-hover-effect ">
+                            <i class="ti-eraser"></i>
+                            <p>Delete <%= @organisation.name %></p>
+                        </div>
+                      <% end %>
+                    </div>
+                </div>
               </div>
           </div>
         </div>
@@ -31,5 +42,30 @@
       $(this).removeClass('active');
       $(this).find('[type="checkbox"]').removeAttr('checked');
     });
+    let delete_button = $("#delete_button");
+    let hidden_delete_button = $("#hidden-delete-button");
+
+    function alert_confirm(){
+      swal({
+        title: "Are you sure?",
+        text: "You are about to delete the Organisation <%= @organisation.name %> and all data along with it!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        true;
+      });
+    }
+
+    delete_button.click(function(){
+      alert_confirm();
+    });
+
   });
+
+
+
 </script>

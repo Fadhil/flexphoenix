@@ -58,4 +58,8 @@ defmodule Flexcility.Organisation do
         |> Enum.group_by(&(&1.role))
     end
   end
+
+  def with_facilities(organisation) do
+    organisation |> Repo.preload([:facilities])
+  end
 end

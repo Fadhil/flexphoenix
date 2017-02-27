@@ -1,11 +1,16 @@
 <div class="col-lg-3 col-sm-6">
-  <a href="<%= organisation_path(@conn, :show, @organisation) %>">
-    <div class="card">
-      <div class="content">
+
+    <div class="wizard-card card" data-toggle="tooltip" data-placement="bottom" title="Manage <%= @organisation.name %>">
+      <div class="content" >
+        <div class="wizard-card-title text-center">
+          <h6><%= @organisation.name %></h6>
+        </div>
+          <a href="<%= organisation_path(@conn, :show, @organisation) %>">
           <div class="row org-card-logo">
-              <div class="col-xs-5">
+              <div class="col-xs-6 col-xs-offset-3">
                 <img src="<%= image(@organisation)%>" class="img-responsive" />
               </div>
+
           </div>
           <div class="row">
               <div class="col-xs-12">
@@ -33,6 +38,8 @@
                 </table>
               </div>
           </div>
+
+        </a>
       </div>
       <div class="card-footer">
         <hr />
@@ -48,7 +55,6 @@
         </div>
       </div>
     </div>
-  </a>
 </div>
 
 <!-- <div class="ibox">

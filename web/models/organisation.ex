@@ -14,6 +14,8 @@ defmodule Flexcility.Organisation do
     has_many :memberships, Flexcility.Membership, on_delete: :delete_all
     has_many :users, through: [:memberships, :user]
     has_many :invitations, Flexcility.Invitation, on_delete: :delete_all
+
+    many_to_many :facilities, Flexcility.Facility, join_through: "facilities_organisations"
   end
 
   @all_fields [:name, :subdomain, :description]
@@ -55,5 +57,9 @@ defmodule Flexcility.Organisation do
         |> Enum.map(&get_members_roles/1)
         |> Enum.group_by(&(&1.role))
     end
+  end
+
+  def with_facilities(organisation) do
+    organisation |> Repo.preload([:facilities])
   end
 end

@@ -63,7 +63,7 @@
                                   <%= for facility <- @facilities do %>
                                     <div class="col-sm-4">
                                         <div class="choice" data-toggle="wizard-checkbox">
-                                            <input type="checkbox" name="<%= facility.name %>" value="<%= facility.id %>">
+                                            <input type="checkbox"  name="organisation_facilities[]" value="<%= facility.id %>">
                                             <div class="card card-checkboxes card-hover-effect">
                                                 <i class="demo-icon <%= facility.icon_name %>"></i>
                                                 <p><%= facility.name %></p>

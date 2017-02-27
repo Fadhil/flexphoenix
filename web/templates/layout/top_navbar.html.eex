@@ -1,5 +1,8 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid navbar-flex-container">
+    <div class="navbar-minimize">
+      <button id="minimizeSidebar" class="btn btn-fill btn-icon"><i class="ti-more-alt"></i></button>
+    </div>
     <div class="navbar-header">
         <button type="button" class="navbar-toggle">
             <span class="sr-only">Toggle navigation</span>

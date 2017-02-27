@@ -159,12 +159,13 @@ var setup_system_listeners = () => {
     }).receive("ok", resp => {
         $("#organisation-wizard-submit-btn").click();
         swal("Invitation Sent!", "Organisation setup successfully", "success");
-    })
-      .receive("error", resp => {
+    }).receive("error", resp => {
         swal("You've sent an invitation to that email already", "error");
-      });
+    }).receive("noinvite", resp => {
+        $("#organisation-wizard-submit-btn").click();
+        swal("No Invitation Sent", "Organisation setup successfully", "success");
+    });
   });
-
   system_channel.on("invitation_sent", payload => {
     console.log("got payload", payload);
   });

@@ -23,6 +23,9 @@ defmodule Flexcility.SystemChannel do
     broadcast socket, "shout", payload
     {:noreply, socket}
   end
+  def handle_in("send_invite", %{"email" => ""}, socket) do
+    {:reply, {:noinvite, %{success: true, message: "No Invitation Sent"}}, socket}
+  end
 
   def handle_in("send_invite", payload, socket) do
     Logger.info("creating invitation" <> inspect(payload))

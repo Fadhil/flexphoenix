@@ -76,7 +76,8 @@
                         </div>
                       <div class="tab-pane" id="invite_helpdesk_tab">
                         <h4 class="text-center text-space">Invite a Helpdesk User <br><small> 													Enter a valid email then click on "<b>Finish</b>" to finish setting up your Organisation.</small></h4>
-                        <div class="col-sm-8 col-xs-offset-2 text-center"><input type="email" id="invite_helpdesk_email" class="form-control"></div>
+                        <div class="row"><div class="col-sm-8 col-xs-offset-2 text-center"><input type="email" id="invite_helpdesk_email" class="form-control"></div></div>
+                        <div class="row"><div class="text-center"><small>Leave this empty if you don't want to invite anyone yet</small></div></div>
                         <button type="button" class="btn btn-primary hidden" id="send_helpdesk_invite_button">Send Invite</button>
 
                       </div>
@@ -215,7 +216,7 @@
 
       function onFinishWizard(){
           //here you can do something, sent the form to server via ajax and show a success message with swal
-
+          // This here is handled in socket.js
           $("#send_helpdesk_invite_button").click();
 
       }

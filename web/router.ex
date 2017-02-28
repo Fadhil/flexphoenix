@@ -88,9 +88,9 @@ defmodule Flexcility.Router do
   end
 
 
-  scope "/api", Flexcility do
+  scope "/api", Flexcility, as: :api do
     pipe_through [:api, :set_menu]
-
+    resources "/organisations", Api.OrganisationController, only: [:create]
     resources "/sites", SiteController, only: [] do
       get "/assets", AssetController, :index
     end

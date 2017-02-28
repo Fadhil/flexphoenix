@@ -9,6 +9,21 @@ defmodule Flexcility.ErrorView do
     "Server internal error"
   end
 
+  def render("404.json", _assigns) do
+   %{errors: %{detail: "Page not found"}}
+  end
+
+  def render("500.json", _assigns) do
+   %{errors: %{detail: "Server internal error"}}
+  end
+
+  def render "error.json", %{errors: errors} do
+    %{
+      success: false,
+      errors: errors
+    }
+  end
+
   # In case no render clause matches or no
   # template is found, let's render it as 500
   def template_not_found(_template, assigns) do

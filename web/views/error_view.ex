@@ -1,9 +1,9 @@
 defmodule Flexcility.ErrorView do
   use Flexcility.Web, :view
 
-  def render("404.html", _assigns) do
-    "Page not found"
-  end
+  # def render("404.html", _assigns) do
+  #   "Page not found"
+  # end
 
   def render("500.html", _assigns) do
     "Server internal error"

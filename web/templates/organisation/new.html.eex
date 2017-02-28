@@ -5,93 +5,13 @@
               <!--      Wizard container        -->
               <div class="wizard-container">
                 <div class="card card-wizard wizard-card" id="wizardCard">
-                <%= form_for @changeset, @action, [multipart: true, id: "wizardForm"], fn f -> %>
-                  <div class="header text-center">
-                      <h4 class="title">Create a New Organisation</h4>
-                      <p class="category">Create an Organisation and add Members to help you Manage it</p>
-                  </div>
-                  <div class="content">
-                      <ul class="nav">
-                      <li><a href="#organisation_details_tab" data-toggle="tab">Organisation Details</a></li>
-                      <li><a href="#facilities_selection_tab" data-toggle="tab">Select Facilites</a></li>
-                      <li><a href="#invite_helpdesk_tab" data-toggle="tab">Invite Helpdesk</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane" id="organisation_details_tab">
-                          <div class="row padding-bottom">
-                            <div class="col-md-4 col-md-offset-1">
-                              <img id="organisation_logo_preview" src="<%= thumb(@organisation) %>" class="img-responsive" onclick="clickUpload();">
-                              <label class="upload-file-btn btn btn-default btn-file hidden">
-
-                                <%= file_input f, :logo, style: "display: none;" %>
-                              </label>
-                            </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">
-                                      Name<star>*</star>
-                                    </label>
-                                    <%= text_input f, :name, class: "form-control", placeholder: "Facilities Management Sdn Bhd", required: true %>
-                                  <div class="form-group">
-                                      <label class="control-label">
-                                    Subdomain<star>*</star>
-                                  </label>
-                                    <%= text_input f, :subdomain, class: "form-control", placeholder: "fmsb", required: true, minlength: 2, remote: "/api/subdomain_unique" %>
-                                  </div>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1">
-                                <div class="form-group">
-                                    <label class="control-label">
-                                      Description
-                                    </label>
-
-                                    <%= textarea f, :description, class: "form-control", placeholder: "A brief description of your Organisation and what it does." %>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="tab-pane" id="facilities_selection_tab">
-                          <h5 class="text-center">Select the facilities that are relevant to your organisation.</h5>
-                          <div class="text-center">
-                            <small >We've preselected some defaults for you.</small>
-                          </div>
-                          <div class="row wizard-card" data-color="green">
-                              <div class="col-sm-8 col-sm-offset-2">
-                                  <%= for facility <- @facilities do %>
-                                    <div class="col-sm-4">
-                                        <div class="choice" data-toggle="wizard-checkbox">
-                                            <input type="checkbox" name="organisation_facilities[]" value="<%= facility.id %>">
-                                            <div class="card card-checkboxes card-hover-effect">
-                                                <i class="demo-icon <%= facility.icon_name %>"></i>
-                                                <p><%= facility.name %></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  <% end %>
-                              </div>
-                          </div>
-                        </div>
-                      <div class="tab-pane" id="invite_helpdesk_tab">
-                        <h4 class="text-center text-space">Invite a Helpdesk User <br><small> 													Enter a valid email then click on "<b>Finish</b>" to finish setting up your Organisation.</small></h4>
-                        <div class="row"><div class="col-sm-8 col-xs-offset-2 text-center"><input type="email" id="invite_helpdesk_email" class="form-control"></div></div>
-                        <div class="row"><div class="text-center"><small>Leave this empty if you don't want to invite anyone yet</small></div></div>
-                        <button type="button" class="btn btn-primary hidden" id="send_helpdesk_invite_button">Send Invite</button>
-
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                              <button type="button" class="btn btn-default btn-fill btn-wd btn-back pull-left">Back</button>
-                              <button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right">Next</button>
-                              <button type="button" class="btn btn-info btn-fill btn-wd btn-finish pull-right" onclick="onFinishWizard()">Finish</button>
-                              <div class="clearfix"></div>
-                  </div>
-
-                  <%= submit "Submit", id: "organisation-wizard-submit-btn", class: "btn btn-primary hidden" %>
-                <% end %>
+                <div class="header text-center">
+                    <h4 class="title">Create a New Organisation</h4>
+                    <p class="category">Create an Organisation and add Members to help you Manage it</p>
+                </div>
+                <%= render "wizard_form.html", changeset: @changeset,
+                      action: api_organisation_path(@conn, :create), organisation: @organisation,
+                      facilities: @facilities %>
               </div>
             </div>
           </div>
@@ -105,7 +25,7 @@
       window.CurrentState.setOrgId(<%= @organisation.id %>);
       window.CurrentState.setCurrentUserId(<%= @current_user.id %>);
 
-      var $validator = $("#wizardForm").validate({
+      var $validator = $("#organisation-wizardForm").validate({
         rules: {
           name: {
               required: true,
@@ -142,7 +62,7 @@
             nextSelector: '.btn-next',
               previousSelector: '.btn-back',
             onNext: function(tab, navigation, index) {
-              var $valid = $('#wizardForm').valid();
+              var $valid = $('#organisation-wizardForm').valid();
 
               if(!$valid) {
                 $validator.focusInvalid();
@@ -187,7 +107,7 @@
               }
           });
           $("#organisation_subdomain").on("change", function() {
-            var $valid = $('#wizardForm').valid();
+            var $valid = $('#organisation-wizardForm').valid();
 
             if(!$valid) {
               $validator.focusInvalid();
@@ -217,7 +137,7 @@
       function onFinishWizard(){
           //here you can do something, sent the form to server via ajax and show a success message with swal
           // This here is handled in socket.js
-          $("#send_helpdesk_invite_button").click();
+          $("#create_organisation_button").click();
 
       }
 

@@ -140,30 +140,69 @@ system_channel.join()
   .receive("ok", resp => { console.log("Logged on to Flexcility", resp) })
   .receive("error", resp => { console.log("Failed to log on to Flexcility")})
 
+var system_channel_push_invite = (invitation_data) => {
+  console.log("Got invitation data", invitation_data);
+  system_channel.push("send_invite", {
+    role: invitation_data.role, inviter_id: invitation_data.inviter_id,
+    organisation_subdomain: invitation_data.organisation_subdomain,
+    email: invitation_data.email
+  }).receive("ok", resp => {
+      swal({
+        title: "Invitation Sent",
+        text: "Successfully setup " + invitation_data.organisation_name + "!",
+        type: "success",
+        showCancelButton: false,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "OK",
+        closeOnConfirm: false
+        },
+        function(){
+          window.location.href="/organisations";
+      });
+  }).receive("error", resp => {
+      swal("You've sent an invitation to that email already.", "error");
+  }).receive("noinvite", resp => {
+      swal("No Invitation Sent", "Organisation setup successfully", "success");
+  });
+};
+
 var setup_system_listeners = () => {
-  let invite_helpdesk_button    = $("#send_helpdesk_invite_button");
+  let create_organisation_button    = $("#create_organisation_button");
   let invite_helpdesk_email_input = $("#invite_helpdesk_email");
   let organisation_subdomain_input = $("#organisation_subdomain");
 
 
   //let invite_helpdesk_email =
-  console.log("setting up system");
+  console.log("Setting up system");
 
-  invite_helpdesk_button.on("click", event => {
+  create_organisation_button.on("click", event => {
+    event.preventDefault();
+
+    let organisation_form = $("#organisation-wizardForm");
     let user_id = window.CurrentState.current_user_id
     let invite_helpdesk_email = invite_helpdesk_email_input.val();
-    console.log("sending invite");
-    system_channel.push("send_invite", {
-      role: "Helpdesk", inviter_id: user_id, organisation_subdomain: organisation_subdomain_input.val(),
-      email: invite_helpdesk_email
-    }).receive("ok", resp => {
-        $("#organisation-wizard-submit-btn").click();
-        swal("Invitation Sent!", "Organisation setup successfully", "success");
-    }).receive("error", resp => {
-        swal("You've sent an invitation to that email already", "error");
-    }).receive("noinvite", resp => {
-        $("#organisation-wizard-submit-btn").click();
-        swal("No Invitation Sent", "Organisation setup successfully", "success");
+    let organisation_subdomain = organisation_subdomain_input.val();
+    let organisation_name = $('#organisation_name').val();
+    let role = "Helpdesk";
+    let invitation_data = {
+      role: role, inviter_id: user_id, organisation_subdomain: organisation_subdomain,
+      email: invite_helpdesk_email, organisation_name: organisation_name
+    };
+    console.log("Sending data for Creating Organisation");
+    $.ajax({
+        type:"POST",
+        url: organisation_form.attr("action"),
+        data: new FormData(organisation_form[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(response){
+          invitation_data.organisation_id = response.data.id;
+          system_channel_push_invite(invitation_data);
+        },
+        error: function(response){
+          swal("Failed to create Organisation. Refresh and try again.", "error");
+        }
     });
   });
   system_channel.on("invitation_sent", payload => {

@@ -43,7 +43,7 @@
           </a>
           <ul class="flex-dropdown-menu dropdown-menu">
             <li><a href="#">My Profile</a></li>
-            <li><a href="#">My Organisations</a></li>
+            <li><a href="<%= organisation_path(@conn, :index) %>">My Organisations</a></li>
           </ul>
         </li>
       </ul>

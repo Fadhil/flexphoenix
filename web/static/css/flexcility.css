@@ -35,6 +35,8 @@ body{
   width: 450px;
 }
 
+
+
 #message-list {
   /*
   border: 1px solid #777;
@@ -49,7 +51,15 @@ body{
 #message {
   margin-bottom: 30px;
 }
+/* Error Page stuff */
+h1.error-message {
+  color: red;
+}
 
+.row.error-message-row {
+  padding-top: 50px;
+}
+/* Erro Page stuff Ends */
 .error-tag .help-block{
   color: orange;
 }
@@ -129,6 +139,20 @@ ul.nav.antique-white > li:not(.active) > a {
 .login-card {
   min-height: 450px;
   overflow: auto;
+}
+
+.logo-none-layout {
+  /*display: inline-block;*/
+}
+
+.logo-none-layout .logo-name {
+  display: inline-block;
+  float: left;
+}
+
+.logo-none-layout a.navbar-brand {
+  padding-top: 48px;
+  padding-left: 30px;
 }
 
 .registration-card {

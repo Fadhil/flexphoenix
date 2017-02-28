@@ -1,0 +1,71 @@
+
+<html lang="en">
+  <!--// <head></head> -->
+
+<%= render Flexcility.LayoutView, "header.html", assigns %>
+<script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
+<body>
+    <nav class="navbar navbar-transparent navbar-absolute">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo-none-layout"><a href="/"><h1 class="logo-name">Fx</h1></a><a class="navbar-brand" href="../dashboard/overview.html">Flexcility.com</a></div>
+
+            </div>
+            <div class="collapse navbar-collapse">
+  <ul class="nav navbar-nav navbar-right">
+                    <li>
+                       <a href="#" onclick="window.history.back();">
+                            Back
+                        </a>
+                    </li>
+                    <li>
+                       <a href="/login">
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper wrapper-full-page">
+        <div class="full-page login-page" data-color="" data-image="/img/background/background-1.jpg">
+        <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
+            <div class="content">
+                <div class="container">
+                    <div class="row error-message-row">
+                        <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3 text-center">
+                            <h1 class="error-message">The page you requested could not be found</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        	<footer class="footer footer-transparent">
+                <div class="container">
+                    <div class="copyright">
+                      &copy; <script>document.write(new Date().getFullYear())</script>, <a href="http://www.flexcility.com">Flexcility Systems Sdn Bhd</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+<iframe src="/phoenix/live_reload/frame" style="display: none;"></iframe>
+</body>
+<script type="text/javascript">
+      $(document).ready(function(){
+          demo.checkFullPageBackgroundImage();
+
+          // setTimeout(function(){
+          //     // after 1000 ms we add the class animated to the login/register card
+          //     $('.card').removeClass('card-hidden');
+          // }, 700)
+      });
+</script>

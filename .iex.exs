@@ -1,4 +1,7 @@
-alias Flexcility.{User, Organisation, Role, Membership, Repo, Site, Asset, Order, Report, Request}
+alias Flexcility.{
+  User, Organisation, Role, Membership, Repo, Site, Asset,
+  Order, Report, Request, Invitation, Facility
+}
 import Ecto.Query
 
 IO.puts "Loaded .iex.exs"

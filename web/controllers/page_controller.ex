@@ -7,7 +7,15 @@ defmodule Flexcility.PageController do
     |> render("index.html")
   end
 
-  def skin_config(conn, _params) do
-    render conn, "skin-config.html"
+  def subdomain_not_found(conn, _params) do
+    conn
+    |> put_layout("none.html")
+    |> render(Flexcility.ErrorView, "not_found.html", %{error_message: "The subdomain you specified does not exist"})
+  end
+
+  def error(conn, %{error_message: error_message}) do
+    conn
+    |> put_layout("none.html")
+    |> render(Flexcility.ErrorView, "error.html", %{error_message: error_message})
   end
 end

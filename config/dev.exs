@@ -7,8 +7,8 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :flexcility, Flexcility.Endpoint,
-  http: [port: 4000],
-	url: [host: "flexcility.dev", port: 4000 ],
+  http: [port: {:system, "PORT"}],
+	url: [host: "flexcility.dev", port: {:system, "PORT"}],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

@@ -145,7 +145,7 @@ var system_channel_push_invite = (invitation_data) => {
   system_channel.push("send_invite", {
     role: invitation_data.role, inviter_id: invitation_data.inviter_id,
     organisation_subdomain: invitation_data.organisation_subdomain,
-    email: invitation_data.email
+    email: invitation_data.email, organisation_id: invitation_data.organisation_id
   }).receive("ok", resp => {
       swal({
         title: "Invitation Sent",

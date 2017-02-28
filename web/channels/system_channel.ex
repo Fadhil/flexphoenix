@@ -35,11 +35,13 @@ defmodule Flexcility.SystemChannel do
     organisation_subdomain = payload["organisation_subdomain"]
     invitee_email = payload["email"]
     inviter_id = payload["inviter_id"]
+    organisation_id = payload["organisation_id"]
 
     invitation_changeset = %Invitation{}
                           |> Invitation.changeset(%{
                               role_id: role.id, organisation_subdomain: organisation_subdomain,
-                              inviter_id: inviter_id, invitee_email: invitee_email
+                              inviter_id: inviter_id, invitee_email: invitee_email,
+                              organisation_id: organisation_id
                             })
     Logger.info("the invitation changeset: " <> inspect(invitation_changeset))
     case Repo.insert(invitation_changeset) do

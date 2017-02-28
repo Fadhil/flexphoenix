@@ -162,7 +162,18 @@ var system_channel_push_invite = (invitation_data) => {
   }).receive("error", resp => {
       swal("You've sent an invitation to that email already.", "error");
   }).receive("noinvite", resp => {
-      swal("No Invitation Sent", "Organisation setup successfully", "success");
+      swal({
+        title: "No Invitation Sent",
+        text: "Successfully setup " + invitation_data.organisation_name + "!",
+        type: "success",
+        showCancelButton: false,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "OK",
+        closeOnConfirm: false
+        },
+        function(){
+          window.location.href="/organisations";
+      });
   });
 };
 

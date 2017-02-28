@@ -41,6 +41,7 @@ defmodule Flexcility.Router do
     pipe_through [:browser]
     get "/logout", SessionController, :delete
     get "/not_found", PageController, :subdomain_not_found
+    get "/error", PageController, :error
   end
 
   scope "/", Flexcility do

@@ -12,4 +12,10 @@ defmodule Flexcility.PageController do
     |> put_layout("none.html")
     |> render(Flexcility.ErrorView, "not_found.html", %{error_message: "The subdomain you specified does not exist"})
   end
+
+  def error(conn, %{error_message: error_message}) do
+    conn
+    |> put_layout("none.html")
+    |> render(Flexcility.ErrorView, "error.html", %{error_message: error_message})
+  end
 end

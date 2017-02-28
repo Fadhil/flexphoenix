@@ -2,4 +2,5 @@
   <!--// <head></head> -->
   <%= render Flexcility.LayoutView, "header.html", assigns %>
 <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+<script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
 <%= render @view_module, @view_template, assigns %>

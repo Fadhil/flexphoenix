@@ -51,6 +51,7 @@ body{
 #message {
   margin-bottom: 30px;
 }
+
 /* Error Page stuff */
 h1.error-message {
   color: red;
@@ -135,6 +136,21 @@ ul.nav.antique-white > li:not(.active) > a {
 }
 /* End Sidebar stuff */
 
+/* Invitation Registration */
+
+.invitation-card {
+    min-height:440px;
+}
+.invitation-card .inviter-email-display h4{
+  margin-top: 10px;
+}
+
+.invitation-card .inviter-organisation-display h4{
+  margin-top: 10px;
+}
+
+/* Invitation Registration End */
+
 /* Login and Registration */
 .login-card {
   min-height: 450px;
@@ -166,6 +182,7 @@ ul.nav.antique-white > li:not(.active) > a {
 .padding-bottom {
   padding-bottom: 20px;
 }
+
 
 #organisation_logo_preview {
   cursor: pointer; cursor: hand;

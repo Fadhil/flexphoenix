@@ -17,4 +17,12 @@ defmodule Flexcility.Membership do
     |> cast(params, [])
     |> validate_required([])
   end
+
+  def invitation_changeset(struct, user, invitation) do
+    struct
+    |> changeset(%{})
+    |> Ecto.Changeset.put_assoc(:user, user)
+    |> Ecto.Changeset.put_assoc(:role, invitation.role)
+    |> Ecto.Changeset.put_assoc(:organisation, invitation.organisation)
+  end
 end

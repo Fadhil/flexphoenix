@@ -1,0 +1,97 @@
+<body>
+    <nav class="navbar navbar-transparent navbar-absolute">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo-none-layout"><a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a><a class="navbar-brand" href="../dashboard/overview.html">Flexcility.com</a></div>
+              </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                       <a  href="<%= session_path(@conn, :new) %>">
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper wrapper-full-page">
+        <div class="full-page login-page" data-color="" data-image="<%= static_path(@conn, "/img/background/background-1.jpg") %>">
+        <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                      <div class="col-md-4 col-md-offset-2">
+                        <div class="invitation-card card">
+                          <div class="header">
+                            <h4 class="title">An invitation from:</h4>
+                          </div>
+                          <div class="invitation-card-content content">
+                            <div class="row">
+                              <div class="col-xs-3">
+                                  <img src="<%= thumb(@invitation.inviter.profile)%>" class="img-circle img-no-padding img-responsive" alt="Inviter Profile">
+
+                              </div>
+                              <div class="col-xs-8">
+                                <div class="inviter-email-display">
+                                  <h4><%= @invitation.inviter.email %></h4>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row text-center">
+                              <h5>to join</h5>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-3">
+                                <img src="<%= thumb(@invitation.organisation)%>" class="img-responsive" alt="Organisation Logo">
+                              </div>
+                              <div class="col-xs-8">
+                                <div class="inviter-organisation-display">
+                                  <h4><%= @invitation.organisation.name %></h4>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row text-center">
+                              <h4><%= display_invited_role(@invitation.role) %></h4>
+                            </div>
+                          </div>
+                          <div class="footer text-center">
+                            <small>By registering you will be assigned <%= String.downcase(display_invited_role(@invitation.role)) %> in <%= @invitation.organisation.name %></small>
+                          </div>
+                        </div>
+
+                      </div>
+                        <div class="col-md-4 ">
+                          <%= render "form.html", conn: @conn, changeset: @changeset, invitation: @invitation %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        	<footer class="footer footer-transparent">
+                <div class="container">
+                    <div class="copyright">
+                      &copy; <script>document.write(new Date().getFullYear())</script>, <a href="http://www.flexcility.com">Flexcility Systems Sdn Bhd</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+      $(document).ready(function(){
+          demo.checkFullPageBackgroundImage();
+
+          setTimeout(function(){
+              // after 1000 ms we add the class animated to the login/register card
+              $('.card').removeClass('card-hidden');
+          }, 700)
+      });
+</script>

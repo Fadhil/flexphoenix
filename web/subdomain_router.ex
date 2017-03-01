@@ -55,6 +55,12 @@ defmodule Flexcility.SubdomainRouter do
     get "/login", SessionController, :new
     post "/login", SessionController, :create
   end
+
+  scope "/", Flexcility do
+    pipe_through [:browser]
+    get "/register", RegistrationController, :invitation
+    post "/register", RegistrationController, :create
+  end
   #
   # scope "/", Flexcility.Subdomain do
   #   pipe_through [:browser, :redirect_logged_in_user]

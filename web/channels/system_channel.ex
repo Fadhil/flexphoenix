@@ -46,10 +46,10 @@ defmodule Flexcility.SystemChannel do
     Logger.info("the invitation changeset: " <> inspect(invitation_changeset))
     case Repo.insert(invitation_changeset) do
       {:ok, invitation} ->
-        registration_link = Flexcility.Router.Helpers.registration_url(Flexcility.Endpoint, :new, invitation: invitation.id)
+        invitation_link = Flexcility.Router.Helpers.invitation_url(Flexcility.Endpoint, :show, invitation.key)
                             |> Subdomain.prepend(organisation_subdomain)
 
-        Flexcility.Email.team_member_invitation(payload["email"], registration_link) |> Flexcility.Mailer.deliver_later
+        Flexcility.Email.team_member_invitation(payload["email"], invitation_link) |> Flexcility.Mailer.deliver_later
 
         {:reply, {:ok, %{success: true, message: "Created Invitation"}}, socket}
         # {:noreply, socket}

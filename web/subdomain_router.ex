@@ -53,6 +53,7 @@ defmodule Flexcility.SubdomainRouter do
   scope "/", Flexcility.Subdomain do
     pipe_through [:browser, :redirect_logged_in_user]
     get "/login", SessionController, :new
+    get "/login/:invitation_key", SessionController, :invitation
     post "/login", SessionController, :create
   end
 

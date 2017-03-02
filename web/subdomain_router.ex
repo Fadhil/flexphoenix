@@ -48,6 +48,8 @@ defmodule Flexcility.SubdomainRouter do
     pipe_through :browser
     get "/logout", SessionController, :delete
     get "/invitations/:invitation_key", InvitationController, :show
+    post "/invitations/:invitation_key/accept", InvitationController, :accept
+    post "/invitations/:invitation_key/reject", InvitationController, :reject
   end
 
   scope "/", Flexcility.Subdomain do

@@ -19,13 +19,12 @@ defmodule Flexcility.Subdomain.InvitationController do
       {:ok, user} ->
         conn
         |> put_layout("none.html")
-        |> render("show.html")
+        |> redirect(to: Flexcility.SubdomainRouter.Helpers.session_path(conn, :invitation, invitation.key))
       {:error, error} ->
         changeset = User.changeset(%User{}, %{profile: %{}})
         invitation = invitation |> Repo.preload([:organisation, :role, {:inviter, :profile}])
         conn
         |> put_layout("none.html")
-        |> assign(:invitation_key, invitation.key)
         |> render(Flexcility.RegistrationView, "invitation.html", changeset: changeset, invitation: invitation)
     end
   end

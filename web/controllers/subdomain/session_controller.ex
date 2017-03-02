@@ -1,5 +1,6 @@
 defmodule Flexcility.Subdomain.SessionController do
   use Flexcility.Web, :controller
+  alias Flexcility.Invitation
 
   # import Flexcility.SubdomainRouter.Helpers
   alias Passport.Session
@@ -9,6 +10,21 @@ defmodule Flexcility.Subdomain.SessionController do
     conn
     |> put_layout("none.html")
     |> render(:new)
+  end
+
+  def invitation(conn, %{"invitation_key" => invitation_key} =params) do
+    case Repo.get_by(Invitation, key: invitation_key, accepted: false) do
+      nil ->
+        conn
+        |> put_layout("none.html")
+        |> render(Flexcility.ErrorView, "error.html", error_message: "That invitation key is invalid")
+      invitation ->
+        invitation = invitation |> Invitation.with_associations
+        conn
+        |> put_layout("none.html")
+        |> assign(:invitation, invitation)
+        |> render(:invitation)
+    end
   end
 
   def create(conn, %{"session" => %{"email" => email, "password" => pass}}) do

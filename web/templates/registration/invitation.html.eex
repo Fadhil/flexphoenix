@@ -29,43 +29,7 @@
                 <div class="container">
                     <div class="row">
                       <div class="col-md-4 col-md-offset-2">
-                        <div class="invitation-card card">
-                          <div class="header">
-                            <h4 class="title">An invitation from:</h4>
-                          </div>
-                          <div class="invitation-card-content content">
-                            <div class="row">
-                              <div class="col-xs-3">
-                                  <img src="<%= thumb(@invitation.inviter.profile)%>" class="img-circle img-no-padding img-responsive" alt="Inviter Profile">
-
-                              </div>
-                              <div class="col-xs-8">
-                                <div class="inviter-email-display">
-                                  <h4><%= @invitation.inviter.email %></h4>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row text-center">
-                              <h5>to join</h5>
-                            </div>
-                            <div class="row">
-                              <div class="col-xs-3">
-                                <img src="<%= thumb(@invitation.organisation)%>" class="img-responsive" alt="Organisation Logo">
-                              </div>
-                              <div class="col-xs-8">
-                                <div class="inviter-organisation-display">
-                                  <h4><%= @invitation.organisation.name %></h4>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row text-center">
-                              <h4><%= display_invited_role(@invitation.role) %></h4>
-                            </div>
-                          </div>
-                          <div class="footer text-center">
-                            <small>By registering you will be assigned <%= String.downcase(display_invited_role(@invitation.role)) %> in <%= @invitation.organisation.name %></small>
-                          </div>
-                        </div>
+                        <%= render Flexcility.LayoutView, "invitation_card.html", invitation: @invitation %>
 
                       </div>
                         <div class="col-md-4 ">

@@ -26,6 +26,9 @@
                 <label>Password</label>
                 <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
             </div>
+            <%= if @conn.assigns[:invitation] do %>
+              <%= hidden_input :invitation, :key, value: @invitation.key %>
+            <% end %>
         </div>
 
         <div class="footer text-center">

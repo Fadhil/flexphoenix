@@ -27,12 +27,20 @@ defmodule Flexcility.Subdomain.SessionController do
     end
   end
 
-  def create(conn, %{"session" => %{"email" => email, "password" => pass}}) do
+  def create(conn, %{"session" => %{"email" => email, "password" => pass}} = params) do
+
+    invitation_key = params["invitation"]["key"]
+    redirect_path = case invitation_key do
+      nil ->
+        Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index)
+      invitation_key ->
+        Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index)
+    end
     case Session.login(conn, email, pass) do
     {:ok, conn} ->
       conn
       |> put_flash(:info, "Welcome back!")
-      |> redirect(to: Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index))
+      |> redirect(to: redirect_path)
     {:error, _reason, conn} ->
       conn
       |> put_flash(:error, "Invalid username/password combination")

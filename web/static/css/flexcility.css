@@ -16,7 +16,9 @@ body{
   background: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }*/
-
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
 .metismenu > li > a {
   background-color: #2f4050;
 }
@@ -153,13 +155,26 @@ ul.nav.antique-white > li:not(.active) > a {
 
 /* Login and Registration */
 .login-card {
-  min-height: 450px;
+  /*min-height: 380px;*/
   overflow: auto;
+  padding-bottom: 0px !important;
 }
 
-.logo-none-layout {
-  /*display: inline-block;*/
+.logo-organisation-layout .img-responsive {
+  display: inline-block;
+  float: left;
+  margin-left: 15px;
 }
+.logo-title-organisation-layout {
+  display: inline-block;
+  margin-left: -80px;
+}
+
+.logo-none-layout .img-responsive {
+  display: inline-block;
+  float: left;
+}
+
 
 .logo-none-layout .logo-name {
   display: inline-block;
@@ -168,6 +183,11 @@ ul.nav.antique-white > li:not(.active) > a {
 
 .logo-none-layout a.navbar-brand {
   padding-top: 48px;
+  padding-left: 30px;
+}
+
+.logo-none-layout a.navbar-organisation-name {
+  padding-top: 10px;
   padding-left: 30px;
 }
 

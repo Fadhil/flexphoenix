@@ -7,8 +7,11 @@ Tip 2: you can change the color of the active button using the data-active-color
 
   <div class="organisation-sidebar  sidebar-wrapper">
         <div class="logo dropdown">
-            <a href="#" class="dropdown-toggle simple-text antique-white" data-toggle="dropdown">
-              JKR
+          <a href="#" class="dropdown-toggle simple-text antique-white" data-toggle="dropdown">
+            <div class="logo-organisation-layout"><img src="<%= image(@conn.assigns.current_organisation) %>" width="50px;" class="img-responsive"></div>
+            <div class="logo-title-organisation-layout">
+              <%= @conn.assigns.current_organisation.subdomain %>
+            </div>
             <b class="caret"></b>
             </a>
             <ul class="flex-dropdown-menu dropdown-menu">

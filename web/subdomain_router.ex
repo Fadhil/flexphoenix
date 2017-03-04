@@ -40,7 +40,7 @@ defmodule Flexcility.SubdomainRouter do
 
   scope "/", Flexcility.Subdomain do
     pipe_through [:browser, :authorize] # Use the default browser stack
-    get "/", DashboardController, :index
+    # get "/", DashboardController, :index
     get "/dashboard", DashboardController, :index
   end
 
@@ -54,6 +54,7 @@ defmodule Flexcility.SubdomainRouter do
 
   scope "/", Flexcility.Subdomain do
     pipe_through [:browser, :redirect_logged_in_user]
+    get "/", SessionController, :new
     get "/login", SessionController, :new
     get "/login/:invitation_key", SessionController, :invitation
     post "/login", SessionController, :create

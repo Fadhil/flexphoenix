@@ -177,6 +177,7 @@ ul.nav.antique-white > li:not(.active) > a {
 
 .logo-none-layout .logo-img {
   margin-top: 50px;
+  width: 80px;
 }
 
 .logo-none-layout .logo-name {
@@ -192,6 +193,10 @@ ul.nav.antique-white > li:not(.active) > a {
 .logo-none-layout a.navbar-organisation-name {
   padding-top: 10px;
   padding-left: 30px;
+}
+
+.navbar-layout-none {
+  padding-left: 10px;
 }
 
 .registration-card {

@@ -175,6 +175,9 @@ ul.nav.antique-white > li:not(.active) > a {
   float: left;
 }
 
+.logo-none-layout .logo-img {
+  margin-top: 50px;
+}
 
 .logo-none-layout .logo-name {
   display: inline-block;

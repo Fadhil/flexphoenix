@@ -26,6 +26,13 @@ defmodule Flexcility.Subdomain.SessionController do
         |> render(:invitation)
     end
   end
+  
+  def create(conn, %{"session" => %{"email" => "", "password" => ""}}) do
+    conn
+    |> put_flash(:error, "You must enter an email and a password")
+    |> put_layout("none.html")
+    |> render(:new)
+  end
 
   def create(conn, %{"session" => %{"email" => email, "password" => pass}} = params) do
 

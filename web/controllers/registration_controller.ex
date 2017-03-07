@@ -28,10 +28,9 @@ defmodule Flexcility.RegistrationController do
       {:error, changeset} ->
         invitation = invitation |> Repo.preload([:organisation, :role, {:inviter, :profile}])
         conn
+        |> assign(:invitation, invitation)
         |> check_for_invitation_and_redirect(changeset, invitation)
     end
-
-
   end
 
   defp get_full_name(%{"full_name" => full_name} = registration_params) do

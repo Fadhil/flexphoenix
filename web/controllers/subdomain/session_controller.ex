@@ -35,19 +35,24 @@ defmodule Flexcility.Subdomain.SessionController do
   end
 
   def create(conn, %{"session" => %{"email" => email, "password" => pass}} = params) do
-
-    invitation_key = params["invitation"]["key"]
-    redirect_path = case invitation_key do
-      nil ->
-        Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index)
-      invitation_key ->
-        Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index)
-    end
+    redirect_path = Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index)
     case Session.login(conn, email, pass) do
     {:ok, conn} ->
-      conn
-      |> put_flash(:info, "Welcome back!")
-      |> redirect(to: redirect_path)
+      organisation = conn.assigns.current_organisation
+      user = conn.assigns.current_user
+
+      case Flexcility.Plugs.AuthorizeForOrganisation.organisation_member?(user, organisation) do
+        {:ok, user} ->
+          conn
+          |> put_flash(:info, "Welcome back!")
+          |> redirect(to: redirect_path)
+        {:error, :not_organisation_member} ->
+          conn
+          |> put_flash(:error, "You're not a valid member of this organisation")
+          |> put_layout("none.html")
+          |> render(:new)
+      end
+
     {:error, _reason, conn} ->
       conn
       |> put_flash(:error, "Invalid username/password combination")

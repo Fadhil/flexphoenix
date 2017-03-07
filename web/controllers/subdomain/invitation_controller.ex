@@ -15,8 +15,8 @@ defmodule Flexcility.Subdomain.InvitationController do
       {:ok, _membership} ->
         invitation |> Invitation.changeset(%{accepted: true}) |> Repo.update
         conn
-        |> put_flash(:info, "Successfully joined " <> invitation.organisation.name)
-        |> redirect(to: Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index))
+        |> put_flash(:info, "Successfully joined " <> invitation.organisation.name <> ". Login to start helping out")
+        |> redirect(to: Flexcility.SubdomainRouter.Helpers.session_path(conn, :new))
       {:error, errors} ->
         conn
         |> render(Flexcility.ErrorView, "error.html", error_message: "Could not join that organisation")
@@ -41,16 +41,16 @@ defmodule Flexcility.Subdomain.InvitationController do
   defp check_invitation_email(conn, invitation) do
     case email_matches_existing_user(conn, invitation) do
       {:ok, user} ->
+        invitation = invitation |> Invitation.with_associations
         case email_matches_current_user(conn, invitation) do
           {:ok, user} ->
-            invitation = invitation |> Invitation.with_associations
             conn
             |> put_layout("none.html")
             |> render("show.html", invitation: invitation)
           {:error, :not_logged_in} ->
             conn
             |> put_layout("none.html")
-            |> redirect(to: Flexcility.SubdomainRouter.Helpers.session_path(conn, :invitation, invitation.key))
+            |> render("show.html", invitation: invitation)
           {:error, :wrong_invitee_email} ->
             conn
             |> put_layout("none.html")
@@ -61,6 +61,7 @@ defmodule Flexcility.Subdomain.InvitationController do
         invitation = invitation |> Repo.preload([:organisation, :role, {:inviter, :profile}])
         conn
         |> put_layout("none.html")
+        |> assign(:invitation, invitation)
         |> render(Flexcility.RegistrationView, "invitation.html", changeset: changeset, invitation: invitation)
     end
   end

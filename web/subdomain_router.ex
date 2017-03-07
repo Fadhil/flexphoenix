@@ -32,6 +32,7 @@ defmodule Flexcility.SubdomainRouter do
 
   pipeline :authorize do
     plug Flexcility.Plugs.Authorize
+    plug Flexcility.Plugs.AuthorizeForOrganisation
   end
 
   pipeline :load_profile do
@@ -54,8 +55,8 @@ defmodule Flexcility.SubdomainRouter do
 
   scope "/", Flexcility.Subdomain do
     pipe_through [:browser, :redirect_logged_in_user]
-    get "/", SessionController, :new
     get "/login", SessionController, :new
+    get "/", SessionController, :new
     get "/login/:invitation_key", SessionController, :invitation
     post "/login", SessionController, :create
   end

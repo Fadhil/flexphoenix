@@ -11,13 +11,14 @@ defmodule Flexcility.Plug.Subdomain do
     case get_subdomain(conn.host) do
       subdomain when byte_size(subdomain) > 0 ->
         case verify_subdomain(subdomain) do
-          true ->
+          {:ok, organisation} ->
             conn
             |> fetch_session
             |> put_private(:subdomain, subdomain)
+            |> assign(:current_organisation, organisation)
             |> router.call(router.init({}))
             |> halt
-          false ->
+          {:error, _} ->
             conn
             |> Phoenix.Controller.redirect(external: Flexcility.Router.Helpers.page_url(conn, :subdomain_not_found))
             |> halt
@@ -35,11 +36,11 @@ defmodule Flexcility.Plug.Subdomain do
   defp verify_subdomain(subdomain) do
     case Repo.get_by(Organisation, subdomain: subdomain) do
       nil ->
-        false
-      %{subdomain: ^subdomain} ->
-        true
+        {:error, :no_such_organisation}
+      %{subdomain: ^subdomain}=organisation ->
+        {:ok, organisation}
       _ ->
-        false
+        {:error, :unknown_error}
     end
   end
 end

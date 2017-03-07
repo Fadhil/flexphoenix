@@ -16,7 +16,9 @@ body{
   background: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }*/
-
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
 .metismenu > li > a {
   background-color: #2f4050;
 }
@@ -51,6 +53,7 @@ body{
 #message {
   margin-bottom: 30px;
 }
+
 /* Error Page stuff */
 h1.error-message {
   color: red;
@@ -135,14 +138,46 @@ ul.nav.antique-white > li:not(.active) > a {
 }
 /* End Sidebar stuff */
 
-/* Login and Registration */
-.login-card {
-  min-height: 450px;
-  overflow: auto;
+/* Invitation Registration */
+
+.invitation-card {
+    min-height:440px;
+}
+.invitation-card .inviter-email-display h4{
+  margin-top: 10px;
 }
 
-.logo-none-layout {
-  /*display: inline-block;*/
+.invitation-card .inviter-organisation-display h4{
+  margin-top: 10px;
+}
+
+/* Invitation Registration End */
+
+/* Login and Registration */
+.login-card {
+  /*min-height: 380px;*/
+  overflow: auto;
+  padding-bottom: 0px !important;
+}
+
+.logo-organisation-layout .img-responsive {
+  display: inline-block;
+  float: left;
+  margin-left: 15px;
+}
+.logo-title-organisation-layout {
+  display: inline-block;
+  margin-left: -80px;
+}
+
+.logo-none-layout .img-responsive {
+  display: inline-block;
+  float: left;
+}
+
+.logo-none-layout .logo-img {
+  margin-top: 50px;
+  width: 80px;
 }
 
 .logo-none-layout .logo-name {
@@ -153,6 +188,15 @@ ul.nav.antique-white > li:not(.active) > a {
 .logo-none-layout a.navbar-brand {
   padding-top: 48px;
   padding-left: 30px;
+}
+
+.logo-none-layout a.navbar-organisation-name {
+  padding-top: 10px;
+  padding-left: 30px;
+}
+
+.navbar-layout-none {
+  padding-left: 10px;
 }
 
 .registration-card {
@@ -166,6 +210,7 @@ ul.nav.antique-white > li:not(.active) > a {
 .padding-bottom {
   padding-bottom: 20px;
 }
+
 
 #organisation_logo_preview {
   cursor: pointer; cursor: hand;

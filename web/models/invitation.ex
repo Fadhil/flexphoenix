@@ -39,4 +39,15 @@ defmodule Flexcility.Invitation do
     changeset
     |> put_change(:key, Utils.String.random(32))
   end
+
+  def accept(invitation) do
+    invitation
+    |> changeset(%{accepted: true})
+    |> Repo.update
+  end
+
+  def with_associations(invitation) do
+    invitation
+    |> Repo.preload([:organisation, :role, {:inviter, :profile}])
+  end
 end

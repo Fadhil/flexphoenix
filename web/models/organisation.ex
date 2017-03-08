@@ -15,6 +15,7 @@ defmodule Flexcility.Organisation do
     has_many :invitations, Flexcility.Invitation, on_delete: :delete_all
 
     many_to_many :facilities, Flexcility.Facility, join_through: "facilities_organisations"
+    many_to_many :traits, Flexcility.Trait, join_through: "organisations_traits"
   end
 
   @all_fields [:name, :subdomain, :description]

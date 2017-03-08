@@ -7,6 +7,8 @@ defmodule Flexcility.Trait do
     field :abbreviation, :string
 
     timestamps()
+
+    many_to_many :organisations, Flexcility.Organisation, join_through: "organisations_traits"
   end
 
   @doc """

@@ -8,13 +8,14 @@ defmodule Flexcility.Plugs.AuthorizeForOrganisation do
   alias Flexcility.Organisation
   alias Flexcility.User
   alias Passport.Session
+  alias Flexcility.Repo
 
   def init(defaults), do: defaults
 
   def call(conn, _) do
     user = conn.assigns.current_user
     organisation = conn.assigns.current_organisation
-                   |> Organisation.with_memberships
+
     case organisation_member?(user, organisation) do
       {:ok, user}->
         conn
@@ -28,7 +29,7 @@ defmodule Flexcility.Plugs.AuthorizeForOrganisation do
   end
 
   def organisation_member?(user, organisation) do
-    organisation = organisation |> Organisation.with_memberships
+    organisation = organisation |> Repo.preload([{:memberships, [:user]}])
     case Enum.member?(Enum.map(organisation.memberships, fn(x)-> x.user end), user) do
       true ->
         {:ok, user}

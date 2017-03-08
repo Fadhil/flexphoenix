@@ -38,6 +38,11 @@ body{
 }
 
 
+.sidebar-wrapper {
+  height: 100% !important;
+  overflow-x: hidden !important;
+}
+
 
 #message-list {
   /*
@@ -213,6 +218,10 @@ ul.nav.antique-white > li:not(.active) > a {
 
 
 #organisation_logo_preview {
+  cursor: pointer; cursor: hand;
+}
+
+.upload_image_preview {
   cursor: pointer; cursor: hand;
 }
 

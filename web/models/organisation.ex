@@ -63,6 +63,6 @@ defmodule Flexcility.Organisation do
   end
 
   def with_memberships(organisation) do
-    organisation |> Repo.preload([{:memberships, [:role, :user, :organisation]}])
+    organisation |> Repo.preload([{:memberships, [:role, :organisation, {:user, [:profile]}]}])
   end
 end

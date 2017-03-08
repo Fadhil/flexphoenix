@@ -19,7 +19,7 @@ defmodule Flexcility.SubdomainRouter do
   end
 
   pipeline :no_layout do
-    plug :put_layout, false
+    plug :put_layout, "none.html"
   end
 
   pipeline :set_menu do
@@ -40,13 +40,15 @@ defmodule Flexcility.SubdomainRouter do
   end
 
   scope "/", Flexcility.Subdomain do
-    pipe_through [:browser, :authorize] # Use the default browser stack
+    pipe_through [:browser, :authorize, :load_profile] # Use the default browser stack
     # get "/", DashboardController, :index
     get "/dashboard", DashboardController, :index
+    get "/profile", ProfileController, :show
+    put "/profile", ProfileController, :update
   end
 
   scope "/", Flexcility.Subdomain do
-    pipe_through :browser
+    pipe_through [:browser, :no_layout]
     get "/logout", SessionController, :delete
     get "/invitations/:invitation_key", InvitationController, :show
     post "/invitations/:invitation_key/accept", InvitationController, :accept

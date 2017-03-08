@@ -39,7 +39,7 @@
                     <b class="caret"></b>
                   </a>
                   <ul class="flex-dropdown-menu dropdown-menu">
-                    <li><a href="#">My Profile</a></li>
+                    <li><%= link "My Profile", to: Flexcility.SubdomainRouter.Helpers.profile_path(@conn, :show) %></li>
                   </ul>
                 </li>
             </ul>

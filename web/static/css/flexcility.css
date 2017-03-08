@@ -221,6 +221,10 @@ ul.nav.antique-white > li:not(.active) > a {
   cursor: pointer; cursor: hand;
 }
 
+.upload_image_preview {
+  cursor: pointer; cursor: hand;
+}
+
 .no-padding {
   padding: 0;
 }

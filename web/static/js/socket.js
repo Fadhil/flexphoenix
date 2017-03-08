@@ -233,9 +233,10 @@ $(document).ready(function(){
 
   message.on("keypress", event => {
     if (event.keyCode == 13) {
-      channel.push("new_message", { name: name, message: message.val(),
-                                    user_id: user_id, image: image
-                                  });
+      channel.push("new_message", { 
+        name: name, message: message.val(),
+        user_id: user_id, image: image
+      });
       message.val("");
     }
   });

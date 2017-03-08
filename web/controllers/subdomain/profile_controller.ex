@@ -23,12 +23,10 @@ defmodule Flexcility.Subdomain.ProfileController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Profile updated successfully.")
-        |> render(
-            "show.html", user: user, changeset: changeset,
-            action: SubdomainRouter.Helpers.profile_path(
-              conn, :update
+        |> redirect(to: SubdomainRouter.Helpers.profile_path(
+                conn, :show
+              )
             )
-          )
       {:error, user} ->
         conn
         |> put_flash(:error, "Something went wrong")

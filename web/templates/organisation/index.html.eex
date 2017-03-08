@@ -8,7 +8,7 @@
         <div class="row col-md-12">
       <% end %>
 
-      <% organisation =  organisation |> Flexcility.Repo.preload([{:memberships, [{:user, :profile}, :role]}]) %>
+      <% organisation =  organisation |> Organisation.with_memberships %>
       <%     members = get_members(organisation) %>
       <%= render Flexcility.OrganisationView, "org_card.html", %{organisation: organisation, members: "full", members_list: members, conn: @conn} %>
 

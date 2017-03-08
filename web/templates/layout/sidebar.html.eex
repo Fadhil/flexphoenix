@@ -34,9 +34,9 @@ Tip 2: you can change the color of the active button using the data-active-color
         </div>
         <ul class="nav">
             <li class="active">
-                <a href="dashboard.html">
-                    <i class="ti-panel"></i>
-                    <p>Dashboard</p>
+                <a href="<%= organisation_path(@conn, :index) %>">
+                    <i class="ti-view-grid"></i>
+                    <p>Organisations</p>
                 </a>
             </li>
             <li>

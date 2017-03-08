@@ -9,6 +9,7 @@ defmodule Flexcility.Trait do
     timestamps()
 
     many_to_many :organisations, Flexcility.Organisation, join_through: "organisations_traits"
+    many_to_many :sites, Flexcility.Site, join_through: "sites_traits"
   end
 
   @doc """

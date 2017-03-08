@@ -16,6 +16,16 @@
                       </a>
                     </div>
                 </div>
+                <div class="col-sm-3">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                      <a href="<%= organisation_management_path(@conn, :members, @organisation.id) %>">
+                        <div class="card card-checkboxes card-hover-effect ">
+                            <i class="ti-pencil-alt"></i>
+                            <p>Define Traits and Facility Types</p>
+                        </div>
+                      </a>
+                    </div>
+                </div>
                 <div class="col-sm-3 wizard-card" data-color="red">
                     <div class="choice" data-toggle="wizard-checkbox">
                       <%= link to: organisation_path(@conn, :delete, @organisation), method: :delete, data: [confirm: "Are you sure you want to delete #{@organisation.name}?"] do %>

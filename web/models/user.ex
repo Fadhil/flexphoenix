@@ -60,4 +60,9 @@ defmodule Flexcility.User do
     end
   end
 
+  def with_profile(user) do
+    user
+    |> Repo.preload([:profile])
+  end
+
 end

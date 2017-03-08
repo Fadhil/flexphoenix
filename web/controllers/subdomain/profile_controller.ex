@@ -8,6 +8,7 @@ defmodule Flexcility.Subdomain.ProfileController do
 
   def show(conn, _params) do
     user = conn.assigns.current_user
+      |> User.with_profile
     changeset = User.update_changeset(user)
     render(
       conn, "show.html", user: user, changeset: changeset,

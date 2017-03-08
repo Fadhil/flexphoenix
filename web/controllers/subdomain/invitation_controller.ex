@@ -16,7 +16,8 @@ defmodule Flexcility.Subdomain.InvitationController do
         invitation |> Invitation.changeset(%{accepted: true}) |> Repo.update
         conn
         |> put_flash(:info, "Successfully joined " <> invitation.organisation.name <> ". Login to start helping out")
-        |> redirect(to: Flexcility.SubdomainRouter.Helpers.session_path(conn, :new))
+        |> render(Flexcility.Subdomain.SessionView, :new)
+        # |> redirect(to: Flexcility.SubdomainRouter.Helpers.session_path(conn, :new))
       {:error, errors} ->
         conn
         |> render(Flexcility.ErrorView, "error.html", error_message: "Could not join that organisation")

@@ -7,8 +7,10 @@ defmodule Flexcility.Subdomain.InvitationController do
   def accept(conn, %{"invitation_key" => invitation_key}) do
     invitation = Repo.get_by(Invitation, key: invitation_key, accepted: false)
                  |> Invitation.with_associations
+    user = Repo.get_by(User, email: invitation.invitee_email)
+
     membership_changeset = Membership.changeset(%Membership{}, %{})
-                           |> Ecto.Changeset.put_assoc(:user, conn.assigns.current_user)
+                           |> Ecto.Changeset.put_assoc(:user, user)
                            |> Ecto.Changeset.put_assoc(:role, invitation.role)
                            |> Ecto.Changeset.put_assoc(:organisation, invitation.organisation)
     case Repo.insert(membership_changeset) do
@@ -32,7 +34,6 @@ defmodule Flexcility.Subdomain.InvitationController do
     case Repo.get_by(Invitation, key: invitation_key, accepted: false) do
       nil ->
         conn
-        |> put_layout("none.html")
         |> render(Flexcility.ErrorView, "error.html", error_message: "That invitation key is invalid")
       invitation ->
         check_invitation_email(conn, invitation)
@@ -46,22 +47,18 @@ defmodule Flexcility.Subdomain.InvitationController do
         case email_matches_current_user(conn, invitation) do
           {:ok, user} ->
             conn
-            |> put_layout("none.html")
             |> render("show.html", invitation: invitation)
           {:error, :not_logged_in} ->
             conn
-            |> put_layout("none.html")
             |> render("show.html", invitation: invitation)
           {:error, :wrong_invitee_email} ->
             conn
-            |> put_layout("none.html")
             |> render(Flexcility.ErrorView, "error.html", error_message: "This invitation was meant for someone else")
         end
       {:error, error} ->
         changeset = User.changeset(%User{}, %{profile: %{}})
         invitation = invitation |> Repo.preload([:organisation, :role, {:inviter, :profile}])
         conn
-        |> put_layout("none.html")
         |> assign(:invitation, invitation)
         |> render(Flexcility.RegistrationView, "invitation.html", changeset: changeset, invitation: invitation)
     end

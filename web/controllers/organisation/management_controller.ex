@@ -6,7 +6,7 @@ defmodule Flexcility.Organisation.ManagementController do
   def index(conn, %{"organisation_id" => id}) do
     organisation = Repo.get(Organisation, id)
     conn
-    |> assign(:page_title, "Manage Organisation")
+    |> assign(:page_title, "Manage #{organisation.name}")
     |> render("index.html", organisation: organisation)
   end
 

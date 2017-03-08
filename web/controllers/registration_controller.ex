@@ -55,18 +55,23 @@ defmodule Flexcility.RegistrationController do
         end
 
       _ ->
-        case Session.login(conn, email, pass) do
-          {:ok, conn} ->
-            conn
-            |> accept_invitation(invitation)
-            |> join_organisation(user, invitation)
-            |> put_flash(:info, "Welcome to #{invitation.organisation.name}!")
-            |> redirect(to: Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index))
-          {:error, _reason, conn} ->
-            conn
-            |> put_flash(:error, "Invalid username/password combination")
-            |> redirect(to: Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index))
-        end
+        conn
+        |> accept_invitation(invitation)
+        |> join_organisation(user, invitation)
+        |> put_flash(:info, "Welcome to #{invitation.organisation.name}. Login to begin.")
+        |> redirect(to: Flexcility.SubdomainRouter.Helpers.session_path(conn, :new))
+        # case Session.login(conn, email, pass) do
+        #   {:ok, conn} ->
+        #     conn
+        #     |> accept_invitation(invitation)
+        #     |> join_organisation(user, invitation)
+        #     |> put_flash(:info, "Welcome to #{invitation.organisation.name}. Login to begin.")
+        #     |> redirect(to: Flexcility.SubdomainRouter.Helpers.session_path(conn, :new))
+        #   {:error, _reason, conn} ->
+        #     conn
+        #     |> put_flash(:error, "Invalid username/password combination")
+        #     |> redirect(to: Flexcility.SubdomainRouter.Helpers.dashboard_path(conn, :index))
+        # end
 
     end
   end

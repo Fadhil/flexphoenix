@@ -19,6 +19,7 @@ defmodule Flexcility.Profile do
     struct
     |> cast(params, @all_fields)
     |> validate_required(@required_fields)
+    |> cast_attachments(params, @image_fields)
   end
 
   def image_changeset(profile, params) do

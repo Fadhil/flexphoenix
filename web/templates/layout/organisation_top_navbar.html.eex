@@ -32,11 +32,15 @@
                         <li><a href="#">Another notification</a></li>
                       </ul>
                 </li>
-    <li>
-                    <a href="#">
-        <i class="ti-settings"></i>
-        <p>Settings</p>
-                    </a>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="ti-settings"></i>
+                    <p>Manage</p>
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="flex-dropdown-menu dropdown-menu">
+                    <li><a href="#">My Profile</a></li>
+                  </ul>
                 </li>
             </ul>
 

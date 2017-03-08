@@ -25,6 +25,8 @@ defmodule Flexcility.Web do
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
+      alias Flexcility.Repo
+
       def put_user_id(changeset, user_id) do
         case changeset do
           %Ecto.Changeset{valid?: true} ->
@@ -32,6 +34,10 @@ defmodule Flexcility.Web do
           _ ->
             changeset
         end
+      end
+
+      def last(model) do
+        Repo.one(from x in model, order_by: [desc: x.id], limit: 1)
       end
     end
   end

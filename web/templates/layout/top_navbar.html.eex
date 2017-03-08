@@ -1,5 +1,8 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid navbar-flex-container">
+    <div class="navbar-minimize">
+      <button id="minimizeSidebar" class="btn btn-fill btn-icon"><i class="ti-more-alt"></i></button>
+    </div>
     <div class="navbar-header">
         <button type="button" class="navbar-toggle">
             <span class="sr-only">Toggle navigation</span>
@@ -40,7 +43,7 @@
           </a>
           <ul class="flex-dropdown-menu dropdown-menu">
             <li><a href="#">My Profile</a></li>
-            <li><a href="#">My Organisations</a></li>
+            <li><a href="<%= organisation_path(@conn, :index) %>">My Organisations</a></li>
           </ul>
         </li>
       </ul>

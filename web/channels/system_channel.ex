@@ -2,6 +2,8 @@ defmodule Flexcility.SystemChannel do
   use Flexcility.Web, :channel
   alias Flexcility.Invitation
   alias Flexcility.Role
+  alias Flexcility.Utils.Subdomain
+
   require Logger
   def join("system:main", payload, socket) do
     if authorized?(payload) do
@@ -23,21 +25,31 @@ defmodule Flexcility.SystemChannel do
     broadcast socket, "shout", payload
     {:noreply, socket}
   end
+  def handle_in("send_invite", %{"email" => ""}, socket) do
+    {:reply, {:noinvite, %{success: true, message: "No Invitation Sent"}}, socket}
+  end
 
   def handle_in("send_invite", payload, socket) do
     Logger.info("creating invitation" <> inspect(payload))
     role = Repo.get_by(Role, name: payload["role"])
+    organisation_subdomain = payload["organisation_subdomain"]
+    invitee_email = payload["email"]
+    inviter_id = payload["inviter_id"]
+    organisation_id = payload["organisation_id"]
+
     invitation_changeset = %Invitation{}
                           |> Invitation.changeset(%{
-                              role_id: role.id, organisation_subdomain: payload["organisation_subdomain"],
-                              inviter_id: payload["inviter_id"], invitee_email: payload["email"]
+                              role_id: role.id, organisation_subdomain: organisation_subdomain,
+                              inviter_id: inviter_id, invitee_email: invitee_email,
+                              organisation_id: organisation_id
                             })
     Logger.info("the invitation changeset: " <> inspect(invitation_changeset))
     case Repo.insert(invitation_changeset) do
       {:ok, invitation} ->
-        registration_link = Flexcility.Router.Helpers.registration_url(Flexcility.Endpoint, :new, invitation: invitation.id)
+        invitation_link = Flexcility.Router.Helpers.invitation_url(Flexcility.Endpoint, :show, invitation.key)
+                            |> Subdomain.prepend(organisation_subdomain)
 
-        Flexcility.Email.team_member_invitation(payload["email"], registration_link) |> Flexcility.Mailer.deliver_later
+        Flexcility.Email.team_member_invitation(payload["email"], invitation_link) |> Flexcility.Mailer.deliver_later
 
         {:reply, {:ok, %{success: true, message: "Created Invitation"}}, socket}
         # {:noreply, socket}

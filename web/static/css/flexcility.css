@@ -16,7 +16,9 @@ body{
   background: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }*/
-
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
 .metismenu > li > a {
   background-color: #2f4050;
 }
@@ -35,6 +37,13 @@ body{
   width: 450px;
 }
 
+
+.sidebar-wrapper {
+  height: 100% !important;
+  overflow-x: hidden !important;
+}
+
+
 #message-list {
   /*
   border: 1px solid #777;
@@ -50,6 +59,15 @@ body{
   margin-bottom: 30px;
 }
 
+/* Error Page stuff */
+h1.error-message {
+  color: red;
+}
+
+.row.error-message-row {
+  padding-top: 50px;
+}
+/* Erro Page stuff Ends */
 .error-tag .help-block{
   color: orange;
 }
@@ -113,24 +131,128 @@ ul.nav.antique-white > li:not(.active) > a {
 .sidebar-avatar {
   padding-left: 30px !important;
   padding-right: 0px !important;
+
+}
+.logo-mini > .user {
+  margin-top: 0 !important;
+  border-bottom: none !important;
+}
+.sidebar .photo {
+  width: 50px;
+  height: 50px;
 }
 /* End Sidebar stuff */
 
+/* Invitation Registration */
+
+.invitation-card {
+    min-height:440px;
+}
+.invitation-card .inviter-email-display h4{
+  margin-top: 10px;
+}
+
+.invitation-card .inviter-organisation-display h4{
+  margin-top: 10px;
+}
+
+/* Invitation Registration End */
+
 /* Login and Registration */
 .login-card {
-  min-height: 450px;
+  /*min-height: 380px;*/
+  overflow: auto;
+  padding-bottom: 0px !important;
+}
+
+.logo-organisation-layout .img-responsive {
+  display: inline-block;
+  float: left;
+  margin-left: 15px;
+}
+.logo-title-organisation-layout {
+  display: inline-block;
+  margin-left: -80px;
+}
+
+.logo-none-layout .img-responsive {
+  display: inline-block;
+  float: left;
+}
+
+.logo-none-layout .logo-img {
+  margin-top: 50px;
+  width: 80px;
+}
+
+.logo-none-layout .logo-name {
+  display: inline-block;
+  float: left;
+}
+
+.logo-none-layout a.navbar-brand {
+  padding-top: 48px;
+  padding-left: 30px;
+}
+
+.logo-none-layout a.navbar-organisation-name {
+  padding-top: 10px;
+  padding-left: 30px;
+}
+
+.navbar-layout-none {
+  padding-left: 10px;
 }
 
 .registration-card {
   min-height:350px;
+  overflow: auto;
 }
 
+.org-card-logo {
+  padding-bottom: 10px;
+}
 .padding-bottom {
   padding-bottom: 20px;
 }
 
+
 #organisation_logo_preview {
   cursor: pointer; cursor: hand;
+}
+
+.upload_image_preview {
+  cursor: pointer; cursor: hand;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.card-photo {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  display: inline-block;
+}
+.card-footer hr {
+  margin-top: 0px !important;
+}
+.card-footer-row {
+  padding-left: 10px;
+}
+
+.card-footer-owner {
+float: left;
+margin-top: 15px;
+}
+
+.card-new-organisation-plus {
+  padding: 50px 0 50px 0;
+}
+
+.card .content {
+  padding-bottom: 0px !important;
 }
 
 /* Wizard Card stuff */

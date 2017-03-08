@@ -42,18 +42,25 @@ defmodule Flexcility.OrganisationController do
 
   def new(conn, _params) do
     changeset = Organisation.changeset(%Organisation{})
+    facilities = Repo.all(Facility)
     conn = conn |> assign(:page_title, "New Organisation")
-    render(conn, "new.html", changeset: changeset, action_name: action_name(conn))
+    render(conn, "new.html", changeset: changeset,
+          action: organisation_path(conn, :create), organisation: %Organisation{},
+          facilities: facilities)
   end
 
-  def create(conn, %{"organisation" => organisation_params}) do
+  def create(conn, %{"organisation" => organisation_params, "organisation_facilities" => facilities_ids}) do
     current_user = conn.assigns.current_user
     role = Repo.get_by(Role, name: "Admin")
+    facilities = facilities_ids |> Enum.map(fn fid -> Repo.get(Facility, fid) end )
+    # Add this user as an Admin for this Organisation
     membership_changeset = Membership.changeset(%Membership{}, %{})
                             |> Ecto.Changeset.put_assoc(:user, current_user)
                             |> Ecto.Changeset.put_assoc(:role, role)
+    # Organisation Changeset with Membership and Facilities
     changeset = Organisation.create_changeset(%Organisation{}, organisation_params)
                 |> Ecto.Changeset.put_assoc(:memberships, [membership_changeset])
+                |> Ecto.Changeset.put_assoc(:facilities, facilities)
 
     case Repo.insert(changeset) do
       {:ok, organisation} ->

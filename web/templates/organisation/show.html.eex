@@ -269,7 +269,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="send_helpdesk_invite_button">Send Invite</button>
+                <button type="button" class="btn btn-primary" id="create_organisation_button">Send Invite</button>
             </div>
         </div>
     </div>

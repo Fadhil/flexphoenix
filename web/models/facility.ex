@@ -6,6 +6,9 @@ defmodule Flexcility.Facility do
     field :icon_name, :string
 
     timestamps()
+
+
+    many_to_many :organisations, Flexcility.Organisation, join_through: "facilities_organisations" 
   end
 
   @doc """

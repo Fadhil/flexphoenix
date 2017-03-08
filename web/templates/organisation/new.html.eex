@@ -1,13 +1,165 @@
-<div class="content animated fadeInRight">
-  <div class="container-fluid">
-  <%= render "form.html", changeset: @changeset,
-                          action: organisation_path(@conn, :create),
-                          organisation: %Flexcility.Organisation{},
-                          conn: @conn,
-                          action_name: @action_name %>
-
-  <%= link "Back", to: organisation_path(@conn, :index) %>
-
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <!--      Wizard container        -->
+              <div class="wizard-container">
+                <div class="card card-wizard wizard-card" id="wizardCard">
+                <div class="header text-center">
+                    <h4 class="title">Create a New Organisation</h4>
+                    <p class="category">Create an Organisation and add Members to help you Manage it</p>
+                </div>
+                <%= render "wizard_form.html", changeset: @changeset,
+                      action: api_organisation_path(@conn, :create), organisation: @organisation,
+                      facilities: @facilities %>
+              </div>
+            </div>
+          </div>
+      </div>
   </div>
-
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+      var $subdomain_input = $("#organisation_subdomain")
+
+      window.CurrentState.setOrgId(<%= @organisation.id %>);
+      window.CurrentState.setCurrentUserId(<%= @current_user.id %>);
+
+      var $validator = $("#organisation-wizardForm").validate({
+        rules: {
+          name: {
+              required: true,
+                  minlength: 5
+          },
+          organisation_subdomain: {
+              required: true,
+                  minlength: 2,
+                  remote: "/api/subdomain_unique"
+          },
+          website: {
+              required: true,
+                  minlength: 5,
+                  url: true
+          },
+          framework: {
+              required: false,
+              minlength: 4
+          },
+          cities: {
+              required: true
+          },
+          price:{
+              number: true
+          }
+        },
+        onkeyup: false,
+        onblur: true
+      });
+
+    // you can also use the nav-pills-[blue | azure | green | orange | red] for a different color of wizard
+          $('#wizardCard').bootstrapWizard({
+            tabClass: 'nav nav-pills',
+            nextSelector: '.btn-next',
+              previousSelector: '.btn-back',
+            onNext: function(tab, navigation, index) {
+              var $valid = $('#organisation-wizardForm').valid();
+
+              if(!$valid) {
+                $validator.focusInvalid();
+                return false;
+              }
+            },
+              onInit : function(tab, navigation, index){
+
+                  //check number of tabs and fill the entire row
+                  var $total = navigation.find('li').length;
+                  $width = 100/$total;
+
+                  $display_width = $(document).width();
+
+                  if($display_width < 600 && $total > 3){
+                     $width = 50;
+                  }
+
+                  navigation.find('li').css('width',$width + '%');
+              },
+              onTabClick : function(tab, navigation, index){
+                  // Disable the posibility to click on tabs
+                  return false;
+              },
+              onTabShow: function(tab, navigation, index) {
+                  var $total = navigation.find('li').length;
+                  var $current = index+1;
+
+                  var wizard = navigation.closest('.card-wizard');
+
+                  // If it's the last tab then hide the last button and show the finish instead
+                  if($current >= $total) {
+                      $(wizard).find('.btn-next').hide();
+                      $(wizard).find('.btn-finish').show();
+                  } else if($current == 1){
+                      $(wizard).find('.btn-back').hide();
+                  } else {
+                      $(wizard).find('.btn-back').show();
+                      $(wizard).find('.btn-next').show();
+                      $(wizard).find('.btn-finish').hide();
+                  }
+              }
+          });
+          $("#organisation_subdomain").on("change", function() {
+            var $valid = $('#organisation-wizardForm').valid();
+
+            if(!$valid) {
+              $validator.focusInvalid();
+              return false;
+            }
+          });
+          $('[data-toggle="wizard-checkbox"]').click(function(){
+              if( $(this).hasClass('active')){
+                  $(this).removeClass('active');
+                  $(this).find('[type="checkbox"]').removeAttr('checked');
+              } else {
+                  $(this).addClass('active');
+                  $(this).find('[type="checkbox"]').attr('checked','true');
+              }
+          });
+
+          $.each($('[data-toggle="wizard-checkbox"]'),function(){
+
+            $(this).addClass('active');
+            $(this).find('[type="checkbox"]').attr('checked','true');
+
+          });
+      });
+
+
+
+      function onFinishWizard(){
+          //here you can do something, sent the form to server via ajax and show a success message with swal
+          // This here is handled in socket.js
+          $("#create_organisation_button").click();
+
+      }
+
+      function readURL(input) {
+
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                  $('#organisation_logo_preview').attr('src', e.target.result);
+              }
+
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+
+      $("#organisation_logo").change(function(){
+          readURL(this);
+      });
+
+      function clickUpload() {
+        $('.upload-file-btn ').click();
+      }
+
+</script>

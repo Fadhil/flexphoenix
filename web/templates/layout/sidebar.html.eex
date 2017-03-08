@@ -24,7 +24,14 @@ Tip 2: you can change the color of the active button using the data-active-color
               </div> -->
           </div>
         </div>
-
+        <div class="logo logo-mini">
+          <!-- <div class="row"> -->
+              <div class="user">
+                  <div class="photo animated fadeInLeft">
+                      <img src="<%= thumb(@current_user.profile) %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+              </div>
+        </div>
         <ul class="nav">
             <li class="active">
                 <a href="dashboard.html">

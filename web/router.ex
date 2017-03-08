@@ -40,6 +40,8 @@ defmodule Flexcility.Router do
   scope "/", Flexcility do
     pipe_through [:browser]
     get "/logout", SessionController, :delete
+    get "/not_found", PageController, :subdomain_not_found
+    get "/error", PageController, :error
   end
 
   scope "/", Flexcility do
@@ -62,7 +64,10 @@ defmodule Flexcility.Router do
     pipe_through [:browser, :set_menu, :authorize, :load_profile] # Use the default browser stack
 
     get "/send_email_test", OrganisationController, :send_an_email
-    resources "/organisations", OrganisationController
+    resources "/organisations", OrganisationController do
+      get "/manage", Organisation.ManagementController, :index
+      get "/manage/members", Organisation.ManagementController, :members
+    end
     resources "/sites", SiteController do
       resources "/assets", AssetController
       post "/invite_user", SiteController, :invite_user, as: :invite
@@ -85,9 +90,9 @@ defmodule Flexcility.Router do
   end
 
 
-  scope "/api", Flexcility do
+  scope "/api", Flexcility, as: :api do
     pipe_through [:api, :set_menu]
-
+    resources "/organisations", Api.OrganisationController, only: [:create]
     resources "/sites", SiteController, only: [] do
       get "/assets", AssetController, :index
     end

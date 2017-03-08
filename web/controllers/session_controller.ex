@@ -3,9 +3,15 @@ defmodule Flexcility.SessionController do
 
   alias Passport.Session
 
-
   def new(conn, _) do
     conn
+    |> put_layout("none.html")
+    |> render(:new)
+  end
+
+  def create(conn, %{"session" => %{"email" => "", "password" => ""}}) do
+    conn
+    |> put_flash(:error, "You must enter an email and a password")
     |> put_layout("none.html")
     |> render(:new)
   end

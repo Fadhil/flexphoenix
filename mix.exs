@@ -3,14 +3,14 @@ defmodule Flexcility.Mixfile do
 
   def project do
     [app: :flexcility,
-     version: "0.22.8",
+     version: "0.23.0",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     aliases: aliases,
-     deps: deps]
+     aliases: aliases(),
+     deps: deps()]
   end
 
   # Configuration for the OTP application.

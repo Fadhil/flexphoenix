@@ -19,7 +19,7 @@ defmodule Flexcility.SubdomainRouter do
   end
 
   pipeline :no_layout do
-    plug :put_layout, false
+    plug :put_layout, "none.html"
   end
 
   pipeline :set_menu do
@@ -32,6 +32,7 @@ defmodule Flexcility.SubdomainRouter do
 
   pipeline :authorize do
     plug Flexcility.Plugs.Authorize
+    plug Flexcility.Plugs.AuthorizeForOrganisation
   end
 
   pipeline :load_profile do
@@ -39,20 +40,33 @@ defmodule Flexcility.SubdomainRouter do
   end
 
   scope "/", Flexcility.Subdomain do
-    pipe_through [:browser, :authorize] # Use the default browser stack
-    get "/", DashboardController, :index
+    pipe_through [:browser, :authorize, :load_profile] # Use the default browser stack
+    # get "/", DashboardController, :index
     get "/dashboard", DashboardController, :index
+    get "/profile", ProfileController, :show
+    put "/profile", ProfileController, :update
   end
 
   scope "/", Flexcility.Subdomain do
-    pipe_through :browser
+    pipe_through [:browser, :no_layout]
     get "/logout", SessionController, :delete
+    get "/invitations/:invitation_key", InvitationController, :show
+    post "/invitations/:invitation_key/accept", InvitationController, :accept
+    post "/invitations/:invitation_key/reject", InvitationController, :reject
   end
 
   scope "/", Flexcility.Subdomain do
     pipe_through [:browser, :redirect_logged_in_user]
     get "/login", SessionController, :new
+    get "/", SessionController, :new
+    get "/login/:invitation_key", SessionController, :invitation
     post "/login", SessionController, :create
+  end
+
+  scope "/", Flexcility do
+    pipe_through [:browser]
+    get "/register", RegistrationController, :invitation
+    post "/register", RegistrationController, :create
   end
   #
   # scope "/", Flexcility.Subdomain do

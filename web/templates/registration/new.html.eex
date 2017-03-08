@@ -1,15 +1,15 @@
 <body>
     <nav class="navbar navbar-transparent navbar-absolute">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header navbar-layout-none">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span><a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a><a class="navbar-brand" href="../dashboard/overview.html">Flexcility.com</a></span>
-            </div>
+                <div class="logo-none-layout"><a href="<%= page_path(@conn,:index) %>"><h1 class="logo-name">Fx</h1></a><a class="navbar-brand" href="../dashboard/overview.html">Flexcility.com</a></div>
+              </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -23,50 +23,13 @@
     </nav>
 
     <div class="wrapper wrapper-full-page">
-        <div class="full-page login-page" data-color="" data-image="<%= static_path(@conn, "/img/background/background-2.jpg") %>">
+        <div class="full-page login-page" data-color="" data-image="<%= static_path(@conn, "/img/background/background-1.jpg") %>">
         <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
             <div class="content">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                          <%= form_for @changeset, registration_path(@conn, :create), fn f -> %>
-                                <div class="registration-card card" data-background="color" data-color="blue">
-                                    <div class="header">
-                                        <h3 class="title">Register</h3>
-                                    </div>
-                                    <div class="content">
-                                      <div>
-                                        <%= if @changeset.action && @changeset.errors != [] do %>
-                                          <div class="alert alert-danger">
-                                            <p>Please check the errors below:</p>
-                                            <ul>
-                                              <%= for {attr, message} <- f.errors do %>
-                                                  <li><%= humanize(attr) %> <%= translate_error(message) %></li>
-                                              <% end %>
-                                            </ul>
-                                          </div>
-                                        <% end %>
-                                      </div>
-                                        <div class="form-group">
-                                            <label>Full Name</label>
-                                            <%= text_input f, :full_name, id: "first_name", placeholder: "Full Name", class: "form-control" %>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email address</label>
-                                            <%= email_input f, :email, placeholder: "Email", class: "form-control" %>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="footer text-center">
-                                        <button type="submit" class="btn btn-fill btn-wd ">Register</button>
-                                    </div>
-                                </div>
-                            <% end %>
+                          <%= render "form.html", conn: @conn, changeset: @changeset %>
                         </div>
                     </div>
                 </div>
@@ -84,7 +47,7 @@
 </body>
 <script type="text/javascript">
       $(document).ready(function(){
-          // demo.checkFullPageBackgroundImage();
+          demo.checkFullPageBackgroundImage();
 
           setTimeout(function(){
               // after 1000 ms we add the class animated to the login/register card

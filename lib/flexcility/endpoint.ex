@@ -33,18 +33,17 @@ defmodule Flexcility.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
 
-  domain = case Mix.env do
-    :prod ->
-      ".cmms.flexcility.com"
-    :dev ->
-      ".flexcility.dev"
-  end
-  
+  # domain = case Mix.env do
+  #   :prod ->
+  #     ".cmms.flexcility.com"
+  #   :dev ->
+  #     ".flexcility.dev"
+  # end
+
   plug Plug.Session,
     store: :cookie,
     key: "_Flexcility_key",
-    signing_salt: "ZjRCjSN5",
-    domain: domain
+    signing_salt: "ZjRCjSN5"
 
   plug Flexcility.Plug.Subdomain, Flexcility.SubdomainRouter
   plug Flexcility.Router

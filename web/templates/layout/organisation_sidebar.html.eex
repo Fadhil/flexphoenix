@@ -7,8 +7,11 @@ Tip 2: you can change the color of the active button using the data-active-color
 
   <div class="organisation-sidebar  sidebar-wrapper">
         <div class="logo dropdown">
-            <a href="#" class="dropdown-toggle simple-text antique-white" data-toggle="dropdown">
-              JKR
+          <a href="#" class="dropdown-toggle simple-text antique-white" data-toggle="dropdown">
+            <div class="logo-organisation-layout"><img src="<%= image(@conn.assigns.current_organisation) %>" width="50px;" height="50px;" class="img-responsive"></div>
+            <div class="logo-title-organisation-layout">
+              <%= @conn.assigns.current_organisation.subdomain %>
+            </div>
             <b class="caret"></b>
             </a>
             <ul class="flex-dropdown-menu dropdown-menu">
@@ -16,17 +19,18 @@ Tip 2: you can change the color of the active button using the data-active-color
             </ul>
         </div>
         <div class="row">
+          <div class="col-xs-11">
             <div class="sidebar-avatar col-xs-3">
                 <div class="avatar">
                     <img src="<%= thumb(@current_user.profile) %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
             </div>
             <div class="col-xs-8">
-                <%= @current_user.full_name || "Anonymous" %>
+                <%= @current_user.profile.full_name || "Anonymous" %>
                 <br />
                 <span class="text-success"><small><%= link "Logout", to: session_path(@conn, :delete) %></small></span>
             </div>
-
+          </div>
             <!-- <div class="col-xs-3 text-right">
                 <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
             </div> -->

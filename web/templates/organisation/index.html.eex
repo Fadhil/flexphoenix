@@ -3,19 +3,48 @@
         <div class="row">
             <div class="col-md-12">
     <%= for {organisation, index} <- Enum.with_index(@organisations) do %>
-      <%= if(rem(index,3) == 0) do %>
+      <%= if(rem(index,4) == 0) do %>
         </div>
         <div class="row col-md-12">
       <% end %>
 
-      <div class="col-md-4 col-xs-12">
-        <% organisation =  organisation |> Flexcility.Repo.preload([{:memberships, [{:user, :profile}, :role]}]) %>
-        <%     members = get_members(organisation) %>
-        <%= render Flexcility.OrganisationView, "org_card.html", %{organisation: organisation, members: "full", members_list: members, conn: @conn} %>
-      </div>
+      <% organisation =  organisation |> Organisation.with_memberships %>
+      <%     members = get_members(organisation) %>
+      <%= render Flexcility.OrganisationView, "org_card.html", %{organisation: organisation, members: "full", members_list: members, conn: @conn} %>
+
     <% end %>
     <//-- new stuff //-->
-<div class="col-md-4 col-xs-12">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+        <a href="<%= organisation_path(@conn, :new) %>">
+          <div class="content">
+              <div class="row">
+                <div class="col-xs-12 text-center card-new-organisation-plus">
+                  <img alt="Create Organisation" class="img-circle" src="/images/add-circle.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Create Organisation">
+                </div>
+                  <!-- <div class="col-xs-5">
+                      <div class="icon-big icon-warning text-center">
+                          <i class="ti-server"></i>
+                      </div>
+                  </div>
+                  <div class="col-xs-7">
+                      <div class="numbers">
+                          <p>Capacity</p>
+                          105GB
+                      </div>
+                  </div> -->
+              </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              Create New Organisation
+            </div>
+          </div>
+        </a>
+        </div>
+    </div>
+<!-- <div class="col-md-4 col-xs-12">
     <div class="ibox">
 
           <div class="ibox-title">
@@ -45,10 +74,10 @@
                     <div class="font-bold text-center">SITES</div>
                     <h2 class="text-center">-</h2>
                 </div>
-                <!-- <div class="col-sm-6 text-right">
+                <div class="col-sm-6 text-right">
                     <div class="font-bold text-center">BUDGET</div>
                     <h2>$200,913 <i class="fa fa-level-up text-navy"></i></h2>
-                </div> -->
+                </div>
 
             </div>
 
@@ -61,7 +90,7 @@
 </a>
         </div>
     </div>
-</div>
+</div> -->
     <//--new stuff//->
   </div>
 </div>
@@ -69,11 +98,7 @@
 </div>
 
 <script>
-  // $(document).ready(function(){
-  //   $('.tooltips').tooltip({
-  //       selector: "[data-toggle=tooltip]",
-  //       container: "body"
-  //   });
-  // });
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
-<p style="color:#f3f3f4 !important;">............</p>

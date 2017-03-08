@@ -1,5 +1,6 @@
 defmodule Flexcility.Invitation do
   use Flexcility.Web, :model
+  alias Flexcility.Utils
 
   @all_fields [
     :role_id, :organisation_id, :organisation_subdomain, :inviter_id, :invitee_email, :accepted,
@@ -11,6 +12,7 @@ defmodule Flexcility.Invitation do
   ]
 
   schema "invitations" do
+    field :key, :string
     field :invitee_email, :string
     field :accepted, :boolean, default: false
     field :viewed, :boolean, default: false
@@ -30,5 +32,22 @@ defmodule Flexcility.Invitation do
     |> cast(params, @all_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:invitee_email, name: :unique_invite)
+    |> generate_invite_key
+  end
+
+  defp generate_invite_key(changeset) do
+    changeset
+    |> put_change(:key, Utils.String.random(32))
+  end
+
+  def accept(invitation) do
+    invitation
+    |> changeset(%{accepted: true})
+    |> Repo.update
+  end
+
+  def with_associations(invitation) do
+    invitation
+    |> Repo.preload([:organisation, :role, {:inviter, :profile}])
   end
 end

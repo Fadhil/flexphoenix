@@ -74,9 +74,10 @@ $(document).ready(function(){
   let originally_checked_trait_ids = $("[name='organisation_traits[]']:checked").map(function() {return this.value}).get();
   $("[name='organisation_traits[]']").change(function(){
     let changed_trait_id = $(this).val();
-    if($.inArray(changed_trait_id, originally_checked_trait_ids) != -1){ // We're only considering checkboxes that are already checked
+    // We're only considering checkboxes that are already checked
+    if($.inArray(changed_trait_id, originally_checked_trait_ids) != -1){
       if($.inArray(changed_trait_id, unchecked_trait_ids) == -1
-          && this.checked==false){ //id is not in unchecked_trait_ids so it was previously checked. We're also only
+          && this.checked==false){ //id is not in unchecked_trait_ids so it was previously checked.
         unchecked_trait_ids.push(changed_trait_id);
       } else { //it was unchecked before, so we remove it from this list
         unchecked_trait_ids.splice($.inArray(changed_trait_id, unchecked_trait_ids), 1);
@@ -88,11 +89,14 @@ $(document).ready(function(){
     e.preventDefault();
     console.log("clickced", unchecked_trait_ids);
     if(unchecked_trait_ids.length !== 0){
-      let unchecked_trait_ids_input = $("<input>")
-        .attr("type", "hidden")
-        .attr("name", "organisation_unchecked_traits[]").val(unchecked_trait_ids);
-        $(unchecked_trait_ids_input).appendTo($('form')[0]);
+      $.each(unchecked_trait_ids, function(index, value){
+        let unchecked_trait_ids_input = $("<input>")
+          .attr("type", "hidden")
+          .attr("name", "organisation_unchecked_traits[]").val(value);
+          $(unchecked_trait_ids_input).appendTo($('form')[0]);
+      });
     }
+    //console.log("unchecked input:", $('form')[0])
     $('form')[0].submit();
   });
 

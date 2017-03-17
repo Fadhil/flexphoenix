@@ -111,7 +111,7 @@ defmodule Flexcility.Organisation.TraitController do
   defp added_traits_flash_messages(result) do
     case result do
       {:ok, 0} ->
-        {:info, "No Traits were added"}
+        {:info, "No changes were made"}
       {:ok, 1} ->
         {:success, "Added 1 trait"}
       {:ok, number} ->

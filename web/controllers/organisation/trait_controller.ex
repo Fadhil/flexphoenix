@@ -55,22 +55,12 @@ defmodule Flexcility.Organisation.TraitController do
   } = params) do
     added_trait_ids = trait_ids_from_param(added_trait_ids_param)
     removed_trait_ids = trait_ids_from_param(removed_trait_ids_param)
-    remove_message = remove_traits(id, removed_trait_ids)
-      |> removed_traits_flash_messages()
+    remove_traits(id, removed_trait_ids)
 
-    add_message = add_traits(id, added_trait_ids)
-      |> added_traits_flash_messages()
+    add_traits(id, added_trait_ids)
 
-    full_messages = case [remove_message, add_message] do
-      [{key, message1}, {key, message2}] ->
-        [{key, message1 <> message2}]
-      [{key1, message1}, {key2, message2}] ->
-        [{key1, message1}, {key2, message2}]
-    end
-
-    IEx.pry
     conn
-    |> put_full_messages(full_messages)
+    |> put_flash(:success, "Updated Traits")
     |> redirect(to: organisation_trait_path(conn, :index, id))
 
   end
@@ -105,13 +95,6 @@ defmodule Flexcility.Organisation.TraitController do
     conn
     |> put_flash(:info, "No changes made")
     |> redirect(to: organisation_trait_path(conn, :index, id ))
-  end
-
-  defp put_full_messages(conn, full_messages) do
-    Enum.each(full_messages, fn({k,m})->
-      conn = conn |> put_flash(k,m)
-    end)
-    conn
   end
 
   defp removed_traits_flash_messages(result) do

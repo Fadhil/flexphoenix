@@ -1,0 +1,104 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Assign Traits</h4>
+            <span><small>Select the traits that apply to your Organisation</small></span>
+          </div>
+          <div class="content">
+            <%= form_for @changeset, @action, fn f-> %>
+              <legend>System Defined Traits</legend>
+
+              <fieldset>
+              <div class="form-group">
+                  <div class="col-sm-4" >
+                    <%= for {trait,index} <- Enum.with_index(@traits) do %>
+                      <%= if( rem(index,3) == 0 && index != 0 ) do %>
+                        </div>
+                        <div class="col-sm-4">
+                      <% end %>
+                      <label class="checkbox">
+                        <input name="organisation_traits[]" type="checkbox" data-toggle="checkbox" value="<%= trait.id %>" <%= display_organisation_trait_check(@organisation, trait) %> >
+                          <%= trait.name %> (<%= trait.abbreviation %>)
+                      </label>
+                    <% end %>
+                  </div>
+              </div>
+              </fieldset>
+              <fieldset>
+              <div class="form-group pull-right">
+                <%= submit "Update Traits", id: "organisation_trait_update_button", class: "btn btn-fill btn-primary" %>
+              </div>
+              </fieldset>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2>Listing traits</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Abbreviation</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for trait <- @traits do %>
+    <tr>
+      <td><%= trait.name %></td>
+      <td><%= trait.code %></td>
+      <td><%= trait.abbreviation %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: organisation_trait_path(@conn, :show, @organisation.id, trait), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: organisation_trait_path(@conn, :edit, @organisation.id, trait), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: organisation_trait_path(@conn, :delete, @organisation.id, trait), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New trait", to: organisation_trait_path(@conn, :new, @organisation.id) %>
+<script>
+$(document).ready(function(){
+  let unchecked_trait_ids = [];
+  let originally_checked_trait_ids = $("[name='organisation_traits[]']:checked").map(function() {return this.value}).get();
+  $("[name='organisation_traits[]']").change(function(){
+    let changed_trait_id = $(this).val();
+    // We're only considering checkboxes that are already checked
+    if($.inArray(changed_trait_id, originally_checked_trait_ids) != -1){
+      if($.inArray(changed_trait_id, unchecked_trait_ids) == -1
+          && this.checked==false){ //id is not in unchecked_trait_ids so it was previously checked.
+        unchecked_trait_ids.push(changed_trait_id);
+      } else { //it was unchecked before, so we remove it from this list
+        unchecked_trait_ids.splice($.inArray(changed_trait_id, unchecked_trait_ids), 1);
+      }
+    }
+  });
+
+  $('#organisation_trait_update_button').click(function(e){
+    e.preventDefault();
+    console.log("clickced", unchecked_trait_ids);
+    if(unchecked_trait_ids.length !== 0){
+      $.each(unchecked_trait_ids, function(index, value){
+        let unchecked_trait_ids_input = $("<input>")
+          .attr("type", "hidden")
+          .attr("name", "organisation_unchecked_traits[]").val(value);
+          $(unchecked_trait_ids_input).appendTo($('form')[0]);
+      });
+    }
+    //console.log("unchecked input:", $('form')[0])
+    $('form')[0].submit();
+  });
+
+});
+</script>

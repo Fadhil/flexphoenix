@@ -1,0 +1,6 @@
+<h2>New trait</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: organisation_trait_path(@conn, :create, @organisation.id) %>
+
+<%= link "Back", to: organisation_trait_path(@conn, :index, @organisation.id) %>

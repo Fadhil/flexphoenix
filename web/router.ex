@@ -66,6 +66,8 @@ defmodule Flexcility.Router do
     get "/send_email_test", OrganisationController, :send_an_email
     resources "/organisations", OrganisationController do
       get "/manage", Organisation.ManagementController, :index
+      resources "/manage/traits", Organisation.TraitController, except: [:update, :create]
+      put "/manage/traits", Organisation.TraitController, :update
       get "/manage/members", Organisation.ManagementController, :members
     end
     resources "/sites", SiteController do
@@ -76,6 +78,7 @@ defmodule Flexcility.Router do
       get "/assign_technicians", RequestController, :assign_technicians, as: :assign_technicians
       post "/assign_technicians", RequestController, :create_technician_assignment, as: :assign_technicians
     end
+
     resources "/orders", OrderController do
       get "/assign_technicians", OrderController, :assign_technicians, as: :assign_technicians
       post "/assign_technicians", OrderController, :create_technician_assignment, as: :assign_technicians

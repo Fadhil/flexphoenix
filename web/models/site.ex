@@ -7,13 +7,16 @@ defmodule Flexcility.Site do
     field :address, :string
     field :image, Flexcility.Image.Type
 
+    timestamps
+
     belongs_to :user, Flexcility.User
     has_many :assets, Flexcility.Asset, on_delete: :delete_all
     has_many :users_roles, Flexcility.UsersRole, on_delete: :delete_all
     has_many :members, through: [:users_roles, :user]
     has_many :requests, Flexcility.Request, on_delete: :delete_all
 
-    timestamps
+    many_to_many :traits, Flexcility.Trait, join_through: "sites_traits"
+
   end
 
   @all_fields ~w(name description address image)

@@ -14,7 +14,6 @@ defmodule Flexcility.User do
     has_many :sent_invitations, Flexcility.Invitation, foreign_key: :inviter_id
     has_many :organisations, through: [:memberships, :organisation]
     has_many :roles, through: [:memberships, :role]
-    has_many :sites, Flexcility.Site
     has_many :requests, Flexcility.Request
     has_many :orders, Flexcility.Order
     has_many :reports, Flexcility.Report

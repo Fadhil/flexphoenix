@@ -58,6 +58,7 @@
     </div>
   </div>
 </div>
+<!--//
 <h2>Listing traits</h2>
 <table class="table">
   <thead>
@@ -87,3 +88,4 @@
 </table>
 
 <%= link "New trait", to: organisation_trait_path(@conn, :new, @organisation.id) %>
+//-->

@@ -41,7 +41,7 @@ defmodule Flexcility.Organisation.SiteController do
       nil ->
         conn
         |> put_flash(:error, "That user cannot be added to this site")
-        |> redirect(to: organisation_site_path(conn, :show, site, @organisation.id))
+        |> redirect(to: organisation_site_path(conn, :show, conn.assigns.organisation.id, site))
       _ ->
         changeset = UsersRole.create_changeset(
           UsersRole,Repo, users_role_changes
@@ -51,11 +51,11 @@ defmodule Flexcility.Organisation.SiteController do
           {:ok, _users_role} ->
             conn
             |> put_flash(:success, "Successfully invited #{email} as #{role.name}")
-            |> redirect(to: organisation_site_path(conn, :show, site, @organisation.id))
+            |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
           {:error, _changeset} ->
             conn
             |> put_flash(:error, "That user cannot be added to this site")
-            |> redirect(to: organisation_site_path(conn, :show, site, @organisation.id))
+            |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
         end
     end
   end
@@ -73,7 +73,7 @@ defmodule Flexcility.Organisation.SiteController do
       {:ok, site} ->
         conn
         |> put_flash(:success, "Site created successfully.")
-        |> redirect(to: organisation_site_path(conn, :show, site, @organisation.id))
+        |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -105,7 +105,7 @@ defmodule Flexcility.Organisation.SiteController do
       {:ok, site} ->
         conn
         |> put_flash(:success, "Site updated successfully.")
-        |> redirect(to: organisation_site_path(conn, :show, site, @organisation.id))
+        |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
       {:error, changeset} ->
         render(conn, "edit.html", site: site, changeset: changeset)
     end
@@ -120,6 +120,6 @@ defmodule Flexcility.Organisation.SiteController do
 
     conn
     |> put_flash(:success, "Site deleted successfully.")
-    |> redirect(to: organisation_site_path(conn, :index, @organisation.id))
+    |> redirect(to: organisation_site_path(conn, :index, conn.assigns.organisation.id))
   end
 end

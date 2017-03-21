@@ -26,10 +26,10 @@ defmodule Flexcility.ModelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MyApp.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Flexcility.Repo)
 
     unless tags[:async] do
-       Ecto.Adapters.SQL.Sandbox.mode(MyApp.Repo, {:shared, self()})
+       Ecto.Adapters.SQL.Sandbox.mode(Flexcility.Repo, {:shared, self()})
     end
 
     :ok
@@ -59,7 +59,7 @@ defmodule Flexcility.ModelCase do
   """
   def errors_on(struct, data) do
     struct.__struct__.changeset(struct, data)
-    |> Ecto.Changeset.traverse_errors(&MyApp.ErrorHelpers.translate_error/1)
+    |> Ecto.Changeset.traverse_errors(&Flexcility.ErrorHelpers.translate_error/1)
     |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
   end
 end

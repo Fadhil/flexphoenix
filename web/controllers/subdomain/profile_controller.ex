@@ -3,7 +3,6 @@ defmodule Flexcility.Subdomain.ProfileController do
   alias Flexcility.SubdomainRouter
   alias Flexcility.Organisation
   alias Flexcility.User
-  require IEx
 
 
   def show(conn, _params) do

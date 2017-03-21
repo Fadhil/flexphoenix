@@ -2,11 +2,10 @@ defmodule Flexcility.Organisation.TraitView do
   use Flexcility.Web, :view
 
   def display_organisation_trait_check(organisation, trait) do
-    case Enum.member?(organisation.traits, trait) do
-      true ->
-        "checked"
-      _ ->
-        ""
-    end
+    Enum.member?(organisation.traits, trait)
+  end
+
+  def display_organisation_facility_check(organisation, facility) do
+    Enum.member?(organisation.facilities, facility)
   end
 end

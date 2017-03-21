@@ -2,20 +2,21 @@ defmodule Flexcility.Organisation.TraitController do
   use Flexcility.Web, :controller
 
   alias Flexcility.Trait
+  alias Flexcility.Facility
   alias Flexcility.Organisation
-  import Ecto.Query, only: [from: 2]
-  require IEx
-
+  alias Flexcility.Utils.Form
   plug :assign_organisation
 
   def index(conn, %{"organisation_id" => organisation_id}) do
     organisation = Repo.get(Organisation, organisation_id)
-      |> Repo.preload([:traits])
+      |> Repo.preload([:traits, :facilities])
     traits = Repo.all(Trait)
+    facilities = Repo.all(Facility)
     changeset = Organisation.changeset(organisation, %{})
     render(conn, "index.html", traits: traits, organisation: organisation,
      page_title: "#{organisation.name} Assigned Traits", changeset: changeset,
-     action: organisation_trait_path(conn, :update, organisation)
+     action: organisation_trait_path(conn, :update, organisation),
+     facilities: facilities
     )
   end
 
@@ -50,120 +51,117 @@ defmodule Flexcility.Organisation.TraitController do
   end
 
   def update(conn, %{
-    "organisation_id" => id, "organisation_traits" => added_trait_ids_param,
-    "organisation_unchecked_traits" => removed_trait_ids_param
+    "organisation_id" => id, "organisation_traits" => trait_ids_params,
+    "organisation_facilities" => facilities_ids_params
   } = params) do
-    added_trait_ids = trait_ids_from_param(added_trait_ids_param)
-    removed_trait_ids = trait_ids_from_param(removed_trait_ids_param)
-    remove_traits(id, removed_trait_ids)
 
-    add_traits(id, added_trait_ids)
+    organisation = Repo.get(Organisation, id)
+      |> Repo.preload([:facilities, :traits])
 
-    conn
-    |> put_flash(:success, "Updated Traits")
-    |> redirect(to: organisation_trait_path(conn, :index, id))
+    added_traits = trait_ids_params
+      |> Form.filter_checkbox_params(true)
+      |> Form.ids_from_strings
+      |> Trait.all
 
-  end
+    removed_traits = trait_ids_params
+      |> Form.filter_checkbox_params(false)
+      |> Form.ids_from_strings
+      |> Trait.all
 
-  def update(conn, %{
-    "organisation_id" => id, "organisation_traits" => added_trait_ids
-  }) do
-    trait_ids = trait_ids_from_param(added_trait_ids)
-    {key, message} = add_traits(id, trait_ids)
-      |> added_traits_flash_messages()
+    added_facilities = facilities_ids_params
+      |> Form.filter_checkbox_params(true)
+      |> Form.ids_from_strings
+      |> Facility.all
 
-    conn
-    |> put_flash(key, message)
-    |> redirect(to: organisation_trait_path(conn, :index, id))
-  end
+    removed_facilities = facilities_ids_params
+      |> Form.filter_checkbox_params(false)
+      |> Form.ids_from_strings
+      |> Facility.all
 
-  def update(conn, %{
-    "organisation_id" => id,
-    "organisation_unchecked_traits" => removed_trait_ids_param
-  }) do
-    removed_trait_ids = removed_trait_ids_param |> trait_ids_from_param
-    {key, message} = remove_traits(id, removed_trait_ids)
-      |> removed_traits_flash_messages
-    conn
-    |> put_flash(key, message)
-    |> redirect(to: organisation_trait_path(conn, :index, id))
-  end
+    organisation_changeset = organisation
+      |> Organisation.changeset
+      |> remove_traits(removed_traits)
+      |> add_traits(added_traits)
+      |> remove_facilities(removed_facilities)
+      |> add_facilities(added_facilities)
 
-  def update(conn, %{
-    "organisation_id" => id
-  }) do
-    conn
-    |> put_flash(:info, "No changes made")
-    |> redirect(to: organisation_trait_path(conn, :index, id ))
-  end
-
-  defp removed_traits_flash_messages(result) do
-    case result do
-      {:ok, 1} ->
-        {:success, "Removed 1 trait"}
-      {:ok, number} ->
-        {:success, "Removed #{number} traits"}
-      {:error, :no_traits_removed} ->
-        {:error, "Unable to remove traits"}
+    case Repo.update(organisation_changeset) do
+      {:ok, changeset} ->
+        conn
+        |> put_flash(:success, "Successfully updated traits and facilities")
+        |> redirect(to: organisation_trait_path(conn, :index, id))
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Failed to update traits and facilities")
+        |> redirect(to: organisation_trait_path(conn, :index, id))
+        {:error, :no_traits_added}
     end
+
   end
 
-  defp added_traits_flash_messages(result) do
-    case result do
-      {:ok, 0} ->
-        {:info, "No changes were made"}
-      {:ok, 1} ->
-        {:success, "Added 1 trait"}
-      {:ok, number} ->
-        {:success, "Added #{number} traits"}
-      {:error, :no_traits_added} ->
-        {:error, "Unable to add traits"}
-    end
+  defp update_facilities(organisation_id, facilities_ids_params) do
+    organisation = Repo.get(Organisation, organisation_id)
+      |> Repo.preload([:facilities])
   end
 
-  def trait_ids_from_param(trait_ids_param) do
-    trait_ids_param |> Enum.map(fn(x) ->
-      case Integer.parse(x) do
-        :error -> nil
-        {integer, _} -> integer
-      end
-    end) |> Enum.filter(fn(z) -> z != nil end )
-  end
-
-  defp add_traits(organisation_id, trait_ids) do
-    organisation = Repo.get!(Organisation, organisation_id)
-      |> Repo.preload([:traits])
-    traits_query = from t in Trait, where: t.id in ^trait_ids
-    traits = traits_query |> Repo.all
-    added_traits = traits
-      |> Enum.filter(fn(t) -> !Enum.member?(organisation.traits, t) end)
-    case added_traits do
+  defp add_facilities(changeset, facilities) do
+    added_facilities = facilities
+      |> Enum.filter(fn(t) -> !Enum.member?(changeset.data.facilities, t) end)
+    case added_facilities do
       [] ->
-        {:ok, 0}
+        changeset
       _ ->
-      changeset = Organisation.changeset(organisation)
-        |> Ecto.Changeset.put_assoc(:traits, traits)
+        changeset
+        |> Ecto.Changeset.put_assoc(:facilities, facilities)
 
-      case Repo.update(changeset) do
-        {:ok, changeset} ->
-          number_of_traits = Enum.count(added_traits)
-          {:ok, number_of_traits}
-        {:error, changeset} ->
-          {:error, :no_traits_added}
-      end
     end
   end
 
-  defp remove_traits(organisation_id, trait_ids) do
-    {organisation_id, _} = Integer.parse(organisation_id)
-    remove_query =
-      from o in "organisations_traits",
-      where: o.organisation_id == ^organisation_id and o.trait_id in ^trait_ids
+  def remove_facilities(changeset, facilities) do
+    member_facility_ids_to_remove = facilities
+      |> Enum.filter(fn(facility) -> Enum.member?(changeset.data.facilities, facility) end)
+      |> Enum.map(fn(facility) -> facility.id end)
+    remove_query = from t in "facilities_organisations",
+      where: t.organisation_id == ^changeset.data.id and t.facility_id in ^member_facility_ids_to_remove
+
     case Repo.delete_all(remove_query) do
       {0, _} ->
-        {:error, :no_traits_removed}
+        changeset
       {number, _} ->
-        {:ok, number}
+        changeset = Repo.get(Organisation, changeset.data.id)
+          |> Repo.preload([:facilities, :traits])
+          |> Organisation.changeset
+    end
+  end
+
+  defp add_traits(changeset, traits) do
+    added_traits = traits
+      |> Enum.filter(fn(t) -> !Enum.member?(changeset.data.traits, t) end)
+    case added_traits do
+      [] ->
+        changeset
+      _ ->
+        changeset
+        |> Ecto.Changeset.put_assoc(:traits, traits)
+
+    end
+  end
+
+  def remove_traits(changeset, traits) do
+    member_trait_ids_to_remove = traits
+      |> Enum.filter(fn(trait) -> Enum.member?(changeset.data.traits, trait) end)
+      |> Enum.map(fn(trait) -> trait.id end)
+    remove_query = from t in "organisations_traits",
+      where: t.organisation_id == ^changeset.data.id and t.trait_id in ^member_trait_ids_to_remove
+
+    case Repo.delete_all(remove_query) do
+      {0, _} ->
+        changeset
+      {number, _} ->
+        organisation = Repo.get(Organisation, changeset.data.id)
+          |> Repo.preload([:facilities, :traits])
+        changeset = organisation
+          |> Organisation.changeset
     end
   end
 

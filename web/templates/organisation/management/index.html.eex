@@ -30,7 +30,7 @@
                     <div class="choice" data-toggle="wizard-checkbox">
                       <a href="<%= organisation_trait_path(@conn, :index, @organisation.id) %>">
                         <div class="card card-checkboxes card-hover-effect ">
-                            <i class="demo-icon icon-globe"></i>
+                            <i class="icon-globe"></i>
                             <p>Manage Sites</p>
                         </div>
                       </a>

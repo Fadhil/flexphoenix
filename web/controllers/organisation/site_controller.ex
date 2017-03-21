@@ -13,8 +13,9 @@ defmodule Flexcility.Organisation.SiteController do
   def index(
     %{assigns: %{current_user: current_user}}=conn, _params
   ) do
-    user = current_user |> Repo.preload([:sites])
-    sites = user.sites
+    organisation = conn.assigns.organisation
+      |> Repo.preload([:sites])
+    sites = organisation.sites
     render(conn, "index.html", sites: sites)
   end
 
@@ -66,8 +67,9 @@ defmodule Flexcility.Organisation.SiteController do
   end
 
   def create(conn, %{"site" => site_params}) do
-    current_user = conn.assigns.current_user
-    changeset = Site.create_changeset(%Site{},current_user.id, site_params)
+    current_organisation = conn.assigns.organisation
+    changeset = Site.create_changeset(%Site{}, site_params)
+      |> Ecto.Changeset.put_assoc(:organisation, current_organisation)
 
     case Repo.insert(changeset) do
       {:ok, site} ->
@@ -82,7 +84,7 @@ defmodule Flexcility.Organisation.SiteController do
   def show(conn, %{"id" => id}) do
     roles = Role |> Repo.all
     roles_select_list = roles |> Enum.map(fn x -> {"#{x.name}", x.id} end)
-    site = Site |> Site.with_owner |> Repo.get!(id)
+    site = Site |> Repo.get!(id) |> Repo.preload([:organisation])
     query = from ur in UsersRole,
             where: ur.site_id == ^site.id
     users_roles = Repo.all(query)

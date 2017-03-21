@@ -94,7 +94,6 @@ defmodule Flexcility.Organisation.TraitController do
         conn
         |> put_flash(:error, "Failed to update traits and facilities")
         |> redirect(to: organisation_trait_path(conn, :index, id))
-        {:error, :no_traits_added}
     end
 
   end

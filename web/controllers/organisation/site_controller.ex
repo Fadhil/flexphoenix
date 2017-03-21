@@ -16,7 +16,7 @@ defmodule Flexcility.Organisation.SiteController do
     organisation = conn.assigns.organisation
       |> Repo.preload([:sites])
     sites = organisation.sites
-    render(conn, "index.html", sites: sites)
+    render(conn, "index.html", sites: sites, page_title: "#{organisation.name} Sites")
   end
 
   def invite_user(conn, %{

@@ -47,6 +47,7 @@
               </fieldset>
               <fieldset>
               <div class="form-group pull-right">
+                <%= link "Back", to: organisation_management_path(@conn, :index, @organisation.id), class: "btn btn-fill btn-secondary" %>
                 <%= submit "Update", id: "organisation_trait_update_button", class: "btn btn-fill btn-primary" %>
               </div>
               </fieldset>

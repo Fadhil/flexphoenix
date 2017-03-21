@@ -9,7 +9,7 @@ defmodule Flexcility.Site do
 
     timestamps
 
-    belongs_to :user, Flexcility.User
+    belongs_to :organisation, Flexcility.Organisation
     has_many :assets, Flexcility.Asset, on_delete: :delete_all
     has_many :users_roles, Flexcility.UsersRole, on_delete: :delete_all
     has_many :members, through: [:users_roles, :user]
@@ -38,12 +38,11 @@ defmodule Flexcility.Site do
     |> cast_attachments(params, @optional_file_fields)
   end
 
-  def create_changeset(model, user_id, params \\ %{}) do
+  def create_changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields)
     |> cast_attachments(params, @optional_file_fields)
     |> validate_required(@required_fields)
-    |> put_user_id(user_id)
   end
 
   def put_user_id(changeset, user_id) do

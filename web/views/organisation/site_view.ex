@@ -14,6 +14,10 @@ defmodule Flexcility.Organisation.SiteView do
     end )
   end
 
+  def display_organisation_name(organisation) do
+    organisation.name
+  end
+
   def show_role_names(roles) do
     roles
     |> Enum.map(fn r -> r.name end)

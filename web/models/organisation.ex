@@ -13,6 +13,7 @@ defmodule Flexcility.Organisation do
     has_many :memberships, Flexcility.Membership, on_delete: :delete_all
     has_many :users, through: [:memberships, :user]
     has_many :invitations, Flexcility.Invitation, on_delete: :delete_all
+    has_many :sites, Flexcility.Site
 
     many_to_many :facilities, Flexcility.Facility, join_through: "facilities_organisations"
     many_to_many :traits, Flexcility.Trait, join_through: "organisations_traits"

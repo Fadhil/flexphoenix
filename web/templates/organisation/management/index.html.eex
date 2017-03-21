@@ -6,7 +6,7 @@
         <div class="wizard-container">
           <div class="row wizard-card" data-color="green">
               <div class="col-sm-12">
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-xs-6">
                     <div class="choice" data-toggle="wizard-checkbox">
                       <a href="<%= organisation_management_path(@conn, :members, @organisation.id) %>">
                         <div class="card card-checkboxes card-hover-effect ">
@@ -16,7 +16,7 @@
                       </a>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-xs-6">
                     <div class="choice" data-toggle="wizard-checkbox">
                       <a href="<%= organisation_trait_path(@conn, :index, @organisation.id) %>">
                         <div class="card card-checkboxes card-hover-effect ">
@@ -26,7 +26,17 @@
                       </a>
                     </div>
                 </div>
-                <div class="col-sm-3 wizard-card" data-color="red">
+                <div class="col-sm-3 col-xs-6">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                      <a href="<%= organisation_site_path(@conn, :index, @organisation.id) %>">
+                        <div class="card card-checkboxes card-hover-effect ">
+                            <i class="icon-globe"></i>
+                            <p>Manage Sites</p>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6 wizard-card" data-color="red">
                     <div class="choice" data-toggle="wizard-checkbox">
                       <%= link to: organisation_path(@conn, :delete, @organisation), method: :delete, data: [confirm: "Are you sure you want to delete #{@organisation.name}?"] do %>
 

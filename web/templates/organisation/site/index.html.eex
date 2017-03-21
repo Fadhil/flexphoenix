@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInUp">
+
+      <div class="ibox">
+        <div class="ibox-title">
+          <h2>All Sites</h2><h5>assigned to <%= display_name(@current_user) %></h5>
+          <div class="ibox-tools">
+            <%= link "Create New Site", to: organisation_site_path(@conn, :new, @conn.assigns.organisation), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="project-list">
+
+            <table class="table table-hover">
+              <tbody>
+                <%= for site <- @sites do %>
+                  <%= link to: organisation_site_path(@conn, :show, @conn.assigns.organisation, site) do %>
+                  <tr>
+                    <td class="project-status">
+                      <span class="label label-primary">Active</span>
+                    </td>
+                    <td class="project-title">
+                      <a href="project_detail.html"><%= site.name %>
+                      <br/>
+                      <small class="created-on">Created on <%= display_created_at(site) %></small>
+                      </a>
+                    </td>
+                    <td class="hidden-xs"><%= site.description %></td>
+                    <td class="hidden-xs"><%= site.address %></td>
+                    <td class="project-people team-members">
+                      <a href=""><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a1.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a2.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a4.jpg"></a>
+                      <a href=""><img alt="image" class="img-circle" src="img/a5.jpg"></a>
+                    </td>
+                    <td class="project-actions">
+                      <%= link to: organisation_site_path(@conn, :show, @conn.assigns.organisation.id, site), class: "btn btn-white btn-rounded btn-sm" do %>
+                        <i class="fa fa-folder"></i> View </a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- End ibox-content -->
+      </div>
+    </div> <!-- End wrapper -->
+  </div> <!-- End col -->
+</div> <!-- End row -->

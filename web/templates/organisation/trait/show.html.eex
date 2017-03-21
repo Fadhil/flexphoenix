@@ -1,0 +1,23 @@
+<h2>Show trait</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @trait.name %>
+  </li>
+
+  <li>
+    <strong>Code:</strong>
+    <%= @trait.code %>
+  </li>
+
+  <li>
+    <strong>Abbreviation:</strong>
+    <%= @trait.abbreviation %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: organisation_trait_path(@conn, :edit, @trait, @organisation.id) %>
+<%= link "Back", to: organisation_trait_path(@conn, :index, @organisation.id) %>

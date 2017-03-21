@@ -40,6 +40,12 @@
                   </a>
                   <ul class="flex-dropdown-menu dropdown-menu">
                     <li><%= link "My Profile", to: Flexcility.SubdomainRouter.Helpers.profile_path(@conn, :show) %></li>
+                    <% link_path = Flexcility.Router.Helpers.organisation_management_url(
+                        @conn, :index, @current_organisation
+                        )
+                    %>
+                    <li><%= link "Manage #{@current_organisation.name}", to: link_path %></li>
+
                   </ul>
                 </li>
             </ul>

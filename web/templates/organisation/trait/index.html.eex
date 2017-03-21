@@ -1,0 +1,91 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Assign Traits and Facilities</h4>
+          </div>
+          <div class="content">
+            <%= form_for @changeset, @action, fn f-> %>
+              <legend>Traits</legend>
+              <span><small>Select the traits that apply to your sites/buildings</small></span>
+
+              <fieldset>
+              <div class="form-group">
+                  <div class="col-sm-4" >
+                    <%= for {trait,index} <- Enum.with_index(@traits) do %>
+                      <%= if( rem(index,3) == 0 && index != 0 ) do %>
+                        </div>
+                        <div class="col-sm-4">
+                      <% end %>
+                      <label class="checkbox">
+                        <%= checkbox(:organisation_traits, trait.id, "data-toggle": "checkbox", checked: display_organisation_trait_check(@organisation, trait)) %>
+                          <%= trait.name %> (<%= trait.abbreviation %>)
+                      </label>
+                    <% end %>
+                  </div>
+              </div>
+              </fieldset>
+              <legend>Facilities</legend>
+              <span><small>Select the types of facilities that your organisation manages. (Each site you define will fall under one of these facility types)</small></span>
+              <fieldset>
+              <div class="form-group">
+                  <div class="col-sm-4" >
+                    <%= for {facility,index} <- Enum.with_index(@facilities) do %>
+                      <%= if( rem(index,3) == 0 && index != 0 ) do %>
+                        </div>
+                        <div class="col-sm-4">
+                      <% end %>
+                      <label class="checkbox">
+                        <%= checkbox(:organisation_facilities, facility.id, "data-toggle": "checkbox", checked: display_organisation_facility_check(@organisation, facility)) %>
+                        <%= facility.name %>
+                      </label>
+                    <% end %>
+                  </div>
+              </div>
+              </fieldset>
+              <fieldset>
+              <div class="form-group pull-right">
+                <%= link "Back", to: organisation_management_path(@conn, :index, @organisation.id), class: "btn btn-fill btn-secondary" %>
+                <%= submit "Update", id: "organisation_trait_update_button", class: "btn btn-fill btn-primary" %>
+              </div>
+              </fieldset>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--//
+<h2>Listing traits</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Abbreviation</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for trait <- @traits do %>
+    <tr>
+      <td><%= trait.name %></td>
+      <td><%= trait.code %></td>
+      <td><%= trait.abbreviation %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: organisation_trait_path(@conn, :show, @organisation.id, trait), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: organisation_trait_path(@conn, :edit, @organisation.id, trait), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: organisation_trait_path(@conn, :delete, @organisation.id, trait), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New trait", to: organisation_trait_path(@conn, :new, @organisation.id) %>
+//-->

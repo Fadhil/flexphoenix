@@ -36,8 +36,8 @@ defmodule Flexcility.Web do
         end
       end
 
-      def last(model) do
-        Repo.one(from x in model, order_by: [desc: x.id], limit: 1)
+      def last() do
+        Repo.one(from x in __MODULE__, order_by: [desc: x.id], limit: 1)
       end
     end
   end

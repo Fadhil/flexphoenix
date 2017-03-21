@@ -12,8 +12,10 @@ config :logger, level: :warn
 # Configure your database
 config :flexcility, Flexcility.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "faruq",
-  password: "jessicaalba",
+  username: System.get_env("POSTGRES_DEV_USERNAME"),
+  password: System.get_env("POSTGRES_DEV_PASSWORD"),
   database: "flexphoenix_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :flexcility, ecto_repos: [Flexcility.Repo]

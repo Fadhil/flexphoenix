@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-lg-9">
+        <div class="wrapper wrapper-content animated fadeInUp">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="m-b-md">
+                                <%= link "Back", to: organisation_site_path(@conn, :index, @conn.assigns.organisation.id), class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
+                                <%= link "Edit Site", to: organisation_site_path(@conn, :edit, @conn.assigns.organisation, @site), class: "btn btn-warning btn-rounded btn-sm pull-right" %>
+
+                                <h2><%= @site.name %></h2>
+                            </div>
+                            <dl class="dl-horizontal">
+                                <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <dl class="dl-horizontal">
+
+                                <dt>Owner:</dt> <dd><%= display_name(@site.user) %></dd>
+                                <dt>Admins:</dt>
+                                <dd class="project-people">
+                                  <%= for member <- admins(@site_members) do %>
+                                    <a href="" ><img alt="image" class="img-circle" src="/images/default_profile_picture.png" data-toggle="tooltip" data-placement="top" title="<%= display_name(member.user) %>"></a>
+                                  <% end %>
+                                </dd>
+                                <dt>Technicians:</dt>
+                                <dd class="project-people">
+                                  <%= for member <- technicians(@site_members) do %>
+                                    <a href="" ><img alt="image" class="img-circle" src="/images/default_profile_picture.png" data-toggle="tooltip" data-placement="top" title="<%= display_name(member.user) %>"></a>
+                                  <% end %>
+                                </dd>
+                            </dl>
+                        </div>
+
+
+                        <div class="col-lg-6" id="cluster_info">
+                            <dl class="dl-horizontal" >
+
+                                <dt>Last Updated:</dt> <dd><%= @site.updated_at %></dd>
+                                <dt>Created:</dt> <dd><%= @site.inserted_at %> </dd>
+
+                            </dl>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <dl class="dl-horizontal">
+                                <dt>Add member:</dt>
+                                <dd>
+                                  <%= form_for @conn, site_invite_path(@conn, :invite_user, @site), [name: :invite_user], fn f -> %>
+                                    <div class="form-group col-sm-6">
+                                      <%= text_input f, :user_email, class: "form-control", placeholder: "Enter a valid email" %>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                      <%= select f, :user_role, @roles_select_list , class: "form-control m-b" %>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                      <%= submit "Submit", class: "btn btn-primary" %>
+                                    </div>
+                                  <% end %>
+                                  </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <dl class="dl-horizontal">
+                                <dd>
+                                  <%= link "Show Assets", to: site_asset_path(@conn, :index, @site), class: "btn btn-success btn-rounded btn-sm" %>
+                                  <%= link "Create Work Request", to: request_path(@conn, :new, site_id: @site.id), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="wrapper wrapper-content project-manager">
+          <h3><%= @site.name %></h3>
+          <img src="<%= image(@site) %>" class="img-responsive">
+          <h4>Site Description</h4>
+          <p class="small">
+            <%= @site.description %>
+          </p>
+          <h4>Address</h4>
+          <p class="small">
+            <%= @site.address %>
+          </p>
+        </div>
+        <%= link "Delete Site", to: organisation_site_path(@conn, :delete, @conn.assigns.organisation, @site), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-sm pull-right" %>
+    </div>
+</div>

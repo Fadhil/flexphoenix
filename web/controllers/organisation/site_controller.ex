@@ -51,11 +51,11 @@ defmodule Flexcility.Organisation.SiteController do
           {:ok, _users_role} ->
             conn
             |> put_flash(:success, "Successfully invited #{email} as #{role.name}")
-            |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
+            |> redirect(to: organisation_site_path(conn, :show, conn.assigns.organisation.id, site))
           {:error, _changeset} ->
             conn
             |> put_flash(:error, "That user cannot be added to this site")
-            |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
+            |> redirect(to: organisation_site_path(conn, :show, conn.assigns.organisation.id, site))
         end
     end
   end
@@ -105,7 +105,7 @@ defmodule Flexcility.Organisation.SiteController do
       {:ok, site} ->
         conn
         |> put_flash(:success, "Site updated successfully.")
-        |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
+        |> redirect(to: organisation_site_path(conn, :show, conn.assigns.organisation.id, site))
       {:error, changeset} ->
         render(conn, "edit.html", site: site, changeset: changeset)
     end

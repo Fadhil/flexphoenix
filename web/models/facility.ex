@@ -8,7 +8,7 @@ defmodule Flexcility.Facility do
     timestamps()
 
 
-    many_to_many :organisations, Flexcility.Organisation, join_through: "facilities_organisations" 
+    many_to_many :organisations, Flexcility.Organisation, join_through: "facilities_organisations"
   end
 
   @doc """
@@ -18,5 +18,11 @@ defmodule Flexcility.Facility do
     struct
     |> cast(params, [:name, :icon_name])
     |> validate_required([:name, :icon_name])
+  end
+
+  def all(ids) do
+    query = from t in Flexcility.Facility,
+      where: t.id in ^ids
+    Repo.all(query)
   end
 end

@@ -20,4 +20,13 @@ defmodule Flexcility.Trait do
     |> cast(params, [:name, :code, :abbreviation])
     |> validate_required([:name, :code, :abbreviation])
   end
+
+  @doc """
+  Returns a list of Trait structs matching the list of ids given.
+  """
+  def all(ids) do
+    query = from t in Flexcility.Trait,
+      where: t.id in ^ids
+    Repo.all(query)
+  end
 end

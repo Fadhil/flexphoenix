@@ -1,9 +1,15 @@
-defmodule Flexcility.Repo.Migrations.RemoveUserIdFromSites do
+defmodule Flexcility.Repo.Migrations.RemoveUserIdFromSitesAgain do
   use Ecto.Migration
 
-  def change do
+  def up do
     alter table(:sites) do
       remove :user_id
+    end
+  end
+
+  def down do
+    alter table(:sites) do
+      add :user_id, :integer
     end
   end
 end

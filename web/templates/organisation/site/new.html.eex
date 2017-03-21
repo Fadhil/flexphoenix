@@ -1,0 +1,14 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Create A New Site <small>Define your project here.</small></h5>
+        </div>
+        <%= render "form.html", changeset: @changeset,
+            action: site_path(@conn, :create),
+            conn: @conn %>
+      </div>
+    </div>
+  </div>
+</div>

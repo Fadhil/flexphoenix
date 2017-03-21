@@ -6,7 +6,7 @@
           <h5>Edit Site <small><%= @site.name %></small></h5>
         </div>
         <%= render "form.html", changeset: @changeset,
-            action: site_path(@conn, :update, @site),
+            action: organisation_site_path(@conn, :update, @conn.assigns.organisation.id, @site),
             conn: @conn %>
       </div>
     </div>

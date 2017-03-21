@@ -55,7 +55,7 @@
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-2">
       <%= submit "Submit", class: "btn btn-primary btn-rounded" %>
-      <%= link "Back", to: site_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded" %>
+      <%= link "Back", to: organisation_site_path(@conn, :index, @conn.assigns.organisation.id), class: "btn btn-default btn-outline btn-rounded" %>
       </div>
     </div>
   <% end %>

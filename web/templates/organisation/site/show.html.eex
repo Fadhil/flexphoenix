@@ -6,8 +6,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="m-b-md">
-                                <%= link "Back", to: site_path(@conn, :index), class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
-                                <%= link "Edit Site", to: site_path(@conn, :edit, @site), class: "btn btn-warning btn-rounded btn-sm pull-right" %>
+                                <%= link "Back", to: organisation_site_path(@conn, :index, @conn.assigns.organisation.id), class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
+                                <%= link "Edit Site", to: organisation_site_path(@conn, :edit, @conn.assigns.organisation, @site), class: "btn btn-warning btn-rounded btn-sm pull-right" %>
 
                                 <h2><%= @site.name %></h2>
                             </div>
@@ -93,6 +93,6 @@
             <%= @site.address %>
           </p>
         </div>
-        <%= link "Delete Site", to: site_path(@conn, :delete, @site), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-sm pull-right" %>
+        <%= link "Delete Site", to: organisation_site_path(@conn, :delete, @conn.assigns.organisation, @site), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-rounded btn-sm pull-right" %>
     </div>
 </div>

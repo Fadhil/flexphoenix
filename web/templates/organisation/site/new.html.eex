@@ -6,7 +6,7 @@
           <h5>Create A New Site <small>Define your project here.</small></h5>
         </div>
         <%= render "form.html", changeset: @changeset,
-            action: site_path(@conn, :create),
+            action: organisation_site_path(@conn, :create, @conn.assigns.organisation.id),
             conn: @conn %>
       </div>
     </div>

@@ -1,4 +1,4 @@
-defmodule Flexcility.Repo.Migrations.RemoveUserIdFromSitesAgain do
+defmodule Flexcility.Repo.Migrations.RemoveUnusedUserIdFromSitesAgain do
   use Ecto.Migration
 
   def up do

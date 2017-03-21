@@ -5,7 +5,7 @@ defmodule Flexcility.Organisation.TraitController do
   alias Flexcility.Facility
   alias Flexcility.Organisation
   alias Flexcility.Utils.Form
-  plug :assign_organisation
+  plug Flexcility.Plugs.AssignOrganisation
 
   def index(conn, %{"organisation_id" => organisation_id}) do
     organisation = Repo.get(Organisation, organisation_id)
@@ -174,13 +174,5 @@ defmodule Flexcility.Organisation.TraitController do
     conn
     |> put_flash(:info, "Trait deleted successfully.")
     |> redirect(to: organisation_trait_path(conn, :index, params[:organisation_id]))
-  end
-
-  def assign_organisation(%{
-      params: %{"organisation_id" => organisation_id}
-    } = conn,
-    _params) do
-    conn
-    |> assign(:organisation, Repo.get(Organisation, organisation_id ))
   end
 end

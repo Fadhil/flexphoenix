@@ -5,6 +5,7 @@ defmodule Flexcility.Organisation.SiteController do
   alias Flexcility.UsersRole
   alias Flexcility.Role
   alias Flexcility.User
+  plug Flexcility.Plugs.AssignOrganisation
   import Ecto.Query, only: [from: 2]
 
   plug :scrub_params, "site" when action in [:create, :update]

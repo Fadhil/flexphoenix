@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-sm-3 col-xs-6">
                     <div class="choice" data-toggle="wizard-checkbox">
-                      <a href="<%= organisation_trait_path(@conn, :index, @organisation.id) %>">
+                      <a href="<%= organisation_site_path(@conn, :index, @organisation.id) %>">
                         <div class="card card-checkboxes card-hover-effect ">
                             <i class="icon-globe"></i>
                             <p>Manage Sites</p>

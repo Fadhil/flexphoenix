@@ -73,7 +73,7 @@ defmodule Flexcility.Organisation.SiteController do
       {:ok, site} ->
         conn
         |> put_flash(:success, "Site created successfully.")
-        |> redirect(to: organisation_site_path(conn, :show, site, conn.assigns.organisation.id))
+        |> redirect(to: organisation_site_path(conn, :show, conn.assigns.organisation.id, site))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

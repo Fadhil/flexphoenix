@@ -522,3 +522,18 @@ margin-top: 15px;
 /*.nav li.active > a, .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a {
     color: #EB5E28
 }*/
+
+.navbar-page-title {
+    position: relative;
+    left: 10px;
+    top:-20px;
+}
+
+.sites-table td a {display: block; height:100%; width:100%;}
+
+.card-user .image img{
+  width: 100%;
+  height: auto !important;
+}
+
+td.with-link a {display: block; height:100%; width:100%;}

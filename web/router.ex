@@ -70,7 +70,9 @@ defmodule Flexcility.Router do
         resources "/traits", Organisation.TraitController, except: [:update, :create]
         put "/traits", Organisation.TraitController, :update
         get "/members", Organisation.ManagementController, :members
-        resources "/sites", Organisation.SiteController
+        resources "/sites", Organisation.SiteController do
+          resources "/assets", Organisation.AssetController
+        end
       end
     end
     resources "/sites", SiteController do

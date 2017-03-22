@@ -8,7 +8,7 @@
           <a href="<%= organisation_management_path(@conn, :index, @organisation.id) %>">
           <div class="row org-card-logo">
               <div class="col-xs-6 col-xs-offset-3">
-                <img src="<%= image(@organisation)%>" class="img-responsive" />
+                <img src="<%= image(@organisation) %>" class="img-responsive" />
               </div>
 
           </div>

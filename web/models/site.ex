@@ -19,9 +19,10 @@ defmodule Flexcility.Site do
 
   end
 
-  @all_fields ~w(name description address image)
+  @all_fields ~w(name description address)
   @required_fields [:name, :description, :address]
   @optional_fields ~w()
+  @image_fields ~w(image)
 
   @required_file_fields ~w()
   @optional_file_fields [:image]
@@ -60,5 +61,10 @@ defmodule Flexcility.Site do
 
   def owner(project) do
     project.user
+  end
+
+  def image_changeset(site, params) do
+    site
+    |> cast_attachments(params, @image_fields)
   end
 end

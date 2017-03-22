@@ -14,9 +14,9 @@ defmodule Flexcility.Organisation.SiteController do
     %{assigns: %{current_user: current_user}}=conn, _params
   ) do
     organisation = conn.assigns.organisation
-      |> Repo.preload([:sites])
+      |> Repo.preload([{:sites, [:assets]}])
     sites = organisation.sites
-    render(conn, "index.html", sites: sites, page_title: "#{organisation.name} Sites")
+    render(conn, "index.html", sites: sites, page_title: "#{organisation.name}")
   end
 
   def invite_user(conn, %{
@@ -73,6 +73,9 @@ defmodule Flexcility.Organisation.SiteController do
 
     case Repo.insert(changeset) do
       {:ok, site} ->
+        Site.image_changeset(site, site_params)
+        |> Repo.update
+
         conn
         |> put_flash(:success, "Site created successfully.")
         |> redirect(to: organisation_site_path(conn, :show, conn.assigns.organisation.id, site))

@@ -1,0 +1,181 @@
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="content">
+                      <div class="header">
+                        <div class="col-xs-6">
+                          <h4 class="title">Assets</h4>
+                          <br />
+                        </div>
+                        <div class="col-xs-6">
+                          <%= link "Create New Asset", to: organisation_site_asset_path(@conn, :new, @conn.assigns.organisation, @site), class: "btn btn-success btn-rounded btn-outline btn-sm pull-right" %>
+                        </div>
+                      </div>
+                        <div class="toolbar">
+                            <!--Here you can write extra buttons/actions for the toolbar-->
+                        </div>
+                        <table id="bootstrap-table" class="table">
+                            <thead>
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th data-field="id" class="text-center">ID</th>
+                              <th data-field="name" data-sortable="true">Name</th>
+                              <th data-field="salary" data-sortable="true">Model</th>
+                              <th data-field="country" data-sortable="true">Manufacturer</th>
+                              <th data-field="city">Location</th>
+                              <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
+                            </thead>
+                            <tbody>
+                              <%= for {asset, index} <- @assets |> Enum.with_index do %>
+                                <tr>
+                                    <td></td>
+                                  <td><%= index + 1 %></td>
+                                  <td class="with-link">
+                                    <%= link to: organisation_site_asset_path(@conn, :show, @conn.assigns.organisation, @site.id, asset) do %>
+                                    <%= asset.name %></td>
+                                    <% end %>
+                                  <td><%= asset.model_id %></td>
+                                  <td><%= asset.manufacturer %></td>
+                                  <td>Location A<%= index + 1 %></td>
+                                  <td></td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!--  end card  -->
+            </div> <!-- end col-md-12 -->
+        </div> <!-- end row -->
+    </div>
+</div>
+<script type="text/javascript">
+
+  var $table = $('#bootstrap-table');
+
+        function operateFormatter(value, row, index) {
+            return [
+        '<div class="table-icons">',
+                  '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
+            '<i class="ti-image"></i>',
+          '</a>',
+                  '<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
+                      '<i class="ti-pencil-alt"></i>',
+                  '</a>',
+                  '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
+                      '<i class="ti-close"></i>',
+                  '</a>',
+        '</div>',
+            ].join('');
+        }
+
+        $().ready(function(){
+            window.operateEvents = {
+                'click .view': function (e, value, row, index) {
+                    info = JSON.stringify(row);
+
+                    swal('You click view icon, row: ', info);
+                    console.log(info);
+                },
+                'click .edit': function (e, value, row, index) {
+                    info = JSON.stringify(row);
+
+                    swal('You click edit icon, row: ', info);
+                    console.log(info);
+                },
+                'click .remove': function (e, value, row, index) {
+                    console.log(row);
+                    $table.bootstrapTable('remove', {
+                        field: 'id',
+                        values: [row.id]
+                    });
+                }
+            };
+
+            $table.bootstrapTable({
+                toolbar: ".toolbar",
+                clickToSelect: true,
+                showRefresh: true,
+                search: true,
+                showToggle: true,
+                showColumns: true,
+                pagination: true,
+                searchAlign: 'left',
+                pageSize: 8,
+                clickToSelect: false,
+                pageList: [8,10,25,50,100],
+
+                formatShowingRows: function(pageFrom, pageTo, totalRows){
+                    //do nothing here, we don't want to show the text "showing x of y from..."
+                },
+                formatRecordsPerPage: function(pageNumber){
+                    return pageNumber + " rows visible";
+                },
+                icons: {
+                    refresh: 'fa fa-refresh',
+                    toggle: 'fa fa-th-list',
+                    columns: 'fa fa-columns',
+                    detailOpen: 'fa fa-plus-circle',
+                    detailClose: 'ti-close'
+                },
+                formatNoMatches: function(){
+                  return "No Assets defined yet."
+                }
+            });
+
+            //activate the tooltips after the data table is initialized
+            $('[rel="tooltip"]').tooltip();
+
+            $(window).resize(function () {
+                $table.bootstrapTable('resetView');
+            });
+    });
+
+</script>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInUp">
+
+      <div class="ibox">
+        <div class="ibox-title">
+          <h2>Assets</h2><h5>for <%= @site.name %></h5>
+          <div class="ibox-tools">
+            <%= link "Create New Asset", to: site_asset_path(@conn, :new, @site), class: "btn btn-success btn-rounded btn-outline btn-sm" %>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="project-list">
+
+            <table class="table table-hover">
+              <tbody>
+                <%= for asset <- @assets do %>
+                  <%= link to: site_asset_path(@conn, :show, @site.id, asset) do %>
+                  <tr>
+                    <td class="project-title">
+                      <a href=""><%= asset.name %>
+                      <br/>
+                      <small class="created-on">Created on <%= asset.inserted_at %></small>
+                      </a>
+                    </td>
+                    <td class="hidden-xs"><%= asset.model_id %></td>
+                    <td class="hidden-xs"><%= asset.manufacturer %></td>
+                    <td><img class="photo-thumbnail" align="right" src="<%= image(asset) %>" alt="<%= @site.name %>-<%= asset.name %>-photo"></td>
+                    <td class="project-actions">
+                      <%= link to: site_asset_path(@conn, :show, @site.id, asset), class: "btn btn-white btn-rounded btn-sm" do %>
+                        <i class="fa fa-folder"></i> View </a>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- End ibox-content -->
+      </div>
+    </div> <!-- End wrapper -->
+  </div> <!-- End col -->
+</div> <!-- End row -->

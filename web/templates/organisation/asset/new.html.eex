@@ -1,0 +1,16 @@
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Define Asset</h4>
+        </div>
+        <%= render "form.html", changeset: @changeset,
+            action: organisation_site_asset_path(@conn, :create, @conn.assigns.organisation, @site),
+            conn: @conn,
+            site: @site %>
+      </div>
+    </div>
+  </div>
+</div>

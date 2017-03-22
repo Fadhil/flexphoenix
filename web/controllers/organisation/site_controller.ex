@@ -87,13 +87,13 @@ defmodule Flexcility.Organisation.SiteController do
   def show(conn, %{"id" => id}) do
     roles = Role |> Repo.all
     roles_select_list = roles |> Enum.map(fn x -> {"#{x.name}", x.id} end)
-    site = Site |> Repo.get!(id) |> Repo.preload([:organisation])
+    site = Site |> Repo.get!(id) |> Repo.preload([:organisation, :assets])
     query = from ur in UsersRole,
             where: ur.site_id == ^site.id
     users_roles = Repo.all(query)
                   |> Repo.preload([:user, :site, :role])
     conn = conn |> assign(:page_title, site.name)
-    render(conn, "show.html", site: site, roles_select_list: roles_select_list, site_members: users_roles)
+    render(conn, "show.html", site: site, roles_select_list: roles_select_list, site_members: users_roles, page_title: conn.assigns.organisation.name)
   end
 
   def edit(conn, %{"id" => id}) do

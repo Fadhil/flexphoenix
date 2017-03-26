@@ -12,7 +12,7 @@ defmodule Flexcility.Endpoint do
     only: ~w(css fonts images img js favicon.ico robots.txt)
 
   plug Plug.Static,
-    at: "/uploads", from: "/apps/Flexcility/uploads/", gzip: false
+    at: "/uploads", from: "uploads/", gzip: false
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

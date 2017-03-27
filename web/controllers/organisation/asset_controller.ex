@@ -28,7 +28,9 @@ defmodule Flexcility.Organisation.AssetController do
     changeset = Asset.create_changeset(%Asset{}, conn.assigns.site.id, asset_params)
 
     case Repo.insert(changeset) do
-      {:ok, _asset} ->
+      {:ok, asset} ->
+        Asset.image_changeset(asset, asset_params)
+        |> Repo.update
         conn
         |> put_flash(:info, "Asset created successfully.")
         |> redirect(to: organisation_site_asset_path(conn, :index, conn.assigns.organisation, conn.assigns.site))

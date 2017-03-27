@@ -16,7 +16,7 @@ defmodule Flexcility.Asset do
   @optional_fields ~w()
 
   @required_file_fields ~w()
-  @optional_file_fields ~w(photo)
+  @image_fields ~w(photo)
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -26,13 +26,12 @@ defmodule Flexcility.Asset do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields)
-    |> cast_attachments(params, @optional_file_fields)
+    |> cast_attachments(params, @image_fields)
   end
 
   def create_changeset(model, site_id, params \\ %{}) do
     model
     |> cast(params, @required_fields)
-    |> cast_attachments(params, @optional_file_fields)
     |> put_site_id(site_id)
   end
 
@@ -43,6 +42,11 @@ defmodule Flexcility.Asset do
       _ ->
         changeset
     end
+  end
+
+  def image_changeset(asset, params) do
+    asset
+    |> cast_attachments(params, @image_fields)
   end
 
   def with_project(query) do

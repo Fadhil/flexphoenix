@@ -103,6 +103,7 @@ defmodule Flexcility.Router do
     resources "/organisations", Api.OrganisationController, only: [:create]
     resources "/sites", SiteController, only: [] do
       get "/assets", AssetController, :index
+      resources "/assets", Api.AssetsController, except: [:new, :edit]
     end
     get "/subdomain_unique", OrganisationController, :subdomain_unique
   end

@@ -25,6 +25,7 @@
                           <th data-field="manufacturer" data-sortable="true">Manufacturer</th>
                           <th data-field="location">Location</th>
                           <th data-field="url" class="hidden"></th>
+                          <th data-field="api_url" class="hidden"></th>
                           <th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
                         </thead>
                         <tbody>
@@ -40,6 +41,7 @@
                               <td><%= asset.manufacturer %></td>
                               <td>Location A<%= index + 1 %></td>
                               <td class="hidden"><%= organisation_site_asset_path(@conn, :show, @conn.assigns.organisation, @site.id, asset) %></td>
+                              <td class="hidden"><%= api_site_assets_path(@conn, :delete, @site.id, asset) %></td>
                               <td></td>
                             </tr>
                           <% end %>
@@ -83,10 +85,31 @@ var $table = $('#bootstrap-table');
             },
             'click .remove': function (e, value, row, index) {
                 console.log(row);
-                $table.bootstrapTable('remove', {
-                    field: 'id',
-                    values: [row.id]
-                });
+								swal({
+									title: "Are you sure?",
+									text: "You will not be able to recover this data!",
+									type: "warning",
+									showCancelButton: true,
+									confirmButtonColor: "#DD6B55",
+									confirmButtonText: "Yes, I'm sure.",
+									closeOnConfirm: true
+								},
+								function(){
+                  $.ajax({
+                    url: row.api_url,
+                    type: 'DELETE',
+                    success: function(response){
+                      $table.bootstrapTable('remove', {
+                          field: 'id',
+                          values: [row.id]
+                      });
+                      swal("Deleted asset.", "success");
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        swal("Unable to delete that asset", "error");
+                    }
+                  })
+								});
             }
         };
 

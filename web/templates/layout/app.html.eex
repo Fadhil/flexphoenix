@@ -18,12 +18,12 @@
 
       <!--// Template content -->
       <div class="content">
-          <div class="container-fluid">
-        <%= render @view_module, @view_template, assigns %>
+        <div class="container-fluid">
+          <%= render @view_module, @view_template, assigns %>
+        </div> <!-- End col -->
 
         <!--// Footer -->
         <%= render Flexcility.LayoutView, "footer.html", assigns %>
-        </div> <!-- End col -->
       </div> <!-- End row -->
     </div>
 	</div>

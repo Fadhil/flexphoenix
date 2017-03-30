@@ -1,6 +1,6 @@
 alias Flexcility.{
   User, Organisation, Role, Membership, Repo, Site, Asset,
-  Order, Report, Request, Invitation, Facility, Trait
+  Order, Report, Request, Invitation, Facility, Trait, InstalledAsset
 }
 import Ecto.Query
 

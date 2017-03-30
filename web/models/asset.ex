@@ -6,8 +6,8 @@ defmodule Flexcility.Asset do
     field :model_id, :string
     field :manufacturer, :string
     field :photo, Flexcility.Image.Type
-    belongs_to :site, Flexcility.Site
-    has_many :requests, Flexcility.Request, on_delete: :delete_all
+    has_many :installed_assets, Flexcility.InstalledAsset
+    has_many :sites, through: [:installed_assets, :site]
 
     timestamps
   end

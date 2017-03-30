@@ -7,11 +7,11 @@
     <% end %>
         <fieldset>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Name</label>
+                <label class="col-sm-2 control-label">Asset</label>
                 <div class="col-sm-10">
-                  <%= text_input f, :name, class: "form-control" %>
+                  <%= select f, :asset_id, @assets, class: "form-control" %>
                   <span class="error-tag">
-                    <%= error_tag f, :name %>
+                    <%= error_tag f, :asset_id %>
                   </span>
                 </div>
             </div>

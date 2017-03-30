@@ -2,6 +2,7 @@ defmodule Flexcility.Organisation.AssetController do
   use Flexcility.Web, :controller
   import Ecto.Query, only: [from: 2]
   alias Flexcility.Asset
+  alias Flexcility.InstalledAsset
   plug Flexcility.Plugs.AssignOrganisation
 
   plug :scrub_params, "asset" when action in [:create, :update]
@@ -11,17 +12,18 @@ defmodule Flexcility.Organisation.AssetController do
     %{"site_id" => site_id} = conn.params
     site_id = String.to_integer(site_id)
     query = from a in Asset,
-            join: p in assoc(a, :site),
+            join: p in assoc(a, :sites),
             where: p.id == ^site_id,
-            preload: [site: p]
+            preload: [sites: p]
     assets = Repo.all(query)
 
     render(conn, assets: assets, page_title: conn.assigns.organisation.name)
   end
 
   def new(conn, _params) do
-    changeset = Asset.changeset(%Asset{})
-    render(conn, "new.html", changeset: changeset, page_title: conn.assigns.organisation.name)
+    assets = Repo.all(Asset) |> Enum.map(&({"#{&1.name} - #{&1.model_id}", &1.id }))
+    changeset = InstalledAsset.changeset(%InstalledAsset{})
+    render(conn, "new.html", assets: assets, changeset: changeset, page_title: conn.assigns.organisation.name)
   end
 
   def create(conn, %{"asset" => asset_params}) do

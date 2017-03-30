@@ -2,7 +2,7 @@
 
   <div class="content">
       <ul class="nav">
-      <li><a href="#organisation_details_tab" data-toggle="tab">Organisation Details</a></li>
+      <li><a href="#organisation_details_tab" data-toggle="tab">Details</a></li>
       <li><a href="#facilities_selection_tab" data-toggle="tab">Select Facilites</a></li>
       <li><a href="#invite_helpdesk_tab" data-toggle="tab">Invite Helpdesk</a></li>
     </ul>

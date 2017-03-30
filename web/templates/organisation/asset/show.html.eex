@@ -1,58 +1,30 @@
-<div class="row">
-  <div class="col-lg-9">
-    <div class="wrapper wrapper-content animated fadeInUp">
-      <div class="ibox">
-        <div class="ibox-content">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="m-b-md">
-                <%= link "Back", to: organisation_site_asset_path(@conn, :index, @conn.assigns.organisation, @site),
-                class: "btn btn-default btn-outline btn-rounded btn-sm pull-right" %>
-                <%= link "Edit Asset", to: organisation_site_asset_path(@conn, :edit, @conn.assigns.organisation, @site, @asset),
-                class: "btn btn-warning btn-rounded btn-sm pull-right" %>
 
-                <h2><%= @asset.name %></h2>
+<div class="row">
+<div class="col-lg-12 col-md-7">
+  <div class="card">
+      <div class="content">
+          <form>
+              <div class="row">
+								<div class="col-md-7">
+									<img class="photo-fullsize" align="left"
+									src="<%= image(@asset) %>"
+									alt="<%= @site.name %>-<%= @asset.name %>-photo">
+								</div>
+								<div class="col-md-5">
+										<h4 class="title"><%= @asset.name %></h4>
+										<small><%= @asset.model_id %></small>
+								</div>
+								<div class="col-xs-6 col-md-3">
+									<h5><%= @asset.manufacturer %></h5>
+								</div>
+								<div class="col-xs-6 col-md-3">
+										<button type="submit" class="btn btn-info btn-fill btn-wd">Edit</button>
+								</div>
               </div>
-              <dl class="dl-horizontal">
-                <dt>Model:</dt>
-                <dd>
-                  <span>
-                    <%= @asset.model_id %>
-                  </span>
-                </dd>
-                <dt>Manufacturer:</dt>
-                <dd>
-                  <span>
-                    <%= @asset.manufacturer %>
-                  </span>
-                </dd>
-                <dt>Photo:</dt>
-                <dd>
-                  <div>
-                    <img class="photo-fullsize" align="left"
-                    src="<%= image(@asset) %>"
-                    alt="<%= @site.name %>-<%= @asset.name %>-photo">
-                  </div>
-                </dd>
-                <dt>Last Updated:</dt> <dd><%= @asset.updated_at %></dd>
-                <dt>Created:</dt> <dd><%= @asset.inserted_at %> </dd>
-              </dl>
-            </div>
-          </div><!-- End div class="row" -->
-        </div><!-- End ibox-content -->
-      </div><!-- End div class="ibox" -->
-    </div><!-- div class="wrapper wrapper-content animated fadeInUp" -->
-  </div><!-- End div class="col-lg-9" -->
-  <div class="col-lg-3"><!-- Start Site Manager Right Side Bar-->
-    <div class="wrapper wrapper-content project-manager">
-        <h3><%= @site.name %></h3>
-        <h4>Site Description</h4>
-        <img src="" class="img-responsive">
-        <p class="small">
-          <%= @site.description %>
-        </p>
-        <h4>Address</h4>
-        <p class="small"><%= @site.address %></p>
-    </div>
-  </div><!-- End div class="col-lg-3" --><!-- End Site Manager Right Side Bar-->
-</div> <!-- End div class="row" for entire ibox-->
+              <div class="clearfix"></div>
+          </form>
+      </div>
+  </div>
+</div>
+</div>
+

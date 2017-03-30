@@ -10,7 +10,7 @@ defmodule Flexcility.Site do
     timestamps
 
     belongs_to :organisation, Flexcility.Organisation
-    has_many :assets, Flexcility.Asset, on_delete: :delete_all
+    # has_many :assets, Flexcility.Asset, on_delete: :delete_all
     has_many :users_roles, Flexcility.UsersRole, on_delete: :delete_all
     has_many :members, through: [:users_roles, :user]
     has_many :requests, Flexcility.Request, on_delete: :delete_all

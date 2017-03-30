@@ -6,8 +6,7 @@ defmodule Flexcility.Asset do
     field :model_id, :string
     field :manufacturer, :string
     field :photo, Flexcility.Image.Type
-    belongs_to :site, Flexcility.Site
-    has_many :requests, Flexcility.Request, on_delete: :delete_all
+    # belongs_to :site, Flexcility.Site
 
     timestamps
   end

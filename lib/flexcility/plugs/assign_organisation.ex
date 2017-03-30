@@ -8,7 +8,9 @@ defmodule Flexcility.Plugs.AssignOrganisation do
 
   def call(conn, _) do
     %{params: %{"organisation_id" => organisation_id}} = fetch_query_params(conn)
+    organisation = Repo.get(Organisation, organisation_id )
     conn
-      |> assign(:organisation, Repo.get(Organisation, organisation_id ))
+      |> assign(:organisation, organisation)
+      |> assign(:page_title, organisation.name)
   end
 end

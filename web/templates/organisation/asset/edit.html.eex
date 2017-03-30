@@ -1,0 +1,15 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Edit Asset</h5>
+        </div>
+        <%= render "form.html", changeset: @changeset,
+            action: organisation_site_asset_path(@conn, :update, @conn.assigns.organisation, @site, @asset),
+            conn: @conn,
+            site: @site %>
+      </div>
+    </div>
+  </div>
+</div>

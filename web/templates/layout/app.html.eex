@@ -17,10 +17,14 @@
 			<%= render Flexcility.LayoutView, "top_navbar.html", assigns %>
 
       <!--// Template content -->
-      <%= render @view_module, @view_template, assigns %>
+      <div class="content">
+        <div class="container-fluid">
+          <%= render @view_module, @view_template, assigns %>
+        </div> <!-- End col -->
 
-			<!--// Footer -->
-			<%= render Flexcility.LayoutView, "footer.html", assigns %>
+        <!--// Footer -->
+        <%= render Flexcility.LayoutView, "footer.html", assigns %>
+      </div> <!-- End row -->
     </div>
 	</div>
 </body>

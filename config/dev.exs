@@ -45,9 +45,9 @@ config :flexcility, Flexcility.Repo,
 config :flexcility, ecto_repos: [Flexcility.Repo]
 
 config :arc,
-	storage: Arc.Storage.S3,
-  bucket: System.get_env("FLEX_AWS_S3_BUCKET"),
-	asset_host: System.get_env("FLEX_AWS_S3_ENDPOINT")
+	storage: Arc.Storage.Local
+  # bucket: System.get_env("FLEX_AWS_S3_BUCKET"),
+	# asset_host: System.get_env("FLEX_AWS_S3_ENDPOINT")
 
 config :ex_aws,
   virtual_host: true,

@@ -42,4 +42,12 @@ defmodule Flexcility.Organisation.SiteView do
     |> Enum.filter(&admin?/1)
   end
 
+  def asset_count(thing) do
+    case thing do
+      %Flexcility.Site{} ->
+        thing.assets |> Enum.count
+    end
+  end
+
+
 end

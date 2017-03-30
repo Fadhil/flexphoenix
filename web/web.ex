@@ -98,7 +98,7 @@ defmodule Flexcility.Web do
       # end
 
       def storage_dir(version, {file, scope}) do
-        "#{resource_name(scope)}/#{scope.id}"
+        "uploads/#{resource_name(scope)}/#{scope.id}"
       end
 
       def filename(version, {file, scope}) do

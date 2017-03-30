@@ -14,9 +14,9 @@ defmodule Flexcility.Organisation.SiteController do
     %{assigns: %{current_user: current_user}}=conn, _params
   ) do
     organisation = conn.assigns.organisation
-      |> Repo.preload([:sites])
+      |> Repo.preload([{:sites, [:assets]}])
     sites = organisation.sites
-    render(conn, "index.html", sites: sites)
+    render(conn, "index.html", sites: sites, page_title: "#{organisation.name}")
   end
 
   def invite_user(conn, %{
@@ -73,6 +73,9 @@ defmodule Flexcility.Organisation.SiteController do
 
     case Repo.insert(changeset) do
       {:ok, site} ->
+        Site.image_changeset(site, site_params)
+        |> Repo.update
+
         conn
         |> put_flash(:success, "Site created successfully.")
         |> redirect(to: organisation_site_path(conn, :show, conn.assigns.organisation.id, site))
@@ -84,13 +87,13 @@ defmodule Flexcility.Organisation.SiteController do
   def show(conn, %{"id" => id}) do
     roles = Role |> Repo.all
     roles_select_list = roles |> Enum.map(fn x -> {"#{x.name}", x.id} end)
-    site = Site |> Repo.get!(id) |> Repo.preload([:organisation])
+    site = Site |> Repo.get!(id) |> Repo.preload([:organisation, :assets])
     query = from ur in UsersRole,
             where: ur.site_id == ^site.id
     users_roles = Repo.all(query)
                   |> Repo.preload([:user, :site, :role])
     conn = conn |> assign(:page_title, site.name)
-    render(conn, "show.html", site: site, roles_select_list: roles_select_list, site_members: users_roles)
+    render(conn, "show.html", site: site, roles_select_list: roles_select_list, site_members: users_roles, page_title: conn.assigns.organisation.name)
   end
 
   def edit(conn, %{"id" => id}) do

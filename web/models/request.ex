@@ -13,7 +13,7 @@ defmodule Flexcility.Request do
 
     belongs_to :user, Flexcility.User
 		belongs_to :site, Flexcility.Site
-		belongs_to :asset, Flexcility.Asset
+		# belongs_to :asset, Flexcility.Asset
 
     has_many :assigned_technicians, Flexcility.AssignedTechnician, on_delete: :delete_all
 		has_many :technicians, through: [:assigned_technicians, :user]

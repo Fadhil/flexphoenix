@@ -11,9 +11,9 @@ defmodule Flexcility.Organisation.AssetController do
     %{"site_id" => site_id} = conn.params
     site_id = String.to_integer(site_id)
     query = from a in Asset,
-            join: p in assoc(a, :site),
+            join: p in assoc(a, :sites),
             where: p.id == ^site_id,
-            preload: [site: p]
+            preload: [sites: p]
     assets = Repo.all(query)
 
     render(conn, assets: assets, page_title: conn.assigns.organisation.name)
